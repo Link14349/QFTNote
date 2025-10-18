@@ -1,0 +1,1967 @@
+% !TEX program = xelatex
+% !TEX root = 笔记.tex
+\documentclass[cn,hazy,blue,14pt,normal]{elegantnote}
+\title{量子场论笔记}
+\author{郑元昊}
+\date{\zhtoday}
+\institute{复旦大学物理系}
+
+\usepackage{array}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{braket}
+\usepackage{tcolorbox}
+\usepackage{xparse}
+\usepackage{tikz}
+\usepackage{subcaption}
+\usepackage{makecell}
+\usepackage{tikz-feynman}
+\tikzfeynmanset{compat=1.1.0} % 推荐设置兼容性版本
+
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{bending}
+
+% 定义重要结论环境
+\newtcolorbox{important}{
+    colback=white,    % 背景色
+    colframe=black,   % 边框色
+    sharp corners,    % 直角
+    boxrule=1.5pt,    % 边框粗细
+    coltitle=black
+}
+
+\numberwithin{equation}{subsection}
+\numberwithin{figure}{section}
+\newcommand{\de}[2]{\frac{\mathrm d#1}{\mathrm d#2}}
+\newcommand{\pa}[2]{\frac{\partial #1}{\partial #2}}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\renewcommand{\rm}[1]{\mathrm{#1}}
+\renewcommand{\bf}[1]{\mathbf{#1}}
+\renewcommand{\exp}[1]{\mathrm e^{#1}}
+\newcommand{\ddd}[1]{\frac{\mathrm d^3#1}{(2\pi)^3}}
+\newcommand{\dddd}[1]{\frac{\mathrm d^4#1}{(2\pi)^4}}
+\renewcommand{\a}[1]{a_{\vec #1}}
+\newcommand{\om}[1]{\omega_{\vec #1}}
+\newcommand{\ad}[1]{a^\dagger_{\vec #1}}
+\renewcommand{\d}{\mathrm d}
+\newcommand{\dpi}[1]{(2\pi)^{#1}}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\uvec}[1]{\mathbf{\hat{#1}}}
+\newcommand{\e}{\mathrm e}
+\newcommand{\tensor}[1]{\overleftrightarrow{\vec{#1}}}
+\NewDocumentCommand{\ld}{m O{1}}{\frac{\mathrm d^3#1}{(2\pi)^3}\frac{#2}{2\omega_{\vec #1}}}
+\NewDocumentCommand{\ldsq}{m O{1}}{\frac{\mathrm d^3#1}{(2\pi)^3}\frac{#2}{\sqrt{2\omega_{\vec #1}}}}
+\NewDocumentCommand{\lips}{m O{1}}{\frac{\mathrm d^3#1}{(2\pi)^3}\frac{#2}{2\omega_{\vec #1}}}
+
+\begin{document}
+\maketitle
+\newpage
+
+\setcounter{tocdepth}{3} % 0: chapter/part, 1: section, 2: subsection, 3: subsubsection
+\tableofcontents
+
+\newpage
+\section{绪论}
+\subsection{Why QFT?}
+QFT is a framework for incorporating an infinite number of quantum degrees of
+freedom, arranged in spacetime, with the interactions constrained by locality, symmetry,
+unitarity, and causality. And it is the language of the laws of nature.\cite{qft:lecture1}
+\begin{itemize}
+    \item Locality: interactions occur at single points in spacetime
+    \item Symmetry: the laws of physics are invariant under certain transformations
+    \item Unitarity: the total probability of all possible outcomes of a quantum event is 1
+    \item Causality: cause precedes effect, and information cannot travel faster than light
+\end{itemize}
+\subsection{符号约定}
+\begin{itemize}
+    \item 采用自然Heaviside-Lorentz单位制: $\hbar = c = \mu_0 = \epsilon_0 = 1$
+    \item 度规: $g_{\mu\nu} = \mathrm{diag}(1,-1,-1,-1)$
+    \item 爱因斯坦求和约定: 重复指标隐含求和, 并且希腊字母如$\mu,\nu,\lambda\cdots$取0,1,2,3, 拉丁字母如$i,j,k\cdots$取1,2,3
+    \item 在不影响歧义的情况下, 对于标量场$\phi$, 其偏导$\mu$分量记为$\phi_\mu=\partial_\mu\phi$
+    \item 在不影响歧义的情况下, $p_\mu x^\mu$类的缩并可简记为$px$
+    \item $\phi_\mathbf x\equiv\phi(\mathbf x)$
+    \item $\phi_i\equiv\phi(x_1)$
+    \item $\delta_{xy}\equiv\delta^4(x-y)$
+    \item $\delta_{ij}\equiv\delta^4(x_i-x_j)$
+    \item $D_{xy}\equiv D_F(x-y)$
+    \item $D_{ij}\equiv D_F(x_i-x_j)$
+    \item $\braket{\phi_1\phi_2\cdots\phi_n}\equiv\braket{\Omega|\mathcal T\phi_1\phi_2\cdots\phi_n|\Omega}$
+\end{itemize}
+\begin{equation}
+    \Theta(x)=\begin{cases}
+        1, & x>0\\
+        0, & x<0
+    \end{cases}
+\end{equation}
+精细结构常数
+\begin{equation}
+    \alpha=\frac{e^2}{4\pi}\approx \frac{1}{137}
+\end{equation}
+作用量
+\begin{equation}
+    S = \int \mathcal{L} \mathrm d^4x=\int (-m\mathrm d\tau-qA_\mu\mathrm dx^\mu)-\int \mathrm d^4x \frac14 F_{\mu\nu}F^{\mu\nu}
+\end{equation}
+其中，$F_{\mu\nu}$为电磁场张量
+\begin{equation}
+    F_{\mu\nu} = \mathrm dA_{\mu\nu}
+\end{equation}
+$\mathrm d$为外微分算符，$A_\mu$为电磁四势.\\
+展开为分量形式有: 
+\begin{subequations}
+    \begin{align}
+        F_{\mu\nu} &= \begin{bmatrix}
+            0 & E_x & E_y & E_z \\
+            -E_x & 0 & -B_z & B_y \\
+            -E_y & B_z & 0 & -B_x \\
+            -E_z & -B_y & B_x & 0
+        \end{bmatrix}\\
+        F^{\mu\nu} &= \begin{bmatrix}
+            0 & -E_x & -E_y & -E_z \\
+            E_x & 0 & -B_z & B_y \\
+            E_y & B_z & 0 & -B_x \\
+            E_z & -B_y & B_x & 0
+        \end{bmatrix}
+    \end{align}
+\end{subequations}
+以及有粒子动力学方程:
+\begin{equation}
+    m\frac{\mathrm d^2x^\mu}{\mathrm d\tau^2}=qF^\mu_{~~\nu}\frac{\mathrm dx^\nu}{\mathrm d\tau}
+\end{equation}
+还有Maxwell方程组的协变形式:
+\begin{equation}
+    \begin{cases}
+        \partial_\mu F^{\mu\nu} = J^\nu\\
+        \partial_{[\mu} F_{\nu\lambda]} = 0
+    \end{cases}
+\end{equation}
+化为矢量方程组:
+\begin{equation}
+    \begin{cases}
+        \nabla \cdot \mathbf{E} &= \rho \\
+        \nabla \cdot \mathbf{B} &= 0 \\
+        \nabla \times \mathbf{E} &= -\frac{\partial \mathbf{B}}{\partial t} \\
+        \nabla \times \mathbf{B} &= \mathbf{J} + \frac{\partial \mathbf{E}}{\partial t}
+    \end{cases}
+\end{equation}
+
+\newpage
+\section{数学基础}
+\subsection{泛函}
+\begin{definition}[泛函]
+    泛函$f: \mathscr{F} \to \mathbb{R}$是定义在某个函数空间上的映射, 全体泛函组成的集合记为$\mathcal{F}$
+\end{definition}
+\begin{example}
+    设$\mathcal{F}$是定义在区间$[a,b]$上的所有实值连续函数的空间，则
+    \begin{equation}
+        f[\phi] = \int_a^b \phi(x) \, \mathrm{d}x
+    \end{equation}
+    是$\mathcal{F}$上的一个泛函
+\end{example}
+
+\subsection{$\delta$函数}
+\begin{definition}[$\delta$函数]
+    $\delta(x)$是满足
+    \begin{equation}
+        \int f(x) \delta(x) \mathrm dx = f(0)
+    \end{equation}
+    的函数
+\end{definition}
+\begin{theorem}
+    \begin{equation}
+        \int \mathrm dx \mathrm e^{ikx}=2\pi \delta(x)\label{matheq1}
+    \end{equation}
+\end{theorem}
+\begin{theorem}
+    \begin{equation}
+        \int_a^b f(x) \delta(g(x)) \mathrm dx = \sum_{i\in \{i~|~g(x_i)=0, x_i\in[a, b]\}}\frac{f(x_i)}{|g'(x_i)|}= \sum_{i\in \{i~|~g(x_i)=0\}}\frac{f(x_i)}{|g'(x_i)|}\Theta(b-x)\Theta(x-a)
+    \end{equation}
+\end{theorem}
+
+\subsection{变分}
+\begin{definition}[变分]
+    设泛函$f: \mathcal{F} \to \mathbb{R}$\\
+    其变分
+    \begin{equation}
+        \frac{\delta f}{\delta \phi(x_0)} = \lim_{\epsilon \to 0} \frac{f[\phi(x) + \epsilon \delta(x-x_0)] - f[\phi]}{\epsilon}
+    \end{equation}
+\end{definition}
+\begin{example}
+    设泛函
+    \begin{equation}
+        f[\phi] = \phi
+    \end{equation}
+    则
+    \begin{equation}
+        \frac{\delta f}{\delta \phi(x_0)} = \delta(x-x_0)
+    \end{equation}
+\end{example}
+\begin{example}
+    设泛函
+    \begin{equation}
+        f[\phi] = g(\phi), \text{其中} g: \mathbb{R} \to \mathbb{R}
+    \end{equation}
+    则
+    \begin{equation}
+        \frac{\delta f}{\delta \phi(x_0)} = \frac{\partial g}{\partial \phi} \delta(x-x_0)
+    \end{equation}
+\end{example}
+\begin{example}
+    设泛函
+    \begin{equation}
+        f[\phi] = \int g(\phi) \mathrm dx, \text{其中} g: \mathbb{R} \to \mathbb{R}
+    \end{equation}
+    则
+    \begin{equation}
+        \frac{\delta f}{\delta \phi(x_0)} = \left.\frac{\partial g}{\partial \phi}\right|_{\phi(x_0)} \delta(x-x_0)
+    \end{equation}
+\end{example}
+\begin{example}
+    设泛函
+    \begin{equation}
+        f[\phi] = \int g(\phi, \nabla\phi) \mathrm d^3x, \text{其中} g: \mathbb{R} \times \mathbb{R}^3 \to \mathbb{R}
+    \end{equation}
+    则
+    \begin{equation}
+        \frac{\delta f}{\delta \phi(x_0)} = \left.\left(\frac{\partial g}{\partial \phi} - \partial_i\frac{\partial g}{\partial \phi_i}\right)\right|_{\nabla\phi(x_0)}
+    \end{equation}
+\end{example}
+参考: \cite{functionals}
+
+% \subsection{群\&群表示论}
+
+
+\subsection{Lorentz群}
+\begin{definition}[Lorentz变换]
+    Lorentz变换为一种保内积的变换:
+    \begin{equation}
+        \bar x^\mu=\Lambda^\mu_{~~\nu}x^\nu
+    \end{equation}
+    使得
+    \begin{equation}
+        \bar x^\mu\bar x_\mu=x^\mu x_\mu
+    \end{equation}
+\end{definition}
+\begin{theorem}[Lorentz变换的性质]\label{theorem:lorentz_property}
+    \begin{equation}
+        \Lambda^\mu_{~~\sigma}g_{\mu\nu}\Lambda^\nu_{~~\rho}=g_{\sigma\rho}
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    \begin{equation}
+        \bar{x}^2=g_{\mu\nu}\bar{x}^\mu\bar x^\nu=x^\sigma(\Lambda^\mu_{~~\sigma}g_{\mu\nu}\Lambda^\nu_{~~\rho})x^\rho=x^\sigma g_{\sigma\rho} x^\rho
+    \end{equation}
+\end{proof}
+于是我们可以有如下推论:
+\begin{theorem}[Lorentz变换的逆矩阵]\label{theorem:Lorentz_inverse}
+    \begin{equation}
+        (\Lambda^{-1})^{\mu}_{~~\nu}=\Lambda_\alpha^{~~\mu}
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    由\ref{theorem:lorentz_property}可得
+    \begin{equation}
+        g^{\rho\beta}\Lambda^\mu_{~~\rho}\Lambda^\nu_{~~\sigma}g_{\mu\nu}=g_{\rho\sigma}g^{\rho\beta}=\delta^\beta_{~~\sigma}
+    \end{equation}
+    即:
+    \begin{equation}
+        \Lambda_\nu^{~~\beta}\Lambda^\nu_{~~\sigma}=\delta^\beta_{~~\sigma}
+    \end{equation}
+    于是可以得证.
+\end{proof}
+\begin{definition}[$\delta\omega^\mu_{~~\nu}$]\label{def:deltaomega}
+    对于无穷小Lorentz变换$\Lambda^\mu_{~~\nu}$, 定义
+    \begin{equation}
+        \Lambda^\mu_{~~\nu}=\delta^\mu_{~~\nu}+\delta\omega^\mu_{~~\nu}
+    \end{equation}
+\end{definition}
+通过\eqref{theorem:lorentz_property}可以发现$\delta\omega_{\mu\nu}$是反称的.
+\begin{theorem}[$\delta\omega_{\mu\nu}$的性质]
+    \begin{equation}
+        \delta\omega_{\mu\nu}=\delta\omega_{[\mu\nu]}
+    \end{equation}
+\end{theorem}
+\begin{definition}[对$\phi$的Unitary变换$U(\Lambda)$]
+    \begin{equation}
+        U(\mathbf 1+\delta\omega)=1+\frac i2\delta\omega_{\mu\nu}M^{\mu\nu}
+    \end{equation}
+    其中，$M^{\mu\nu}=M^{[\mu\nu]}$
+\end{definition}
+\begin{theorem}[结合律]\label{theorem:U_combine}
+    我们要求$U$满足:
+    \begin{equation}
+        U(\Lambda\Lambda')=U(\Lambda)U(\Lambda')
+    \end{equation}
+\end{theorem}
+根据定理\ref{theorem:Lorentz_inverse}, 定理\ref{theorem:U_combine}, 定义\ref{def:deltaomega}, 我们要求$U(\Lambda^{-1}\Lambda'\Lambda)=U(\Lambda^{-1})U(\Lambda')U(\Lambda)$, 于是有\ref{theorem:UMU}:
+\begin{theorem}\label{theorem:UMU}
+    \begin{equation}
+        U^{-1}_\Lambda M^{\mu\nu}U_\Lambda=\Lambda^\mu_{~~\rho}\Lambda^\nu_{~~\sigma}M^{\rho\sigma}
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    \begin{equation}\label{2eq1}
+        U_\Lambda^{-1}U_{\Lambda'}U_\Lambda=1+\frac i2\delta{\omega'}_{\mu\nu}U_\Lambda^{-1}M^{\mu\nu}U_\Lambda
+    \end{equation}
+    \begin{equation}
+        U(\Lambda^{-1}\Lambda'\Lambda)=U(1+\Lambda^{-1}\omega'\Lambda)=1+\frac i2(\Lambda^{-1}\delta\omega'\Lambda)_{\mu\nu}M^{\mu\nu}
+    \end{equation}
+    计算$(\Lambda^{-1}\delta\omega'\Lambda)^{\mu}_{~~\nu}$
+    \begin{equation}
+        (\Lambda^{-1}\delta\omega'\Lambda)^{\mu}_{~~\nu}=\Lambda_\sigma^{~~\mu}\delta{\omega'}^\sigma_{~~\rho}\Lambda^\rho_{~~\nu}
+    \end{equation}
+    于是
+    \begin{equation}
+        (\Lambda^{-1}\delta\omega'\Lambda)_{\mu\nu}=\Lambda^{\sigma}_{~~\mu}\delta{\omega'}_{\sigma\rho}\Lambda^\rho_{~~\nu}
+    \end{equation}
+    因此
+    \begin{equation}\label{2eq2}
+        U(\Lambda^{-1}\Lambda'\Lambda)=U(1+\Lambda^{-1}\omega'\Lambda)=1+\frac i2\Lambda^{\sigma}_{~~\mu}\delta{\omega'}_{\sigma\rho}\Lambda^\rho_{~~\nu}M^{\mu\nu}
+    \end{equation}
+    将\eqref{2eq1}与\eqref{2eq2}取等我们有
+    \begin{equation}
+        \delta{\omega'}_{\rho\sigma}U_\Lambda^{-1}M^{\rho\sigma}U_\Lambda=\Lambda^{\sigma}_{~~\mu}\delta{\omega'}_{\sigma\rho}\Lambda^\rho_{~~\nu}M^{\mu\nu}
+    \end{equation}
+    于是
+    \begin{equation}
+        U^{-1}_\Lambda M^{\mu\nu}U_\Lambda=\Lambda^\mu_{~~\rho}\Lambda^\nu_{~~\sigma}M^{\rho\sigma}
+    \end{equation}
+\end{proof}
+进一步展开我们可以得到
+\begin{theorem}[$M^{\mu\nu}$的对易子]
+    \begin{equation}
+        [M^{\mu\nu}, M^{\rho\sigma}]=i(g^{\mu\rho}M^{\nu\sigma}+g^{\sigma\nu}M^{\mu\rho}-g^{\mu\sigma}M^{\nu\rho}-g^{\rho\nu}M^{\mu\sigma})
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    展开
+    \begin{equation}
+        (1-\frac i 2\delta \omega_{\alpha\beta}M^{\alpha\beta})M^{\mu\nu}(1+\frac i 2\delta \omega_{\rho\sigma}M^{\rho\sigma})=(\delta^\mu_{~~\rho}+\delta\omega^\mu_{~~\rho})(\delta^\nu_{~~\sigma}+\delta\omega^\nu_{~~\sigma})M^{\rho\sigma}
+    \end{equation}
+    化简整理得到
+    \begin{equation}
+        -\frac i2\delta\omega_{\rho\sigma}[M^{\rho\sigma}, M^{\mu\nu}]=\delta\omega_{\rho\sigma}(M^{\mu\sigma}g^{\rho\nu}-M^{\rho\nu}g^{\mu\sigma})
+    \end{equation}
+    于是
+    \begin{equation}\label{eq3}
+        [M^{\mu\nu}, M^{\rho\sigma}]=2i(-g^{\mu\sigma}M^{\nu\rho}-g^{\rho\nu}M^{\mu\sigma})+A^{\mu\nu\rho\sigma}
+    \end{equation}
+    其中$A^{\mu\nu\rho\sigma}=A^{\nu\mu\rho\sigma}$, $A^{\mu\nu\rho\sigma}=A^{\mu\nu\sigma\rho}$.\\
+    交换$\mu$, $\nu$:
+    \begin{equation}\label{eq4}
+        [M^{\nu\mu}, M^{\rho\sigma}]=2i(-g^{\nu\sigma}M^{\mu\rho}-g^{\rho\mu}M^{\nu\sigma})+A^{\mu\nu\rho\sigma}
+    \end{equation}
+    注意到$M^{\mu\nu}$反称, \eqref{eq3}+\eqref{eq4}得到:
+    \begin{equation}
+        A^{\mu\nu\rho\sigma}=i(g^{\mu\sigma}M^{\nu\rho}+g^{\nu\rho}M^{\mu\sigma}+g^{\mu\sigma}M^{\nu\sigma}+g^{\nu\sigma}M^{\mu\rho})
+    \end{equation}
+    于是可得
+    \begin{important}
+        \begin{equation}
+            [M^{\mu\nu}, M^{\rho\sigma}]=i(g^{\mu\rho}M^{\nu\sigma}+g^{\sigma\nu}M^{\mu\rho}-g^{\mu\sigma}M^{\nu\rho}-g^{\rho\nu}M^{\mu\sigma})
+        \end{equation}
+    \end{important}
+\end{proof}
+\begin{definition}[(伪)旋转生成元]
+    \begin{equation}
+        J_i = \frac12\epsilon_{ijk}M^{jk}
+    \end{equation}
+    \begin{equation}
+        K_i = M_{i0}
+    \end{equation}
+\end{definition}
+\begin{theorem}[(伪)旋转生成元的对易关系]
+    \begin{equation}
+        [J_i, J_j]=i\epsilon_{ijk}J^k
+    \end{equation}
+    \begin{equation}
+        [J_i, K_j]=i\epsilon_{ijk}K^k
+    \end{equation}
+    \begin{equation}
+        [k_i, K_j]=-i\epsilon_{ijk}J^k
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    注意到$g=\mathrm{diag}(1,-1,-1,-1)$
+    \begin{equation}
+        \begin{split}
+            [J_i, J_j]&=-\frac i2\epsilon_{ikl}\epsilon_{jmn}(g^{nk}M^{lm}+g^{ml}M^{kn})\\
+            &=-\frac i2\epsilon_{ikl}\epsilon_{jmn}(\textcolor{red}{-\delta^{nk}}M^{lm}\textcolor{red}{-\delta^{ml}}M^{kn})\\
+            &=\frac i2(\epsilon_{kli}\epsilon_{kjm}M^{lm}+\epsilon_{lik}\epsilon_{lnj}M^{kn})\\
+            &=\frac i2\left((\delta_{lj}\delta_{im}-\delta_{lm}\delta_{ij}M^{lm}+(\delta_{in}))\right)\\
+            &=-iM_{ij}
+        \end{split}
+    \end{equation}
+    又因为
+    \begin{equation}
+        \epsilon_{kij}\epsilon^{kmn}=-(\delta_i^m\delta_j^n-\delta_i^n\delta_j^m)
+    \end{equation}
+    \textcolor{red}{(不要忘记我们升指标的时候我们度规三次, 而(+ - - -)度规在三维空间的诱导度规为$\mathrm{diag}(-1,-1,-1)$, 因此总体上我们乘了三次-1,产生一个额外的负号)}\\
+    因此
+    \begin{equation}\label{eq5}
+        \epsilon_{ijk}J^k=\frac12\epsilon_{kij}\epsilon^{kmn}M_{mn}=-M_{ij}
+    \end{equation}
+    然后即得
+    \begin{equation}
+        [J_i, J_j]=i\epsilon_{ijk}J^k
+    \end{equation}
+    接着尝试证明$[J_i,K_j]$.
+    \begin{equation}
+        [J_i,K_j]=[\frac12\epsilon_{imn}M^{mn}, M_{j0}]=\frac12\epsilon_{imn}[M^{mn}, M_{j0}]
+    \end{equation}
+    计算$[M^{\mu\nu}, M_{\rho\sigma}]$
+    \begin{equation}
+        [M^{\mu\nu}, M_{\rho\sigma}]=-2i(\delta_\sigma^{~~\mu}M^\nu_{~~\rho}+\delta_\rho^{~~\nu}M^\mu_{~~\sigma})
+    \end{equation}
+    于是
+    \begin{equation}
+        [J_i, K_j]=\frac12\epsilon_{ikl}(-2i)\left(\delta_0^{~~k}M^l_{~~j}+\delta_j^{~~l}M^k_{~~0}\right)=i\epsilon_{ijk}M^k_{~~0}
+    \end{equation}
+    又因为$g_{\mu\nu}$升$0$指标不会改变符号, 因此我们可以直接升指标然后得到
+    \begin{equation}
+        [J_i, K_j]=i\epsilon_{ijk}M^{k0}=i\epsilon_{ijk}K^k
+    \end{equation}
+    最后，考虑证明:
+    \begin{equation}
+        [K_i, K_j]=[M_{i0}, M_{j0}]
+    \end{equation}
+    因为
+    \begin{equation}
+        [M_{\mu\nu}, M_{\rho\sigma}]=i(g_{\mu\rho}M_{\nu\sigma}+g_{\sigma\nu}M_{\mu\rho}-g_{\mu\sigma}M_{\nu\rho}-g_{\rho\nu}M_{\mu\sigma})
+    \end{equation}
+    于是
+    \begin{equation}
+        [K_i, K_j]=i(g_{ij}M_{00}+g_{00}M_{ij}-g_{i0}M_{0j}-g_{j0}M_{i0})=iM_{ij}
+    \end{equation}
+    利用\eqref{eq5}我们得到
+    \begin{equation}
+        [K_i, K_j]=-i\epsilon_{ijk}J^k
+    \end{equation}
+\end{proof}
+
+\newpage
+\section{经典场论}
+\subsection{拉氏量、作用量与Euler-Lagrange方程}
+\begin{definition}[拉氏量\&拉氏量密度]
+    拉氏量
+    \begin{equation}
+        L(t)=\int \mathrm d^3x \, \mathcal{L}(\phi, \partial_\mu \phi)
+    \end{equation}
+    其中$\mathcal L$即拉氏量密度
+\end{definition}
+\begin{definition}[作用量]
+    作用量$S$是拉氏量密度在时空上的积分
+    \begin{equation}
+        S = \int L \, \mathrm{d}t=\int\mathcal L\,\mathrm d^4x
+    \end{equation}
+\end{definition}
+\theorem[标量的Euler-Lagrange方程]
+\begin{equation}
+    \frac{\partial\mathcal L}{\partial\phi}-\partial_\mu\frac{\partial\mathcal L}{\partial\phi_\mu}=0
+\end{equation}
+\begin{proof}
+    设$\phi\to\phi+\delta\phi$，则
+    \begin{equation}
+        \delta S = \int \mathrm d^4x \left(\frac{\partial\mathcal L}{\partial\phi}\delta\phi + \frac{\partial\mathcal L}{\partial\phi_\mu}\delta\phi_\mu\right)
+    \end{equation}
+    对第二项分部积分，忽略边界项，有
+    \begin{equation}
+        \delta S = \int \mathrm d^4x \left(\frac{\partial\mathcal L}{\partial\phi} - \partial_\mu\frac{\partial\mathcal L}{\partial\phi_\mu}\right)\delta\phi
+    \end{equation}
+    由$\delta S=0$可得Euler-Lagrange方程
+\end{proof}
+\begin{example}
+    自由粒子的拉氏量密度
+    \begin{equation}
+        \mathcal L = \frac12\partial_\mu\phi\partial^\mu\phi - \frac12 m^2\phi^2
+    \end{equation}
+    代入Euler-Lagrange方程, 有
+    \begin{equation}
+        (\partial_\mu\partial^\mu + m^2)\phi = 0
+    \end{equation}
+    即Klein-Gordon方程
+\end{example}
+\begin{theorem}[矢量场的Euler-Lagrange方程]
+    设矢量场为$A_\mu$, 
+    定义$F_{\mu\nu}=\mathrm dA_{\mu\nu}$, $\Pi^{\mu\nu}=\frac{\partial\mathcal L}{\partial F_{\mu\nu}}, B^\nu=\frac{\partial \mathcal L}{\partial A_\nu}$, 那么
+    \begin{equation}
+        B^\mu-2\partial_\nu\Pi^{[\nu\mu]}=0
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    \begin{equation}
+        \delta\mathcal L=\Pi^{\mu\nu}\delta \mathrm dA_{\mu\nu}+\frac{\partial\mathcal L}{\partial A_\mu}\delta A_\mu
+    \end{equation}
+    交换$\delta$与外微分算子$\mathrm d$, 并利用乘法法则有:
+    \begin{subequations}
+        \begin{align}
+            \delta\mathcal L&=2\partial_{[\mu}(\Pi^{\mu\nu}\delta A_{\nu]})-2(\partial_{[\mu}\Pi^{\mu\nu})\delta A_\nu+\frac{\partial\mathcal L}{\partial A_\mu}\delta A_\mu\\
+            &=2\partial_{[\mu}(\Pi^{\mu\nu}\delta A_{\nu]})-2(\partial_nu\Pi^{[\nu\mu]})\delta A_\mu+\frac{\partial\mathcal L}{\partial A_\mu}\delta A_\mu
+        \end{align}
+    \end{subequations}
+    忽略边界项, 由$\delta S=0$可得Euler-Lagrange方程.
+\end{proof}
+\begin{example}
+    电磁场的拉氏量密度
+    \begin{equation}
+        \mathcal L = -\frac14 F_{\mu\nu}F^{\mu\nu}-J^\mu A_\mu
+    \end{equation}
+    代入Euler-Lagrange方程, 有
+    \begin{equation}
+        \partial_\mu F^{\mu\nu} = J^\nu
+    \end{equation}
+    即Maxwell方程.
+\end{example}
+\subsection{对称性与守恒量}
+\songti 在这里我们考虑连续对称性.
+\begin{definition}[连续对称性]
+    连续对称性是指在某个参数$\alpha$下，场的变换
+    \begin{equation}
+        \phi(x) \to \phi'(x) = \phi(x) + \alpha \Delta\phi(x)
+    \end{equation}
+    其中, $\Delta$为某一算符.\\
+    若系统具有该变换的对称性, 则运动方程应该不变.\\
+    即:
+    \begin{equation}
+        \mathcal L \to \mathcal L+\alpha\partial_{\mu} J^\mu
+    \end{equation}
+\end{definition}
+\theorem[Noether定理]
+对于存在某对称性的系统, 存在守恒流
+\begin{equation}
+    j^\mu=\Pi^\mu\Delta\phi - J^\mu
+\end{equation}
+\begin{proof}
+    \begin{subequations}
+        \begin{align}
+            \delta\mathcal L 
+            &= \alpha\frac{\partial\mathcal L}{\partial\phi}\Delta\phi + \alpha\frac{\partial\mathcal L}{\partial\phi_\mu}\partial_\mu\Delta\phi\\
+            &= \alpha\left(\frac{\partial\mathcal L}{\partial\phi} - \alpha\partial_\mu\frac{\partial\mathcal L}{\partial\phi_\mu}\right)\Delta\phi + \partial_\mu\left(\frac{\partial\mathcal L}{\partial\phi_\mu}\Delta\phi\right)\\
+            &= \alpha\partial_\mu\left(\Pi^\mu\Delta\phi\right)
+        \end{align}
+    \end{subequations}
+    又因为系统存在对称性:
+    \begin{equation}
+        \delta\mathcal L = \alpha\partial_\mu J^\mu
+    \end{equation}
+    因此:
+    \begin{equation}
+        \partial_\mu(\Pi^\mu\Delta\phi-J^\mu)=\partial_\mu j^\mu = 0
+    \end{equation}
+\end{proof}
+\begin{example}[复标量场的$U(1)$对称性]
+    考虑复标量场
+    \begin{equation}
+        \mathcal L = \partial^\mu\phi^*\partial_\mu\phi - m^2\phi^*\phi
+    \end{equation}
+    其对称性为
+    \begin{equation}
+        \phi \to \phi' = e^{i\alpha}\phi, \quad \phi^* \to \phi'^* = e^{-i\alpha}\phi^*
+    \end{equation}
+    不难发现, $\mathcal L$与$\phi$的相位无关，因此:
+    \begin{equation}
+        \mathcal L \to \mathcal L + 0\Rightarrow J^\mu = 0
+    \end{equation}
+    于是, 由Noether定理可得守恒流
+    \begin{equation}
+        j^\mu = i(\phi\partial^\mu\phi^* - \phi^*\partial^\mu\phi)
+    \end{equation}
+    我们可以代入验证其守恒:
+    \begin{equation}
+        \partial_\mu j^\mu = i(\phi\partial^2\phi^*-\phi^*\partial^2\phi)
+    \end{equation}
+    代入运动方程$(\partial^2+m^2)\phi=0$
+    \begin{equation}
+        \partial_\mu j^\mu = i(\phi(-m^2\phi^*) - \phi^*(-m^2\phi)) = 0
+    \end{equation}
+\end{example}
+\begin{example}[标量场的时空平移对称性]\label{ex:ct_scalar_translation}
+    时空中有Killing矢量场$\xi^\mu$, 其满足Killing方程
+    \begin{equation}
+        \nabla_{(\mu}\xi_{\nu)} = 0
+    \end{equation}
+    缩并有:
+    \begin{equation}
+        \nabla_\mu\xi^\mu = 0
+    \end{equation}
+    在这里, $\Delta$算符即Lie导数$\mathscr L_\xi$.\\
+    对$\mathcal L$沿着$-\xi^\mu$的方向进行平移, 有
+    \begin{equation}
+        \mathcal L\to \mathcal L + \alpha \mathscr L_\xi\mathcal L=\mathcal L + \alpha \xi^\mu\nabla_\mu\mathcal L=\mathcal L + \alpha\nabla_\mu(\xi^\mu\mathcal L)
+    \end{equation}
+    因此, $J^\mu = \xi^\mu\mathcal L$. 由Noether定理可得守恒流
+    \begin{equation}
+    \begin{split}
+        j^\mu &= \Pi^\mu\Delta\phi - J^\mu = \Pi^\mu\xi^\nu\nabla_\nu\phi-\xi^\mu\mathcal L\\
+        &= \xi^\nu(\nabla^\mu\phi\nabla_\nu\phi-\mathcal L\delta^\mu_{~~\nu})
+    \end{split}
+    \end{equation}
+    于是有能动张量
+    \begin{equation}
+        T_{\mu\nu}=\nabla_\mu\phi\nabla_\nu\phi - \mathcal L g_{\mu\nu}
+    \end{equation}
+    其满足：
+    \begin{equation}
+        \nabla_\mu T^{\mu\nu} = 0
+    \end{equation}
+    由此可见, 能动量守恒完全是时空平移不变性的体现.
+\end{example}
+\begin{example}[矢量场的时空平移对称性]
+    类似\ref{ex:ct_scalar_translation}, 时空中有Killing矢量场$\xi^\mu$.
+    沿着$-\xi^\mu$变换, 同样有:
+    \begin{equation}
+        \mathcal L\to \mathcal L + \alpha \xi^\mu\nabla_\mu\mathcal L=\mathcal L + \alpha\nabla_\mu(\xi^\mu\mathcal L)
+    \end{equation}
+    \begin{equation}
+        A_\mu \to A_\mu + \alpha\mathscr{L}_\xi A_\mu
+    \end{equation}
+    \begin{equation}
+        F_{\mu\nu} \to F_{\mu\nu} + \alpha\mathscr{L}_\xi F_{\mu\nu}
+    \end{equation}
+    需要注意的是, $\mathscr L_\xi$与外微分算子$\mathrm d$不对易, 因此
+    \begin{equation}
+        \mathscr L_\xi F_{\mu\nu} = \mathscr L_\xi \mathrm d A_{\mu\nu} \neq \mathrm d(\mathscr L_\xi A)_{\mu\nu}
+    \end{equation}
+    而
+    \begin{equation}
+        \begin{split}
+            \mathscr L_\xi F_{\mu\nu} &= \xi^\lambda\nabla_\lambda F_{\mu\nu} + F_{\lambda\nu}\nabla_\mu\xi^\lambda + F_{\mu\lambda}\nabla_\nu\xi^\lambda\\
+            &= \xi^\lambda\nabla_\lambda F_{\mu\nu}+\nabla_{\mu}(F_{\lambda\nu\xi^\lambda})-\xi^\lambda\nabla_\mu F_{\lambda\nu}\\
+            &\quad+\nabla_\nu(F_{\mu\lambda}\xi^\lambda)-\xi^\lambda\nabla_\nu F_{\mu\lambda}\\
+            &= \xi^\lambda\nabla_\lambda F_{\mu\nu}+\xi^\lambda\nabla_\mu F_{\nu\lambda}+\xi^\lambda\nabla_\nu F_{\lambda\mu}+\nabla_{\mu}(F_{\lambda\nu}\xi^\lambda)+\nabla_\nu(F_{\mu\lambda}\xi^\lambda)
+        \end{split}
+    \end{equation}
+    由外微分算子性质有$\nabla_{[\mu}F_{\nu\lambda]}=0$, 可知前三项为零.\\
+    因此
+    \begin{equation}
+        \mathscr L_\xi F_{\mu\nu}=\nabla_{\mu}(F_{\lambda\nu}\xi^\lambda)+\nabla_\nu(F_{\mu\lambda}\xi^\lambda)
+    \end{equation}
+    于是
+    \begin{equation}
+        \begin{split}
+            \mathscr L_\xi\mathcal L &= \nabla_\mu(2\Pi^{\mu\nu F_{\lambda\nu}\xi^\lambda})-F_{\mu\nu}\xi^\lambda B^\nu+B^\nu(\xi^\lambda\nabla_\lambda A_\nu+A_\lambda\nabla_\nu\xi^\lambda)\\
+            &= \nabla_\mu(2\Pi^{\mu\nu F_{\lambda\nu}\xi^\lambda})-F_{\mu\nu}\xi^\lambda B^\nu+B^\nu\xi^\lambda\nabla_\lambda A_\nu-B^\nu\xi^\lambda\nabla_\nu A_\lambda\\
+            &\quad+B^\nu\nabla_\nu(A_\lambda\xi^\lambda)
+        \end{split}
+    \end{equation}
+    这里我们取规范
+    \begin{equation}
+        \nabla_\nu B^\nu=0
+    \end{equation}
+    故:
+    \begin{equation}
+        \mathscr L_\xi\mathcal L=\nabla_\mu(2\Pi^{\mu\nu}F_{\lambda\nu}\xi^\lambda+B^\mu A_\nu\xi^\nu)
+    \end{equation}
+    类似地, 可以得到能动张量:
+    \begin{equation}
+        T_{\mu\nu} = -2\Pi^{\mu\lambda}F_{\lambda\nu}+B_\mu A_\nu-g_{\mu\nu}\mathcal L
+    \end{equation}
+    参考:本人25年首考后写的笔记\cite{LinkZhihu}(很惭愧, 现在尝试重新推导的时候卡了好久...无奈看了当时的笔记才推出来, 真是奇怪, 明明当时也是我自己推出来的, 怎么现在一点都推不出来了呢= =).
+\end{example}
+\subsection{哈密顿量}
+\begin{definition}[共轭动量]
+    共轭动量
+    \begin{equation}
+        \Pi = \frac{\partial\mathcal L}{\partial\dot\phi}
+    \end{equation}
+\end{definition}
+做Legendre变换, 有Hamiltonian:
+\begin{equation}
+    H(\phi, \Pi, \nabla\phi) = \int \mathrm d^3x \, \Pi\dot\phi-L=\int \mathrm d^3x \, (\Pi\dot\phi-\mathcal L)
+\end{equation}
+定义Hamiltonian密度:
+\begin{equation}
+    \mathcal H(\phi, \Pi, \nabla\phi) = \Pi\dot\phi - \mathcal L
+\end{equation}
+定义Poisson括号$[, ]: \mathcal F\times\mathcal F\to\mathbb{R}$:
+\begin{equation}
+    \{F, G\}=\displaystyle\int \mathrm d^3x \left(\frac{\delta F}{\delta\phi}\frac{\delta G}{\delta\Pi(y)}-\frac{\delta G}{\delta\phi(y)}\frac{\delta F}{\delta\Pi(x)}\right)
+\end{equation}
+\begin{example}
+    \begin{equation}
+        \{\phi(\mathbf x), \Pi(\mathbf y)\} = \delta^3(\mathbf x - \mathbf y)
+    \end{equation}
+\end{example}
+\begin{proof}
+    设$F=\phi(\mathbf x), G=\Pi(\mathbf y)$, 则
+    \begin{equation}
+        \frac{\delta F}{\delta\phi(x)} = \delta^3(\mathbf x - \mathbf x'), \quad \frac{\delta F}{\delta\Pi(x)} = 0
+    \end{equation}
+    \begin{equation}
+        \frac{\delta G}{\delta\phi(x)} = 0, \quad \frac{\delta G}{\delta\Pi(x)} = \delta^3(\mathbf y - \mathbf x')
+    \end{equation}
+    代入Poisson括号定义, 有
+    \begin{equation}
+        \{\phi(\mathbf x), \Pi(\mathbf y)\} = \int \mathrm d^3x' (\delta^3(\mathbf x - \mathbf x')\delta^3(\mathbf y - \mathbf x') - 0) = \delta^3(\mathbf x - \mathbf y)
+    \end{equation}
+\end{proof}
+\theorem[哈密顿正则方程]
+\begin{equation}
+    \begin{cases}
+        \dot\phi(\mathbf x) = \{\phi_{\mathbf x}, H\}=\frac{\delta H}{\delta\Pi}=\frac{\partial\mathcal H}{\partial\Pi}\\
+        \dot\Pi(\mathbf x) = \{\Pi_{\mathbf x}, H\}=-\frac{\delta H}{\delta\phi}=-\frac{\partial\mathcal H}{\partial\phi}+\partial_i\frac{\partial\mathcal H}{\partial(\phi_i)}
+    \end{cases}
+\end{equation}
+\begin{proof}
+    \begin{equation}
+        \begin{split}
+            \delta H &= \int \mathrm d^3x \left(\delta\Pi_\mathbf x\dot\phi_\mathbf x+\Pi_\mathbf x\delta\dot\phi_\mathbf x-\frac{\partial\mathcal L}{\partial\phi}\delta\phi-\Pi_\mathbf x\delta\dot\phi-\frac{\partial\mathcal L}{\partial\phi_i}\delta\phi_i\right)\\
+            &= \int \mathrm d^3x \left(\delta\Pi_\mathbf x\dot\phi_\mathbf x - \frac{\partial\mathcal L}{\partial\phi}\delta\phi - \frac{\partial\mathcal L}{\partial\phi_i}\delta\phi_i\right)\\
+        \end{split}
+    \end{equation}
+    分部积分并消去边缘项有:
+    \begin{equation}
+        \delta H= \int \mathrm d^3x \left(\delta\Pi_\mathbf x\dot\phi_\mathbf x - \frac{\partial\mathcal L}{\partial\phi}\delta\phi + \partial_i\frac{\partial\mathcal L}{\partial\phi_i}\delta\phi\right)\\
+    \end{equation}
+    于是可得:
+    \begin{equation}
+        \begin{cases}
+            \dot\phi(\mathbf x) = \frac{\partial\mathcal H}{\partial\Pi}\\
+            \dot\Pi(\mathbf x) = -\frac{\partial\mathcal H}{\partial\phi}+\partial_i\frac{\partial\mathcal H}{\partial(\phi_i)}
+        \end{cases}
+    \end{equation}
+\end{proof}
+讨论: 在转换到Hamilton力学的过程中, Legendre变换给予了$\dot\phi$特殊的地位, 使得我们选定的参考系的时间轴$t$具有了特殊的地位, 因此破坏了洛伦兹协变性.
+
+\newpage
+\section{二次量子化}
+\songti 二次量子化是将场(如电磁场、电子场)本身进行量子化的框架，它将描述单粒子概率幅的经典场提升为场算符，其激发则对应粒子的产生与湮灭，从而自然地描述了粒子数可变的多粒子系统. 相比之下, 一次量子化中粒子是给定的，其运动（波函数）是量子的.
+\subsection{标准流程: 以自由实标量场为例}
+% \begin{enumerate}
+%     \item 将场的动力学方程转换为算符方程
+%     \item 找到动力学方程的一般解
+%     \item 将一般解的积分常数升级为常算符
+%     \item 施加量子化条件
+%     \item 用常算符构造Hilbert空间
+% \end{enumerate}
+\begin{enumerate}
+    \item 写下Lagrangian
+    \item 得到Hamiltonian
+    \item 做正则变换解耦
+    \item 施加量子化条件
+    \item 得到产生湮灭算符
+    \item 得到场方程
+\end{enumerate}
+\kaishu 注: 这里流程没按周洋讲的来, 因为我略微感觉他那样子做有一点点奇怪, 有些地方存在神秘的天降系数, 按照这样从Lagrangian出发的流程会更清晰一些.\songti
+\begin{example}[有质量自由标量粒子]
+    写下Lagrangian:
+    \begin{equation}
+        \mathcal L=\frac12\partial_\mu\phi\partial^\mu\phi - \frac12 m^2\phi^2
+    \end{equation}
+    我们有EoM:
+    \begin{equation}
+        (\partial_\mu\partial^\mu + m^2)\phi = 0
+    \end{equation}
+    或者写成
+    \begin{equation}
+        (\Box + m^2)\phi = 0
+    \end{equation}
+    并有色散关系:
+    \begin{equation}
+        \omega^2=\vec p^2+m^2
+    \end{equation}
+    满足这个关系的称为on-shell.
+
+    得到Hamiltonian:
+    \begin{equation}
+        \mathcal H=\frac12(\pi^2+m^2\phi^2+(\nabla\phi)^2)
+    \end{equation}
+
+    做正则变换, 有母函数
+    \begin{equation}
+        U=-\int\Pi(\vec k)\pi(\vec x)\mathrm e^{i\vec k\cdot\vec x}\mathrm d^3x\mathrm d^3k
+    \end{equation}
+
+    因此
+    \begin{align}
+        &\phi(\vec x)=\int\Phi_{\vec k}\mathrm e^{i\vec k\cdot\vec x}\mathrm d^3k\\
+        &\pi(\vec x)=\frac1{(2\pi)^3}\int\Pi_{\vec k}\mathrm e^{-i\vec k\cdot\vec x}\mathrm d^3k
+    \end{align}
+    \begin{align}
+        &\Phi_{\vec k}=\frac1{(2\pi)^3}\int\phi(\vec x)\mathrm e^{-i\vec k\cdot\vec x}\mathrm d^3x\\
+        &\Pi_{\vec k}=\int\pi(\vec x)\mathrm e^{i\vec k\cdot\vec x}\mathrm d^3x
+    \end{align}
+    并且有:
+    \begin{equation}
+        \Phi_{\vec k}^\dagger=\Phi_{-\vec k}, \quad \Pi_{\vec k}^\dagger=\Pi_{-\vec k}
+    \end{equation}
+    可以得到解耦后的Hamiltonian:
+    \begin{equation}
+        H=\frac12\int \mathrm d^3k (\frac1{(2\pi)^3}\Pi_{\vec k}\Pi_{-\vec k}+(2\pi)^3\omega^2\Phi_{\vec k}\Phi_{-\vec k})
+    \end{equation}
+    其中$\omega^2=m^2+k^2$
+
+    添加量子化条件:
+    \begin{equation}
+        [\phi(\vec x, t),\pi(\vec y, t)]=i\delta^3(x-y)
+    \end{equation}
+    于是有:
+    \begin{equation}
+        [\Phi_{\vec k}, \Pi_{\vec p}]=i\delta^3(k-p)
+    \end{equation}
+    令:
+    \begin{align}
+        &a_{\vec k}=(2\pi)^3\sqrt{\frac{\omega}{2}}\left(\Phi_{\vec k}+\frac i{\omega}\frac1{(2\pi)^3}\Pi_{\vec k}^\dagger\right)\\
+        &a^\dagger_{\vec k}=(2\pi)^3\sqrt{\frac{\omega}{2}}\left(\Phi_{\vec k}^\dagger-\frac i{\omega}\frac1{(2\pi)^3}\Pi_{\vec k}\right)
+    \end{align}
+
+    有对易子:
+    \begin{equation}
+        [a_{\vec k}, a_{\vec p}^\dagger]=(2\pi)^3\delta^3(\vec k-\vec p)
+    \end{equation}
+    更准确地说, 对于$[a_{\vec k}, a_{\vec k}^\dagger]$:
+    \begin{equation}
+        [a_{\vec k}, a_{\vec k}^\dagger]=\mathcal V
+    \end{equation}
+    $\mathcal V$为系统的总体积.
+
+    于是Hamiltonian可以被对角化:
+    \begin{equation}
+        H=\int\frac{\mathrm d^3p}{(2\pi)^3}\omega_{\vec p}(a^\dagger_{\vec p} a_{\vec p}+\frac12\mathcal V)
+    \end{equation}
+
+    Fourier逆变换可以得到:
+    \begin{align}
+        &\phi(\vec x)=\int\frac{\mathrm d^3p}{(2\pi)^3}\frac1{\sqrt{2\omega_{\vec p}}}(a^\dagger_{\vec p}\mathrm e^{-i\vec p\cdot\vec x}+a_{\vec p}\mathrm e^{i\vec p\cdot\vec x})\\
+        &\pi(\vec x)=\int\frac{\mathrm d^3p}{(2\pi)^3} i\sqrt{\frac{\omega_{\vec p}}{2}}(a^\dagger_{\vec p} e^{-i\vec p\cdot\vec x}-a_{\vec p} e^{i\vec p\cdot\vec x})
+    \end{align}
+
+    最后利用时间演化算符得到场方程:
+    \begin{important}
+        \begin{equation}\label{ch4freephi}
+            \phi(x)=\mathrm e^{iHt}\phi(\vec x)\mathrm e^{-iHt}=\int\frac{\mathrm d^3p}{(2\pi)^3}\frac1{\sqrt{2\omega_{\vec p}}}(a_{\vec p}^\dagger\mathrm e^{ipx}+a_{\vec p}\mathrm e^{-ipx})
+        \end{equation}
+        \begin{equation}\label{ch4freepi}
+            \pi(x)=\mathrm e^{iHt}\pi(\vec x)\mathrm e^{-iHt}=\int\frac{\mathrm d^3p}{(2\pi)^3} i\sqrt{\frac{\omega_{\vec p}}{2}}(a^\dagger_{\vec p} \e^{ipx}-a_{\vec p} \e^{-ipx})
+        \end{equation}
+    \end{important}
+
+    我们可以计算所谓的真空零点能密度:
+    \begin{equation}
+        \frac{\bra0 H\ket0}{\mathcal V}=\int\frac{\mathrm d^3p}{(2\pi)^3}\frac{\omega_{\vec p}}{2}=\int\frac{\mathrm d^3p}{(2\pi)^3}\frac{\sqrt{p^2+m^2}}{2}=+\infty
+    \end{equation}
+    
+    我们还可以定义动量算子:
+    \begin{equation}
+        P^i=\int\mathrm\partial^0\phi\partial^i\pi\mathrm d^3x=-\int\phi_t\phi_i\mathrm d^3x
+    \end{equation}
+    即:
+    \begin{align}
+        \vec P&=-\int\phi_t\nabla\phi\mathrm d^3x\\
+        &=-\int\mathrm d^3x\int\ldsq{p}[i\omega_{\vec p}](a^\dagger_{\vec p} e^{ipx}-a_{\vec p} e^{-ipx})\\
+        &\quad\int\ldsq{q}[i\vec q](-a^\dagger_{\vec q}\exp{iqx}+a_{\vec q}\exp{-iqx})\\
+        &=\int\ld{p}[\vec p\omega_{\vec p}](a^\dagger_{\vec p} a_{\vec p}+a_{\vec p}a^\dagger_{\vec p})\\
+        &=\int\ddd p\vec p a^\dagger_{\vec p} a_{\vec p}
+    \end{align}
+    % 动力学方程:
+    % \begin{equation}
+    %     (\partial^2+m^2)\phi=0
+    % \end{equation}
+    % 利用Fourier变换, 得:
+    % \begin{equation}
+    %     \omega^2=p^2+m^2
+    % \end{equation}
+    % 于是, 有
+    % \begin{align}
+    %     &\phi(x)=\int \frac{\mathrm d^3p}{(2\pi)^3} \frac{1}{\sqrt{2\omega_{\vec p}}}(a_{\vec p} e^{-ipx}+a_{\vec p}^\dagger e^{ipx})\\
+    %     &\pi(x)=\dot\phi(x)=\int \frac{\mathrm d^3p}{(2\pi)^3} i\sqrt{\frac{\omega}{2}}(-a_{\vec p} e^{-ipx}+a_{\vec p}^\dagger e^{ipx})
+    % \end{align}
+    % 做Fourier逆变换, 有:
+    % \begin{align}
+    %     &\Phi(\vec p)=\int \mathrm d^3x \, \phi(x)e^{-ipx}=
+    % \end{align}
+    % 施加量子化条件:
+    % \begin{equation}
+    %     [\phi(\vec x, t),\pi(\vec y, t)]=i\delta^3(x-y)
+    % \end{equation}
+\end{example}
+这里需要补充一点:
+\begin{theorem}[Lorentz不变的体元]
+    \begin{equation}
+        \int\frac{\mathrm d^3p}{(2\pi)^3}\frac1{2E}
+    \end{equation}
+    是一个Lorentz不变量
+\end{theorem}
+\begin{proof}
+    考虑
+    \begin{equation}
+        \int\frac{\mathrm d^4p}{(2\pi)^4}\Theta(p^0) 2\pi\delta(p^2-m^2)
+    \end{equation}
+    可以发现其等于
+    \begin{equation}
+        \int\frac{\mathrm d^3p}{(2\pi)^3}\frac1{2E}
+    \end{equation}
+\end{proof}
+然后我们就可以定义真空态以及Fock空间:
+\begin{definition}[真空态]
+    真空态$\ket0$满足
+    \begin{equation}
+        a_{\vec p}\ket0=0, \quad \forall \vec p
+    \end{equation}
+\end{definition}
+\begin{definition}[Fock空间]
+    Fock空间为
+    \begin{equation}
+        \mathcal H=\bigoplus_{n=1}\mathcal H_n
+    \end{equation}
+    其中$\mathcal H_n$为$n$粒子空间, 即:
+    \begin{equation}
+        \mathcal H_n=\mathrm{span}\{a_{\vec p_1}^\dagger a_{\vec p_2}^\dagger \cdots a_{\vec p_n}^\dagger \ket0 \,|\, \forall \vec p_i\}
+    \end{equation}
+\end{definition}
+接下来我们检查自由标量场的二次量子化结果与我们的经典一次量子化结果相一致.
+
+\begin{definition}[动量本征态]
+    \begin{equation}
+        \ket{\vec p}=\sqrt{2\omega_{\vec p}}a^\dagger_{\vec p}\ket0
+    \end{equation}
+    \begin{equation}
+        \ket{\vec p\vec q}=\sqrt{4\omega_{\vec p}\omega_{\vec q}}a^\dagger_{\vec p}a^\dagger_{\vec q}\ket0
+    \end{equation}
+\end{definition}
+我们不难验证:
+\begin{equation}
+    \braket{\vec p|\vec q}=2\omega_{\vec p}(2\pi)^3\delta^3(\vec p-\vec q)
+\end{equation}
+\begin{equation}
+    \braket{\vec p'\vec q'|\vec p\vec q}=4\omega_{\vec p}\omega_{\vec q}(2\pi)^6\left(\delta^3(\vec p-\vec p')\delta^3(\vec q-\vec q')+\delta^3(\vec p'-\vec q)\delta^3(\vec q'-\vec p)\right)
+\end{equation}
+\begin{equation}
+    \vec P\ket{\vec p}=\vec p\ket{\vec p}
+\end{equation}
+
+\begin{definition}[位置本征态]
+    定义位置产生算符:
+    \begin{align}
+        &\psi^\dagger(x)=\int\ldsq pa^\dagger_{\vec p}\mathrm e^{ipx}\\
+        &\psi(x)=\int\ldsq pa_{\vec p}\mathrm e^{-ipx}
+    \end{align}
+    以及位置本征态
+    \begin{equation}
+        \ket{\vec x}=\psi^\dagger(x)\ket0
+    \end{equation}
+\end{definition}
+我们可以发现:
+\begin{equation}
+    \ket{\vec x}=\psi^\dagger(x)\ket0=\int\ld{p}\exp{ipx}\ket{\vec p}
+\end{equation}
+\begin{equation}
+    \braket{\vec p|\vec x}=\exp{ipx}
+\end{equation}
+
+可以发现与我们在QM里学的一致.
+
+\subsection{两点关联函数}
+\begin{definition}[关联函数$D(x-y)$\cite{peskinCausality}]
+    \begin{equation}
+        D(x-y)\equiv\braket{0|\phi(x)\phi(y)|0}
+    \end{equation}
+\end{definition}
+计算可得:
+\begin{theorem}
+    \begin{align}
+        D(x-y)&=\int\ldsq{p}\int\ldsq{q}\exp{iqy-ipx}\braket{0|\a p\ad q|0}\\
+        &=\int\ld{p}\exp{-ip(x-y)}
+    \end{align}
+\end{theorem}
+可以发现, 这是一个Lorentz不变量(更准确来说, 是$\mathcal P\times\rm{SO}(1,3)$的不变量, 由于存在$\Theta$它不能在$\mathcal T$下不变).
+
+\kaishu 讨论: 两点关联函数的意义是什么? 不难证明这就是上一节中的$\braket{x|y}$, 也就是说, 它表示在时空点$y$处(假设y更早发生)激发一个粒子, 在时空点$x$处测量到它的概率密度. \songti
+
+我们分类讨论类时、类空间隔的关联函数$D(x-y)$:\\
+类时: 我们不妨假设$x^0>y^0$, 那么我们可以做Lorentz变换, 使得$\vec x'=\vec y'=0$. 设$t={x'}^0-{y'}^0$, 则:
+\begin{equation}
+    D(x-y)=\int\ld p\exp{-i\omega_{\vec p}t'}=\int_m^{+\infty}\sqrt{\omega^2-m^2}\exp{-i\omega t'}\frac{\d\omega}{\dpi2}
+\end{equation}
+对于$t'\rightarrow+\infty$
+\begin{equation}
+    D(x-y)\sim\exp{-imt'}
+\end{equation}
+类空: 我们可以做Lorentz变换, 使得$x^0=y^0=0$, 并设$\vec r=\vec x-\vec y$, 则:
+\begin{align}
+    D(x-y)&=\int\ld p\exp{i\vec p\cdot(\vec x-\vec y)}\\
+    &=\int_0^{+\infty}\frac{2\pi p^2\d p}{\dpi3}\frac1{2\omega_{\vec p}}\int_0^\pi\exp{ipr\cos\theta}\sin\theta\d\theta\\
+    &=\int_0^{+\infty}\frac{-i}{2\dpi2}\frac{\exp{ipr}-\exp{-ipr}}r\frac{p\d p}{\sqrt{p^2+m^2}}\\
+    &=-\frac i{2\dpi2r}\int_{-\infty}^{+\infty}\frac{p}{\sqrt{p^2+m^2}}\exp{ipr}\d p
+\end{align}
+注意到, $p=\pm im$是被积分函数的两个支点, 于是将积分路径改为图\ref{fig:q2Dspace}中沿着上半部分支割线的路径. 然后可得:
+\begin{equation}
+    D(x-y)=\frac1{\dpi2 r}\int_m^{+\infty}\frac{\omega\exp{-\omega r}}{\sqrt{\omega^2-m^2}}\d\omega
+\end{equation}
+对于$r\rightarrow+\infty$
+\begin{equation}
+    D(x-y)\sim\exp{-mr}
+\end{equation}
+我们发现, 即使是类空间隔, $D(x-y)$仍不为0, 这说明$\phi(x), \phi(y)$在空间中存在重叠(overlap). 
+\begin{figure}
+    \centering
+    \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-.7,xscale=.7]
+        \draw  (186,155.64) -- (402,155.64)(296.16,39) -- (296.16,255) (395,150.64) -- (402,155.64) -- (395,160.64) (291.16,46) -- (296.16,39) -- (301.16,46)  ;
+        %Shape: Circle [id:dp009460912696354407] 
+        \draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (294.83,126) .. controls (294.83,125.17) and (295.5,124.5) .. (296.33,124.5) .. controls (297.16,124.5) and (297.83,125.17) .. (297.83,126) .. controls (297.83,126.83) and (297.16,127.5) .. (296.33,127.5) .. controls (295.5,127.5) and (294.83,126.83) .. (294.83,126) -- cycle ;
+        %Shape: Circle [id:dp9972292459262887] 
+        \draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (294.83,185) .. controls (294.83,184.17) and (295.5,183.5) .. (296.33,183.5) .. controls (297.16,183.5) and (297.83,184.17) .. (297.83,185) .. controls (297.83,185.83) and (297.16,186.5) .. (296.33,186.5) .. controls (295.5,186.5) and (294.83,185.83) .. (294.83,185) -- cycle ;
+        %Straight Lines [id:da906582585507226] 
+        \draw    (296,40.17) .. controls (297.67,41.83) and (297.68,43.5) .. (296.02,45.17) .. controls (294.36,46.84) and (294.37,48.51) .. (296.04,50.17) .. controls (297.71,51.83) and (297.72,53.5) .. (296.06,55.17) .. controls (294.4,56.84) and (294.41,58.51) .. (296.08,60.17) .. controls (297.75,61.83) and (297.76,63.5) .. (296.1,65.17) .. controls (294.44,66.84) and (294.45,68.51) .. (296.12,70.17) .. controls (297.79,71.83) and (297.8,73.5) .. (296.14,75.17) .. controls (294.48,76.84) and (294.49,78.51) .. (296.16,80.17) .. controls (297.83,81.84) and (297.83,83.5) .. (296.17,85.17) .. controls (294.51,86.84) and (294.52,88.51) .. (296.19,90.17) .. controls (297.86,91.83) and (297.87,93.5) .. (296.21,95.17) .. controls (294.55,96.84) and (294.56,98.51) .. (296.23,100.17) .. controls (297.9,101.83) and (297.91,103.5) .. (296.25,105.17) .. controls (294.59,106.84) and (294.6,108.51) .. (296.27,110.17) .. controls (297.94,111.83) and (297.95,113.5) .. (296.29,115.17) .. controls (294.63,116.84) and (294.64,118.51) .. (296.31,120.17) .. controls (297.98,121.83) and (297.99,123.5) .. (296.33,125.17) -- (296.33,126) -- (296.33,126) ;
+        %Straight Lines [id:da6403683789941244] 
+        \draw    (296.33,183.5) .. controls (298,185.17) and (298,186.83) .. (296.33,188.5) .. controls (294.66,190.17) and (294.66,191.83) .. (296.33,193.5) .. controls (298,195.17) and (298,196.83) .. (296.33,198.5) .. controls (294.66,200.17) and (294.66,201.83) .. (296.33,203.5) .. controls (298,205.17) and (298,206.83) .. (296.33,208.5) .. controls (294.66,210.17) and (294.66,211.83) .. (296.33,213.5) .. controls (298,215.17) and (298,216.83) .. (296.33,218.5) .. controls (294.66,220.17) and (294.66,221.83) .. (296.33,223.5) .. controls (298,225.17) and (298,226.83) .. (296.33,228.5) .. controls (294.66,230.17) and (294.66,231.83) .. (296.33,233.5) .. controls (298,235.17) and (298,236.83) .. (296.33,238.5) .. controls (294.66,240.17) and (294.66,241.83) .. (296.33,243.5) .. controls (298,245.17) and (298,246.83) .. (296.33,248.5) .. controls (294.66,250.17) and (294.66,251.83) .. (296.33,253.5) -- (296.33,255) -- (296.33,255) ;
+        %Straight Lines [id:da20632335279729674] 
+        \draw    (288.17,41) -- (287.83,131) ;
+        %Straight Lines [id:da03237870466308923] 
+        \draw    (304,40.17) -- (303.67,130.17) ;
+        %Shape: Arc [id:dp3060537526358036] 
+        \draw  [draw opacity=0] (303.67,129.25) .. controls (303.67,129.25) and (303.67,129.25) .. (303.67,129.25) .. controls (303.67,129.25) and (303.67,129.25) .. (303.67,129.25) .. controls (303.67,133.62) and (300.12,137.17) .. (295.75,137.17) .. controls (291.41,137.17) and (287.88,133.67) .. (287.83,129.34) -- (295.75,129.25) -- cycle ; \draw   (303.67,129.25) .. controls (303.67,129.25) and (303.67,129.25) .. (303.67,129.25) .. controls (303.67,129.25) and (303.67,129.25) .. (303.67,129.25) .. controls (303.67,133.62) and (300.12,137.17) .. (295.75,137.17) .. controls (291.41,137.17) and (287.88,133.67) .. (287.83,129.34) ;  
+        %Straight Lines [id:da32051585297040974] 
+        \draw    (288.33,78.83) -- (288.14,83.01) ;
+        \draw [shift={(288,86)}, rotate = 272.66] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+        %Straight Lines [id:da6503474180961808] 
+        \draw    (304,88.5) -- (303.78,82.83) ;
+        \draw [shift={(303.67,79.83)}, rotate = 87.8] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;    
+        \draw (306.33,123.9) node [anchor=north west][inner sep=0.75pt]  [font=\small]  {$C$};
+    \end{tikzpicture}
+    \caption{$f(p)=\frac{p}{\sqrt{p^2+m^2}}\exp{ipr}$}\label{fig:q2Dspace}
+\end{figure}
+
+\kaishu 讨论: 类空间隔的关联函数非零能说明这违反了因果律吗？并不能, 因为所谓的因果律需要是指类空间隔的测量之间互相不影响, 也就是说交换这两个算子作用在态上的顺序不会影响结果. 这暗示我们或许应当计算两个算符的对易子来检验我们的理论是否违背了因果律, 而最直接的检验就是计算$[\phi(x), \phi(y)]$. \songti
+
+因此我们考虑$\phi(x), \phi(y)$的对易子:
+\begin{equation}
+    [\phi(x), \phi(y)]=\braket{0|[\phi(x), \phi(y)]|0}=D(x-y)-D(y-x)
+\end{equation}
+
+再次尝试对类时类空间隔分类讨论:\\
+类空: 首先将换参考系, 使得$x$, $y$在同一三维空间中, 然后利用Parity算符$\mathcal P$, 显然可以使得$D(x-y)\rightarrow D(y-x)$, 而$\mathcal P$操作不会改变结果, 于是我们有:
+\begin{equation}
+    [\phi(x), \phi(y)]=0
+\end{equation}
+类时: 由于$[\phi(x), \phi(y)]$不在$\mathcal T$中保持不变, 因此我们无法如类空班做到交换$x$, $y$, 因此我们不能得到$[\phi(x), \phi(y)]=0$.
+
+可以发现, 对易子对类空间隔一定为0而对类时间隔则不一定, 这正是我们想要的因果性!
+
+然后我们尝试进一步计算对易子
+\begin{align}
+    [\phi(x), \phi(y)]&=D(x-y)-D(y-x)\\
+    &=\int\ld p(\exp{-ip(x-y)}-\exp{ip(x-y)})\\
+    &=\int\ddd p(\frac1{2\omega_p}\exp{-ip(x-y)}+\frac1{-2\omega_p}\exp{ip(x-y)})
+\end{align}
+注意到对第二项做$\vec p\rightarrow-\vec p$换元结果不变, 于是:
+\begin{align}
+    [\phi(x), \phi(y)]&=\int\ddd p\exp{i\vec p\cdot(\vec x-\vec y)}\left(\frac{\exp{-i\omega_p(x^0-y^0)}}{2\omega_p}+\frac{\exp{i\omega_p(x^0-y^0)}}{-2\omega_p}\right)
+\end{align}
+
+观察这个形式, 令我们想到留数定理, 这两项就是留数的相加, 我们可以将其化为:
+\begin{align}
+    \frac{\exp{-i\omega_p(x^0-y^0)}}{2\omega_p}+\frac{\exp{i\omega_p(x^0-y^0)}}{-2\omega_p}&=\frac{1}{-2\pi i}\left(-2\pi i\rm{Res}(...)-2\pi i\rm{Res}(...)\right)\label{q2eq1}\\
+    &=\frac i{2\pi}\int_C\d\omega\frac{\exp{-i\omega(x^0-y^0)}}{(\omega+\omega_{\vec p})(\omega-\omega_{\vec p})}\\
+    &=\frac i{2\pi}\int_C\d\omega\frac{\exp{-i\omega(x^0-y^0)}}{\omega^2-\vec p^2-m^2}\\
+    &=\int_C\frac{\d\omega}{2\pi}\frac{i}{p^2-m^2}\exp{-i\omega(x^0-y^0)}\label{q2eq2}
+\end{align}
+\begin{figure}
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        % \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+        \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-.7,xscale=.7]
+            \draw  (108,169.55) -- (470,169.55)(285.38,21.5) -- (285.38,303.5) (463,164.55) -- (470,169.55) -- (463,174.55) (280.38,28.5) -- (285.38,21.5) -- (290.38,28.5)  ;
+            \draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (246,170) .. controls (246,168.9) and (246.9,168) .. (248,168) .. controls (249.1,168) and (250,168.9) .. (250,170) .. controls (250,171.1) and (249.1,172) .. (248,172) .. controls (246.9,172) and (246,171.1) .. (246,170) -- cycle ;
+            \draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (322,170) .. controls (322,168.9) and (322.9,168) .. (324,168) .. controls (325.1,168) and (326,168.9) .. (326,170) .. controls (326,171.1) and (325.1,172) .. (324,172) .. controls (322.9,172) and (322,171.1) .. (322,170) -- cycle ;
+            \draw    (137,169.75) -- (203.5,169.27) ;
+            \draw [shift={(206.5,169.25)}, rotate = 179.59] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+            \draw    (374.5,170.25) -- (380.5,169.92) ;
+            \draw [shift={(383.5,169.75)}, rotate = 176.82] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+            \draw  [draw opacity=0] (152.02,170.24) .. controls (152.21,96.38) and (211.78,36.2) .. (285.85,35.47) .. controls (360.49,34.74) and (421.59,94.66) .. (422.32,169.3) .. controls (422.32,169.61) and (422.32,169.93) .. (422.33,170.24) -- (287.17,170.62) -- cycle ; \draw   (152.02,170.24) .. controls (152.21,96.38) and (211.78,36.2) .. (285.85,35.47) .. controls (360.49,34.74) and (421.59,94.66) .. (422.32,169.3) .. controls (422.32,169.61) and (422.32,169.93) .. (422.33,170.24) ;  
+            \draw    (252,40.25) -- (246.75,42.55) ;
+            \draw [shift={(244,43.75)}, rotate = 336.37] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+            \draw  [draw opacity=0] (241.23,170) .. controls (241.23,166.32) and (244.19,163.3) .. (247.89,163.24) .. controls (251.62,163.17) and (254.7,166.15) .. (254.76,169.89) .. controls (254.77,169.94) and (254.77,170) .. (254.77,170.06) -- (248,170) -- cycle ; \draw   (241.23,170) .. controls (241.23,166.32) and (244.19,163.3) .. (247.89,163.24) .. controls (251.62,163.17) and (254.7,166.15) .. (254.76,169.89) .. controls (254.77,169.94) and (254.77,170) .. (254.77,170.06) ;  
+            \draw  [draw opacity=0] (317.23,170) .. controls (317.23,166.32) and (320.19,163.3) .. (323.89,163.24) .. controls (327.62,163.17) and (330.7,166.15) .. (330.76,169.89) .. controls (330.77,169.94) and (330.77,170) .. (330.77,170.06) -- (324,170) -- cycle ; \draw   (317.23,170) .. controls (317.23,166.32) and (320.19,163.3) .. (323.89,163.24) .. controls (327.62,163.17) and (330.7,166.15) .. (330.76,169.89) .. controls (330.77,169.94) and (330.77,170) .. (330.77,170.06) ;  
+            \draw (239,172.9) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$-\omega _{\vec{p}}$};
+            \draw (317.76,173.4) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$\omega _{\vec{p}}$};
+        \end{tikzpicture}
+        \caption{$x^0<y^0$的围道}
+        \label{fig:q1f1a}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-.7,xscale=.7]
+            \draw  (108,169.55) -- (470,169.55)(285.38,21.5) -- (285.38,303.5) (463,164.55) -- (470,169.55) -- (463,174.55) (280.38,28.5) -- (285.38,21.5) -- (290.38,28.5)  ;
+            \draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (246,170) .. controls (246,168.9) and (246.9,168) .. (248,168) .. controls (249.1,168) and (250,168.9) .. (250,170) .. controls (250,171.1) and (249.1,172) .. (248,172) .. controls (246.9,172) and (246,171.1) .. (246,170) -- cycle ;
+            \draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (322,170) .. controls (322,168.9) and (322.9,168) .. (324,168) .. controls (325.1,168) and (326,168.9) .. (326,170) .. controls (326,171.1) and (325.1,172) .. (324,172) .. controls (322.9,172) and (322,171.1) .. (322,170) -- cycle ;
+            \draw    (137,169.75) -- (203.5,169.27) ;
+            \draw [shift={(206.5,169.25)}, rotate = 179.59] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+            \draw    (374.5,170.25) -- (380.5,169.92) ;
+            \draw [shift={(383.5,169.75)}, rotate = 176.82] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+            \draw  [draw opacity=0] (422.32,169.25) .. controls (422.32,169.5) and (422.32,169.75) .. (422.32,170.01) .. controls (422.66,244.65) and (362.43,305.43) .. (287.79,305.77) .. controls (213.15,306.11) and (152.36,245.87) .. (152.02,171.23) .. controls (152.02,170.92) and (152.02,170.6) .. (152.02,170.29) -- (287.17,170.62) -- cycle ; \draw   (422.32,169.25) .. controls (422.32,169.5) and (422.32,169.75) .. (422.32,170.01) .. controls (422.66,244.65) and (362.43,305.43) .. (287.79,305.77) .. controls (213.15,306.11) and (152.36,245.87) .. (152.02,171.23) .. controls (152.02,170.92) and (152.02,170.6) .. (152.02,170.29) ;  
+            \draw    (379,270.25) -- (375.3,273.33) ;
+            \draw [shift={(373,275.25)}, rotate = 320.19] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+            \draw  [draw opacity=0] (241.23,170) .. controls (241.23,166.32) and (244.19,163.3) .. (247.89,163.24) .. controls (251.62,163.17) and (254.7,166.15) .. (254.76,169.89) .. controls (254.77,169.94) and (254.77,170) .. (254.77,170.06) -- (248,170) -- cycle ; \draw   (241.23,170) .. controls (241.23,166.32) and (244.19,163.3) .. (247.89,163.24) .. controls (251.62,163.17) and (254.7,166.15) .. (254.76,169.89) .. controls (254.77,169.94) and (254.77,170) .. (254.77,170.06) ;  
+            \draw  [draw opacity=0] (317.23,170) .. controls (317.23,166.32) and (320.19,163.3) .. (323.89,163.24) .. controls (327.62,163.17) and (330.7,166.15) .. (330.76,169.89) .. controls (330.77,169.94) and (330.77,170) .. (330.77,170.06) -- (324,170) -- cycle ; \draw   (317.23,170) .. controls (317.23,166.32) and (320.19,163.3) .. (323.89,163.24) .. controls (327.62,163.17) and (330.7,166.15) .. (330.76,169.89) .. controls (330.77,169.94) and (330.77,170) .. (330.77,170.06) ;  
+            \draw (239,172.9) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$-\omega _{\vec{p}}$};
+            \draw (317.76,173.4) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$\omega _{\vec{p}}$};
+        \end{tikzpicture}
+        \caption{$x^0>y^0$的围道}
+        \label{fig:q1f1a}
+    \end{subfigure}
+    \caption{$D_R(x-y)$围道示意图}
+    \label{fig:q2f1}
+\end{figure}
+
+为了让大圆弧不会对积分结果产生贡献, 对于$x^0<y^0$我们取围道如图\ref{fig:q1f1a}; 对于$x^0>y^0$我们取围道: \ref{fig:q1f1a}
+
+于是我们可以定义新的关联函数
+\begin{theorem}[推迟关联函数$D_R(x-y)$]
+    取围道$C$如图\ref{fig:q2f1}
+    \begin{equation}
+        D_R(x-y)\equiv\int\dddd p \frac i{p^2-m^2}\exp{-ip(x-y)}\label{q2eq3}
+    \end{equation}
+\end{theorem}
+不难发现, 对于$x^0<y^0$, 围道内不含有任何pole, 故$D_R(x-y)=0$, 而对于$x^0>y^0$, 围道内含有pole, 故$D_R(x-y)=D(x-y)-D(y-x)$
+
+于是我们发现
+\begin{equation}
+    D_R(x-y)=\Theta(x^0-y^0)[\phi(x), \phi(y)]
+\end{equation}
+这令人想起电动力学中我们学过的推迟势, 故而得名.
+
+类似地, 我们可以定义提前关联函数
+\begin{theorem}[提前关联函数$D_A(x-y)$]
+    取围道$C$如图\ref{fig:q2f2}
+    \begin{equation}
+        D_A(x-y)\equiv\int\dddd p \frac i{p^2-m^2}\exp{-ip(x-y)}\label{q2eq4}
+    \end{equation}
+\end{theorem}
+我们可以发现:
+\begin{equation}
+    D_A(x-y)=-\Theta(y^0-x^0)[\phi(x), \phi(y)]
+\end{equation}
+
+这正与电动力学中所谓的提前势相对应.
+\begin{figure}
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-.7,xscale=.7]
+            \draw  (108,169.55) -- (470,169.55)(285.38,21.5) -- (285.38,303.5) (463,164.55) -- (470,169.55) -- (463,174.55) (280.38,28.5) -- (285.38,21.5) -- (290.38,28.5)  ;
+            %Flowchart: Connector [id:dp1477182047051221] 
+            \draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (246,170) .. controls (246,168.9) and (246.9,168) .. (248,168) .. controls (249.1,168) and (250,168.9) .. (250,170) .. controls (250,171.1) and (249.1,172) .. (248,172) .. controls (246.9,172) and (246,171.1) .. (246,170) -- cycle ;
+            %Flowchart: Connector [id:dp1451620126132538] 
+            \draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (322,170) .. controls (322,168.9) and (322.9,168) .. (324,168) .. controls (325.1,168) and (326,168.9) .. (326,170) .. controls (326,171.1) and (325.1,172) .. (324,172) .. controls (322.9,172) and (322,171.1) .. (322,170) -- cycle ;
+            %Straight Lines [id:da554770276238623] 
+            \draw    (137,169.75) -- (203.5,169.27) ;
+            \draw [shift={(206.5,169.25)}, rotate = 179.59] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+            %Straight Lines [id:da2352474286511015] 
+            \draw    (374.5,170.25) -- (380.5,169.92) ;
+            \draw [shift={(383.5,169.75)}, rotate = 176.82] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+            %Shape: Arc [id:dp2545574686176101] 
+            \draw  [draw opacity=0] (152.03,171.94) .. controls (152.03,171.69) and (152.02,171.44) .. (152.02,171.19) .. controls (151.71,96.54) and (211.97,35.78) .. (286.61,35.47) .. controls (361.25,35.16) and (422.01,95.41) .. (422.32,170.05) .. controls (422.33,170.37) and (422.33,170.68) .. (422.33,171) -- (287.17,170.62) -- cycle ; \draw   (152.03,171.94) .. controls (152.03,171.69) and (152.02,171.44) .. (152.02,171.19) .. controls (151.71,96.54) and (211.97,35.78) .. (286.61,35.47) .. controls (361.25,35.16) and (422.01,95.41) .. (422.32,170.05) .. controls (422.33,170.37) and (422.33,170.68) .. (422.33,171) ;  
+            %Straight Lines [id:da07283350213642492] 
+            \draw    (217,55.25) -- (212.52,58.13) ;
+            \draw [shift={(210,59.75)}, rotate = 327.26] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+            %Shape: Arc [id:dp1734533961545065] 
+            \draw  [draw opacity=0] (241.24,170.23) .. controls (241.36,174.31) and (244.42,177.55) .. (248.13,177.49) .. controls (251.86,177.42) and (254.83,174.02) .. (254.76,169.89) .. controls (254.76,169.83) and (254.76,169.77) .. (254.76,169.71) -- (248,170) -- cycle ; \draw   (241.24,170.23) .. controls (241.36,174.31) and (244.42,177.55) .. (248.13,177.49) .. controls (251.86,177.42) and (254.83,174.02) .. (254.76,169.89) .. controls (254.76,169.83) and (254.76,169.77) .. (254.76,169.71) ;  
+            %Shape: Arc [id:dp1937528136867961] 
+            \draw  [draw opacity=0] (317.27,169.22) .. controls (317.24,169.52) and (317.23,169.81) .. (317.24,170.11) .. controls (317.31,174.25) and (320.39,177.55) .. (324.13,177.49) .. controls (327.86,177.43) and (330.84,174.02) .. (330.76,169.89) .. controls (330.76,169.83) and (330.76,169.77) .. (330.76,169.71) -- (324,170) -- cycle ; \draw   (317.27,169.22) .. controls (317.24,169.52) and (317.23,169.81) .. (317.24,170.11) .. controls (317.31,174.25) and (320.39,177.55) .. (324.13,177.49) .. controls (327.86,177.43) and (330.84,174.02) .. (330.76,169.89) .. controls (330.76,169.83) and (330.76,169.77) .. (330.76,169.71) ;  
+
+            % Text Node
+            \draw (236,178.9) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$-\omega _{\vec{p}}$};
+            % Text Node
+            \draw (316.73,180.9) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$\omega _{\vec{p}}$};
+        \end{tikzpicture}
+        \caption{$x^0<y^0$的围道}
+        \label{fig:q1f2a}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-.7,xscale=.7]
+            \draw  (108,169.55) -- (470,169.55)(285.38,21.5) -- (285.38,303.5) (463,164.55) -- (470,169.55) -- (463,174.55) (280.38,28.5) -- (285.38,21.5) -- (290.38,28.5)  ;
+            %Flowchart: Connector [id:dp1477182047051221] 
+            \draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (246,170) .. controls (246,168.9) and (246.9,168) .. (248,168) .. controls (249.1,168) and (250,168.9) .. (250,170) .. controls (250,171.1) and (249.1,172) .. (248,172) .. controls (246.9,172) and (246,171.1) .. (246,170) -- cycle ;
+            %Flowchart: Connector [id:dp1451620126132538] 
+            \draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (322,170) .. controls (322,168.9) and (322.9,168) .. (324,168) .. controls (325.1,168) and (326,168.9) .. (326,170) .. controls (326,171.1) and (325.1,172) .. (324,172) .. controls (322.9,172) and (322,171.1) .. (322,170) -- cycle ;
+            %Straight Lines [id:da554770276238623] 
+            \draw    (137,169.75) -- (203.5,169.27) ;
+            \draw [shift={(206.5,169.25)}, rotate = 179.59] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+            %Straight Lines [id:da2352474286511015] 
+            \draw    (374.5,170.25) -- (380.5,169.92) ;
+            \draw [shift={(383.5,169.75)}, rotate = 176.82] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+            %Shape: Arc [id:dp2545574686176101] 
+            \draw  [draw opacity=0] (422.32,169.25) .. controls (422.32,169.5) and (422.32,169.75) .. (422.32,170.01) .. controls (422.66,244.65) and (362.43,305.43) .. (287.79,305.77) .. controls (213.15,306.11) and (152.36,245.87) .. (152.02,171.23) .. controls (152.02,170.92) and (152.02,170.6) .. (152.02,170.29) -- (287.17,170.62) -- cycle ; \draw   (422.32,169.25) .. controls (422.32,169.5) and (422.32,169.75) .. (422.32,170.01) .. controls (422.66,244.65) and (362.43,305.43) .. (287.79,305.77) .. controls (213.15,306.11) and (152.36,245.87) .. (152.02,171.23) .. controls (152.02,170.92) and (152.02,170.6) .. (152.02,170.29) ;  
+            %Straight Lines [id:da07283350213642492] 
+            \draw    (379,270.25) -- (375.3,273.33) ;
+            \draw [shift={(373,275.25)}, rotate = 320.19] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+            %Shape: Arc [id:dp1734533961545065] 
+            \draw  [draw opacity=0] (241.24,170.23) .. controls (241.36,174.31) and (244.42,177.55) .. (248.13,177.49) .. controls (251.86,177.42) and (254.83,174.02) .. (254.76,169.89) .. controls (254.76,169.83) and (254.76,169.77) .. (254.76,169.71) -- (248,170) -- cycle ; \draw   (241.24,170.23) .. controls (241.36,174.31) and (244.42,177.55) .. (248.13,177.49) .. controls (251.86,177.42) and (254.83,174.02) .. (254.76,169.89) .. controls (254.76,169.83) and (254.76,169.77) .. (254.76,169.71) ;  
+            %Shape: Arc [id:dp1937528136867961] 
+            \draw  [draw opacity=0] (317.27,169.22) .. controls (317.24,169.52) and (317.23,169.81) .. (317.24,170.11) .. controls (317.31,174.25) and (320.39,177.55) .. (324.13,177.49) .. controls (327.86,177.43) and (330.84,174.02) .. (330.76,169.89) .. controls (330.76,169.83) and (330.76,169.77) .. (330.76,169.71) -- (324,170) -- cycle ; \draw   (317.27,169.22) .. controls (317.24,169.52) and (317.23,169.81) .. (317.24,170.11) .. controls (317.31,174.25) and (320.39,177.55) .. (324.13,177.49) .. controls (327.86,177.43) and (330.84,174.02) .. (330.76,169.89) .. controls (330.76,169.83) and (330.76,169.77) .. (330.76,169.71) ;  
+            % Text Node
+            \draw (235.5,151.4) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$-\omega _{\vec{p}}$};
+            % Text Node
+            \draw (316.73,152.9) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$\omega _{\vec{p}}$};    
+        \end{tikzpicture}
+        \caption{$x^0>y^0$的围道}
+        \label{fig:q1f2b}
+    \end{subfigure}
+    \caption{$D_A(x-y)$围道示意图}
+    \label{fig:q2f2}
+\end{figure}
+\begin{figure}
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-.7,xscale=.7]
+            \draw  (108,169.55) -- (470,169.55)(285.38,21.5) -- (285.38,303.5) (463,164.55) -- (470,169.55) -- (463,174.55) (280.38,28.5) -- (285.38,21.5) -- (290.38,28.5)  ;
+            %Flowchart: Connector [id:dp1477182047051221] 
+            \draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (246,170) .. controls (246,168.9) and (246.9,168) .. (248,168) .. controls (249.1,168) and (250,168.9) .. (250,170) .. controls (250,171.1) and (249.1,172) .. (248,172) .. controls (246.9,172) and (246,171.1) .. (246,170) -- cycle ;
+            %Flowchart: Connector [id:dp1451620126132538] 
+            \draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (322,170) .. controls (322,168.9) and (322.9,168) .. (324,168) .. controls (325.1,168) and (326,168.9) .. (326,170) .. controls (326,171.1) and (325.1,172) .. (324,172) .. controls (322.9,172) and (322,171.1) .. (322,170) -- cycle ;
+            %Straight Lines [id:da554770276238623] 
+            \draw    (137,169.75) -- (203.5,169.27) ;
+            \draw [shift={(206.5,169.25)}, rotate = 179.59] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+            %Straight Lines [id:da2352474286511015] 
+            \draw    (374.5,170.25) -- (380.5,169.92) ;
+            \draw [shift={(383.5,169.75)}, rotate = 176.82] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+            %Shape: Arc [id:dp2545574686176101] 
+            \draw  [draw opacity=0] (152.03,169.25) .. controls (152.75,95.5) and (212.61,35.78) .. (286.61,35.47) .. controls (360.98,35.16) and (421.58,94.98) .. (422.32,169.25) -- (287.17,170.62) -- cycle ; \draw   (152.03,169.25) .. controls (152.75,95.5) and (212.61,35.78) .. (286.61,35.47) .. controls (360.98,35.16) and (421.58,94.98) .. (422.32,169.25) ;  
+            %Straight Lines [id:da07283350213642492] 
+            \draw    (217,55.25) -- (212.52,58.13) ;
+            \draw [shift={(210,59.75)}, rotate = 327.26] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+            %Shape: Arc [id:dp1734533961545065] 
+            \draw  [draw opacity=0] (241.24,170.23) .. controls (241.36,174.31) and (244.42,177.55) .. (248.13,177.49) .. controls (251.86,177.42) and (254.83,174.02) .. (254.76,169.89) .. controls (254.76,169.83) and (254.76,169.77) .. (254.76,169.71) -- (248,170) -- cycle ; \draw   (241.24,170.23) .. controls (241.36,174.31) and (244.42,177.55) .. (248.13,177.49) .. controls (251.86,177.42) and (254.83,174.02) .. (254.76,169.89) .. controls (254.76,169.83) and (254.76,169.77) .. (254.76,169.71) ;  
+            %Shape: Arc [id:dp1937528136867961] 
+            \draw  [draw opacity=0] (330.76,169.72) .. controls (330.6,165.64) and (327.52,162.42) .. (323.82,162.51) .. controls (320.22,162.6) and (317.35,165.79) .. (317.24,169.72) -- (324,170) -- cycle ; \draw   (330.76,169.72) .. controls (330.6,165.64) and (327.52,162.42) .. (323.82,162.51) .. controls (320.22,162.6) and (317.35,165.79) .. (317.24,169.72) ;  
+
+            % Text Node
+            \draw (236,178.9) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$-\omega _{\vec{p}}$};
+            % Text Node
+            \draw (317.73,179.4) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$\omega _{\vec{p}}$};
+        \end{tikzpicture}
+        \caption{$x^0<y^0$的围道}
+        \label{fig:q1f3a}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-.7,xscale=.7]
+            %Shape: Axis 2D [id:dp2814236532414889] 
+            \draw  (108,169.55) -- (470,169.55)(285.38,21.5) -- (285.38,303.5) (463,164.55) -- (470,169.55) -- (463,174.55) (280.38,28.5) -- (285.38,21.5) -- (290.38,28.5)  ;
+            %Flowchart: Connector [id:dp1477182047051221] 
+            \draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (246,170) .. controls (246,168.9) and (246.9,168) .. (248,168) .. controls (249.1,168) and (250,168.9) .. (250,170) .. controls (250,171.1) and (249.1,172) .. (248,172) .. controls (246.9,172) and (246,171.1) .. (246,170) -- cycle ;
+            %Flowchart: Connector [id:dp1451620126132538] 
+            \draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (322,170) .. controls (322,168.9) and (322.9,168) .. (324,168) .. controls (325.1,168) and (326,168.9) .. (326,170) .. controls (326,171.1) and (325.1,172) .. (324,172) .. controls (322.9,172) and (322,171.1) .. (322,170) -- cycle ;
+            %Straight Lines [id:da554770276238623] 
+            \draw    (137,169.75) -- (203.5,169.27) ;
+            \draw [shift={(206.5,169.25)}, rotate = 179.59] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+            %Straight Lines [id:da2352474286511015] 
+            \draw    (374.5,170.25) -- (380.5,169.92) ;
+            \draw [shift={(383.5,169.75)}, rotate = 176.82] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+            %Shape: Arc [id:dp2545574686176101] 
+            \draw  [draw opacity=0] (422.32,172.01) .. controls (421.58,245.76) and (361.71,305.47) .. (287.72,305.77) .. controls (213.34,306.07) and (152.76,246.23) .. (152.03,171.96) -- (287.17,170.62) -- cycle ; \draw   (422.32,172.01) .. controls (421.58,245.76) and (361.71,305.47) .. (287.72,305.77) .. controls (213.34,306.07) and (152.76,246.23) .. (152.03,171.96) ;  
+            %Straight Lines [id:da07283350213642492] 
+            \draw    (361.5,283.75) -- (357.02,286.63) ;
+            \draw [shift={(354.5,288.25)}, rotate = 327.26] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+            %Shape: Arc [id:dp1734533961545065] 
+            \draw  [draw opacity=0] (241.24,170.23) .. controls (241.36,174.31) and (244.42,177.55) .. (248.13,177.49) .. controls (251.86,177.42) and (254.83,174.02) .. (254.76,169.89) .. controls (254.76,169.83) and (254.76,169.77) .. (254.76,169.71) -- (248,170) -- cycle ; \draw   (241.24,170.23) .. controls (241.36,174.31) and (244.42,177.55) .. (248.13,177.49) .. controls (251.86,177.42) and (254.83,174.02) .. (254.76,169.89) .. controls (254.76,169.83) and (254.76,169.77) .. (254.76,169.71) ;  
+            %Shape: Arc [id:dp1937528136867961] 
+            \draw  [draw opacity=0] (330.76,169.72) .. controls (330.6,165.64) and (327.52,162.42) .. (323.82,162.51) .. controls (320.22,162.6) and (317.35,165.79) .. (317.24,169.72) -- (324,170) -- cycle ; \draw   (330.76,169.72) .. controls (330.6,165.64) and (327.52,162.42) .. (323.82,162.51) .. controls (320.22,162.6) and (317.35,165.79) .. (317.24,169.72) ;  
+
+            % Text Node
+            \draw (236,178.9) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$-\omega _{\vec{p}}$};
+            % Text Node
+            \draw (317.73,179.4) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$\omega _{\vec{p}}$};
+        \end{tikzpicture}
+        \caption{$x^0>y^0$的围道}
+        \label{fig:q1f3b}
+    \end{subfigure}
+    \caption{$D_F(x-y)$围道示意图}
+    \label{fig:q2f3}
+\end{figure}
+\begin{figure}
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-.7,xscale=.7]
+            \draw  (108,169.55) -- (470,169.55)(285.38,21.5) -- (285.38,303.5) (463,164.55) -- (470,169.55) -- (463,174.55) (280.38,28.5) -- (285.38,21.5) -- (290.38,28.5)  ;
+            %Flowchart: Connector [id:dp1477182047051221] 
+            \draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (246,170) .. controls (246,168.9) and (246.9,168) .. (248,168) .. controls (249.1,168) and (250,168.9) .. (250,170) .. controls (250,171.1) and (249.1,172) .. (248,172) .. controls (246.9,172) and (246,171.1) .. (246,170) -- cycle ;
+            %Flowchart: Connector [id:dp1451620126132538] 
+            \draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (322,170) .. controls (322,168.9) and (322.9,168) .. (324,168) .. controls (325.1,168) and (326,168.9) .. (326,170) .. controls (326,171.1) and (325.1,172) .. (324,172) .. controls (322.9,172) and (322,171.1) .. (322,170) -- cycle ;
+            %Straight Lines [id:da554770276238623] 
+            \draw    (137,169.75) -- (203.5,169.27) ;
+            \draw [shift={(206.5,169.25)}, rotate = 179.59] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+            %Straight Lines [id:da2352474286511015] 
+            \draw    (374.5,170.25) -- (380.5,169.92) ;
+            \draw [shift={(383.5,169.75)}, rotate = 176.82] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+            %Shape: Arc [id:dp2545574686176101] 
+            \draw  [draw opacity=0] (152.03,169.39) .. controls (152.68,95.64) and (212.47,35.86) .. (286.47,35.47) .. controls (360.84,35.08) and (421.5,94.84) .. (422.32,169.11) -- (287.17,170.62) -- cycle ; \draw   (152.03,169.39) .. controls (152.68,95.64) and (212.47,35.86) .. (286.47,35.47) .. controls (360.84,35.08) and (421.5,94.84) .. (422.32,169.11) ;  
+            %Straight Lines [id:da07283350213642492] 
+            \draw    (216,56.25) -- (211.52,59.13) ;
+            \draw [shift={(209,60.75)}, rotate = 327.26] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+            %Shape: Arc [id:dp1734533961545065] 
+            \draw  [draw opacity=0] (254.77,170.05) .. controls (254.81,165.97) and (251.88,162.6) .. (248.18,162.52) .. controls (244.44,162.43) and (241.33,165.7) .. (241.24,169.84) .. controls (241.23,169.9) and (241.23,169.95) .. (241.23,170.01) -- (248,170) -- cycle ; \draw   (254.77,170.05) .. controls (254.81,165.97) and (251.88,162.6) .. (248.18,162.52) .. controls (244.44,162.43) and (241.33,165.7) .. (241.24,169.84) .. controls (241.23,169.9) and (241.23,169.95) .. (241.23,170.01) ;  
+            %Shape: Arc [id:dp1937528136867961] 
+            \draw  [draw opacity=0] (317.24,170.3) .. controls (317.41,174.38) and (320.51,177.59) .. (324.21,177.49) .. controls (327.81,177.39) and (330.66,174.19) .. (330.76,170.26) -- (324,170) -- cycle ; \draw   (317.24,170.3) .. controls (317.41,174.38) and (320.51,177.59) .. (324.21,177.49) .. controls (327.81,177.39) and (330.66,174.19) .. (330.76,170.26) ;  
+            % Text Node
+            \draw (236,178.9) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$-\omega _{\vec{p}}$};
+            % Text Node
+            \draw (317.73,179.4) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$\omega _{\vec{p}}$};
+        \end{tikzpicture}
+        \caption{$x^0<y^0$的围道}
+        \label{fig:q1f4a}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-.7,xscale=.7]
+            %Shape: Axis 2D [id:dp2814236532414889] 
+            \draw  (108,169.55) -- (470,169.55)(285.38,21.5) -- (285.38,303.5) (463,164.55) -- (470,169.55) -- (463,174.55) (280.38,28.5) -- (285.38,21.5) -- (290.38,28.5)  ;
+            %Flowchart: Connector [id:dp1477182047051221] 
+            \draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (246,170) .. controls (246,168.9) and (246.9,168) .. (248,168) .. controls (249.1,168) and (250,168.9) .. (250,170) .. controls (250,171.1) and (249.1,172) .. (248,172) .. controls (246.9,172) and (246,171.1) .. (246,170) -- cycle ;
+            %Flowchart: Connector [id:dp1451620126132538] 
+            \draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (322,170) .. controls (322,168.9) and (322.9,168) .. (324,168) .. controls (325.1,168) and (326,168.9) .. (326,170) .. controls (326,171.1) and (325.1,172) .. (324,172) .. controls (322.9,172) and (322,171.1) .. (322,170) -- cycle ;
+            %Straight Lines [id:da554770276238623] 
+            \draw    (137,169.75) -- (203.5,169.27) ;
+            \draw [shift={(206.5,169.25)}, rotate = 179.59] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+            %Straight Lines [id:da2352474286511015] 
+            \draw    (374.5,170.25) -- (380.5,169.92) ;
+            \draw [shift={(383.5,169.75)}, rotate = 176.82] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+            %Shape: Arc [id:dp2545574686176101] 
+            \draw  [draw opacity=0] (422.32,172.01) .. controls (421.58,245.76) and (361.71,305.47) .. (287.72,305.77) .. controls (213.34,306.07) and (152.76,246.23) .. (152.03,171.96) -- (287.17,170.62) -- cycle ; \draw   (422.32,172.01) .. controls (421.58,245.76) and (361.71,305.47) .. (287.72,305.77) .. controls (213.34,306.07) and (152.76,246.23) .. (152.03,171.96) ;  
+            %Straight Lines [id:da07283350213642492] 
+            \draw    (361.5,283.75) -- (357.02,286.63) ;
+            \draw [shift={(354.5,288.25)}, rotate = 327.26] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+            %Shape: Arc [id:dp1734533961545065] 
+            \draw  [draw opacity=0] (254.77,170.05) .. controls (254.81,165.97) and (251.88,162.6) .. (248.18,162.52) .. controls (244.44,162.43) and (241.33,165.7) .. (241.24,169.84) .. controls (241.23,169.9) and (241.23,169.95) .. (241.23,170.01) -- (248,170) -- cycle ; \draw   (254.77,170.05) .. controls (254.81,165.97) and (251.88,162.6) .. (248.18,162.52) .. controls (244.44,162.43) and (241.33,165.7) .. (241.24,169.84) .. controls (241.23,169.9) and (241.23,169.95) .. (241.23,170.01) ;  
+            %Shape: Arc [id:dp1937528136867961] 
+            \draw  [draw opacity=0] (317.24,170.3) .. controls (317.41,174.38) and (320.51,177.59) .. (324.21,177.49) .. controls (327.81,177.39) and (330.66,174.19) .. (330.76,170.26) -- (324,170) -- cycle ; \draw   (317.24,170.3) .. controls (317.41,174.38) and (320.51,177.59) .. (324.21,177.49) .. controls (327.81,177.39) and (330.66,174.19) .. (330.76,170.26) ;  
+            % Text Node
+            \draw (236,178.9) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$-\omega _{\vec{p}}$};
+            % Text Node
+            \draw (317.73,179.4) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$\omega _{\vec{p}}$};
+        \end{tikzpicture}
+        \caption{$x^0>y^0$的围道}
+        \label{fig:q1f4b}
+    \end{subfigure}
+    \caption{$\widetilde{D}_F(x-y)$围道示意图}
+    \label{fig:q2f4}
+\end{figure}
+
+此外, 我们还有两种取围道的方式, 由此定义两种关联函数, 也就是所谓的Feynman传播子.
+% \newpage
+\begin{theorem}[Feynman传播子$D_F(x-y)$]
+    取围道$C$如图\ref{fig:q2f3}
+    \begin{equation}
+        D_F(x-y)\equiv\int\dddd p \frac i{p^2-m^2}\exp{-ip(x-y)}\label{q2eq5}
+    \end{equation}
+    或者等价于取一个无穷小正数$\epsilon$:
+    \begin{equation}
+        D_F(x-y)\equiv\lim_{\epsilon\rightarrow0^+}\int\dddd p \frac i{p^2-m^2+i\epsilon}\exp{-ip(x-y)}
+    \end{equation}
+\end{theorem}
+\begin{theorem}[共轭Feynman传播子$\widetilde{D}_F(x-y)$]
+    取围道$C$如图\ref{fig:q2f4}
+    \begin{equation}
+        \widetilde D_F(x-y)\equiv\int\dddd p \frac i{p^2-m^2}\exp{-ip(x-y)}\label{q2eq6}
+    \end{equation}
+    或者等价于取一个无穷小正数$\epsilon$:
+    \begin{equation}
+        \widetilde D_F(x-y)\equiv\lim_{\epsilon\rightarrow0^+}\int\dddd p \frac i{p^2-m^2-i\epsilon}\exp{-ip(x-y)}
+    \end{equation}
+\end{theorem}
+
+不难发现, 对于$x^0<y^0$或者$x^0>y^0$, 这俩关联函数都存在一个pole, 并且可以计算发现:
+\begin{align}
+    D_F(x-y)&=\Theta(x^0-y^0)D(x-y)+\Theta(y^0-x^0)D(y-x)\\
+    &=\Theta(x^0-y^0)\braket{0|\phi(x)\phi(y)|0}+\Theta(y^0-x^0)\braket{0|\phi(y)\phi(x)|0}\\
+    &=\braket{0|\mathcal T\phi(x)\phi(y)|0}
+\end{align}
+\begin{align}
+    \widetilde D_F(x-y)&=-\Theta(x^0-y^0)D(x-y)-\Theta(y^0-x^0)D(y-x)\\
+    &=-\Theta(x^0-y^0)\braket{0|\phi(x)\phi(y)|0}-\Theta(y^0-x^0)\braket{0|\phi(y)\phi(x)|0}\\
+    &=-\braket{0|\mathcal T\phi(x)\phi(y)|0}
+\end{align}
+其中$\mathcal T$为时间顺序算符
+\begin{definition}[时间顺序算符$\mathcal T$]
+    对于一串$\phi(x_1,x_2,\cdots,x_n)$的算符, 时间顺序算符即起到排序作用, 将时间上在后面发生的算符放在左边, 时间上在前面发生的算符放在右边, 相当于一个冒泡排序.
+\end{definition}
+
+\kaishu 注意: 从\eqref{q2eq1}到\eqref{q2eq2}只有在一定条件下取正确的围道才成立, 并不能认为是一个任何条件下都恒等的关系. 它的作用在于启发性得导出传播子$\frac i{p^2-m^2}$, 并由此根据不同的围道取法定义出四种不同的关联函数. 因此\eqref{q2eq3}、\eqref{q2eq4}、\eqref{q2eq5}、\eqref{q2eq6}并不能视为是从\eqref{q2eq2}直接推导得到的.\songti
+
+\begin{theorem}[关联函数的性质]
+    这四个关联函数$D_R(x-y)$, $D_A(x-y)$, $D_F(x-y)$, $\widetilde D_F(x-y)$都是EoM的Green函数, 即:
+    \begin{equation}
+        \begin{split}
+            &(\Box+m^2)D_R(x-y)=-i\delta^4(x-y)\\
+            &(\Box+m^2)D_A(x-y)=-i\delta^4(x-y)\\
+            &(\Box+m^2)D_F(x-y)=-i\delta^4(x-y)\\
+            &(\Box+m^2)\widetilde D_F(x-y)=-i\delta^4(x-y)
+        \end{split}
+    \end{equation}
+
+    而$D(x-y)$则没有这个性质.
+\end{theorem}
+\begin{proof}
+    记这四种中的某个关联函数为$D_X(x-y)$
+    我们从定义出发
+    \begin{equation}
+        D_X(x-y)=\int\dddd p \frac i{p^2-m^2}\exp{-ip(x-y)}
+    \end{equation}
+
+    因此
+    \begin{equation}
+        \Box D_X(x-y)=\int\dddd p \frac i{p^2-m^2}(-p^2)\exp{-ip(x-y)}
+    \end{equation}
+    \begin{equation}
+        m^2 D_X(x-y)=\int\dddd p \frac i{p^2-m^2}(m^2)\exp{-ip(x-y)}
+    \end{equation}
+    直接相加, 利用\eqref{matheq1}即得:
+    \begin{equation}
+        (\Box+m^2)D_X(x-y)=-i\int\dddd p\exp{-ip(x-y)}=-i\delta^4(x-y)
+    \end{equation}
+
+    而对于$D(x-y)$
+    \begin{align}
+        (\Box+m^2)D(x-y)&=\int\ld p(p^2+m^2)\exp{-ip(x-y)}\\
+        &=m^2\int\ddd p\frac1{\omega_{\vec p}}\exp{-ip(x-y)}\neq-i\delta^4(x-y)
+    \end{align}
+\end{proof}
+\kaishu 讨论: 这些传播子在经典场论中中对应的就是EoM的Green函数, 这就说明了它们的物理意义正是标量粒子的传播. 而$\dddd p$则暗示着在qft中它的传播是off-shell的, 存在不满足色散关系的所谓"内线"粒子. 反之, 若考虑满足色散关系的实粒子, 则我们需要在$\dddd p$后加上$\Theta(p^0)\delta(p^2-m^2)$, 或者使用三维体元$\ld p$以使其on-shell.\songti
+
+\subsection{Wick定理}
+\begin{definition}[$\mathcal N$算符]
+    $\mathcal N$算符可以将输入它的一串$\a{p}$, $\a{p}^\dagger$强行变成$\a{p}^\dagger$在前$\a{p}$在后的顺序. 例如:
+    \begin{equation}
+        \mathcal N\left\{\a{p}\a{p}^\dagger\a{q}\a{k}^\dagger\right\}=\a{p}^\dagger\a{k}^\dagger\a{q}\a{p}
+    \end{equation}
+\end{definition}
+\begin{definition}[Wick收缩(Wick contract)]
+    \begin{equation}
+        \overline{\phi(x)\phi(y)}\equiv D_F(x-y)
+    \end{equation}
+\end{definition}
+
+\begin{theorem}[Wick定理]\label{wicksTheorem}
+    \begin{equation}
+        \mathcal T\left[\phi(x_1)\phi(x_2)\cdots\phi(x_n)\right]=\mathcal N\left\{\phi(x_1)\phi(x_2)\cdots\phi(x_n)+\text{所有的Wick收缩}\right\}
+    \end{equation}
+    其中, 所谓的"所有的Wick"收缩指, 任意的一对两两收缩、任意的两对两两收缩、任意的三对两两收缩等等等\\
+    比如对于$n=4$
+    \begin{equation}
+        \begin{split}
+            \mathcal T[\phi(x_1)&\phi(x_2)\phi(x_3)\phi(x_4)]
+            =\mathcal N\{\phi(x_1)\phi(x_2)\phi(x_3)\phi(x_4)\\
+            &+\overline{\phi(x_1)\phi(x_2)}\phi(x_3)\phi(x_4)+\overline{\phi(x_1)\phi(x_3)}\phi(x_2)\phi(x_4)\\
+            &+\overline{\phi(x_1)\phi(x_4)}\phi(x_2)\phi(x_3)+\overline{\phi(x_2)\phi(x_3)}\phi(x_1)\phi(x_4)\\
+            &+\overline{\phi(x_2)\phi(x_4)}\phi(x_1)\phi(x_3)+\overline{\phi(x_3)\phi(x_4)}\phi(x_1)\phi(x_2)\\
+            &+\overline{\phi(x_1)\phi(x_2)}\cdot\overline{\phi(x_3)\phi(x_4)}+\overline{\phi(x_1)\phi(x_3)}\cdot\overline{\phi(x_2)\phi(x_4)}\\
+            &+\overline{\phi(x_1)\phi(x_4)}\cdot\overline{\phi(x_2)\phi(x_3)}\}
+        \end{split}
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    \begin{lemma}\label{lemma:N_commute}
+        $\mathcal N$算符可以与$[,]$换序:
+        \begin{equation}
+            [\a{p}, N(\cdots)]=N([\a{p}, \cdots])
+        \end{equation}
+    \end{lemma}
+    \begin{lemma}\label{lemma:psi_commute}
+        对于$x^0>y^0$
+        \begin{equation}
+            [\psi(x), \phi(y)]=[\psi(x), \psi^\dagger(y)]=D(x-y)=D_F(x-y)
+        \end{equation}
+    \end{lemma}
+    不妨假设$x_1^0\geq x_2^0 \geq x_3^0\geq\cdots x_n^0$
+    首先, 对于$n=2$:
+    \begin{equation}
+        \mathcal T[\phi(x_1)\phi(x_2)]=\mathcal N\{\phi(x_1)\phi(x_2)+\overline{\phi(x_1)\phi(x_2)}\}
+    \end{equation}
+    显然成立.
+
+    考虑数学归纳法, 若对$n=k-1$成立, 则对$n=k$:
+    \begin{align*}
+        &\mathcal T\left[\phi(x_1)\phi(x_2)\cdots\phi(x_k)\right]=\phi(x_1)\left[\phi(x_1)\phi(x_2)\cdots\phi(x_k)\right]\\
+        &=(\psi(x_1)+\psi^\dagger(x_1))\mathcal N\left\{\phi(x_2)\phi(x_3)\cdots\phi(x_n)+\text{所有的}(k-1)\text{Wick收缩}\right\}\\
+        &=\mathcal N\left\{\psi^\dagger(x_1)(\phi(x_2)\phi(x_3)\cdots\phi(x_n)+\text{所有的}(k-1)\text{Wick收缩})\right\}\\
+        &~~~~+\mathcal N\left\{(\phi(x_2)\phi(x_3)\cdots\phi(x_n)+\text{所有的}(k-1)\text{Wick收缩})\psi(x_1)\right\}+[\psi(x_1), \mathcal N\{\cdots\}]\\
+        &=\mathcal N\left\{\phi(x_1)\phi(x_2)\phi(x_3)\cdots\phi(x_n)+\text{所有的}(k-1)\text{Wick收缩}\right\}+\mathcal N\{[\psi(x_1), \cdots]\}\\
+        &=\mathcal N\left\{\phi(x_1)\phi(x_2)\phi(x_3)\cdots\phi(x_n)+\text{所有的}(k-1)\text{Wick收缩}\right\}\\
+        &~~~~+\mathcal N\{\text{与}\psi(x_1)\text{收缩后的所有}(k-1)\text{Wick收缩}\}
+    \end{align*}
+
+    最终我们合并得到:
+    \begin{equation}
+        \mathcal T\left[\phi(x_1)\phi(x_2)\cdots\phi(x_k)\right]=\mathcal N\left\{\phi(x_1)\phi(x_2)\phi(x_3)\cdots\phi(x_n)+\text{所有的}k\text{Wick收缩}\right\}
+    \end{equation}
+    于是根据归纳公理我们证明得到了Wick定理.
+
+    \kaishu 最后补充一点, 对于Wick定理的证明, 我们并没有利用到任何Free Field的性质, 因此Wick定理也是可以适用于接下来的Interaction Theory的. \songti
+\end{proof}
+
+\newpage
+\section{打开相互作用: $\phi^3$理论}
+
+在之前我们研究的都是线性没有相互作用的场论, Free Theory. 但是在自然界中, 总是存在粒子与粒子间的相互作用的, 这反映在Lagrangian上就是非二次项的出现. 这是得我们的方程不再是线性的波动方程, 不能再和我们二次量子化中的标准流程一样进行简正模的分解来获得最终结果了(悲). 为了能够将我们的理论拓展到相互作用上, Richard Feynman利用微扰展开, 通过Feynman规则\&Feynman图, 给予了我们的理论通过渐近展开处理相互作用的能力.
+
+而在本节中, 我们将考虑标量场的$\phi^3$理论, 即
+\begin{equation}
+    \mathcal L=\mathcal L_0+\mathcal L_{int}=\frac12\partial_\mu\phi\partial^\mu\phi-\frac12m^2\phi^2+\frac g{3!}\phi^3
+\end{equation}
+其中$\mathcal L_{int}=\frac g{3!}\phi^3$为微扰的相互作用项.
+
+\subsection{Feynman黄金规则}
+Feynman黄金规则, 在于给予S矩阵元实际的物理观测效应, 也就是利用S矩阵得到物理的散射截面、衰变率等可观测量.
+
+而所谓S算符, 其实也就是时间演化算符, 它和两个粒子态的缩并就是S矩阵的元素$\braket{f|S|i}$, 它的物理意义就是描述了初态$\ket i$经过时间演化, 处于终态$\ket f$的概率.
+\begin{definition}[S算符]
+    \begin{equation}
+        S=\exp{\int_{-\infty}^{+\infty} iHdt}
+    \end{equation}
+\end{definition}
+
+于是
+\begin{equation}
+    \braket{f, t=+\infty|i, t=-\infty}=\braket{f|S|i}=S_{fi}
+\end{equation}
+
+其中终态$\ket{f}$, 初态$\ket{i}$都为渐近自由态(Asymptotic State).
+
+\begin{definition}[渐近自由态(Asymptotic State)]
+    在$t=+\infty, -\infty$时在无穷远处没有互相作用的粒子即为渐近自由态. 因而渐近自由态是on-shell的, 并且可以利用Free Theory处理, 直接将$a^\dagger_{\vec p}$作用于$\ket0$即可.
+\end{definition}
+
+然后对于微扰理论来说, $S$应当非常接近$1$, 互相作用项都是微扰, 因此
+\begin{equation}
+    S=1+i\mathcal T
+\end{equation}
+(请不要和编时算符$\mathcal T$)混淆.
+
+并且定义散射振幅$\mathcal M$
+\begin{definition}[散射振幅$\mathcal M$]
+    \begin{equation}
+        i\mathcal T_{fi}=\braket{f|i\mathcal T|i}=i\dpi4\delta^4\left(\sum p\right) \mathcal M_{if}
+    \end{equation}
+\end{definition}
+
+于是
+\begin{equation}
+    \braket{f|S|i}=\braket{f|(1+i\mathcal T)|i}=i\dpi4\delta^4\left(\sum p\right)\mathcal M_{if}
+\end{equation}
+
+\begin{definition}[散射截面$\sigma$]
+    考虑$2\rightarrow n$散射, 对于某个终态, 其微分散射截面定义为
+    \begin{equation}
+        \Phi\d\sigma=\frac NT
+    \end{equation}
+    其中, $\Phi=\sum_v nv$为粒子通量(flux), $N$为经过时间$T$后以此状态出射的粒子数
+
+    并且对于单色粒子流$\Phi=\frac{N_{inc}v}{\mathcal V}$, 其中$\mathcal V$为系统体积
+\end{definition}
+
+\begin{definition}\label{ch4defP}
+    到某个散射态的概率
+    \begin{equation}
+        \d P=\frac N{N_{inc}}=\frac{\left|\braket{f|S|i}\right|^2}{\braket{f|f}\braket{i|i}}
+    \end{equation}
+    其中$N_{inc}$为入射粒子数.
+\end{definition}
+
+根据定义\ref{ch4defP}我们发现, 公式左边有$\d$而右边没有, 非常不方便且丑陋, 于是我们利用这个trick:
+\begin{equation}
+    \delta^3(0)\d^3p=1
+\end{equation}
+
+于是
+\begin{theorem}
+    \begin{equation}
+        \d P=\frac{\left|\braket{f|S|i}\right|^2}{\braket{f|f}\braket{i|i}}=\frac{\left|\braket{f|S|i}\right|^2}{\braket{f|f}\braket{i|i}}\prod_{i\in f} \delta^3(0)\d^3p_i=\frac{\left|\braket{f|S|i}\right|^2}{\braket{f|f}\braket{i|i}}\prod_{i\in f} \frac{\mathcal V}{\dpi3}\d^3p_i
+    \end{equation}
+\end{theorem}
+
+其中, 利用了式\eqref{matheq1}:
+\begin{equation}
+    \delta^3(0)=\frac1{\dpi3}\int \d^3x=\frac{\mathcal V}{\dpi3}
+\end{equation}
+
+同样利用式\eqref{matheq1}我们有, 
+\begin{equation}
+    \braket{f|f}=\prod_{i\in f} 2E_{i}\delta^3(0)=\prod_{i\in f} 2E_{i}\mathcal V
+\end{equation}
+
+于是, 我们有
+\begin{align}
+    \d P&=\frac{\left|\braket{f|S|i}\right|^2}{\braket{f|f}\braket{i|i}}\prod_{i\in f} \frac{\mathcal V}{\dpi3}\d^3p_i\\
+    &=|\mathcal M\dpi4\delta^4(\Sigma p)|^2\frac1{2E_1\mathcal V}\frac1{2E_2\mathcal V}\prod_{i\in f}\frac1{2E_f\mathcal V} \frac{\mathcal V}{\dpi3}\d^3p_i\\
+    &=|\mathcal M\dpi4\delta^4(\Sigma p)|^2\frac1{2E_1\mathcal V}\frac1{2E_2\mathcal V}\prod_{i\in f}\frac{1}{2E_f\dpi3}\d^3p_i\\
+    &=\dpi4\delta^4(\Sigma p)\mathcal VT|\mathcal M|^2\frac1{2E_1\mathcal V}\frac1{2E_2\mathcal V}\prod_{i\in f}\frac{1}{2E_f\dpi3}\d^3p_i
+\end{align}
+
+根据
+\begin{equation}
+    \d\sigma=\frac{N}{T\Phi}=\frac{N\mathcal V}{TN_{inc}v}=\frac{\mathcal V}{T}\d P
+\end{equation}
+
+最后我们得到散射截面的Feynman黄金规则
+\begin{theorem}[散射截面的Feynman黄金规则]
+    \begin{equation}
+        \d\sigma=\frac{|\mathcal M|^2}{4E_1E_2|\vec v_1-\vec v_2|}\d\Pi_{LIPS}
+    \end{equation}
+    其中$\d\Pi_{LIPS}$为Lorentz Invariance Phase Space, 
+    \begin{equation}
+        \d\Pi_{LIPS}=\dpi4\delta^4(\Sigma p)\prod_{i\in f}\lips p
+    \end{equation}
+\end{theorem}
+
+类似地, 我们定义衰变率
+\begin{definition}[衰变率$\Gamma$]
+    考虑$1\rightarrow n$散射, 对于某个终态, 其微分衰变率定义为
+    \begin{equation}
+        \d\Gamma=\frac{\d P}T
+    \end{equation}
+\end{definition}
+
+同样对于$1\rightarrow n$散射, 我们可以计算得到
+\begin{equation}
+    \d P=T|\mathcal M|^2\frac1{2E}\d\Pi_{LIPS}
+\end{equation}
+
+最后得到衰变率的Feynman黄金规则
+\begin{theorem}[衰变率的Feynman黄金规则]
+    \begin{equation}
+        \d\Gamma=\frac{|\mathcal M|^2}{2E}\d\Pi_{LIPS}
+    \end{equation}
+\end{theorem}
+
+\begin{example}[$2\rightarrow2$散射]
+    在质心系下考虑$p_1+p_2\rightarrow p_3+p_4$散射, 则
+    \begin{align}
+        \d\sigma&=\int_{p_3}\frac1{4E_1E_2|\vec v_1-\vec v_2|}\dpi4\delta^4|\mathcal M|^2\lips{p_3}\lips{p_4}\\
+        &=\int_{p_4}\frac1{4E_1E_2|\vec v_1-\vec v_2|}2\pi\delta(E_1+E_2-E_3-E_4)|\mathcal M|^2 \frac{p_4^2\d p_4\d\Omega}{\dpi3 4E_3E_4}
+    \end{align}
+    设$E_1+E_2=E_{CM}$, 并且根据
+    \begin{equation}
+        \delta(E_{CM}-E_3-E_4)=\delta(p_4-p_{40})\frac{E_3}{p_3}\frac{E_4}{p_4}=\delta(p_4-p_{40})\frac{E_3E_4}{p_4^2}
+    \end{equation}
+
+    我们有:
+    \begin{align}
+        \left(\frac{\d\sigma}{\d\Omega}\right)_{CM}=\frac1{64E_1E_2}\frac{|\mathcal M|^2}{|\vec v_1-\vec v_2|}
+    \end{align}
+
+    再根据
+    \begin{equation}
+        |\vec v_1-\vec v_2|=\frac{|\vec p_1|}{E_1}+\frac{|\vec p_2|}{E_1}=|\vec p_i|\frac{E_{CM}}{E_1E_2}
+    \end{equation}
+
+    于是
+    \begin{equation}
+        \left(\frac{\d\sigma}{\d\Omega}\right)_{CM}=\frac{|\mathcal M|^2}{64\pi^2E_{CM}|\vec p_i|}
+    \end{equation}
+\end{example}
+
+得到黄金规则之后, 那么我们接下来的任务就是计算散射振幅! 而在此之前, 我们需要两个重要的定理来作为预备.
+
+\subsection{Lehmann-Symanzik-Zimmermann公式}
+有了Feynman黄金规则, 我们下一步就在于计算散射振幅$\mathcal M$. 而本节的核心就在于将位置空间的关联函数与动量空间中的散射振幅连接起来, 得出LSZ公式:
+\begin{theorem}[LSZ公式]\label{LSZformula}
+    \begin{equation}
+        \braket{f, +\infty|i, -\infty}=\int\d^4x_1 i\exp{-ip_1x_1}(\Box_1+m^2)\cdots\int\d^4x_n i\exp{ip_nx_n}(\Box_n+m^2)\braket{\phi_1\cdots\phi_n}
+    \end{equation}
+    其中, 对入射态用$\int i\exp{-ip_1x_1}(\Box+m^2) $, 而对出射态用$\int i\exp{ip_1x_1}(\Box+m^2)$
+\end{theorem}
+
+为此, 我们尝试证明引理
+\begin{lemma}
+    \begin{equation}
+        i\int\d^4x\exp{ipx}(\Box+m^2)\phi=\sqrt{2\omega_{\vec p}}[\a p(+\infty)-\a p(-\infty)]
+    \end{equation}
+\end{lemma}
+\begin{proof}
+    将$\Box$展开并分部积分有:
+    \begin{align}
+        i\int\d^4x\exp{ipx}(\Box+m^2)\phi&=i\int\d^4x\exp{ipx}(\partial_t^2-\nabla^2+m^2)\phi\\
+        &=i\int\d^4x\exp{ipx}(\partial_t^2+\vec p^2+m^2)\phi\\
+        &=i\int\d^4x\exp{ipx}(\partial_t^2\om {p}^2)\phi
+    \end{align}
+
+    注意到, 如果是free theory, 所有粒子都是on-shell的, 积分式就为$0$. 但是对于interating theory, 事情就没这么简单了. 我们希望能类似free theory那样处理, 又该怎么办呢? 我们可以设法让这个积分只和$t=\pm\infty$的时候相关, 那这样子粒子之间相距无穷远, 互相之间没有interaction, 那么自然就可以退化到free theory, 利用free theory的产生湮灭算符来处理了.
+
+    于是我们尝试使用分布积分:
+    \begin{align}
+        i\int\d^4\exp{ipx}\partial_t^2\phi&=-i\int\d^4x\partial_t\exp{ipx}\partial_t\phi+i\int\d^4x\partial_t\left[\exp{ipx}\partial_t\phi\right]\\
+        &=i\int\d^4x\partial_t^2\exp{ipx}\phi-i\int\d^4x\partial_t\left[\partial_t\exp{ipx}\phi\right]+i\int\d^4x\partial_t\left[\exp{ipx}\partial_t\phi\right]\\
+        &=i\int\d^4x(-\om{p}^2)\exp{ipx}\phi-i\int\d^4x\partial_t\left[\partial_t\exp{ipx}\phi\right]+i\int\d^4x\partial_t\left[\exp{ipx}\partial_t\phi\right]
+    \end{align}
+
+    那么代回到原式中, 第一项正和我们在free theory中一样, 与$+\om{p}^2$抵消了, 于是剩下
+    \begin{equation}
+        i\int\d^4x\exp{ipx}(\Box+m^2)\phi=-i\int\d^4x\partial_t\left[\partial_t\exp{ipx}\phi\right]+i\int\d^4x\partial_t\left[\exp{ipx}\partial_t\phi\right]
+    \end{equation}
+
+    将对t的积分专门拎出来, 我们有:
+    \begin{align}
+        i\int\d^4x\exp{ipx}(\Box+m^2)\phi=\left.i\int\d^3x\exp{ipx}\left(\pi-i\om p\phi\right)\right|_{t=-\infty}^{t=+\infty}
+    \end{align}
+
+    因为内部的式子是在$t=\pm\infty$时求的, 所以我们可以直接利用free theory的$\phi, \pi$(即式\eqref{ch4freephi}, \eqref{ch4freepi})进行计算, 最后我们可以得到
+    \begin{equation}
+        i\int\d^4x\exp{ipx}(\Box+m^2)\phi=\sqrt{2\om p}\left[\a p(+\infty)-\a p(-\infty)\right]
+    \end{equation}
+\end{proof}
+
+将这个引理取共轭我们有:
+\begin{equation}
+    -i\int\d^4x\exp{-ipx}(\Box+m^2)\phi=\sqrt{2\om p}\left[\a{p}^\dagger(+\infty)-\a{p}^\dagger(-\infty)\right]
+\end{equation}
+
+然后我们考虑计算$\braket{f, t=-\infty|i, t=+\infty}$, 
+\begin{align}
+    \braket{f, +\infty|i, -\infty}&=\braket{\Omega|\prod_{p\in f}\sqrt{2\om p}\a{p}(+\infty)\prod_{p\in i}\sqrt{2\om p}\a{p}^\dagger(-\infty)|\Omega}\\
+    &=\braket{\Omega|\mathcal T\left\{{\prod_{p\in f}\sqrt{2\om p}\a{p}(+\infty)\prod_{p\in i}\sqrt{2\om p}\a{p}^\dagger(-\infty)}\right\}|\Omega}
+\end{align}
+
+插入时序算符$\mathcal T$后, 我们发现, 我们再添加$\a{p}(+\infty)$, $\a{p}^\dagger(-\infty)$是不会影响结果的, 因为$\mathcal T$会将它们分别置于最左边和最右边, 然后和真空态缩并直接得到0. 于是,
+\begin{align}
+    \braket{f, +\infty|i, -\infty}&=\bra{\Omega}\mathcal T\prod_{p\in f}\sqrt{2\om p}\left[\a{p}(+\infty)-\a{p}(-\infty)\right]\notag\\
+    &\quad\prod_{p\in i}\sqrt{2\om p}\left[\a{p}^\dagger(-\infty)-\a{p}^\dagger(+\infty)\right]\ket{\Omega}\\
+    &=\braket{\Omega}\mathcal T\prod i\int\d^4x_f\exp{ip_fx_f}(\Box_f+m^2)\phi_f\notag\\
+    &\quad\prod i\int\d^4x_i\exp{-ip_ix_i}(\Box_i+m^2)\phi_i\ket{\Omega}
+\end{align}
+
+于是我们最终得到了LSZ公式:
+\begin{equation}
+    \braket{f, +\infty|i, -\infty}=\int\d^4x_1 i\exp{-ip_1x_1}(\Box_1+m^2)\cdots\int\d^4x_n i\exp{ip_nx_n}(\Box_n+m^2)\braket{\phi_1\cdots\phi_n}
+\end{equation}
+
+\subsection{Schwinger-Dyson定理}
+本节的核心在于通过为接下来微扰展开计算空间关联函数继而得到位置空间的Feynman规则做准备.
+\begin{theorem}[Schwinger-Dyson定理]\label{SchwingerDysonTheorem}
+    \begin{equation}
+        (\Box_x+m^2)\braket{\phi_x\phi_1\cdots\phi_n}=\braket{(\Box_x+m^2)\phi_x\phi_1\cdots\phi_n}-i\sum_j\delta_{xj}\braket{\phi_1\cdots\phi_{j-1}\phi_{j+1}\cdots\phi_n}
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    首先考虑$\partial_t^2\mathcal T\left\{\phi_x\phi_1\cdots\phi_n\right\}$. 我们不妨假设$\phi_1, \phi_2\cdots\phi_n$是已经按先后顺序排列好的, 即$t_1\geq t_2\geq\cdots\geq t_n$.
+    
+    那么
+    \begin{align}
+        \mathcal T\left\{\phi_x\phi_1\cdots\phi_n\right\}&=(\phi_x\phi_1\cdots\phi_n)[\Theta(t-t_1)\Theta(t-t_2)\cdots\Theta(t-t_n)]\notag\\
+        &\quad+(\phi_1\phi_x\cdots\phi_n)[\Theta(t_1-t)\Theta(t-t_2)\cdots\Theta(t-t_n)]+\cdots
+    \end{align}
+
+    然后
+    \begin{align}
+        \partial_t\mathcal T\left\{\phi_x\phi_1\cdots\phi_n\right\}&=\mathcal T\left\{\partial_t\phi_x\phi_1\cdots\phi_n\right\}\notag\\
+        &\quad+(\phi_x\phi_1\cdots\phi_n)[\delta(t-t_1)\Theta(t-t_2)\cdots\Theta(t-t_n)]\notag\\
+        &\quad-(\phi_1\phi_x\cdots\phi_n)[\delta(t_1-t)\Theta(t-t_2)\cdots\Theta(t-t_n)]+\cdots\\
+        &=\mathcal T\left\{\partial_t\phi_x\phi_1\cdots\phi_n\right\}\notag\\
+        &\quad+([\phi_x, \phi_1]\cdots\phi_n)[\delta(t-t_1)\Theta(t-t_2)\cdots\Theta(t-t_n)]+\cdots\\
+        &=\mathcal T\left\{\partial_t\phi_x\phi_1\cdots\phi_n\right\}\\
+        &=\mathcal T\left\{\pi_x\phi_1\cdots\phi_n\right\}
+    \end{align}
+
+    再次求导
+    \begin{align}
+        \partial_t^2\mathcal T\left\{\phi_x\phi_1\cdots\phi_n\right\}&=\mathcal T\left\{\partial_t^2\phi_x\phi_1\cdots\phi_n\right\}\notag\\
+        &\quad+(\pi_x\phi_1\cdots\phi_n)[\delta(t-t_1)\Theta(t-t_2)\cdots\Theta(t-t_n)]\notag\\
+        &\quad-(\phi_1\pi_x\cdots\phi_n)[\delta(t_1-t)\Theta(t-t_2)\cdots\Theta(t-t_n)]+\cdots\\
+        &=\mathcal T\left\{\partial_t^2\phi_x\phi_1\cdots\phi_n\right\}\notag\\
+        &\quad+([\pi_x, \phi_1]\cdots\phi_n)[\delta(t-t_1)\Theta(t-t_2)\cdots\Theta(t-t_n)]+\cdots\\
+        &=\mathcal T\left\{\partial_t^2\phi_x\phi_1\cdots\phi_n\right\}\notag\\
+        &\quad-i\delta^3(\vec x-\vec x_1)\delta(t-t_1)(\cdots\phi_n)[\Theta(t-t_2)\cdots\Theta(t-t_n)]+\cdots\\
+        &=\mathcal T\left\{\partial_t^2\phi_x\phi_1\cdots\phi_n\right\}\notag\\
+        &\quad-i\delta_{x1}(\cdots\phi_n)[\Theta(t-t_2)\cdots\Theta(t-t_n)]+\cdots\\
+        &=\mathcal T\left\{\partial_t^2\phi_x\phi_1\cdots\phi_n\right\}-i\sum_j \delta_{xj}\mathcal T\left\{\phi_1\cdots\phi_{j-1}\phi_{j+1}\cdots\phi_n\right\}
+    \end{align}
+
+    然后由于$\nabla^2, m^2$都作用不到只含t的$\Theta$上, 因此可以直接提入$\braket{\phi_x\phi_1\cdots\phi_n}$内, 于是我们最终得到
+    \begin{equation}
+        (\Box_x+m^2)\braket{\phi_x\phi_1\cdots\phi_n}=\braket{(\Box_x+m^2)\phi_x\phi_1\cdots\phi_n}-i\sum_j\delta_{xj}\braket{\phi_1\cdots\phi_{j-1}\phi_{j+1}\cdots\phi_n}
+    \end{equation}
+\end{proof}
+
+\subsection{Feynman规则, 启动!}
+目前, 所有的工具以及准备都已经摆在我们面前了, 我们还有什么理由停下来? \textbf{Feynman规则, 启动!} (此时配合经典门酱表情)
+\subsubsection{位形空间的Feynman规则}
+我们以$\braket{\phi_1\phi_2}$为例, 继而导出位置空间的Feynman规则.
+\begin{align}
+    \braket{\phi_1\phi_2}&=\int\d^4x\delta_{1x}\braket{\phi_x\phi_2}=\int\d^4xi(\Box_x+m^2)D_{1x}\braket{\phi_x\phi_2}\\
+    &=\int\d^4xiD_{1x}(\Box_x+m^2)\braket{\phi_x\phi_2}\\
+    &=\int\d^4x\frac{ig}2 D_{1x}\braket{\phi_x^2\phi_2}-i\delta_{x2}\cdot iD_{1x}\\
+    &=D_{12}+\frac{ig}2\int\d^4xD_{1x}\braket{\phi_x^2\phi_2}
+\end{align}
+
+而依葫芦画瓢我们有
+\begin{align}
+    \braket{\phi_x^2\phi_2}&=\int\d^4 iD_{y2}(\Box_y+m^2)\braket{\phi_x^2\phi_y}\\
+    &=\frac{ig}2\int\d^4y D_{2y}\braket{\phi_x^2\phi_y^2}-2i\int\d^4y \delta_{xy}iD_{y2}\braket{\phi_x}\\
+    &=\frac{ig}2\int\d^4y D_{2y}\braket{\phi_x^2\phi_y^2}+2D_{x2}\braket{\phi_x}
+\end{align}
+
+梅开三度
+\begin{align}
+    \braket{\phi_x}&=\int\d^4y iD_{yx}(\Box_y+m^2)\braket{\phi_y}\\
+    &=\frac{ig}2\int\d^4y D_{yx}\braket{\phi_y^2}
+\end{align}
+
+于是最后整理得
+\begin{equation}
+    \braket{\phi_1\phi_2}=D_{12}-\left(\frac g2\right)^2\int \d^4x\d^4y(2D_{1x}D_{xy}D_{xy}D_{y2}+D_{1x}D_{xx}D_{yy}D_{y2}+2D_{1x}D_{xy}D_{yy}D_{x2})
+\end{equation}
+
+我们可以用这个fancy的图来表示这些二阶贡献, 这就是Feynman图:
+\begin{figure}[htbp!]
+    \begin{tikzpicture}
+        \draw (-0.5,0) -- (1,0) ;
+        \draw (2,0) -- (3.5,0);
+        \filldraw[black] (1,0) circle (1pt) node[below] {$x$} ;
+        \filldraw[black] (-0.5,0) circle (1pt)node[below] {$x_1$} ;
+        \filldraw[black] (2,0) circle (1pt) node[below] {$y$} ;
+        \filldraw[black] (3.5,0) circle (1pt)node[below] {$x_2$}  ;
+        \draw (1,0)..controls(0.4,1.2)and(1.6,1.2)..(1,0);
+        \draw (2,0)..controls(1.4,1.2)and(2.6,1.2)..(2,0);
+        \draw (4.2,0)--(4.5,0);
+        \draw (4.35,0.15)--(4.35,-0.15);
+        \draw (5.2,0)--(6.7,0);
+        \draw (7.7,0)--(9.2,0);
+        \filldraw[black] (6.7,0) circle (1pt);% node[below] {$x$} ;
+        \filldraw[black] (6.5,0)  node[below] {$x$} ;
+        \filldraw[black] (5.2,0) circle (1pt)node[below] {$x_1$} ;
+        \filldraw[black] (7.7,0) circle (1pt);
+        \filldraw[black] (7.9,0) node[below] {$y$} ;
+        \filldraw[black] (9.2,0) circle (1pt)node[below] {$x_2$}  ;
+        \draw (6.7,0) arc (180:0:0.5 and 0.5);
+        \draw (6.7,0) arc (180:360:0.5 and 0.5);
+        \draw (9.9,0)--(10.2,0);
+        \draw(10.05,0.15)--(10.05,-0.15);
+        \draw (10.9,0)--(12.4,0);
+        \draw (12.4,0)--(12.4,1);
+        \filldraw[black] (12.4,0) circle (1pt) node[below] {$x$} ;
+        \filldraw[black] (10.9,0) circle (1pt) node[below] {$x_1$} ;
+        \filldraw[black] (12.4,1) circle (1pt) node[left] {$y$} ;
+        \filldraw[black] (13.9,0) circle (1pt)node[below] {$x_2$}  ;
+        \draw (12.4,0)--(13.9,0);
+        \draw (12.4,1)..controls(13.6,1.6)and(13.6,0.4)..(12.4,1);
+    \end{tikzpicture}
+\end{figure}
+
+然后我们可以写下$\phi^3$理论在位形空间的Feynman规则
+\begin{important}
+    \begin{enumerate}
+        \item 标出所有外点
+        \item 标出所有内点, 一个内点写一个$\frac{ig}{3!}\int\d^4 x$
+        \item 对所有的内线(位形空间Feynman图只有内线), 写下Feynman传播子$D_{ij}$, 其中$i, j$为内线连接的两点
+        \item 乘以对称数目
+    \end{enumerate}
+\end{important}
+
+对称数目的计算我们可以以图\ref{fig:scalarFeymanEx}为例来讨论\cite{TreeSymmetryFactor}.
+\begin{figure}[htbp!]
+    \centering
+    \begin{tikzpicture}
+        \draw (10.9,0)--(12.4,0);
+        \draw (12.4,0)--(12.4,1);
+        \filldraw[black] (12.4,0) circle (1pt) node[below] {$x$} ;
+        \filldraw[black] (10.9,0) circle (1pt) node[below] {$x_1$} ;
+        \filldraw[black] (12.4,1) circle (1pt) node[left] {$y$} ;
+        \filldraw[black] (13.9,0) circle (1pt)node[below] {$x_2$}  ;
+        \draw (12.4,0)--(13.9,0);
+        \draw (12.4,1)..controls(13.6,1.6)and(13.6,0.4)..(12.4,1);
+    \end{tikzpicture}
+    \caption{一张Feynman图的例子}
+    \label{fig:scalarFeymanEx}
+\end{figure}
+
+具体来说, 我们写下
+\begin{equation}
+    \braket{\phi_x\phi_x\phi_x\phi_y\phi_y\phi_y}
+\end{equation}
+
+$x$有$A_3^2=6$种选择来分别连接$x_1, x_2$, 然后$y$有$3$种选择连接$x$, 于是总共的对称数目为$18$, 乘以$\frac1{(3!)^2}$也就是$\frac12$, 与我们前述的计算结果保持一致!
+
+那么如何理解Schwartz上\cite{schwartzSymmetryFactor}除以对称因子的做法呢? 这本质上和我们这里介绍的乘以对称数目的方法其实是一样的. 我们考虑一个更复杂的例子($\phi^4$理论)来详细阐述这个问题, Feynman图如图\ref{fig:scalarFeymanEx2}
+\begin{figure}[htbp!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{image/sec5fey1.png}
+    \caption{一个更复杂点的Feynman图例子}
+    \label{fig:scalarFeymanEx2}
+\end{figure}
+
+首先考虑顶点a, 将其分为三堆, 一堆一个连接1, 一堆一个连接b, 再一堆两个自己连接自己, 可以得到$C_4^1C_3^1C_2^2=\frac{4!}{2}$种分配方法.
+
+然后再考虑顶点b, 同样将其分为三堆, 一堆一个连接a, 一堆一个连接2, 一堆两个连接c, 可以得到$C_4^1C_3^1C_2^2=\frac{4!}2$种分配方法.
+
+最后考虑顶点c, 将其分为两堆, 一堆两个连接b, 一堆两个自己连接自己, 并且考虑到从b到c过来的线我们已经在$C_2^2$中除以了$2!$的对称因子, 所以可以认为它有两个不同的出口$b1, b2$, 然后c中选择两个按顺序分别与$b1, b2$连接, 于是有$A_4^2C_2^2=\frac{4!}2$种分配方法.
+
+综上, 与$\frac1{(4!)^3}$相抵消，总共剩下三个$C_n^m$贡献出来的对称因子$\frac18$.
+
+从这里可以看出, Schwartz中所称的对称因子其实也就是我们在对某一个顶点$i$的脚分堆的过程中, 对于连接顶点$j\neq i$并有$n>1$个脚的堆, $n$个脚之间没有区别所带来的需要除去的因子$n!$. 但是需要注意, 由于这一堆在顶点$i$已经除以对称因子过了, 所以我们在顶点$j$连接顶点$i$的那一堆脚中不需要再除以对称因子$n!$了. 因此, 总的来说, 一对各有$n$个脚的 从$i$到$j$的脚的堆和从$j$到$i$的脚的堆, 总共贡献$n!$的对称因子.
+
+细心的读者可以注意到, 在这里我们没有讨论顶点$j=i$也就是自己连接自己的情况. 这个问题比较微妙, 需要我们特殊考虑, 我们可以通过下面这个例子(如图\ref{fig:scalarFeymanEx3})来进行进一步的讨论.
+\begin{figure}[htbp!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{image/sec5fey2.png}
+    \caption{一个更复杂点的Feynman图例子}
+    \label{fig:scalarFeymanEx3}
+\end{figure}
+
+我们对顶点$a$进行分堆, 那么我们可以分出两堆, 每堆各两个腿, 每堆的两个腿相互连接, 由于这两堆是完全等价的, 所以说我们还需要额外地除以一个对称因子$2!$来去掉多余的计数. 于是我们有总数目$\frac{C_4^2C_2^2}2=\frac{4!}{2\cdot2\cdot2}=\frac{4!}{8}$, 也就是为$8$的对称因子. 
+
+从这里我们可以看出来, 对于有$2n$(因为是两个脚相互连接, 因此一定是偶数个自己连接自己的脚)个自己连接自己的脚的顶点, 其对称因子应当为$n!2^n$. 可以看到, 比连接不同顶点的堆多贡献了一个$2^n$的因子.
+
+综上所述, 我们同样可以再写出Schwartz版的Feynman规则$\phi^3$理论在位形空间的Feynman规则
+\begin{important}
+    \begin{enumerate}
+        \item 标出所有外点
+        \item 标出所有内点, 一个内点写一个$ig \int\d^4 x$
+        \item 对所有的内线, 写下Feynman传播子$D_{ij}$, 其中$i, j$为内线连接的两点
+        \item 除以对称因子
+    \end{enumerate}
+\end{important}
+
+而以如下方式进行对称因子的计算:
+\begin{important}
+    \begin{enumerate}
+        \item 一对各有$n$个脚的 从$i$到$j$的脚的堆和从$j$到$i$的脚的堆($i\neq j$), 总共贡献$n!$的对称因子
+        \item $2n$(因为是两个脚相互连接, 因此一定是偶数个自己连接自己的脚)个自己连接自己的脚的顶点, 总共贡献$n!2^n$的对称因子
+        \item 将所有的对称因子相乘即总的对称因子
+    \end{enumerate}
+\end{important}
+
+\kaishu 一点感悟: 最大感受就是高中数学学得最烂的排列组合还在追我= =. 写这段时, 脑子里又浮现了高中数学课上香香反复告诫我们做排列组合题, 先分堆再计算的情景(真的好喜欢好怀念我的高中数学老师!). 花了好多时间完全弄明白这个问题, 又花了很多时间在这里详细讨论这个问题并把它写清楚...希望能够解决大家学习Symmetry Factor中遇到的问题吧. \songti
+
+\subsubsection{动量空间的Feynman规则}
+虽然已经有了位形空间的Feynman规则, 但是它并不能直接给我们散射振幅$\mathcal M$, 因此我们需要通过某种方式将动量空间与位形空间连接起来, 从而处理在动量空间中的问题. 而这个工具我们已经在提出过了, 即定理\ref{LSZformula}: LSZ公式. 所以, 我们直接动手吧!
+
+首先, 利用分部积分, 我们不难得到LSZ公式的等价形式
+\begin{equation}
+    \braket{f, +\infty|i, -\infty}=\int\d^4x_1 -i\exp{-ip_1x_1}(p_1^2-m^2)\cdots\int\d^4x_n -i\exp{ip_nx_n}(p_n^2-m^2)\braket{\phi_1\cdots\phi_n}
+\end{equation}
+
+代入我们上节的结果应当有:
+\begin{align}
+    \braket{f, +\infty|i, -\infty}&=\int\d^4x_1 -i\exp{-ip_1x_1}(p_1^2-m^2)\cdots\int\d^4x_n -i\exp{ip_nx_n}(p_n^2-m^2)\notag\\
+    &\quad\times\cdots\int\d^4\frac{\d^4p_1'}{\dpi4}\frac{i}{{p'}_1^2-m^2+i\epsilon}\exp{-ip_1'(x_1-x)}\cdots
+\end{align}
+
+对第一个$\d^4x_1$积分可以产生一个$\delta$函数并干掉和外点$x_1$连接的内线的传播子, 从而将其变成外线
+
+于是有
+\begin{align}
+    \braket{f, +\infty|i, -\infty}&=\int \d^x\exp{-i(p_1+q_1+\cdots)x}\int\d^y\exp{-i(p_1+q_1+\cdots)y}\cdots\\
+    &=\int\frac i{q^2-m^2+i\epsilon}\cdots\dpi4\delta^4(\sum p)\cdots\frac{\d^4 q}{\dpi4}\cdots
+\end{align}
+其中$x, y\cdots$为没有被LSZ干掉的内点.
+
+于是我们可以得到动量空间的Feynman规则\cite{griffthsPPFeynman}
+\begin{important}
+    \begin{enumerate}
+        \item 标出外线$i, f$
+        \item 对所有内点写下耦合常数$ig$, 以及能动量守恒$\dpi4\delta^4(\sum p)$
+        \item 对所有内线写下$\int\frac{d^4q}{\dpi4}\frac i{q^2-m^2+i\epsilon}$
+        \item 将最终结果扣去一个总的能动量守恒$\dpi4\delta^4(\sum p)$以及一个多余的$i$, 即得到散射振幅$\mathcal M_{if}$
+    \end{enumerate}
+\end{important}
+
+\newpage
+\nocite{*}
+\printbibliography[heading=bibintoc, title=\ebibname]
+
+\end{document}

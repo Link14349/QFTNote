@@ -1,0 +1,311 @@
+\section{电磁场}
+\subsection{重电磁场(Massive)}
+我们有拉格朗日量
+\begin{equation}
+    \mathcal L=-\frac14 F_{\mu\nu}F^{\mu\nu}+\frac12 m^2 A_\mu A^\mu
+\end{equation}
+其中$A^\mu=(\phi, \vec A)\Rightarrow A_\mu=(\phi, -\vec A)$
+
+于是我们得到EoM:
+\begin{equation}
+    \partial_\mu F^{\mu\nu}+m^2 A^\nu=0
+\end{equation}
+
+将$\partial_\nu$作用到EoM, 并且因为$F^{\mu\nu}$反称, $\partial_\mu\partial_\nu F^{\mu\nu}=0$, 我们得到:
+\begin{equation}
+    m^2\partial_\nu A^\nu=0
+\end{equation}
+
+于是我们可以得到Proca方程
+\begin{equation}
+    (\partial^2+m^2)A^\nu=0
+\end{equation}
+
+正则共轭
+\begin{equation}
+    \Pi^{\mu\nu}=\pa{\mathcal L}{\partial_\mu A_\nu}=-F^{\mu\nu}=\begin{bmatrix}
+        0 & E^1 & E^2 & E^3\\
+        -E^1 & 0 & -B^3 & B^2\\
+        -E^2 & B^3 & 0 & -B^1\\
+        -E^3 & -B^2 & B^1 & 0
+    \end{bmatrix}
+\end{equation}
+
+即$\Pi^{00}=0$, $\Pi^{0i}=E^i$
+
+然后我们有
+\begin{equation}
+    \mathcal L=-\frac12(\vec B^2-\vec E^2)+\frac12m^2A_{\mu}A^{\mu}
+\end{equation}
+
+做Legendre变换, 得到哈密顿密度
+\begin{align}
+    \mathcal H&=\Pi^0_{~~i}\dot A^i-\mathcal L=-\Pi^{0i}\partial_t A^i-\mathcal L\\
+    &=\vec E\cdot\partial_t\vec A+\frac12 \vec  B^2-\frac12 \vec  E^2-\frac12m^2A_{\mu}A^{\mu}\\
+    &=-\vec E\cdot\partial_t\vec A+\frac12 \vec B^2-\frac12 \vec  E^2-\frac12m^2\phi^2+\frac12m^2\vec A^2
+\end{align}
+
+根据
+\begin{equation}
+    \vec E\cdot\nabla\phi=\nabla\cdot(\phi\vec E)-\phi\nabla\cdot\vec E
+\end{equation}
+以及EoM
+\begin{equation}
+    \nabla\cdot\vec E=-m^2\phi
+\end{equation}
+我们最终得到
+\begin{equation}
+    \mathcal H=\frac12\vec B^2+\frac12\vec E^2+\frac1{2m^2}(\nabla\cdot\vec E)^2+\frac12m^2\vec A^2
+\end{equation}
+
+然后我们尝试量子化, 利用正则量子化关系
+\begin{equation}
+    [A^i_{\vec x}, \Pi^{0j}_{\vec y}]=[A^i_{\vec x}, E^j_{\vec y}]=i\delta^{ij}\delta^3(\vec x-\vec y)=-ig^{ij}\delta^3(\vec x-\vec y)
+\end{equation}
+
+我们做Fourier变换, 得到
+\begin{align}
+    &A^\mu=\int\ldsq{p}\sum_{\lambda=1}^3\left(\epsilon_\lambda^\nu a_{\lambda\vec p}\exp{-ipx}+\epsilon_\lambda^{\mu*}a^\dagger_{\lambda\vec p}\exp{ipx}\right)\\
+    &E^\mu=\int\ldsq{p}\sum_{\lambda=1}^3\left((p^\mu\epsilon_\lambda^{0*}-p^0\epsilon_\lambda^{\mu*})a^\dagger_{\lambda\vec p}\exp{ipx}-(p^\mu\epsilon^0_\lambda-p^0\epsilon_\lambda^\mu)a_{\lambda\vec p}\exp{-ipx}\right)
+\end{align}
+
+于是有对易子:
+\begin{equation}
+    [a_{\lambda\vec p}, a^\dagger_{\lambda'\vec p'}]=\dpi3\delta^3(\vec p-\vec p')\delta_{\lambda\lambda'}
+\end{equation}
+
+此外, 我们还可以得到
+\begin{align}
+    &\nabla\cdot\vec E=-m^2\int\ldsq p \sum_\lambda\left(\epsilon_\lambda^0a^\dagger_{\lambda\vec p}\exp{ipx}+\epsilon_\lambda^0a_{\lambda\vec p}\exp{-ipx}\right)\\
+    &\vec B=\nabla\times\vec A=\int\ldsq p i\sum_\lambda\left((\vec p\times\vec\epsilon_\lambda)a_{\lambda\vec p}^\dagger\exp{ipx}-(\vec p\times\vec\epsilon_\lambda)a_{\lambda\vec p}\exp{-ipx}\right)
+\end{align}
+
+于是经过艰苦卓绝的爆算, 我们得到
+\begin{align}
+    H&=\int\d^3x\frac12(E^2+B^2+m^2A^2+\frac1{m^2}(\nabla\cdot\vec E)^2)\\
+    &=\frac12\int\ld p\sum_\lambda\sum_{\lambda'}(\cdots)\\
+    &=\frac12\int\ld p\sum_\lambda\sum_{\lambda'}(-m^2\epsilon_\lambda^0\epsilon_{\lambda'}^0+\omega^2\delta_{\lambda\lambda'}-m^2\epsilon^0_{\lambda}\epsilon^0_{\lambda'}\notag\\
+    &\quad\quad+\vec p^2\delta_{\lambda\lambda'}+2m^2\epsilon_{\lambda'}^0\epsilon_\lambda^0+m^2\delta_{\lambda\lambda'})(a^\dagger_{\lambda\vec p}a_{\lambda'\vec p}+a_{\lambda'\vec p}a^\dagger_{\lambda\vec p})\\
+    &=\int\ddd p\om p\sum_\lambda\left(a^\dagger_{\lambda\vec p}a_{\lambda\vec p}+\frac12\mathcal V\right)
+\end{align}
+
+(感兴趣的可以见图\ref{fig:massiveEDQ}的手动具体计算过程)
+
+\begin{figure}[htbp!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{image/massiveEM1.jpg}
+    \includegraphics[width=0.8\textwidth]{image/massiveEM2.jpg}
+    \caption{手算过程}
+    \label{fig:massiveEDQ}
+\end{figure}
+
+写出$H$后, 我们尝试通过计算其Green函数继而得到重电磁场传播子. 
+
+在傅里叶空间, 我们有方程:
+\begin{equation}
+    (-p^2+m^2)g_{\mu\nu}\tilde{A}^\mu=\tilde{J}_\nu
+\end{equation}
+
+于是
+\begin{equation}
+    \tilde{A}^\mu=\frac{-g^{\mu\nu}}{p^2-m^2} \tilde{J}_\nu=\frac{-g^{\mu\nu}}{p^2-m^2}\int d^4y J_\nu\exp{ipy}
+\end{equation}
+
+最终我们得到:
+\begin{equation}
+    A^\mu=\int\dddd p\tilde{A}^\mu\exp{-ipx}=\int\d^4y\left(\int\dddd p\frac{-g^{\mu\nu}}{p^2-m^2}\exp{-ip(x-y)}\right)J_\nu
+\end{equation}
+
+于是有Green函数:
+\begin{equation}
+    G_{\mu\nu}(x-y)=\int\dddd p\frac{-g^{\mu\nu}}{p^2-m^2}\exp{-ip(x-y)}
+\end{equation}
+
+因此传播子为:
+\begin{equation}
+    \frac{-ig_{\mu\nu}}{p^2-m^2+i\epsilon}
+\end{equation}
+
+\subsection{电磁场(Massless)}
+为了得到电磁场的二次量子化结果, 自然的想法就是对电磁场取$m\rightarrow0$的结果. 然而这会面临一个问题: 电磁场的$A^\mu$具有规范不变性, 即$A^\mu\rightarrow A^\mu+\partial^\mu\Lambda$不改变其物理意义, 进过规范变换$\partial_\mu A^\mu$也不一定为0. 这使得我们对电磁场的描述存在冗余自由度, 这的一个直接结果就是电磁场只有两个极化方向而不是重电磁场的三个. 
+
+于是, 为了能够正确得处理自由度, 消除冗余, 我们引入Lorenz规范:
+\begin{equation}
+    \nabla_\mu A^\mu=0
+\end{equation}
+
+但是故事并没有结束, 我们仍然可以通过满足$\partial^2\Lambda=0$的$\Lambda$来进行规范, 因此我们可以进一步地取$\partial_0\Lambda=-A_0=-\varphi$, 从而使得$\varphi=0$.
+
+这样Lorenz规范就退化成了Coulomb规范:
+\begin{equation}
+    \nabla\cdot\vec A=0
+\end{equation}
+
+引入正则量子化条件:
+\begin{equation}
+    [a_{\vec pr}, a^\dagger_{\vec qs}]=\dpi3\delta_{rs}\delta^3(\vec p-\vec q)
+\end{equation}
+
+于是我们就可以二次量子化$\vec A$了
+\begin{equation}
+    \vec A=\int\ldsq p\sum_{r=1}^2\left(\vec\epsilon_ra_{\vec pr}\exp{-ipx}+\vec\epsilon_r^*a_{\vec pr}^\dagger\exp{ipx}\right)
+\end{equation}
+
+从而有
+\begin{equation}
+    \vec E=-i\int\ddd p\sqrt{\frac{\om p}2}\sum_{r=1}^2\left(\vec\epsilon_ra_{\vec pr}\exp{-ipx}-\vec\epsilon_r^*a_{\vec pr}^\dagger\exp{ipx}\right)
+\end{equation}
+
+然后有对易子
+\begin{align}
+    [A^i_{\vec x}, E^j_{\vec y}]&=i\ddd p\exp{i\vec p\cdot(\vec x-\vec y)}\sum_r\epsilon_r^i(\vec p)\epsilon^j_r(\vec p)\\
+    &=i\ddd p\exp{i\vec p\cdot(\vec x-\vec y)}(\delta^{ij}-\frac{p^ip^j}{\vec p^2})\\
+    &=i\delta^3_{\bf{tr}}(\vec x-\vec y)
+\end{align}
+
+\kaishu 这里我们可能会有疑问, 为什么这不能按照我们一般的正则量子化的方法, 让
+\begin{equation}
+    [A^i_{\vec x}, E^j_{\vec y}]=i\delta^{ij}\delta^3(\vec x-\vec y)
+\end{equation}
+
+这是因为根据我们的Coulomb规范, $\nabla\cdot\vec A=0$, 因此
+\begin{equation}
+    [\partial_i A^i, E^j]=0
+\end{equation}
+
+然而代入上面的对易关系, 我们会发现
+\begin{equation}
+    [\partial_iA^i_{\vec x}, E^j_{\vec y}]=i\partial^j\delta^3(\vec x-\vec y)\neq0
+\end{equation}
+
+这个正则量子化条件是不自洽的! 这里的原因还是因为无质量的电磁场存在规范冗余, 导致我们丢失了一个"物理的"极化方向.
+
+而由$a, a^\dagger$写出的正则量子化条件, 我们可以验证它可以保证
+\begin{align}
+    [\partial_i A^i, E^j]&=i\ddd p\exp{i\vec p\cdot(\vec x-\vec y)}ip^i(\delta^{ij}-\frac{p^ip^j}{\vec p^2})\\
+    &=-\ddd p\exp{i\vec p\cdot(\vec x-\vec y)}(p^j-\frac{\vec p^2 p^j}{\vec p^2})\\
+    &=0
+\end{align}
+\songti
+
+接着下一个任务就是给出光子的传播子了. 我们从EoM开始:
+\begin{equation}
+    (g_{\mu\nu}\partial^2-\partial_\mu\partial_\nu)A^\nu=J_\mu
+\end{equation}
+
+换到傅里叶空间, 我们有
+\begin{equation}
+    (-p^2g_{\mu\nu}+p_\mu p_\nu)\tilde A^\nu=\tilde J_\mu
+\end{equation}
+
+似乎只要求出$-p^2g_{\mu\nu}+p_\mu p_\nu$的逆矩阵就好了...?
+
+然而不难发现, $-p^2g_{\mu\nu}+p_\mu p_\nu$是奇异的: $g_\mu\nu-\frac{p_\mu p_\nu}{p^2}$就是在度规张量在类光面上的诱导度规, 它的秩仅有2, 根本不可能找到逆.
+
+一个自然的想法是, 引入一个参数$\xi$来使得它有逆, 即:
+\begin{equation}
+    (-p^2g_{\mu\nu}+p_\mu p_\nu)\to(-p^2g_{\mu\nu}+(1-\frac1\xi)p_\mu p_\nu)
+\end{equation}
+
+这样我们就能对$(-p^2g_{\mu\nu}+(1-\frac1\xi)p_\mu p_\nu)$求逆了:
+\begin{equation}
+    -\frac{g^{\mu\lambda}+(\xi-1)p^\mu p^\lambda/p^2}{p^2}(-p^2g_{\lambda\nu}+(1-\frac1\xi)p_\lambda p_\nu)
+\end{equation}
+
+也就是说我们想要EoM变为:
+\begin{equation}
+    (g_{\mu\nu}\partial^2-(1-\frac1\xi)\partial_\mu\partial_\nu)A^\nu=J_\mu
+\end{equation}
+
+\kaishu
+这里我仍然不理解为什么规范变换可以改变EoM...
+\songti
+
+为了得到这样的EoM, 我们可以在拉氏量中加入一个规范项:
+\begin{equation}
+    \mathcal L=-\frac14F^2-J_\mu A^\mu-\frac1{2\xi}(\partial_\mu A^\mu)^2
+\end{equation}
+
+这样子就能得到要求的EoM, 并且注意到, 做规范变换$A'^\mu=A^\mu+\partial_\mu$, 其中
+\begin{equation}
+    \partial^2\partial_\nu\Lambda=\frac{\xi'-\xi}{\xi}\partial_\nu\partial_\mu A^\mu
+\end{equation}
+或者也可以写成
+\begin{equation}
+    \partial^2\partial_\nu\Lambda=\frac{\xi'-\xi}{\xi'}\partial_\nu\partial_\mu A'^\mu
+\end{equation}
+$A'^\mu$的EoM就变成:
+\begin{equation}
+    (g_{\mu\nu}\partial^2+(\frac1{\xi'}-1)\partial_\mu\partial_\nu)A'^\mu=J_\nu
+\end{equation}
+
+由此可见, $\xi$的不同取值其实就对应不同的规范, 并且Lorenz规范就是$\xi=0$: 这时$\frac1\xi$变为无穷大, 为了满足EoM, 我们必须要求$\partial_\mu A^\mu=0$
+
+于是, 这样我们就可以得到Green函数:
+\begin{equation}
+    G_{\mu\nu}(x-y)=\int\dddd p\left(-\frac{g_{\mu\nu}+(\xi-1)p_\mu p_\nu/p^2}{p^2}\right)\exp{-ip(x-y)}
+\end{equation}
+
+从而得到光子传播子:
+\begin{equation}
+    \frac{-i(g_{\mu\nu}+(\xi-1)p_\mu p_\nu/p^2)}{p^2+i\epsilon}
+\end{equation}
+
+所以说, 对于Lorenz规范, $\xi=0$, 传播子为:
+\begin{equation}
+    \frac{-i(g_{\mu\nu}-p_\mu p_\nu/p^2)}{p^2+i\epsilon}
+\end{equation}
+
+在这里我们介绍一个更为常见并且简单的规范: Feynman规范, 它的$\xi=1$, 于是在Feynman规范下, 传播子为:
+\begin{equation}
+    \frac{-ig_{\mu\nu}}{p^2+i\epsilon}
+\end{equation}
+
+\newpage
+\section{标量QED}
+\subsection{规范变换}
+我们知道, 复标量场$\psi$有$U(1)$对称性, 这是一个全局变换. 但是在一个局域的$U(1)$变换$\psi\to\psi\exp{i\alpha}$, 即我们新定义的一个规范变换下并不具有不变性. 但我们希望能够通过某些构造使其有这一不变性.
+
+于是我们让$A_\mu$作为联络, 新定义对$\psi$的微分算符:
+\begin{equation}
+    D_\mu=\partial_\mu+ieA_\mu
+\end{equation}
+
+并且在$U(1)$规范变换下, $A_\mu, \psi$以如下方式变换:
+\begin{align}
+    &A'_\mu=A_\mu-\frac1e\partial_\mu\alpha\\
+    &\psi'=\psi\exp{i\alpha}
+\end{align}
+
+不难发现
+\begin{equation}
+    D'_\mu\psi'=(\partial_\mu+ieA_\mu-i\partial_\mu\alpha)(\psi\exp{i\alpha})=\exp{i\alpha}(\partial_\mu+ieA_\mu)\psi=\exp{i\alpha}D_\mu\psi
+\end{equation}
+
+所以如果构造一个电磁场与标量场$\phi$耦合的拉氏密度
+\begin{equation}
+    \mathcal L=-\frac14 F^2+D_\mu\psi(D^\mu\psi)^*-m^2\psi\psi^*
+\end{equation}
+,则其有$U(1)$规范不变性.
+
+我们可以给他写为更显式的形式
+\begin{equation}
+    \mathcal L=-\frac14F^2+\partial_\mu\psi\partial^\mu\psi^*-m^2\psi\psi^*+ieA_\mu(\psi\partial^\mu\psi^*-\psi^*\partial^\mu\psi-ie\psi\psi^*A^\mu)
+\end{equation}
+
+我们可以写出EoM
+\begin{align}
+    \begin{cases}
+        &(\partial^2+m^2)\psi=-2ieA_\mu\partial^\mu\psi+e^2\psi A_\mu A^\mu\\
+        &\partial_\mu F^{\mu\nu}=ie(\psi\partial^\nu\psi^*-\psi^*\partial^\nu\psi-2e\psi\psi^*A^\nu)
+    \end{cases}
+\end{align}
+
+于是我们可以得到电流:
+\begin{equation}
+    J^\nu=ie(\psi\partial^\nu\psi^*-\psi^*\partial^\nu\psi-2e\psi\psi^*A^\nu)
+\end{equation}
+
+于是, 就从对规范不变性的追求中, 我们得到了标量QED.
+
+\subsection{标量QED的Feynman规则}

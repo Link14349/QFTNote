@@ -1,0 +1,49 @@
+\usepackage{array}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{braket}
+\usepackage{tcolorbox}
+\usepackage{xparse}
+\usepackage{tikz}
+\usepackage{subcaption}
+\usepackage{makecell}
+\usepackage{tikz-feynman}
+\tikzfeynmanset{compat=1.1.0} % 推荐设置兼容性版本
+
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{bending}
+
+% 定义重要结论环境
+\newtcolorbox{important}{
+    colback=white,    % 背景色
+    colframe=black,   % 边框色
+    sharp corners,    % 直角
+    boxrule=1.5pt,    % 边框粗细
+    coltitle=black
+}
+
+\numberwithin{equation}{subsection}
+\numberwithin{figure}{section}
+\newcommand{\de}[2]{\frac{\mathrm d#1}{\mathrm d#2}}
+\newcommand{\pa}[2]{\frac{\partial #1}{\partial #2}}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\renewcommand{\rm}[1]{\mathrm{#1}}
+\renewcommand{\bf}[1]{\mathbf{#1}}
+\renewcommand{\exp}[1]{\mathrm e^{#1}}
+\newcommand{\ddd}[1]{\frac{\mathrm d^3#1}{(2\pi)^3}}
+\newcommand{\dddd}[1]{\frac{\mathrm d^4#1}{(2\pi)^4}}
+\renewcommand{\a}[1]{a_{\vec #1}}
+\renewcommand{\b}[1]{b_{\vec #1}}
+\newcommand{\om}[1]{\omega_{\vec #1}}
+\newcommand{\ad}[1]{a^\dagger_{\vec #1}}
+\renewcommand{\d}{\mathrm d}
+\newcommand{\dpi}[1]{(2\pi)^{#1}}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\uvec}[1]{\mathbf{\hat{#1}}}
+\newcommand{\e}{\mathrm e}
+\newcommand{\tensor}[1]{\overleftrightarrow{\vec{#1}}}
+\NewDocumentCommand{\ld}{m O{1}}{\frac{\mathrm d^3#1}{(2\pi)^3}\frac{#2}{2\omega_{\vec #1}}}
+\NewDocumentCommand{\ldsq}{m O{1}}{\frac{\mathrm d^3#1}{(2\pi)^3}\frac{#2}{\sqrt{2\omega_{\vec #1}}}}
+\NewDocumentCommand{\lips}{m O{1}}{\frac{\mathrm d^3#1}{(2\pi)^3}\frac{#2}{2\omega_{\vec #1}}}

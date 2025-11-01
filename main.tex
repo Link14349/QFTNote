@@ -1,0 +1,34 @@
+% !TEX program = xelatex
+% !TEX root = 笔记.tex
+\documentclass[cn,hazy,blue,14pt,normal]{elegantnote}
+\title{量子场论笔记}
+\author{郑元昊}
+\date{\zhtoday}
+\institute{复旦大学物理系}
+
+\input{packages.tex}
+
+\begin{document}
+\maketitle
+\newpage
+
+\setcounter{tocdepth}{3} % 0: chapter/part, 1: section, 2: subsection, 3: subsubsection
+\tableofcontents
+
+\newpage
+\input{preparation.tex}
+
+\newpage
+\input{freefield.tex}
+
+\newpage
+\input{interaction.tex}
+
+\newpage
+\input{gaugetheory.tex}
+
+\newpage
+\nocite{*}
+\printbibliography[heading=bibintoc, title=\ebibname]
+
+\end{document}

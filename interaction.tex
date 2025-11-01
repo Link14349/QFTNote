@@ -1,0 +1,539 @@
+
+\section{打开相互作用: $\phi^3$理论}
+
+在之前我们研究的都是线性没有相互作用的场论, Free Theory. 但是在自然界中, 总是存在粒子与粒子间的相互作用的, 这反映在Lagrangian上就是非二次项的出现. 这是得我们的方程不再是线性的波动方程, 不能再和我们二次量子化中的标准流程一样进行简正模的分解来获得最终结果了(悲). 为了能够将我们的理论拓展到相互作用上, Richard Feynman利用微扰展开, 通过Feynman规则\&Feynman图, 给予了我们的理论通过渐近展开处理相互作用的能力.
+
+而在本节中, 我们将考虑标量场的$\phi^3$理论, 即
+\begin{equation}
+    \mathcal L=\mathcal L_0+\mathcal L_{int}=\frac12\partial_\mu\phi\partial^\mu\phi-\frac12m^2\phi^2+\frac g{3!}\phi^3
+\end{equation}
+其中$\mathcal L_{int}=\frac g{3!}\phi^3$为微扰的相互作用项.
+
+\subsection{Feynman黄金规则}
+Feynman黄金规则, 在于给予S矩阵元实际的物理观测效应, 也就是利用S矩阵得到物理的散射截面、衰变率等可观测量.
+
+而所谓S算符, 其实也就是时间演化算符, 它和两个粒子态的缩并就是S矩阵的元素$\braket{f|S|i}$, 它的物理意义就是描述了初态$\ket i$经过时间演化, 处于终态$\ket f$的概率.
+\begin{definition}[S算符]
+    \begin{equation}
+        S=\exp{\int_{-\infty}^{+\infty} iHdt}
+    \end{equation}
+\end{definition}
+
+于是
+\begin{equation}
+    \braket{f, t=+\infty|i, t=-\infty}=\braket{f|S|i}=S_{fi}
+\end{equation}
+
+其中终态$\ket{f}$, 初态$\ket{i}$都为渐近自由态(Asymptotic State).
+
+\begin{definition}[渐近自由态(Asymptotic State)]
+    在$t=+\infty, -\infty$时在无穷远处没有互相作用的粒子即为渐近自由态. 因而渐近自由态是on-shell的, 并且可以利用Free Theory处理, 直接将$a^\dagger_{\vec p}$作用于$\ket0$即可.
+\end{definition}
+
+然后对于微扰理论来说, $S$应当非常接近$1$, 互相作用项都是微扰, 因此
+\begin{equation}
+    S=1+i\mathcal T
+\end{equation}
+(请不要和编时算符$\mathcal T$)混淆.
+
+并且定义散射振幅$\mathcal M$
+\begin{definition}[散射振幅$\mathcal M$]
+    \begin{equation}
+        i\mathcal T_{fi}=\braket{f|i\mathcal T|i}=i\dpi4\delta^4\left(\sum p\right) \mathcal M_{if}
+    \end{equation}
+\end{definition}
+
+于是
+\begin{equation}
+    \braket{f|S|i}=\braket{f|(1+i\mathcal T)|i}=i\dpi4\delta^4\left(\sum p\right)\mathcal M_{if}
+\end{equation}
+
+\begin{definition}[散射截面$\sigma$]
+    考虑$2\rightarrow n$散射, 对于某个终态, 其微分散射截面定义为
+    \begin{equation}
+        \Phi\d\sigma=\frac NT
+    \end{equation}
+    其中, $\Phi=\sum_v nv$为粒子通量(flux), $N$为经过时间$T$后以此状态出射的粒子数
+
+    并且对于单色粒子流$\Phi=\frac{N_{inc}v}{\mathcal V}$, 其中$\mathcal V$为系统体积
+\end{definition}
+
+\begin{definition}\label{ch4defP}
+    到某个散射态的概率
+    \begin{equation}
+        \d P=\frac N{N_{inc}}=\frac{\left|\braket{f|S|i}\right|^2}{\braket{f|f}\braket{i|i}}
+    \end{equation}
+    其中$N_{inc}$为入射粒子数.
+\end{definition}
+
+根据定义\ref{ch4defP}我们发现, 公式左边有$\d$而右边没有, 非常不方便且丑陋, 于是我们利用这个trick:
+\begin{equation}
+    \delta^3(0)\d^3p=1
+\end{equation}
+
+于是
+\begin{theorem}
+    \begin{equation}
+        \d P=\frac{\left|\braket{f|S|i}\right|^2}{\braket{f|f}\braket{i|i}}=\frac{\left|\braket{f|S|i}\right|^2}{\braket{f|f}\braket{i|i}}\prod_{i\in f} \delta^3(0)\d^3p_i=\frac{\left|\braket{f|S|i}\right|^2}{\braket{f|f}\braket{i|i}}\prod_{i\in f} \frac{\mathcal V}{\dpi3}\d^3p_i
+    \end{equation}
+\end{theorem}
+
+其中, 利用了式\eqref{matheq1}:
+\begin{equation}
+    \delta^3(0)=\frac1{\dpi3}\int \d^3x=\frac{\mathcal V}{\dpi3}
+\end{equation}
+
+同样利用式\eqref{matheq1}我们有, 
+\begin{equation}
+    \braket{f|f}=\prod_{i\in f} 2E_{i}\delta^3(0)=\prod_{i\in f} 2E_{i}\mathcal V
+\end{equation}
+
+于是, 我们有
+\begin{align}
+    \d P&=\frac{\left|\braket{f|S|i}\right|^2}{\braket{f|f}\braket{i|i}}\prod_{i\in f} \frac{\mathcal V}{\dpi3}\d^3p_i\\
+    &=|\mathcal M\dpi4\delta^4(\Sigma p)|^2\frac1{2E_1\mathcal V}\frac1{2E_2\mathcal V}\prod_{i\in f}\frac1{2E_f\mathcal V} \frac{\mathcal V}{\dpi3}\d^3p_i\\
+    &=|\mathcal M\dpi4\delta^4(\Sigma p)|^2\frac1{2E_1\mathcal V}\frac1{2E_2\mathcal V}\prod_{i\in f}\frac{1}{2E_f\dpi3}\d^3p_i\\
+    &=\dpi4\delta^4(\Sigma p)\mathcal VT|\mathcal M|^2\frac1{2E_1\mathcal V}\frac1{2E_2\mathcal V}\prod_{i\in f}\frac{1}{2E_f\dpi3}\d^3p_i
+\end{align}
+
+根据
+\begin{equation}
+    \d\sigma=\frac{N}{T\Phi}=\frac{N\mathcal V}{TN_{inc}v}=\frac{\mathcal V}{T}\d P
+\end{equation}
+
+最后我们得到散射截面的Feynman黄金规则
+\begin{theorem}[散射截面的Feynman黄金规则]
+    \begin{equation}
+        \d\sigma=\frac{|\mathcal M|^2}{4E_1E_2|\vec v_1-\vec v_2|}\d\Pi_{LIPS}
+    \end{equation}
+    其中$\d\Pi_{LIPS}$为Lorentz Invariance Phase Space, 
+    \begin{equation}
+        \d\Pi_{LIPS}=\dpi4\delta^4(\Sigma p)\prod_{i\in f}\lips p
+    \end{equation}
+\end{theorem}
+
+类似地, 我们定义衰变率
+\begin{definition}[衰变率$\Gamma$]
+    考虑$1\rightarrow n$散射, 对于某个终态, 其微分衰变率定义为
+    \begin{equation}
+        \d\Gamma=\frac{\d P}T
+    \end{equation}
+\end{definition}
+
+同样对于$1\rightarrow n$散射, 我们可以计算得到
+\begin{equation}
+    \d P=T|\mathcal M|^2\frac1{2E}\d\Pi_{LIPS}
+\end{equation}
+
+最后得到衰变率的Feynman黄金规则
+\begin{theorem}[衰变率的Feynman黄金规则]
+    \begin{equation}
+        \d\Gamma=\frac{|\mathcal M|^2}{2E}\d\Pi_{LIPS}
+    \end{equation}
+\end{theorem}
+
+\begin{example}[$2\rightarrow2$散射]
+    在质心系下考虑$p_1+p_2\rightarrow p_3+p_4$散射, 则
+    \begin{align}
+        \d\sigma&=\int_{p_3}\frac1{4E_1E_2|\vec v_1-\vec v_2|}\dpi4\delta^4|\mathcal M|^2\lips{p_3}\lips{p_4}\\
+        &=\int_{p_4}\frac1{4E_1E_2|\vec v_1-\vec v_2|}2\pi\delta(E_1+E_2-E_3-E_4)|\mathcal M|^2 \frac{p_4^2\d p_4\d\Omega}{\dpi3 4E_3E_4}
+    \end{align}
+    设$E_1+E_2=E_{CM}$, 并且根据
+    \begin{equation}
+        \delta(E_{CM}-E_3-E_4)=\delta(p_4-p_{40})\frac{E_3}{p_3}\frac{E_4}{p_4}=\delta(p_4-p_{40})\frac{E_3E_4}{p_4^2}
+    \end{equation}
+
+    我们有:
+    \begin{align}
+        \left(\frac{\d\sigma}{\d\Omega}\right)_{CM}=\frac1{64E_1E_2}\frac{|\mathcal M|^2}{|\vec v_1-\vec v_2|}
+    \end{align}
+
+    再根据
+    \begin{equation}
+        |\vec v_1-\vec v_2|=\frac{|\vec p_1|}{E_1}+\frac{|\vec p_2|}{E_1}=|\vec p_i|\frac{E_{CM}}{E_1E_2}
+    \end{equation}
+
+    于是
+    \begin{equation}
+        \left(\frac{\d\sigma}{\d\Omega}\right)_{CM}=\frac{|\mathcal M|^2}{64\pi^2E_{CM}|\vec p_i|}
+    \end{equation}
+\end{example}
+
+\begin{example}[$1\rightarrow2$衰变]
+    在质心系下考虑质量为$M$的粒子衰变为质量分别为$m_1, m_2$的粒子, $p\rightarrow p_1+p_2$.
+    \begin{align}
+        \d\Gamma&=\frac1{2M}\frac{\d^3p_1}{\dpi3}\frac1{2E_1}\frac{\d^3p_2}{\dpi3}\frac1{2E_2}\notag\\
+        &\quad\quad\times|\mathcal M|^2\dpi3\delta^3(\vec p_1+\vec p_2)2\pi\delta(M-E_1-E_2)
+    \end{align}
+    于是
+    \begin{align}
+        \Gamma&=\frac{1}{2M}\int\frac{\d^3p_1}{\dpi3}\frac1{2E_1}\frac{\d^3p_2}{\dpi3}\frac1{2E_2}\notag\\
+        &\quad\quad\times|\mathcal M|^2\dpi3\delta^3(\vec p_1+\vec p_2)2\pi\delta(M-E_1-E_2)\\
+        &=\frac{1}{2M}\int\frac{\d^3p}{\dpi3}\frac{1}{4E^2}|\mathcal M|^2 2\pi\delta(M-2E)\\
+        &=\frac{1}{32\pi^2M}\int\frac{p^2\d\Omega\d p}{E^2}|\mathcal M|^2\delta(M-2E)\\
+        &=\frac{1}{32\pi^2M}\int\frac{p^2\d\Omega}{E^2}|\mathcal M|^2\delta(M-2E)\frac{E}{2p}\\
+        &=\frac{|\mathcal M|^2}{8\pi M^2}|\vec p|
+    \end{align}
+
+    其中, 
+    \begin{equation}
+        \sqrt{\vec p^2+m_1^2}+\sqrt{\vec p^2+m_2^2}=M
+    \end{equation}
+\end{example}
+
+得到黄金规则之后, 那么我们接下来的任务就是计算散射振幅! 而在此之前, 我们需要两个重要的定理来作为预备.
+
+\subsection{Lehmann-Symanzik-Zimmermann公式}
+有了Feynman黄金规则, 我们下一步就在于计算散射振幅$\mathcal M$. 而本节的核心就在于将位置空间的关联函数与动量空间中的散射振幅连接起来, 得出LSZ公式:
+\begin{theorem}[LSZ公式]\label{LSZformula}
+    \begin{equation}
+        \braket{f, +\infty|i, -\infty}=\int\d^4x_1 i\exp{-ip_1x_1}(\Box_1+m^2)\cdots\int\d^4x_n i\exp{ip_nx_n}(\Box_n+m^2)\braket{\phi_1\cdots\phi_n}
+    \end{equation}
+    其中, 对入射态用$\int i\exp{-ip_1x_1}(\Box+m^2) $, 而对出射态用$\int i\exp{ip_1x_1}(\Box+m^2)$
+\end{theorem}
+
+为此, 我们尝试证明引理
+\begin{lemma}
+    \begin{equation}
+        i\int\d^4x\exp{ipx}(\Box+m^2)\phi=\sqrt{2\omega_{\vec p}}[\a p(+\infty)-\a p(-\infty)]
+    \end{equation}
+\end{lemma}
+\begin{proof}
+    将$\Box$展开并分部积分有:
+    \begin{align}
+        i\int\d^4x\exp{ipx}(\Box+m^2)\phi&=i\int\d^4x\exp{ipx}(\partial_t^2-\nabla^2+m^2)\phi\\
+        &=i\int\d^4x\exp{ipx}(\partial_t^2+\vec p^2+m^2)\phi\\
+        &=i\int\d^4x\exp{ipx}(\partial_t^2+\om {p}^2)\phi
+    \end{align}
+
+    注意到, 如果是free theory, 所有粒子都是on-shell的, 积分式就为$0$. 但是对于interating theory, 事情就没这么简单了. 我们希望能类似free theory那样处理, 又该怎么办呢? 我们可以设法让这个积分只和$t=\pm\infty$的时候相关, 那这样子粒子之间相距无穷远, 互相之间没有interaction, 那么自然就可以退化到free theory, 利用free theory的产生湮灭算符来处理了.
+
+    于是我们尝试使用分布积分:
+    \begin{align}
+        i\int\d^4\exp{ipx}\partial_t^2\phi&=-i\int\d^4x\partial_t\exp{ipx}\partial_t\phi+i\int\d^4x\partial_t\left[\exp{ipx}\partial_t\phi\right]\\
+        &=i\int\d^4x\partial_t^2\exp{ipx}\phi-i\int\d^4x\partial_t\left[\partial_t\exp{ipx}\phi\right]+i\int\d^4x\partial_t\left[\exp{ipx}\partial_t\phi\right]\\
+        &=i\int\d^4x(-\om{p}^2)\exp{ipx}\phi-i\int\d^4x\partial_t\left[\partial_t\exp{ipx}\phi\right]+i\int\d^4x\partial_t\left[\exp{ipx}\partial_t\phi\right]
+    \end{align}
+
+    那么代回到原式中, 第一项正和我们在free theory中一样, 与$+\om{p}^2$抵消了, 于是剩下
+    \begin{equation}
+        i\int\d^4x\exp{ipx}(\Box+m^2)\phi=-i\int\d^4x\partial_t\left[\partial_t\exp{ipx}\phi\right]+i\int\d^4x\partial_t\left[\exp{ipx}\partial_t\phi\right]
+    \end{equation}
+
+    将对t的积分专门拎出来, 我们有:
+    \begin{align}
+        i\int\d^4x\exp{ipx}(\Box+m^2)\phi=\left.i\int\d^3x\exp{ipx}\left(\pi-i\om p\phi\right)\right|_{t=-\infty}^{t=+\infty}
+    \end{align}
+
+    因为内部的式子是在$t=\pm\infty$时求的, 所以我们可以直接利用free theory的$\phi, \pi$(即式\eqref{ch4freephi}, \eqref{ch4freepi})进行计算, 最后我们可以得到
+    \begin{equation}
+        i\int\d^4x\exp{ipx}(\Box+m^2)\phi=\sqrt{2\om p}\left[\a p(+\infty)-\a p(-\infty)\right]
+    \end{equation}
+\end{proof}
+
+将这个引理取共轭我们有:
+\begin{equation}
+    -i\int\d^4x\exp{-ipx}(\Box+m^2)\phi=\sqrt{2\om p}\left[\a{p}^\dagger(+\infty)-\a{p}^\dagger(-\infty)\right]
+\end{equation}
+
+然后我们考虑计算$\braket{f, t=-\infty|i, t=+\infty}$, 
+\begin{align}
+    \braket{f, +\infty|i, -\infty}&=\braket{\Omega|\prod_{p\in f}\sqrt{2\om p}\a{p}(+\infty)\prod_{p\in i}\sqrt{2\om p}\a{p}^\dagger(-\infty)|\Omega}\\
+    &=\braket{\Omega|\mathcal T\left\{{\prod_{p\in f}\sqrt{2\om p}\a{p}(+\infty)\prod_{p\in i}\sqrt{2\om p}\a{p}^\dagger(-\infty)}\right\}|\Omega}
+\end{align}
+
+插入时序算符$\mathcal T$后, 我们发现, 我们再添加$\a{p}(+\infty)$, $\a{p}^\dagger(-\infty)$是不会影响结果的, 因为$\mathcal T$会将它们分别置于最左边和最右边, 然后和真空态缩并直接得到0. 于是,
+\begin{align}
+    \braket{f, +\infty|i, -\infty}&=\bra{\Omega}\mathcal T\prod_{p\in f}\sqrt{2\om p}\left[\a{p}(+\infty)-\a{p}(-\infty)\right]\notag\\
+    &\quad\prod_{p\in i}\sqrt{2\om p}\left[\a{p}^\dagger(-\infty)-\a{p}^\dagger(+\infty)\right]\ket{\Omega}\\
+    &=\braket{\Omega}\mathcal T\prod i\int\d^4x_f\exp{ip_fx_f}(\Box_f+m^2)\phi_f\notag\\
+    &\quad\prod i\int\d^4x_i\exp{-ip_ix_i}(\Box_i+m^2)\phi_i\ket{\Omega}
+\end{align}
+
+于是我们最终得到了LSZ公式:
+\begin{equation}
+    \braket{f, +\infty|i, -\infty}=\int\d^4x_1 i\exp{-ip_1x_1}(\Box_1+m^2)\cdots\int\d^4x_n i\exp{ip_nx_n}(\Box_n+m^2)\braket{\phi_1\cdots\phi_n}
+\end{equation}
+
+\subsection{Schwinger-Dyson定理}
+本节的核心在于通过为接下来微扰展开计算空间关联函数继而得到位置空间的Feynman规则做准备.
+\begin{theorem}[Schwinger-Dyson定理]\label{SchwingerDysonTheorem}
+    \begin{equation}
+        (\Box_x+m^2)\braket{\phi_x\phi_1\cdots\phi_n}=\braket{(\Box_x+m^2)\phi_x\phi_1\cdots\phi_n}-i\sum_j\delta_{xj}\braket{\phi_1\cdots\phi_{j-1}\phi_{j+1}\cdots\phi_n}
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    首先考虑$\partial_t^2\mathcal T\left\{\phi_x\phi_1\cdots\phi_n\right\}$. 我们不妨假设$\phi_1, \phi_2\cdots\phi_n$是已经按先后顺序排列好的, 即$t_1\geq t_2\geq\cdots\geq t_n$.
+    
+    那么
+    \begin{align}
+        \mathcal T\left\{\phi_x\phi_1\cdots\phi_n\right\}&=(\phi_x\phi_1\cdots\phi_n)[\Theta(t-t_1)\Theta(t-t_2)\cdots\Theta(t-t_n)]\notag\\
+        &\quad+(\phi_1\phi_x\cdots\phi_n)[\Theta(t_1-t)\Theta(t-t_2)\cdots\Theta(t-t_n)]+\cdots
+    \end{align}
+
+    然后
+    \begin{align}
+        \partial_t\mathcal T\left\{\phi_x\phi_1\cdots\phi_n\right\}&=\mathcal T\left\{\partial_t\phi_x\phi_1\cdots\phi_n\right\}\notag\\
+        &\quad+(\phi_x\phi_1\cdots\phi_n)[\delta(t-t_1)\Theta(t-t_2)\cdots\Theta(t-t_n)]\notag\\
+        &\quad-(\phi_1\phi_x\cdots\phi_n)[\delta(t_1-t)\Theta(t-t_2)\cdots\Theta(t-t_n)]+\cdots\\
+        &=\mathcal T\left\{\partial_t\phi_x\phi_1\cdots\phi_n\right\}\notag\\
+        &\quad+([\phi_x, \phi_1]\cdots\phi_n)[\delta(t-t_1)\Theta(t-t_2)\cdots\Theta(t-t_n)]+\cdots\\
+        &=\mathcal T\left\{\partial_t\phi_x\phi_1\cdots\phi_n\right\}\\
+        &=\mathcal T\left\{\pi_x\phi_1\cdots\phi_n\right\}
+    \end{align}
+
+    再次求导
+    \begin{align}
+        \partial_t^2\mathcal T\left\{\phi_x\phi_1\cdots\phi_n\right\}&=\mathcal T\left\{\partial_t^2\phi_x\phi_1\cdots\phi_n\right\}\notag\\
+        &\quad+(\pi_x\phi_1\cdots\phi_n)[\delta(t-t_1)\Theta(t-t_2)\cdots\Theta(t-t_n)]\notag\\
+        &\quad-(\phi_1\pi_x\cdots\phi_n)[\delta(t_1-t)\Theta(t-t_2)\cdots\Theta(t-t_n)]+\cdots\\
+        &=\mathcal T\left\{\partial_t^2\phi_x\phi_1\cdots\phi_n\right\}\notag\\
+        &\quad+([\pi_x, \phi_1]\cdots\phi_n)[\delta(t-t_1)\Theta(t-t_2)\cdots\Theta(t-t_n)]+\cdots\\
+        &=\mathcal T\left\{\partial_t^2\phi_x\phi_1\cdots\phi_n\right\}\notag\\
+        &\quad-i\delta^3(\vec x-\vec x_1)\delta(t-t_1)(\cdots\phi_n)[\Theta(t-t_2)\cdots\Theta(t-t_n)]+\cdots\\
+        &=\mathcal T\left\{\partial_t^2\phi_x\phi_1\cdots\phi_n\right\}\notag\\
+        &\quad-i\delta_{x1}(\cdots\phi_n)[\Theta(t-t_2)\cdots\Theta(t-t_n)]+\cdots\\
+        &=\mathcal T\left\{\partial_t^2\phi_x\phi_1\cdots\phi_n\right\}-i\sum_j \delta_{xj}\mathcal T\left\{\phi_1\cdots\phi_{j-1}\phi_{j+1}\cdots\phi_n\right\}
+    \end{align}
+
+    然后由于$\nabla^2, m^2$都作用不到只含t的$\Theta$上, 因此可以直接提入$\braket{\phi_x\phi_1\cdots\phi_n}$内, 于是我们最终得到
+    \begin{equation}
+        (\Box_x+m^2)\braket{\phi_x\phi_1\cdots\phi_n}=\braket{(\Box_x+m^2)\phi_x\phi_1\cdots\phi_n}-i\sum_j\delta_{xj}\braket{\phi_1\cdots\phi_{j-1}\phi_{j+1}\cdots\phi_n}
+    \end{equation}
+\end{proof}
+
+\subsection{Feynman规则, 启动!}
+目前, 所有的工具以及准备都已经摆在我们面前了, 我们还有什么理由停下来? \textbf{Feynman规则, 启动!} (此时配合经典门酱表情)
+\subsubsection{位形空间的Feynman规则}
+我们以$\braket{\phi_1\phi_2}$为例, 继而导出位置空间的Feynman规则.
+\begin{align}
+    \braket{\phi_1\phi_2}&=\int\d^4x\delta_{1x}\braket{\phi_x\phi_2}=\int\d^4xi(\Box_x+m^2)D_{1x}\braket{\phi_x\phi_2}\\
+    &=\int\d^4xiD_{1x}(\Box_x+m^2)\braket{\phi_x\phi_2}\\
+    &=\int\d^4x\frac{ig}2 D_{1x}\braket{\phi_x^2\phi_2}-i\delta_{x2}\cdot iD_{1x}\\
+    &=D_{12}+\frac{ig}2\int\d^4xD_{1x}\braket{\phi_x^2\phi_2}
+\end{align}
+
+而依葫芦画瓢我们有
+\begin{align}
+    \braket{\phi_x^2\phi_2}&=\int\d^4 iD_{y2}(\Box_y+m^2)\braket{\phi_x^2\phi_y}\\
+    &=\frac{ig}2\int\d^4y D_{2y}\braket{\phi_x^2\phi_y^2}-2i\int\d^4y \delta_{xy}iD_{y2}\braket{\phi_x}\\
+    &=\frac{ig}2\int\d^4y D_{2y}\braket{\phi_x^2\phi_y^2}+2D_{x2}\braket{\phi_x}
+\end{align}
+
+梅开三度
+\begin{align}
+    \braket{\phi_x}&=\int\d^4y iD_{yx}(\Box_y+m^2)\braket{\phi_y}\\
+    &=\frac{ig}2\int\d^4y D_{yx}\braket{\phi_y^2}
+\end{align}
+
+于是最后整理得
+\begin{equation}
+    \braket{\phi_1\phi_2}=D_{12}-\left(\frac g2\right)^2\int \d^4x\d^4y(2D_{1x}D_{xy}D_{xy}D_{y2}+D_{1x}D_{xx}D_{yy}D_{y2}+2D_{1x}D_{xy}D_{yy}D_{x2})
+\end{equation}
+
+我们可以用这个fancy的图来表示这些二阶贡献, 这就是Feynman图:
+\begin{figure}[htbp!]
+    \begin{tikzpicture}
+        \draw (-0.5,0) -- (1,0) ;
+        \draw (2,0) -- (3.5,0);
+        \filldraw[black] (1,0) circle (1pt) node[below] {$x$} ;
+        \filldraw[black] (-0.5,0) circle (1pt)node[below] {$x_1$} ;
+        \filldraw[black] (2,0) circle (1pt) node[below] {$y$} ;
+        \filldraw[black] (3.5,0) circle (1pt)node[below] {$x_2$}  ;
+        \draw (1,0)..controls(0.4,1.2)and(1.6,1.2)..(1,0);
+        \draw (2,0)..controls(1.4,1.2)and(2.6,1.2)..(2,0);
+        \draw (4.2,0)--(4.5,0);
+        \draw (4.35,0.15)--(4.35,-0.15);
+        \draw (5.2,0)--(6.7,0);
+        \draw (7.7,0)--(9.2,0);
+        \filldraw[black] (6.7,0) circle (1pt);% node[below] {$x$} ;
+        \filldraw[black] (6.5,0)  node[below] {$x$} ;
+        \filldraw[black] (5.2,0) circle (1pt)node[below] {$x_1$} ;
+        \filldraw[black] (7.7,0) circle (1pt);
+        \filldraw[black] (7.9,0) node[below] {$y$} ;
+        \filldraw[black] (9.2,0) circle (1pt)node[below] {$x_2$}  ;
+        \draw (6.7,0) arc (180:0:0.5 and 0.5);
+        \draw (6.7,0) arc (180:360:0.5 and 0.5);
+        \draw (9.9,0)--(10.2,0);
+        \draw(10.05,0.15)--(10.05,-0.15);
+        \draw (10.9,0)--(12.4,0);
+        \draw (12.4,0)--(12.4,1);
+        \filldraw[black] (12.4,0) circle (1pt) node[below] {$x$} ;
+        \filldraw[black] (10.9,0) circle (1pt) node[below] {$x_1$} ;
+        \filldraw[black] (12.4,1) circle (1pt) node[left] {$y$} ;
+        \filldraw[black] (13.9,0) circle (1pt)node[below] {$x_2$}  ;
+        \draw (12.4,0)--(13.9,0);
+        \draw (12.4,1)..controls(13.6,1.6)and(13.6,0.4)..(12.4,1);
+    \end{tikzpicture}
+\end{figure}
+
+然后我们可以写下$\phi^3$理论在位形空间的Feynman规则
+\begin{important}
+    \begin{enumerate}
+        \item 标出所有外点
+        \item 标出所有内点, 一个内点写一个$\frac{ig}{3!}\int\d^4 x$
+        \item 对所有的内线(位形空间Feynman图只有内线), 写下Feynman传播子$D_{ij}$, 其中$i, j$为内线连接的两点
+        \item 乘以对称数目
+    \end{enumerate}
+\end{important}
+
+对称数目的计算我们可以以图\ref{fig:scalarFeymanEx}为例来讨论\cite{TreeSymmetryFactor}.
+\begin{figure}[htbp!]
+    \centering
+    \begin{tikzpicture}
+        \draw (10.9,0)--(12.4,0);
+        \draw (12.4,0)--(12.4,1);
+        \filldraw[black] (12.4,0) circle (1pt) node[below] {$x$} ;
+        \filldraw[black] (10.9,0) circle (1pt) node[below] {$x_1$} ;
+        \filldraw[black] (12.4,1) circle (1pt) node[left] {$y$} ;
+        \filldraw[black] (13.9,0) circle (1pt)node[below] {$x_2$}  ;
+        \draw (12.4,0)--(13.9,0);
+        \draw (12.4,1)..controls(13.6,1.6)and(13.6,0.4)..(12.4,1);
+    \end{tikzpicture}
+    \caption{一张Feynman图的例子}
+    \label{fig:scalarFeymanEx}
+\end{figure}
+
+具体来说, 我们写下
+\begin{equation}
+    \braket{\phi_x\phi_x\phi_x\phi_y\phi_y\phi_y}
+\end{equation}
+
+$x$有$A_3^2=6$种选择来分别连接$x_1, x_2$, 然后$y$有$3$种选择连接$x$, 于是总共的对称数目为$18$, 乘以$\frac1{(3!)^2}$也就是$\frac12$, 与我们前述的计算结果保持一致!
+
+那么如何理解Schwartz上\cite{schwartzSymmetryFactor}除以对称因子的做法呢? 这本质上和我们这里介绍的乘以对称数目的方法其实是一样的. 我们考虑一个更复杂的例子($\phi^4$理论)来详细阐述这个问题, Feynman图如图\ref{fig:scalarFeymanEx2}
+\begin{figure}[htbp!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{image/sec5fey1.png}
+    \caption{一个更复杂点的Feynman图例子}
+    \label{fig:scalarFeymanEx2}
+\end{figure}
+
+首先考虑顶点a, 将其分为三堆, 一堆一个连接1, 一堆一个连接b, 再一堆两个自己连接自己, 可以得到$C_4^1C_3^1C_2^2=\frac{4!}{2}$种分配方法.
+
+然后再考虑顶点b, 同样将其分为三堆, 一堆一个连接a, 一堆一个连接2, 一堆两个连接c, 可以得到$C_4^1C_3^1C_2^2=\frac{4!}2$种分配方法.
+
+最后考虑顶点c, 将其分为两堆, 一堆两个连接b, 一堆两个自己连接自己, 并且考虑到从b到c过来的线我们已经在$C_2^2$中除以了$2!$的对称因子, 所以可以认为它有两个不同的出口$b1, b2$, 然后c中选择两个按顺序分别与$b1, b2$连接, 于是有$A_4^2C_2^2=\frac{4!}2$种分配方法.
+
+综上, 与$\frac1{(4!)^3}$相抵消，总共剩下三个$C_n^m$贡献出来的对称因子$\frac18$.
+
+从这里可以看出, Schwartz中所称的对称因子其实也就是我们在对某一个顶点$i$的脚分堆的过程中, 对于连接顶点$j\neq i$并有$n>1$个脚的堆, $n$个脚之间没有区别所带来的需要除去的因子$n!$. 但是需要注意, 由于这一堆在顶点$i$已经除以对称因子过了, 所以我们在顶点$j$连接顶点$i$的那一堆脚中不需要再除以对称因子$n!$了. 因此, 总的来说, 一对各有$n$个脚的 从$i$到$j$的脚的堆和从$j$到$i$的脚的堆, 总共贡献$n!$的对称因子.
+
+细心的读者可以注意到, 在这里我们没有讨论顶点$j=i$也就是自己连接自己的情况. 这个问题比较微妙, 需要我们特殊考虑, 我们可以通过下面这个例子(如图\ref{fig:scalarFeymanEx3})来进行进一步的讨论.
+\begin{figure}[htbp!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{image/sec5fey2.png}
+    \caption{一个更复杂点的Feynman图例子}
+    \label{fig:scalarFeymanEx3}
+\end{figure}
+
+我们对顶点$a$进行分堆, 那么我们可以分出两堆, 每堆各两个腿, 每堆的两个腿相互连接, 由于这两堆是完全等价的, 所以说我们还需要额外地除以一个对称因子$2!$来去掉多余的计数. 于是我们有总数目$\frac{C_4^2C_2^2}2=\frac{4!}{2\cdot2\cdot2}=\frac{4!}{8}$, 也就是为$8$的对称因子. 
+
+从这里我们可以看出来, 对于有$2n$(因为是两个脚相互连接, 因此一定是偶数个自己连接自己的脚)个自己连接自己的脚的顶点, 其对称因子应当为$n!2^n$. 可以看到, 比连接不同顶点的堆多贡献了一个$2^n$的因子.
+
+综上所述, 我们同样可以再写出Schwartz版的Feynman规则$\phi^3$理论在位形空间的Feynman规则
+\begin{important}
+    \begin{enumerate}
+        \item 标出所有外点
+        \item 标出所有内点, 一个内点写一个$ig \int\d^4 x$
+        \item 对所有的内线, 写下Feynman传播子$D_{ij}$, 其中$i, j$为内线连接的两点
+        \item 除以对称因子
+    \end{enumerate}
+\end{important}
+
+而以如下方式进行对称因子的计算:
+\begin{important}
+    \begin{enumerate}
+        \item 一对各有$n$个脚的 从$i$到$j$的脚的堆和从$j$到$i$的脚的堆($i\neq j$), 总共贡献$n!$的对称因子
+        \item $2n$(因为是两个脚相互连接, 因此一定是偶数个自己连接自己的脚)个自己连接自己的脚的顶点, 总共贡献$n!2^n$的对称因子
+        \item 将所有的对称因子相乘即总的对称因子
+    \end{enumerate}
+\end{important}
+
+\kaishu 一点感悟: 最大感受就是高中数学学得最烂的排列组合还在追我= =. 写这段时, 脑子里又浮现了高中数学课上香香反复告诫我们做排列组合题, 先分堆再计算的情景(真的好喜欢好怀念我的高中数学老师!). 花了好多时间完全弄明白这个问题, 又花了很多时间在这里详细讨论这个问题并把它写清楚...希望能够解决大家学习Symmetry Factor中遇到的问题吧. \songti
+
+\subsubsection{动量空间的Feynman规则}
+虽然已经有了位形空间的Feynman规则, 但是它并不能直接给我们散射振幅$\mathcal M$, 因此我们需要通过某种方式将动量空间与位形空间连接起来, 从而处理在动量空间中的问题. 而这个工具我们已经在提出过了, 即定理\ref{LSZformula}: LSZ公式. 所以, 我们直接动手吧!
+
+首先, 利用分部积分, 我们不难得到LSZ公式的等价形式
+\begin{equation}
+    \braket{f, +\infty|i, -\infty}=\int\d^4x_1 -i\exp{-ip_1x_1}(p_1^2-m^2)\cdots\int\d^4x_n -i\exp{ip_nx_n}(p_n^2-m^2)\braket{\phi_1\cdots\phi_n}
+\end{equation}
+
+代入我们上节的结果应当有:
+\begin{align}
+    \braket{f, +\infty|i, -\infty}&=\int\d^4x_1 -i\exp{-ip_1x_1}(p_1^2-m^2)\cdots\int\d^4x_n -i\exp{ip_nx_n}(p_n^2-m^2)\notag\\
+    &\quad\times\cdots\int\frac{\d^4p_1'}{\dpi4}\frac{i}{{p'}_1^2-m^2+i\epsilon}\exp{-ip_1'(x_1-x)}\cdots
+\end{align}
+
+对第一个$\d^4x_1$积分可以产生一个$\delta$函数并干掉和外点$x_1$连接的内线的传播子, 从而将其变成外线
+
+于是有
+\begin{align}
+    \braket{f, +\infty|i, -\infty}&=\int \d^4x\exp{-i(p_1+q_1+\cdots)x}\int\d^4y\exp{-i(p_1+q_1+\cdots)y}\cdots\\
+    &=\int\frac i{q^2-m^2+i\epsilon}\cdots\dpi4\delta^4(\sum p)\cdots\frac{\d^4 q}{\dpi4}\cdots
+\end{align}
+其中$x, y\cdots$为没有被LSZ干掉的内点.
+
+然后对$x, y\cdots$再积分, 即可获得$\delta$函数$\dpi4\delta^4(p_1+q_1+\cdots)$
+
+于是我们可以得到动量空间的Feynman规则\cite{griffthsPPFeynman}
+\begin{important}
+    \begin{enumerate}
+        \item 标出外线$i, f$
+        \item 对所有内点写下耦合常数$ig$, 以及能动量守恒$\dpi4\delta^4(\sum p)$
+        \item 对所有内线写下$\int\frac{d^4q}{\dpi4}\frac i{q^2-m^2+i\epsilon}$
+        \item 将最终结果扣去一个总的能动量守恒$\dpi4\delta^4(\sum p)$以及一个多余的$i$, 即得到散射振幅$\mathcal M_{if}$
+    \end{enumerate}
+\end{important}
+
+并且我们可以发现, 对于非联通图, 我们一定会产生对于外线动量$p$, 类似于$\delta^4(p)$的结果, 而外线动量是on-shell的, 不能做到为$0$, 因此LSZ还会kill掉全部的非联通图贡献.
+
+\subsection{从拉氏密度直接到动量空间Feynman规则}
+接下来我们讨论一下如何从$\mathcal L$中直接得到动量空间Feynman规则.
+
+我们的核心问题在于如何获得顶点, 传播子是通过free field的性质就可以直接得到的. 而关于顶点, 类似于上节对对称数目的讨论, 使用直接除以对称因子的方法, 我们需要将直接出现在$\mathcal L$中的系数分别乘以$n!$, 其中$n$为某个场$\phi$乘的次数, 并且顶点会与$n$个场$\phi$传播子相连接. 而如果是使用乘以对称数目的方式, 则内点是直接乘以$\mathcal L$中原始的系数, 然后对称数目通过类似的方式求. 
+
+这段论述可能比较抽象, 我们可以通过两个具体的例子来考虑:
+
+\begin{example}[$\phi^4$理论]
+    \begin{equation}
+        \mathcal L=\frac12(\partial_\mu\phi)^2-\frac12m^2\phi^2+\frac g{4!}\phi^4
+    \end{equation}
+    除以对称因子法:
+    \begin{enumerate}
+        \item 顶点因子: $ig\dpi4\delta^4(p_1+p_2-p_3-p_4)$
+        \item $\phi$传播子: $\int\frac{d^4q}{\dpi4}\frac i{q^2-m^2+i\epsilon}$
+        \item 一个顶点连接四个$\phi$传播子
+    \end{enumerate}
+    
+    乘以对称数目法:
+    \begin{enumerate}
+        \item 顶点: $\frac{ig}{4!}\dpi4\delta^4(p_1+p_2-p_3-p_4)$
+        \item $\phi$传播子: $\int\frac{d^4q}{\dpi4}\frac i{q^2-m^2+i\epsilon}$
+        \item 一个顶点连接四个$\phi$传播子
+    \end{enumerate}
+    其中, 数对称数目时, 一个内点$x$对应$\braket{\phi_x\phi_x\phi_x\phi_x}$
+\end{example}
+
+\begin{example}[$\phi, \Phi$粒子耦合]
+    \begin{equation}
+        \mathcal L=\frac12(\partial_\mu\Phi)^2-\frac12M^2\Phi^2+\frac12(\partial_\mu\phi)^2-\frac12m^2\phi^2-\frac{\mu}{2!}\Phi\phi\phi
+    \end{equation}
+    除以对称因子法:
+    \begin{enumerate}
+        \item 顶点: $-i\mu\dpi4\delta^4(p_1+p_2-p_3)$
+        \item $\Phi$传播子: $\int\frac{d^4q}{\dpi4}\frac i{q^2-M^2+i\epsilon}$
+        \item $\phi$传播子: $\int\frac{d^4q}{\dpi4}\frac i{q^2-m^2+i\epsilon}$
+        \item 一个顶点连接一个$\Phi$传播子和两个$\phi$传播子
+    \end{enumerate}
+
+    乘以对称数目法:
+    \begin{enumerate}
+        \item 顶点: $-\frac{i\mu}{2!}\dpi4\delta^4(p_1+p_2-p_3)$
+        \item $\Phi$传播子: $\int\frac{d^4q}{\dpi4}\frac i{q^2-M^2+i\epsilon}$
+        \item $\phi$传播子: $\int\frac{d^4q}{\dpi4}\frac i{q^2-m^2+i\epsilon}$
+        \item 一个顶点连接一个$\Phi$传播子和两个$\phi$传播子
+    \end{enumerate}
+    其中, 数对称数目时, 一个内点$x$对应$\braket{\Phi_x\phi_x\phi_x}$
+\end{example}

@@ -54,7 +54,7 @@
     \begin{subequations}
         \begin{align}
             \delta\mathcal L&=2\partial_{[\mu}(\Pi^{\mu\nu}\delta A_{\nu]})-2(\partial_{[\mu}\Pi^{\mu\nu})\delta A_\nu+\frac{\partial\mathcal L}{\partial A_\mu}\delta A_\mu\\
-            &=2\partial_{[\mu}(\Pi^{\mu\nu}\delta A_{\nu]})-2(\partial_nu\Pi^{[\nu\mu]})\delta A_\mu+\frac{\partial\mathcal L}{\partial A_\mu}\delta A_\mu
+            &=2\partial_{[\mu}(\Pi^{\mu\nu}\delta A_{\nu]})-2(\partial_\nu\Pi^{[\nu\mu]})\delta A_\mu+\frac{\partial\mathcal L}{\partial A_\mu}\delta A_\mu
         \end{align}
     \end{subequations}
     忽略边界项, 由$\delta S=0$可得Euler-Lagrange方程.
@@ -166,6 +166,11 @@
 \end{example}
 \begin{example}[矢量场的时空平移对称性]
     类似\ref{ex:ct_scalar_translation}, 时空中有Killing矢量场$\xi^\mu$.
+    我们首先设两个辅助场:
+    \begin{align}
+        &\Pi^{\mu\nu}=2\pa{\mathcal L}{F_{\mu\nu}}\\
+        &B^\mu=\pa{\mathcal L}{A_\mu}
+    \end{align}
     沿着$-\xi^\mu$变换, 同样有:
     \begin{equation}
         \mathcal L\to \mathcal L + \alpha \xi^\mu\nabla_\mu\mathcal L=\mathcal L + \alpha\nabla_\mu(\xi^\mu\mathcal L)
@@ -212,7 +217,7 @@
     \end{equation}
     类似地, 可以得到能动张量:
     \begin{equation}
-        T_{\mu\nu} = -2\Pi^{\mu\lambda}F_{\lambda\nu}+B_\mu A_\nu-g_{\mu\nu}\mathcal L
+        T_{\mu\nu} = -2\Pi_{\mu}^{~~\lambda}F_{\lambda\nu}+B_\mu A_\nu-g_{\mu\nu}\mathcal L
     \end{equation}
     参考:本人25年首考后写的笔记\cite{LinkZhihu}(很惭愧, 现在尝试重新推导的时候卡了好久...无奈看了当时的笔记才推出来, 真是奇怪, 明明当时也是我自己推出来的, 怎么现在一点都推不出来了呢= =).
 \end{example}
@@ -231,9 +236,9 @@
 \begin{equation}
     \mathcal H(\phi, \Pi, \nabla\phi) = \Pi\dot\phi - \mathcal L
 \end{equation}
-定义Poisson括号$[, ]: \mathcal F\times\mathcal F\to\mathbb{R}$:
+定义Poisson括号$\{, \}: \mathcal F\times\mathcal F\to\mathbb{R}$:
 \begin{equation}
-    \{F, G\}=\displaystyle\int \mathrm d^3x \left(\frac{\delta F}{\delta\phi}\frac{\delta G}{\delta\Pi(y)}-\frac{\delta G}{\delta\phi(y)}\frac{\delta F}{\delta\Pi(x)}\right)
+    \{F, G\}=\displaystyle\int \mathrm d^3x \left(\frac{\delta F}{\delta\phi(x)}\frac{\delta G}{\delta\Pi(y)}-\frac{\delta G}{\delta\phi(y)}\frac{\delta F}{\delta\Pi(x)}\right)
 \end{equation}
 \begin{example}
     \begin{equation}
@@ -741,6 +746,10 @@ Fourier逆变换可以得到:
     \begin{equation}
         D_R(x-y)\equiv\int\dddd p \frac i{p^2-m^2}\exp{-ip(x-y)}\label{q2eq3}
     \end{equation}
+    或者等价于取一个无穷小正数$\epsilon$:
+    \begin{equation}
+        D_R(x-y)\equiv\lim_{\epsilon\rightarrow0^+}\int\dddd p \frac i{(p+i\epsilon)^2-m^2}\exp{-ip(x-y)}
+    \end{equation}
 \end{theorem}
 不难发现, 对于$x^0<y^0$, 围道内不含有任何pole, 故$D_R(x-y)=0$, 而对于$x^0>y^0$, 围道内含有pole, 故$D_R(x-y)=D(x-y)-D(y-x)$
 
@@ -755,6 +764,10 @@ Fourier逆变换可以得到:
     取围道$C$如图\ref{fig:q2f2}
     \begin{equation}
         D_A(x-y)\equiv\int\dddd p \frac i{p^2-m^2}\exp{-ip(x-y)}\label{q2eq4}
+    \end{equation}
+    或者等价于取一个无穷小正数$\epsilon$:
+    \begin{equation}
+        D_A(x-y)\equiv\lim_{\epsilon\rightarrow0^+}\int\dddd p \frac i{(p-i\epsilon)^2-m^2}\exp{-ip(x-y)}
     \end{equation}
 \end{theorem}
 我们可以发现:

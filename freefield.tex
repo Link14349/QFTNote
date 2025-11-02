@@ -522,6 +522,9 @@ Fourier逆变换可以得到:
 \begin{align}
     \pi^\mu=\partial^\mu\psi^*
 \end{align}
+\begin{align}
+    \pi=\pi^0=\partial^0\psi^*=\partial_0\psi^*
+\end{align}
 
 正则变换:
 \begin{align}
@@ -548,14 +551,14 @@ Fourier逆变换可以得到:
 
 设
 \begin{align}
-    &\a p=\dpi3\sqrt{\frac{\om p}2}(\Psi_\vec p+\frac i{\dpi3\om p}\Pi^\dagger_{-\vec p})\\
-    &\b p=\dpi3\sqrt{\frac{\om p}2}(\Psi_{-\vec p}^\dagger+\frac i{\dpi3\om p}\Pi_{\vec p})
+    &\a p=\dpi3\sqrt{\frac{\om p}2}(\Psi_\vec p+\frac i{\dpi3\om p}\Pi^\dagger_{-\vec p})=\frac1{\sqrt{2\om p}}\int\d^3x\exp{ipx}(\om p\psi+i\pi^\dagger)\\
+    &\b p=\dpi3\sqrt{\frac{\om p}2}(\Psi_{-\vec p}^\dagger+\frac i{\dpi3\om p}\Pi_{\vec p})=\frac1{\sqrt{2\om p}}\int\d^3x\exp{-ipx}(\om p\psi^\dagger+i\pi)
 \end{align}
 
 我们有:
 \begin{align}
-    [\a p, \a q^\dagger]&=i\dpi3\delta^3(\vec p-\vec q), \quad [\a p, \a q]=[\a p^\dagger, \a q^\dagger]=0\\
-    [\b p, \b q^\dagger]&=i\dpi3\delta^3(\vec p-\vec q), \quad [\b p, \b q]=[\b p^\dagger, \b q^\dagger]=0
+    [\a p, \a q^\dagger]&=\dpi3\delta^3(\vec p-\vec q), \quad [\a p, \a q]=[\a p^\dagger, \a q^\dagger]=0\\
+    [\b p, \b q^\dagger]&=\dpi3\delta^3(\vec p-\vec q), \quad [\b p, \b q]=[\b p^\dagger, \b q^\dagger]=0
 \end{align}
 
 然后可以对角化Hamiltonian
@@ -574,7 +577,7 @@ Fourier逆变换可以得到:
 
 例\ref{csU1}指出复标量场的$U(1)$对称性导致有守恒荷$Q$
 \begin{equation}
-    Q\equiv J_N^0=i\left[(\partial^0\psi^\dagger)\psi-(\partial^0\psi)\psi^\dagger\right]
+    Q\equiv\int d^3x J_N^0=\int d^3xi\left[(\partial^0\psi^\dagger)\psi-(\partial^0\psi)\psi^\dagger\right]
 \end{equation}
 
 经过计算我们可以得到:

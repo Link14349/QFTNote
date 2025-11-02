@@ -23,7 +23,7 @@
 
 正则共轭
 \begin{equation}
-    \Pi^{\mu\nu}=\pa{\mathcal L}{\partial_\mu A_\nu}=-F^{\mu\nu}=\begin{bmatrix}
+    \Pi^{\mu\nu}=\pa{\mathcal L}{(\partial_\mu A_\nu)}=-F^{\mu\nu}=\begin{bmatrix}
         0 & E^1 & E^2 & E^3\\
         -E^1 & 0 & -B^3 & B^2\\
         -E^2 & B^3 & 0 & -B^1\\
@@ -158,8 +158,8 @@
 
 然后有对易子
 \begin{align}
-    [A^i_{\vec x}, E^j_{\vec y}]&=i\ddd p\exp{i\vec p\cdot(\vec x-\vec y)}\sum_r\epsilon_r^i(\vec p)\epsilon^j_r(\vec p)\\
-    &=i\ddd p\exp{i\vec p\cdot(\vec x-\vec y)}(\delta^{ij}-\frac{p^ip^j}{\vec p^2})\\
+    [A^i_{\vec x}, E^j_{\vec y}]&=i\int\ddd p\exp{i\vec p\cdot(\vec x-\vec y)}\sum_r\epsilon_r^i(\vec p)\epsilon^j_r(\vec p)\\
+    &=i\int\ddd p\exp{i\vec p\cdot(\vec x-\vec y)}(\delta^{ij}-\frac{p^ip^j}{\vec p^2})\\
     &=i\delta^3_{\bf{tr}}(\vec x-\vec y)
 \end{align}
 

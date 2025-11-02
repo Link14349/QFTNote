@@ -1,5 +1,4 @@
-
-\section{打开相互作用: $\phi^3$理论}
+\section{相互作用理论}
 
 在之前我们研究的都是线性没有相互作用的场论, Free Theory. 但是在自然界中, 总是存在粒子与粒子间的相互作用的, 这反映在Lagrangian上就是非二次项的出现. 这是得我们的方程不再是线性的波动方程, 不能再和我们二次量子化中的标准流程一样进行简正模的分解来获得最终结果了(悲). 为了能够将我们的理论拓展到相互作用上, Richard Feynman利用微扰展开, 通过Feynman规则\&Feynman图, 给予了我们的理论通过渐近展开处理相互作用的能力.
 
@@ -90,10 +89,10 @@ Feynman黄金规则, 在于给予S矩阵元实际的物理观测效应, 也就�
 
 于是, 我们有
 \begin{align}
-    \d P&=\frac{\left|\braket{f|S|i}\right|^2}{\braket{f|f}\braket{i|i}}\prod_{i\in f} \frac{\mathcal V}{\dpi3}\d^3p_i\\
-    &=|\mathcal M\dpi4\delta^4(\Sigma p)|^2\frac1{2E_1\mathcal V}\frac1{2E_2\mathcal V}\prod_{i\in f}\frac1{2E_f\mathcal V} \frac{\mathcal V}{\dpi3}\d^3p_i\\
-    &=|\mathcal M\dpi4\delta^4(\Sigma p)|^2\frac1{2E_1\mathcal V}\frac1{2E_2\mathcal V}\prod_{i\in f}\frac{1}{2E_f\dpi3}\d^3p_i\\
-    &=\dpi4\delta^4(\Sigma p)\mathcal VT|\mathcal M|^2\frac1{2E_1\mathcal V}\frac1{2E_2\mathcal V}\prod_{i\in f}\frac{1}{2E_f\dpi3}\d^3p_i
+    \d P&=\frac{\left|\braket{f|S|i}\right|^2}{\braket{f|f}\braket{i|i}}\prod_{f} \frac{\mathcal V}{\dpi3}\d^3p_f\\
+    &=|\mathcal M\dpi4\delta^4(\Sigma p)|^2\prod_{i}\frac1{2E_i\mathcal V}\prod_{f}\frac1{2E_f\mathcal V} \frac{\mathcal V}{\dpi3}\d^3p_f\\
+    &=|\mathcal M\dpi4\delta^4(\Sigma p)|^2\prod_{i}\frac1{2E_i\mathcal V}\prod_{f}\frac{\d^3p_f}{2E_f\dpi3}\\
+    &=\dpi4\delta^4(\Sigma p)\mathcal VT|\mathcal M|^2\prod_{i}\frac1{2E_i\mathcal V}\prod_{f}\frac{\d^3p_f}{2E_f\dpi3}
 \end{align}
 
 根据
@@ -108,7 +107,7 @@ Feynman黄金规则, 在于给予S矩阵元实际的物理观测效应, 也就�
     \end{equation}
     其中$\d\Pi_{LIPS}$为Lorentz Invariance Phase Space, 
     \begin{equation}
-        \d\Pi_{LIPS}=\dpi4\delta^4(\Sigma p)\prod_{i\in f}\lips p
+        \d\Pi_{LIPS}=\dpi4\delta^4(\Sigma p)\prod_{f}\ddd{p_f}\frac1{2E_f}
     \end{equation}
 \end{theorem}
 
@@ -500,6 +499,7 @@ $x$有$A_3^2=6$种选择来分别连接$x_1, x_2$, 然后$y$有$3$种选择连�
     \begin{equation}
         \mathcal L=\frac12(\partial_\mu\phi)^2-\frac12m^2\phi^2+\frac g{4!}\phi^4
     \end{equation}
+
     除以对称因子法:
     \begin{enumerate}
         \item 顶点因子: $ig\dpi4\delta^4(p_1+p_2-p_3-p_4)$
@@ -520,6 +520,7 @@ $x$有$A_3^2=6$种选择来分别连接$x_1, x_2$, 然后$y$有$3$种选择连�
     \begin{equation}
         \mathcal L=\frac12(\partial_\mu\Phi)^2-\frac12M^2\Phi^2+\frac12(\partial_\mu\phi)^2-\frac12m^2\phi^2-\frac{\mu}{2!}\Phi\phi\phi
     \end{equation}
+    
     除以对称因子法:
     \begin{enumerate}
         \item 顶点: $-i\mu\dpi4\delta^4(p_1+p_2-p_3)$

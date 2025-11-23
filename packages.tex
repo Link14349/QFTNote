@@ -1,5 +1,5 @@
 \usepackage{array}
-\usepackage{amssymb}
+\usepackage{amssymb,amsfonts}
 \usepackage{amsmath}
 \usepackage{mathrsfs}
 \usepackage{braket}
@@ -9,6 +9,8 @@
 \usepackage{subcaption}
 \usepackage{makecell}
 \usepackage{tikz-feynman}
+\usepackage{slashed}
+\usepackage{cancel}
 \tikzfeynmanset{compat=1.1.0} % 推荐设置兼容性版本
 
 \usetikzlibrary{calc}
@@ -26,6 +28,7 @@
 
 \numberwithin{equation}{subsection}
 \numberwithin{figure}{section}
+\numberwithin{table}{section}
 \newcommand{\de}[2]{\frac{\mathrm d#1}{\mathrm d#2}}
 \newcommand{\pa}[2]{\frac{\partial #1}{\partial #2}}
 \renewcommand{\vec}[1]{\mathbf{#1}}

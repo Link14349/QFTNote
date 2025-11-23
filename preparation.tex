@@ -84,6 +84,93 @@ $\mathrm d$为外微分算符，$A_\mu$为电磁四势.\\
         \nabla \times \mathbf{B} &= \mathbf{J} + \frac{\partial \mathbf{E}}{\partial t}
     \end{cases}
 \end{equation}
+spin$1/2$ Pauli矩阵:
+\begin{equation}
+    \sigma^0=\begin{pmatrix}
+        1 & 0 \\
+        0 & 1
+    \end{pmatrix}
+\end{equation}
+\begin{equation}
+    \sigma^1=\begin{pmatrix}
+        0 & 1 \\
+        1 & 0
+    \end{pmatrix}
+\end{equation}
+\begin{equation}
+    \sigma^2=\begin{pmatrix}
+        0 & -i \\
+        i & 0
+    \end{pmatrix}
+\end{equation}
+\begin{equation}
+    \sigma^3=\begin{pmatrix}
+        1 & 0 \\
+        0 & -1
+    \end{pmatrix}
+\end{equation}
+
+\begin{equation}
+    [\frac{\sigma^i}2, \frac{\sigma^j}2]=i\epsilon_{ijk}\frac{\sigma^k}2
+\end{equation}
+\begin{equation}
+    \{\frac{\sigma^i}2, \frac{\sigma^j}2\}=\frac12\delta_{ij}
+\end{equation}
+\begin{equation}
+    \sigma^i\sigma^j=\delta_{ij}+i\epsilon_{ijk}\sigma^k
+\end{equation}
+spin$1$ Pauli矩阵
+\begin{equation}
+    S^1=\frac{1}{\sqrt{2}}\begin{pmatrix}
+        0 & 1 & 0\\
+        1 & 0 & 1\\
+        0 & 1 & 0
+    \end{pmatrix}
+\end{equation}
+\begin{equation}
+    S^2=\frac{1}{\sqrt{2}}\begin{pmatrix}
+        0 & -i & 0\\
+        i & 0 & -i\\
+        0 & i & 0
+    \end{pmatrix}
+\end{equation}
+\begin{equation}
+    S^3=\begin{pmatrix}
+        1 & 0 & 0\\
+        0 & 0 & 0\\
+        0 & 0 & -1
+    \end{pmatrix}
+\end{equation}
+\begin{equation}
+    [S^i, S^j]=i\epsilon_{ijk}S^k
+\end{equation}
+Lorentz群变换(见\ref{Lorentz}节)
+\begin{equation}
+    \Lambda=\exp{-\frac i2\omega_{\mu\nu}M^{\mu\nu}}
+\end{equation}
+其中
+\begin{equation}
+    \delta\omega_{\mu\nu}=\begin{bmatrix}
+        0 & v^1 & v^2 & v^3 \\
+        -v^1 & 0 & -\theta^3 & \theta^2 \\
+        -v^2 & \theta^3 & 0 & -\theta^1\\
+        -v^3 & -\theta^2 & \theta^1 & 0
+    \end{bmatrix}
+\end{equation}
+Lorentz群生成元
+\begin{align}
+    & J^i=\frac12\epsilon_{ijk}M^{jk}\\
+    & K^i=M^{i0}
+\end{align}
+\begin{equation}
+    M^{\mu\nu}=\begin{bmatrix}
+        0 & -K^1 & -K^2 & -K^3\\
+        K^1 & 0 & J^3 & -J^2\\
+        K^2 & -J^3 & 0 & J^1\\
+        K^3 & J^2 & -J^1 & 0
+    \end{bmatrix}
+\end{equation}
+
 
 \newpage
 \section{数学基础}
@@ -109,7 +196,7 @@ $\mathrm d$为外微分算符，$A_\mu$为电磁四势.\\
 \end{definition}
 \begin{theorem}
     \begin{equation}
-        \int \mathrm dx \mathrm e^{ikx}=2\pi \delta(x)\label{matheq1}
+        \int \mathrm dx \mathrm e^{ikx}=2\pi \delta(k)\label{matheq1}
     \end{equation}
 \end{theorem}
 \begin{theorem}
@@ -153,7 +240,7 @@ $\mathrm d$为外微分算符，$A_\mu$为电磁四势.\\
     \end{equation}
     则
     \begin{equation}
-        \frac{\delta f}{\delta \phi(x_0)} = \left.\frac{\partial g}{\partial \phi}\right|_{\phi(x_0)} \delta(x-x_0)
+        \frac{\delta f}{\delta \phi(x_0)} = \left.\frac{\partial g}{\partial \phi}\right|_{\phi(x_0)}
     \end{equation}
 \end{example}
 \begin{example}
@@ -169,215 +256,6 @@ $\mathrm d$为外微分算符，$A_\mu$为电磁四势.\\
 参考: \cite{functionals}
 
 % \subsection{群\&群表示论}
-
-
-\subsection{Lorentz群}
-\begin{definition}[Lorentz变换]
-    Lorentz变换为一种保内积的变换:
-    \begin{equation}
-        \bar x^\mu=\Lambda^\mu_{~~\nu}x^\nu
-    \end{equation}
-    使得
-    \begin{equation}
-        \bar x^\mu\bar x_\mu=x^\mu x_\mu
-    \end{equation}
-\end{definition}
-\begin{theorem}[Lorentz变换的性质]\label{theorem:lorentz_property}
-    \begin{equation}
-        \Lambda^\mu_{~~\sigma}g_{\mu\nu}\Lambda^\nu_{~~\rho}=g_{\sigma\rho}
-    \end{equation}
-\end{theorem}
-\begin{proof}
-    \begin{equation}
-        \bar{x}^2=g_{\mu\nu}\bar{x}^\mu\bar x^\nu=x^\sigma(\Lambda^\mu_{~~\sigma}g_{\mu\nu}\Lambda^\nu_{~~\rho})x^\rho=x^\sigma g_{\sigma\rho} x^\rho
-    \end{equation}
-\end{proof}
-于是我们可以有如下推论:
-\begin{theorem}[Lorentz变换的逆矩阵]\label{theorem:Lorentz_inverse}
-    \begin{equation}
-        (\Lambda^{-1})^{\mu}_{~~\nu}=\Lambda_\nu^{~~\mu}
-    \end{equation}
-\end{theorem}
-\begin{proof}
-    由\ref{theorem:lorentz_property}可得
-    \begin{equation}
-        g^{\rho\beta}\Lambda^\mu_{~~\rho}\Lambda^\nu_{~~\sigma}g_{\mu\nu}=g_{\rho\sigma}g^{\rho\beta}=\delta^\beta_{~~\sigma}
-    \end{equation}
-    即:
-    \begin{equation}
-        \Lambda_\nu^{~~\beta}\Lambda^\nu_{~~\sigma}=\delta^\beta_{~~\sigma}
-    \end{equation}
-    于是可以得证.
-\end{proof}
-\begin{definition}[$\delta\omega^\mu_{~~\nu}$]\label{def:deltaomega}
-    对于无穷小Lorentz变换$\Lambda^\mu_{~~\nu}$, 定义
-    \begin{equation}
-        \Lambda^\mu_{~~\nu}=\delta^\mu_{~~\nu}+\delta\omega^\mu_{~~\nu}
-    \end{equation}
-\end{definition}
-通过\eqref{theorem:lorentz_property}可以发现$\delta\omega_{\mu\nu}$是反称的.
-\begin{theorem}[$\delta\omega_{\mu\nu}$的性质]
-    \begin{equation}
-        \delta\omega_{\mu\nu}=\delta\omega_{[\mu\nu]}
-    \end{equation}
-\end{theorem}
-\begin{definition}[对$\phi$的Unitary变换$U(\Lambda)$]
-    \begin{equation}
-        U(\mathbf 1+\delta\omega)=1+\frac i2\delta\omega_{\mu\nu}M^{\mu\nu}
-    \end{equation}
-    其中，$M^{\mu\nu}=M^{[\mu\nu]}$
-\end{definition}
-\begin{theorem}[结合律]\label{theorem:U_combine}
-    我们要求$U$满足:
-    \begin{equation}
-        U(\Lambda\Lambda')=U(\Lambda)U(\Lambda')
-    \end{equation}
-\end{theorem}
-根据定理\ref{theorem:Lorentz_inverse}, 定理\ref{theorem:U_combine}, 定义\ref{def:deltaomega}, 我们要求$U(\Lambda^{-1}\Lambda'\Lambda)=U(\Lambda^{-1})U(\Lambda')U(\Lambda)$, 于是有\ref{theorem:UMU}:
-\begin{theorem}\label{theorem:UMU}
-    \begin{equation}
-        U^{-1}_\Lambda M^{\mu\nu}U_\Lambda=\Lambda^\mu_{~~\rho}\Lambda^\nu_{~~\sigma}M^{\rho\sigma}
-    \end{equation}
-\end{theorem}
-\begin{proof}
-    \begin{equation}\label{2eq1}
-        U_\Lambda^{-1}U_{\Lambda'}U_\Lambda=1+\frac i2\delta{\omega'}_{\mu\nu}U_\Lambda^{-1}M^{\mu\nu}U_\Lambda
-    \end{equation}
-    \begin{equation}
-        U(\Lambda^{-1}\Lambda'\Lambda)=U(1+\Lambda^{-1}\omega'\Lambda)=1+\frac i2(\Lambda^{-1}\delta\omega'\Lambda)_{\mu\nu}M^{\mu\nu}
-    \end{equation}
-    计算$(\Lambda^{-1}\delta\omega'\Lambda)^{\mu}_{~~\nu}$
-    \begin{equation}
-        (\Lambda^{-1}\delta\omega'\Lambda)^{\mu}_{~~\nu}=\Lambda_\sigma^{~~\mu}\delta{\omega'}^\sigma_{~~\rho}\Lambda^\rho_{~~\nu}
-    \end{equation}
-    于是
-    \begin{equation}
-        (\Lambda^{-1}\delta\omega'\Lambda)_{\mu\nu}=\Lambda^{\sigma}_{~~\mu}\delta{\omega'}_{\sigma\rho}\Lambda^\rho_{~~\nu}
-    \end{equation}
-    因此
-    \begin{equation}\label{2eq2}
-        U(\Lambda^{-1}\Lambda'\Lambda)=U(1+\Lambda^{-1}\omega'\Lambda)=1+\frac i2\Lambda^{\sigma}_{~~\mu}\delta{\omega'}_{\sigma\rho}\Lambda^\rho_{~~\nu}M^{\mu\nu}
-    \end{equation}
-    将\eqref{2eq1}与\eqref{2eq2}取等我们有
-    \begin{equation}
-        \delta{\omega'}_{\rho\sigma}U_\Lambda^{-1}M^{\rho\sigma}U_\Lambda=\Lambda^{\sigma}_{~~\mu}\delta{\omega'}_{\sigma\rho}\Lambda^\rho_{~~\nu}M^{\mu\nu}
-    \end{equation}
-    于是
-    \begin{equation}
-        U^{-1}_\Lambda M^{\mu\nu}U_\Lambda=\Lambda^\mu_{~~\rho}\Lambda^\nu_{~~\sigma}M^{\rho\sigma}
-    \end{equation}
-\end{proof}
-进一步展开我们可以得到
-\begin{theorem}[$M^{\mu\nu}$的对易子]
-    \begin{equation}
-        [M^{\mu\nu}, M^{\rho\sigma}]=i(g^{\mu\rho}M^{\nu\sigma}+g^{\sigma\nu}M^{\mu\rho}-g^{\mu\sigma}M^{\nu\rho}-g^{\rho\nu}M^{\mu\sigma})
-    \end{equation}
-\end{theorem}
-\begin{proof}
-    展开
-    \begin{equation}
-        (1-\frac i 2\delta \omega_{\alpha\beta}M^{\alpha\beta})M^{\mu\nu}(1+\frac i 2\delta \omega_{\rho\sigma}M^{\rho\sigma})=(\delta^\mu_{~~\rho}+\delta\omega^\mu_{~~\rho})(\delta^\nu_{~~\sigma}+\delta\omega^\nu_{~~\sigma})M^{\rho\sigma}
-    \end{equation}
-    化简整理得到
-    \begin{equation}
-        -\frac i2\delta\omega_{\rho\sigma}[M^{\rho\sigma}, M^{\mu\nu}]=\delta\omega_{\rho\sigma}(M^{\mu\sigma}g^{\rho\nu}-M^{\rho\nu}g^{\mu\sigma})
-    \end{equation}
-    于是
-    \begin{equation}\label{eq3}
-        [M^{\mu\nu}, M^{\rho\sigma}]=2i(-g^{\mu\sigma}M^{\nu\rho}-g^{\rho\nu}M^{\mu\sigma})+A^{\mu\nu\rho\sigma}
-    \end{equation}
-    其中$A^{\mu\nu\rho\sigma}=A^{\nu\mu\rho\sigma}$, $A^{\mu\nu\rho\sigma}=A^{\mu\nu\sigma\rho}$.\\
-    交换$\mu$, $\nu$:
-    \begin{equation}\label{eq4}
-        [M^{\nu\mu}, M^{\rho\sigma}]=2i(-g^{\nu\sigma}M^{\mu\rho}-g^{\rho\mu}M^{\nu\sigma})+A^{\mu\nu\rho\sigma}
-    \end{equation}
-    注意到$M^{\mu\nu}$反称, \eqref{eq3}+\eqref{eq4}得到:
-    \begin{equation}
-        A^{\mu\nu\rho\sigma}=i(g^{\mu\sigma}M^{\nu\rho}+g^{\nu\rho}M^{\mu\sigma}+g^{\mu\sigma}M^{\nu\sigma}+g^{\nu\sigma}M^{\mu\rho})
-    \end{equation}
-    于是可得
-    \begin{important}
-        \begin{equation}
-            [M^{\mu\nu}, M^{\rho\sigma}]=i(g^{\mu\rho}M^{\nu\sigma}+g^{\sigma\nu}M^{\mu\rho}-g^{\mu\sigma}M^{\nu\rho}-g^{\rho\nu}M^{\mu\sigma})
-        \end{equation}
-    \end{important}
-\end{proof}
-\begin{definition}[(伪)旋转生成元]
-    \begin{equation}
-        J_i = \frac12\epsilon_{ijk}M^{jk}
-    \end{equation}
-    \begin{equation}
-        K_i = M_{i0}
-    \end{equation}
-\end{definition}
-\begin{theorem}[(伪)旋转生成元的对易关系]
-    \begin{equation}
-        [J_i, J_j]=i\epsilon_{ijk}J^k
-    \end{equation}
-    \begin{equation}
-        [J_i, K_j]=i\epsilon_{ijk}K^k
-    \end{equation}
-    \begin{equation}
-        [K_i, K_j]=-i\epsilon_{ijk}J^k
-    \end{equation}
-\end{theorem}
-\begin{proof}
-    注意到$g=\mathrm{diag}(1,-1,-1,-1)$
-    \begin{equation}
-        \begin{split}
-            [J_i, J_j]&=-\frac i2\epsilon_{ikl}\epsilon_{jmn}(g^{nk}M^{lm}+g^{ml}M^{kn})\\
-            &=-\frac i2\epsilon_{ikl}\epsilon_{jmn}(\textcolor{red}{-\delta^{nk}}M^{lm}\textcolor{red}{-\delta^{ml}}M^{kn})\\
-            &=\frac i2(\epsilon_{kli}\epsilon_{kjm}M^{lm}+\epsilon_{lik}\epsilon_{lnj}M^{kn})\\
-            &=\frac i2\left((\delta_{lj}\delta_{im}-\delta_{lm}\delta_{ij}M^{lm}+(\delta_{in}))\right)\\
-            &=-iM_{ij}
-        \end{split}
-    \end{equation}
-    又因为
-    \begin{equation}
-        \epsilon_{kij}\epsilon^{kmn}=-(\delta_i^m\delta_j^n-\delta_i^n\delta_j^m)
-    \end{equation}
-    \textcolor{red}{(不要忘记我们升指标的时候我们度规三次, 而(+ - - -)度规在三维空间的诱导度规为$\mathrm{diag}(-1,-1,-1)$, 因此总体上我们乘了三次-1,产生一个额外的负号)}\\
-    因此
-    \begin{equation}\label{eq5}
-        \epsilon_{ijk}J^k=\frac12\epsilon_{kij}\epsilon^{kmn}M_{mn}=-M_{ij}
-    \end{equation}
-    然后即得
-    \begin{equation}
-        [J_i, J_j]=i\epsilon_{ijk}J^k
-    \end{equation}
-    接着尝试证明$[J_i,K_j]$.
-    \begin{equation}
-        [J_i,K_j]=[\frac12\epsilon_{imn}M^{mn}, M_{j0}]=\frac12\epsilon_{imn}[M^{mn}, M_{j0}]
-    \end{equation}
-    计算$[M^{\mu\nu}, M_{\rho\sigma}]$
-    \begin{equation}
-        [M^{\mu\nu}, M_{\rho\sigma}]=-2i(\delta_\sigma^{~~\mu}M^\nu_{~~\rho}+\delta_\rho^{~~\nu}M^\mu_{~~\sigma})
-    \end{equation}
-    于是
-    \begin{equation}
-        [J_i, K_j]=\frac12\epsilon_{ikl}(-2i)\left(\delta_0^{~~k}M^l_{~~j}+\delta_j^{~~l}M^k_{~~0}\right)=i\epsilon_{ijk}M^k_{~~0}
-    \end{equation}
-    又因为$g_{\mu\nu}$升$0$指标不会改变符号, 因此我们可以直接升指标然后得到
-    \begin{equation}
-        [J_i, K_j]=i\epsilon_{ijk}M^{k0}=i\epsilon_{ijk}K^k
-    \end{equation}
-    最后，考虑证明:
-    \begin{equation}
-        [K_i, K_j]=[M_{i0}, M_{j0}]
-    \end{equation}
-    因为
-    \begin{equation}
-        [M_{\mu\nu}, M_{\rho\sigma}]=i(g_{\mu\rho}M_{\nu\sigma}+g_{\sigma\nu}M_{\mu\rho}-g_{\mu\sigma}M_{\nu\rho}-g_{\rho\nu}M_{\mu\sigma})
-    \end{equation}
-    于是
-    \begin{equation}
-        [K_i, K_j]=i(g_{ij}M_{00}+g_{00}M_{ij}-g_{i0}M_{0j}-g_{j0}M_{i0})=iM_{ij}
-    \end{equation}
-    利用\eqref{eq5}我们得到
-    \begin{equation}
-        [K_i, K_j]=-i\epsilon_{ijk}J^k
-    \end{equation}
-\end{proof}
 
 \newpage
 \section{狭义相对论动力学技巧}

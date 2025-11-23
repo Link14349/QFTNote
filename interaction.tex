@@ -14,7 +14,7 @@ Feynman黄金规则, 在于给予S矩阵元实际的物理观测效应, 也就�
 而所谓S算符, 其实也就是时间演化算符, 它和两个粒子态的缩并就是S矩阵的元素$\braket{f|S|i}$, 它的物理意义就是描述了初态$\ket i$经过时间演化, 处于终态$\ket f$的概率.
 \begin{definition}[S算符]
     \begin{equation}
-        S=\exp{\int_{-\infty}^{+\infty} iHdt}
+        S=\exp{\int_{-\infty}^{+\infty} -iHdt}
     \end{equation}
 \end{definition}
 
@@ -245,7 +245,7 @@ Feynman黄金规则, 在于给予S矩阵元实际的物理观测效应, 也就�
 \begin{align}
     \braket{f, +\infty|i, -\infty}&=\bra{\Omega}\mathcal T\prod_{p\in f}\sqrt{2\om p}\left[\a{p}(+\infty)-\a{p}(-\infty)\right]\notag\\
     &\quad\prod_{p\in i}\sqrt{2\om p}\left[\a{p}^\dagger(-\infty)-\a{p}^\dagger(+\infty)\right]\ket{\Omega}\\
-    &=\braket{\Omega}\mathcal T\prod i\int\d^4x_f\exp{ip_fx_f}(\Box_f+m^2)\phi_f\notag\\
+    &=\bra{\Omega}\mathcal T\prod i\int\d^4x_f\exp{ip_fx_f}(\Box_f+m^2)\phi_f\notag\\
     &\quad\prod i\int\d^4x_i\exp{-ip_ix_i}(\Box_i+m^2)\phi_i\ket{\Omega}
 \end{align}
 
@@ -520,7 +520,7 @@ $x$有$A_3^2=6$种选择来分别连接$x_1, x_2$, 然后$y$有$3$种选择连�
     \begin{equation}
         \mathcal L=\frac12(\partial_\mu\Phi)^2-\frac12M^2\Phi^2+\frac12(\partial_\mu\phi)^2-\frac12m^2\phi^2-\frac{\mu}{2!}\Phi\phi\phi
     \end{equation}
-    
+
     除以对称因子法:
     \begin{enumerate}
         \item 顶点: $-i\mu\dpi4\delta^4(p_1+p_2-p_3)$

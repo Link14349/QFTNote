@@ -258,6 +258,328 @@ Lorentz群生成元
 % \subsection{群\&群表示论}
 
 \newpage
+
+\section{量子力学基础}
+\subsection{Hilbert空间}
+量子力学研究生活在Hilbert空间\cite{LiangQMMath}的矢量, 所谓Hilbert空间是完备的内积空间.
+\begin{definition}[内积空间]
+    复矢量空间$V$称为内积空间, 若存在内积$(\cdot, \cdot): V\times V\to \mathbb{C}$, $\forall f, g, h\in V, c\in\mathbb C$:
+    \begin{enumerate}
+        \item $(f, g+h)=(f, g)+(f, h)$
+        \item $(f, cg)=c(f, g)$
+        \item $(f, g)=(g, f)^*$
+        \item $(f, f)\ge0$, 且$(f, f)=0$当且仅当$f=0$
+    \end{enumerate}
+\end{definition}
+根据定义我们有推论
+\begin{equation}
+    (cf, g)=c^*(f, g)
+\end{equation}
+
+我们可以利用内积定义任意两元素的距离
+\begin{definition}[元素距离]
+    \begin{equation}
+        d(f, g)\equiv\sqrt{(f-g, f-g)}
+    \end{equation}
+\end{definition}
+
+然后可以定义矢量序列$\{f_n\}$的极限
+\begin{definition}[矢量序列极限]
+    若$\exists f\in V, \forall \epsilon>0, \exists N\in\mathbb{N}, \forall n>N, d(f_n, f)<\epsilon$, 则称$\{f_n\}$收敛, 并且有
+    \begin{equation}
+        \lim_{n\to\infty}f_n=f
+    \end{equation}
+\end{definition}
+
+\begin{definition}[柯西序列]
+    类似高等数学中我们学习的柯西数列, 若对于序列$\{f_n\}$, $\forall \epsilon>0, \exists N\in\mathbb N, \forall n, m\ge N, d(f_m, f_n)<\epsilon$
+\end{definition}
+在一般的内积空间中, 收敛的序列一定是柯西序列, 但是柯西序列不一定是收敛的: 其极限不一定在矢量空间内. 因此我们需要扩大矢量空间包含的范围, 使其完备
+\begin{definition}[完备性]
+    若内积空间$V$中任意柯西序列都收敛, 则$V$完备
+\end{definition}
+
+而我们研究的Hilbert空间就是完备的.
+\begin{definition}[Hilbert空间]
+    Hilbert空间是完备的内积空间, 记为$\mathscr H$
+\end{definition}
+
+和我们在线性代数中学习的一样, 任意矢量空间都可以定义其对偶空间.
+\begin{definition}[对偶空间]
+    内积空间$V$的对偶空间
+    \begin{equation}
+        V^*\equiv\mathcal L(V, \mathbb C)
+    \end{equation}
+\end{definition}
+
+利用内积我们可以自然诱导出一个从Hilbert空间到对偶空间的反线性同构映射
+\begin{definition}[$\mathscr H\to\mathscr H^*$的反线性同构映射]
+    \begin{equation}
+        \eta: \mathscr H\to\mathscr H^*, \eta_h\equiv(h, \cdot)
+    \end{equation}
+\end{definition}
+在这里我们之所以要求Hilbert空间而不是内积空间就是要求$\mathscr H$与$\mathscr H^*$是一样大的: $\eta$是反线性同构而不是同态, 若内积空间不完备, 则$\mathscr H^*$比$\mathscr H$大.
+
+\subsection{线性算符}
+\begin{definition}[线性算符]\label{linear-operator}
+    $A: \mathscr H\to\mathscr H$是线性算符若
+    \begin{equation}
+        A(c_1f_1+c_2f_2)=c_1A(f_1)+c_2A(f_2)\label{linear-operator-eq1}
+    \end{equation}
+\end{definition}
+显然可以定义线性算符的加法与数乘, 从而构成一个矢量空间.
+
+并且我们还可以定义线性算符间的乘法
+\begin{definition}[线性算符的乘法]
+    对于线性算符$A, B$其乘法
+    \begin{equation}
+        (AB)(f)\equiv A(B(f))
+    \end{equation}
+\end{definition}
+
+和对偶空间结合我们可以定义对偶线性算符
+\begin{definition}[对偶线性算符]
+    线性算符$A$的对偶线性算符$A^*: \mathscr H^* \to \mathscr H^*$定义为
+    \begin{equation}
+        A^*(\nu)(f)\equiv\nu(Af)
+    \end{equation}
+\end{definition}
+\begin{theorem}
+    \begin{equation}
+        (A+B)^*=A^*+B^*
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    \begin{equation}
+        (A+B)^*(\nu)(f)=\nu(A(f)+\nu(B(f)))=\nu(Af)+\nu(Bf)=A^*(\nu)(f)+B^*(\nu)(f)
+    \end{equation}
+\end{proof}
+
+然后我们可以定义$A$的伴随算符$A^\dagger: \mathscr H\to\mathscr H$
+\begin{definition}[]
+    \begin{equation}
+        A^\dagger: \mathscr H\to\mathscr H, \eta^{-1}\circ A^*\circ\eta
+    \end{equation}
+\end{definition}
+
+\begin{theorem}[伴随算符的性质]\label{linear-adjoint}
+    伴随算符满足
+    \begin{equation}
+        (f, Ag)=(A^\dagger f, g)\label{linear-adjoint-eq1}
+    \end{equation}
+    \begin{equation}
+        (A^\dagger)^\dagger=A
+    \end{equation}
+    \begin{equation}
+        (cA)^\dagger=c^*A^\dagger
+    \end{equation}
+    \begin{equation}
+        (A+B)^\dagger=A^\dagger+B^\dagger
+    \end{equation}
+    \begin{equation}
+        (AB)^\dagger=B^\dagger A^\dagger\label{linear-adjoint-eq2}
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    \begin{equation}
+        (f, Ag)=\eta(f)(Ag)=(A^*\circ\eta(f))(g)=\eta[(\eta^{-1}A^*\circ\eta)(f)](g)=\eta[(A^\dagger)(f)](g)=(A^\dagger f, g)
+    \end{equation}
+    \begin{equation}
+        (f, (A^\dagger)^\dagger g)=((A^\dagger)^\dagger g, f)^*=(g, A^\dagger f)^*=(A^\dagger f, g)=(f, Ag)
+    \end{equation}
+
+    剩下的几个证明是显然的.
+\end{proof}
+
+\subsection{Dirac记号}
+\begin{definition}[左右矢]
+    我们记$f\in\mathscr H$为右矢, ket
+    \begin{equation}
+        \ket f
+    \end{equation}
+    我们记$\eta_f\in\mathscr H^*$为左矢, bra
+    \begin{equation}
+        \bra{\eta_f}
+    \end{equation}
+
+    因为$\eta$是由内积确定的自然映射, 所以是不会引起歧义的, 所以一般我们把$\bra{\eta_f}$直接记为$\bra f$
+\end{definition}
+
+\begin{definition}[Dirac记号中的算符]
+    \begin{equation}
+        A\ket\psi\equiv\ket{A\psi}
+    \end{equation}
+\end{definition}
+
+如何理解$\bra\psi A$呢? 我们将其定义为
+\begin{definition}
+    \begin{equation}
+        \bra\psi A\equiv (A^*\bra\psi)
+    \end{equation}
+\end{definition}
+
+于是我们可以看到, 诸如
+\begin{equation}
+    \braket{\phi|A|\psi}
+\end{equation}
+的式子是有两种理解方式的, 并且这两个方式结果是自洽的.
+\begin{equation}
+    \braket{\phi|A|\psi}=\bra\phi\left(A\ket\psi\right)
+\end{equation}
+\begin{equation}
+    \braket{\phi|A|\psi}=\left(\bra\phi A\right)\ket\psi=(A*\bra\phi)\ket\psi=\bra\phi\left(A\ket\psi\right)
+\end{equation}
+
+定理\ref{linear-adjoint}的式子\ref{linear-adjoint-eq1}可以重新写为
+\begin{equation}
+    \braket{\phi|A\psi}=\braket{A^\dagger\phi|\psi}
+\end{equation}
+
+\begin{definition}[算符的逆]
+    若$\forall\ket\psi$, 有且仅有一$\ket\phi\in\mathscr H, A\ket\phi=\ket\psi$, 则称算符$A$可逆, 并且记
+    \begin{equation}
+        \phi=A^{-1}\ket\psi
+    \end{equation}
+\end{definition}
+不难证明$A^{-1}$是线性的.
+
+\begin{definition}[幺正算符]
+    若算符$U$满足
+    \begin{equation}
+        UU^\dagger=U^\dagger U=1
+    \end{equation}
+    则称$U$是幺正算符.
+\end{definition}
+
+\subsection{反线性算符}
+一般在量子力学中我们考虑的都是线性算符, 但是同样存在反线性算符, 比如时间反演算符$T$. 所谓反线性就是指将定义\ref{linear-operator}中的式\eqref{linear-operator-eq1}替换为反线性性:
+\begin{definition}[反线性算符]\label{antilinear-operator}
+    $S: \mathscr H\to\mathscr H$是反线性算符若
+    \begin{equation}
+        S(c_1f_1+c_2f_2)=c_1^*S(f_1)+c_2^*S(f_2)\label{antilinear-operator-eq1}
+    \end{equation}
+\end{definition}
+同样可以定义反线性算符之间的加法、数乘, 构成一个矢量空间.
+
+我们还可以定义反线性算符间的乘法或者与线性算符的乘法:
+\begin{definition}[(反)线性算符的乘法]
+    对于(反)线性算符$A, B$($A$, $B$的线性性或者反线性性是任意的)其乘法
+    \begin{equation}
+        (AB)(f)\equiv A(B(f))
+    \end{equation}
+\end{definition}
+
+而对于复合算符的线性性与反线性有如下定理
+\begin{theorem}[复合算符的(反)线性性]\label{anti-linear-multiplication}
+    若$A, B$都是反线性, 则$AB$线性; 若$A, B$中有一个反线性一个线性, 则$AB$反线性; 若$A, B$都是线性则$AB$线性.
+\end{theorem}
+\begin{proof}
+    对于$A, B$都是反线性, $\forall c\in\mathbb C$
+    \begin{equation}
+        ABc=Ac^*B=cAB
+    \end{equation}
+
+    对于$A$线性, $B$反线性, $\forall c\in\mathbb C$
+    \begin{equation}
+        ABc=Ac^*B=c^*AB
+    \end{equation}
+
+    对于$AB$线性$\forall c\in\mathbb C$
+    \begin{equation}
+        ABc=AcB=cAB
+    \end{equation}
+\end{proof}
+
+但是我们不能定义线性算符与反线性算符间的乘法, 因为若我们这么定义线性算符$A$与反线性算符$S$的乘法
+\begin{equation}
+    (A+S)f\equiv A(f)+S(f)
+\end{equation}
+那么考虑其作用到$cf$上
+\begin{equation}
+    (A+S)(cf)=A(cf)+S(cf)=cA(f)+c^*S(f)
+\end{equation}
+我们发现这个新的映射既不是线性的, 也不是反线性的: 它根本不满足任何线性性! 所以这个定义是不良的.
+
+反线性算符相比于线性算符有很多不一样的性质, 我们需要小心对待. 比如与线性算符的对偶算符不同, 我们需要定义其对偶算符$S^*$为
+\begin{definition}[对偶线性算符]
+    反线性算符$S$的对偶反线性算符$S^*: \mathscr H^* \to \mathscr H^*$定义为
+    \begin{equation}
+        S^*(\nu)(f)\equiv\nu(Sf)^{\textcolor{red}{\mathbf*}}
+    \end{equation}
+    
+    读者不难验证$S^*$也是一个反线性算符.
+\end{definition}
+如何理解这个定义? 为什么在这里我们需要引入一次共轭? 这是为了让$S^*$作用到$\nu$上后的结果$S^*\nu$仍然是一个线性映射而不是反线性映射: 对偶矢量的定义就是线性映射, 而不是反线性映射. 即
+\begin{equation}
+    S^*(\nu)(cf)=\nu(Scf)^*=(\nu(c^*Sf))^*=(c^*\nu(Sf))^*=c(\nu(Sf))^*=cS^*(\nu)(f)
+\end{equation}
+
+然后我们可以定义反线性算符的伴随$S^\dagger$
+\begin{definition}[伴随算符]
+    反线性算符$S^\dagger: \mathscr H\to\mathscr H, \eta^{-1}\circ S^*\circ\eta$
+\end{definition}
+可以看到这个定义是完全一样的. 但是其带来的伴随算符的性质是不同的:
+\begin{theorem}[反线性算符的伴随算符的性质]\label{antilinear-adjoint}
+    反线性算符的伴随算符同样是反线性算符, 并且满足
+    \begin{equation}
+        (f, Sg)=(g, S^\dagger f)\label{antilinear-adjoint-eq1}
+    \end{equation}
+    \begin{equation}
+        (S^\dagger)^\dagger=S
+    \end{equation}
+    \begin{equation}
+        (cS)^\dagger=cS^\dagger
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    首先证明反线性算符的伴随算符同样是反线性算符:
+    \begin{equation}
+        S^\dagger(cf)=\eta^{-1}\circ S^*\circ\eta(cf)=\eta^{-1}[S^*(c\eta(f))]=\eta^{-1}[c^*S^*(\eta(f))]=c^*\eta^{-1}[S^*(\eta(f))]=c^*S^\dagger(f)
+    \end{equation}
+
+    然后直接计算可以证明后面三式
+    \begin{align}
+        (f, Sg)&=\eta_f(Sg)=\left[(S*\eta(f))(g)\right]^*=\left\{\eta\left[\eta^{-1}\circ S^*\circ\eta(f)\right](g)\right\}^*\\&
+        =(S^\dagger f, g)^*=(g, S^\dagger f)
+    \end{align}
+    \begin{align}
+        (f, (S^\dagger)^\dagger g)=(g, S^\dagger f)=(f, S^\dagger g)
+    \end{align}
+    \begin{align}
+        (g, (cS)^\dagger f)=(f, cSg)=c(f, Sg)=c(g, S^\dagger f)=(g, cS^\dagger f)
+    \end{align}
+\end{proof}
+
+对于$AB$这样的复合算符, 是否有与线性算符一样的取$\dagger$方式? 下面的定理指出与式\eqref{linear-adjoint-eq2}对反线性算符间或者线性算符与反线性算符的乘积依然是成立的.
+\begin{theorem}[反线性算符的复合]
+    对于线性算符或者反线性算符$A, B$, 其乘法$AB$的伴随
+    \begin{equation}
+        (AB)^\dagger=B^\dagger A^\dagger
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    若$A, B$都是反线性的, 根据定理\ref{anti-linear-multiplication}, 那么$AB$就是线性的, 从而$(AB)^\dagger$也是线性的, 则
+    \begin{equation}
+        ((AB)^\dagger f, g)=(f, ABg)=(Bg, A^\dagger f)=(B^\dagger A^\dagger f, g)
+    \end{equation}
+    
+    若$A, B$中$A$是线性的, $B$是反线性的, 那么$AB, (AB)^\dagger$也是反线性, 于是
+    \begin{equation}
+        ((AB)^\dagger f, g)=(ABg, f)=(Bg, A^\dagger f)=(B^\dagger A^\dagger f, g)
+    \end{equation}
+\end{proof}
+
+然后我们同样可以定义幺正的反线性算符
+\begin{definition}[反线性幺正算符]
+    若反线性算符$U$满足
+    \begin{equation}
+        UU^\dagger=U^\dagger U=1
+    \end{equation}
+    则称$U$是幺正算符.
+\end{definition}
+
+
+\newpage
 \section{狭义相对论动力学技巧}
 一些常用技巧\cite{griffthsPPSRTrick}:
 \begin{enumerate}

@@ -197,7 +197,7 @@ Feynman黄金规则, 在于给予S矩阵元实际的物理观测效应, 也就�
 有了Feynman黄金规则, 我们下一步就在于计算散射振幅$\mathcal M$. 而本节的核心就在于将位置空间的关联函数与动量空间中的散射振幅连接起来, 得出LSZ公式:
 \begin{theorem}[LSZ公式]\label{LSZformula}
     \begin{equation}
-        \braket{f, +\infty|i, -\infty}=\int\d^4x_1 i\exp{-ip_1x_1}(-p_1^2+m^2)\cdots\int\d^4x_n i\exp{ip_nx_n}(-p_n^2+m^2)\braket{\phi_1\cdots\phi_n}
+        \braket{f, +\infty|i, -\infty}=\int\d^4x_1 i\exp{-ip_1x_1}(\Box_1+m^2)\cdots\int\d^4x_n i\exp{ip_nx_n}(\Box_n+m^2)\braket{\phi_1\cdots\phi_n}
     \end{equation}
     其中, 对入射态用$\int i\exp{-ip_1x_1}(\Box+m^2) $, 而对出射态用$\int i\exp{ip_1x_1}(\Box+m^2)$
 \end{theorem}
@@ -218,37 +218,29 @@ Feynman黄金规则, 在于给予S矩阵元实际的物理观测效应, 也就�
 
     注意到, 如果是free theory, 所有粒子都是on-shell的, 积分式就为$0$. 但是对于interating theory, 事情就没这么简单了. 我们希望能类似free theory那样处理, 又该怎么办呢? 我们可以设法让这个积分只和$t=\pm\infty$的时候相关, 那这样子粒子之间相距无穷远, 互相之间没有interaction, 那么自然就可以退化到free theory, 利用free theory的产生湮灭算符来处理了.
 
-    于是我们尝试使用分布积分:
-    \begin{align}
-        i\int\d^4\exp{ipx}\partial_t^2\phi&=-i\int\d^4x\partial_t\exp{ipx}\partial_t\phi+i\int\d^4x\partial_t\left[\exp{ipx}\partial_t\phi\right]\\
-        &=i\int\d^4x\partial_t^2\exp{ipx}\phi-i\int\d^4x\partial_t\left[\partial_t\exp{ipx}\phi\right]+i\int\d^4x\partial_t\left[\exp{ipx}\partial_t\phi\right]\\
-        &=i\int\d^4x(-\om{p}^2)\exp{ipx}\phi-i\int\d^4x\partial_t\left[\partial_t\exp{ipx}\phi\right]+i\int\d^4x\partial_t\left[\exp{ipx}\partial_t\phi\right]
-    \end{align}
-
-    那么代回到原式中, 第一项正和我们在free theory中一样, 与$+\om{p}^2$抵消了, 于是剩下
+    利用这个全微分等式\cite{schwartz-lsz}
     \begin{equation}
-        i\int\d^4x\exp{ipx}(\Box+m^2)\phi=-i\int\d^4x\partial_t\left[\partial_t\exp{ipx}\phi\right]+i\int\d^4x\partial_t\left[\exp{ipx}\partial_t\phi\right]
+        \partial_t(\exp{ipx}(i\partial_t+\om p)\phi)=i\exp{ipx}(\partial_t^2+\om p^2)\phi
+    \end{equation}
+    我们可以将式子完全化为在$t=\pm\infty$的边界上的积分
+    \begin{equation}
+        i\int\d^4x\exp{ipx}(\Box+m^2)\phi=\int\d^3x(\exp{ipx}(i\partial_t+\om p)\phi)\Big|_{-\infty}^{+\infty}
     \end{equation}
 
-    将对t的积分专门拎出来, 我们有:
-    \begin{align}
-        i\int\d^4x\exp{ipx}(\Box+m^2)\phi=\left.i\int\d^3x\exp{ipx}\left(\pi-i\om p\phi\right)\right|_{t=-\infty}^{t=+\infty}
-    \end{align}
-
-    因为内部的式子是在$t=\pm\infty$时求的, 所以我们可以直接利用free theory的$\phi, \pi$(即式\eqref{ch4freephi}, \eqref{ch4freepi})进行计算, 最后我们可以得到
+    根据式\eqref{ch4freephi}代入, 我们有
     \begin{equation}
-        i\int\d^4x\exp{ipx}(\Box+m^2)\phi=\sqrt{2\om p}\left[\a p(+\infty)-\a p(-\infty)\right]
+        \int\d^3x\exp{ipx}(i\partial_t+\om p)\phi=\sqrt{2\om p}\a p
     \end{equation}
 
-    做分部积分我们还有等价形式
-        \begin{equation}
-        i\int\d^4x\exp{ipx}(-p^2+m^2)\phi=\sqrt{2\om p}\left[\a p(+\infty)-\a p(-\infty)\right]
+    从而我们有结论
+    \begin{equation}
+        i\int\d^4x\exp{ipx}(\Box+m^2)\phi=\sqrt{2\om p}[\a p(+\infty)-\a p(-\infty)]
     \end{equation}
 \end{proof}
 
 将这个引理取共轭我们有:
 \begin{equation}
-    -i\int\d^4x\exp{-ipx}(-p^2+m^2)\phi=\sqrt{2\om p}\left[\a{p}^\dagger(+\infty)-\a{p}^\dagger(-\infty)\right]
+    -i\int\d^4x\exp{-ipx}(\Box+m^2)\phi=\sqrt{2\om p}\left[\a{p}^\dagger(+\infty)-\a{p}^\dagger(-\infty)\right]
 \end{equation}
 
 然后我们考虑计算$\braket{f, t=-\infty|i, t=+\infty}$, 
@@ -261,13 +253,14 @@ Feynman黄金规则, 在于给予S矩阵元实际的物理观测效应, 也就�
 \begin{align}
     \braket{f, +\infty|i, -\infty}&=\bra{\Omega}\mathcal T\prod_{p\in f}\sqrt{2\om p}\left[\a{p}(+\infty)-\a{p}(-\infty)\right]\notag\\
     &\quad\prod_{p\in i}\sqrt{2\om p}\left[\a{p}^\dagger(-\infty)-\a{p}^\dagger(+\infty)\right]\ket{\Omega}\\
-    &=\bra{\Omega}\mathcal T\prod i\int\d^4x_f\exp{ip_fx_f}(-p_f^2+m^2)\phi_f\notag\\
-    &\quad\prod i\int\d^4x_i\exp{-ip_ix_i}(-p_i^2+m^2)\phi_i\ket{\Omega}
+    &=\bra{\Omega}\mathcal T\prod i\int\d^4x_f\exp{ip_fx_f}(\Box_f+m^2)\phi_f\notag\\
+    &\quad\prod i\int\d^4x_i\exp{-ip_ix_i}(\Box_i+m^2)\phi_i\ket{\Omega}
 \end{align}
+\kaishu 这里其实有一点subtle的地方, 就是说$\Box$能与$\mathcal T$换序吗? 在下一节我们会看到其实是不能换序的, 换序会制造出$\delta_{ij}$项. 但是这个结果是不影响的, 交换项的结果会被LSZ干掉, 最终贡献是$0$. \songti
 
 于是我们最终得到了LSZ公式:
 \begin{equation}
-    \braket{f, +\infty|i, -\infty}=\int\d^4x_1 i\exp{-ip_1x_1}(-p_1^2+m^2)\cdots\int\d^4x_n i\exp{ip_nx_n}(-p_n^2+m^2)\braket{\phi_1\cdots\phi_n}
+    \braket{f, +\infty|i, -\infty}=\int\d^4x_1 i\exp{-ip_1x_1}(\Box_1+m^2)\cdots\int\d^4x_n i\exp{ip_nx_n}(\Box_n+m^2)\braket{\phi_1\cdots\phi_n}
 \end{equation}
 
 \subsection{Schwinger-Dyson定理}

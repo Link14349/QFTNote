@@ -940,7 +940,7 @@ $A'^\mu$的EoM就变成:
     [S^{\mu\nu}, S^{\rho\sigma}]=i(-g^{\mu\rho}S^{\nu\sigma}-g^{\sigma\nu}S^{\mu\rho}+g^{\mu\sigma}S^{\nu\rho}+g^{\rho\nu}S^{\mu\sigma})
 \end{equation}
 
-\subsubsection{Clifford代数\label{clifford}}
+\subsection{Clifford代数\label{clifford}}
 上一节中, 我们定义出来的$\gamma^\mu$有其独特的代数结构, 本节我们将它抽象出来, 提升到代数的角度研究$\gamma^\mu$.
 \begin{definition}[Clifford代数]
     Clifford代数即满足
@@ -958,6 +958,27 @@ $A'^\mu$的EoM就变成:
         \slashed A\equiv \gamma^\mu A_\mu
     \end{equation}
 \end{definition}
+
+对于$\slashed A$我们有如下结论\cite{sredinicki-ugammau}
+\begin{theorem}\label{gamma-p-contraction}
+    \begin{equation}
+        \gamma^\mu\slashed p=p^\mu-2iS^{\mu\nu}p_\nu
+    \end{equation}
+    \begin{equation}
+        \slashed p\gamma^\mu=p^\mu+2iS^{\mu\nu}p_\nu
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    \begin{align}
+        \gamma^\mu\slashed p&=\frac12\{\gamma^\mu, \gamma^\nu\}p_\nu+\frac12[\gamma^\mu, \gamma^\nu]p_\nu\\
+        &=p^\mu-2iS^{\mu\nu}p_\nu
+    \end{align}
+    \begin{align}
+        \slashed p\gamma^\mu&=\frac12\{\gamma^\mu, \gamma^\nu\}p_\nu+\frac12[\gamma^\nu, \gamma^\mu]p_\nu\\
+        &=p^\mu+2iS^{\mu\nu}p_\nu
+    \end{align}
+\end{proof}
+
 \begin{theorem}
     我们有如下常见Clifford代数结论
     \begin{align}
@@ -1045,7 +1066,7 @@ $A'^\mu$的EoM就变成:
     \end{align}
 \end{proof}
 
-\subsubsection{Dirac旋量的二次量子化\label{2ndq-dirac}}
+\subsection{Dirac旋量的二次量子化\label{2ndq-dirac}}
 首先是第一步, 解EoM. 设在Weyl基底下一个一般的解为$(\psi_L \psi_R)^T$, 于是EoM可以写为
 \begin{equation}
     \begin{pmatrix}
@@ -1241,46 +1262,49 @@ $A'^\mu$的EoM就变成:
     \end{align}
 \end{proof}
 
-\begin{theorem}
+\begin{theorem}\label{ugammau-contraction}
+    对于$u_s, v_s$我们有\cite{sredinicki-ugammau}:
     \begin{equation}
-        \bar u^s\gamma^\mu u_{s'}=2p^\mu\delta_{ss'}
+        2m\bar u_{s'}(\vec p')\gamma^\mu u_s(\vec p)=\bar u_{s'}(\vec p')\left[(p'+p)^\mu-2iS^{\mu\nu}(p'-p)_\nu\right]u_s(\vec p)
     \end{equation}
     \begin{equation}
-        \bar v^s\gamma^\mu v_{s'}=2p^\mu\delta_{ss'}
+        -2m\bar v_{s'}(\vec p')\gamma^\mu v_s(\vec p)=\bar v_{s'}(\vec p')\left[(p'+p)^\mu-2iS^{\mu\nu}(p'-p)_\nu\right]v_s(\vec p)
+    \end{equation}
+    \begin{equation}
+        2m\bar u_{s'}(\vec p')\gamma^\mu v_s(\vec p)=\bar u_{s'}(\vec p')\left[(p'-p)^\mu-2iS^{\mu\nu}(p'+p)_\nu\right]v_s(\vec p)
+    \end{equation}
+    \begin{equation}
+        -2m\bar v_{s'}(\vec p')\gamma^\mu u_s(\vec p)=\bar v_{s'}(\vec p')\left[(p'-p)^\mu-2iS^{\mu\nu}(p'+p)_\nu\right]u_s(\vec p)
     \end{equation}
 \end{theorem}
 \begin{proof}
-    根据Dirac方程
-    \begin{equation}
-        \slashed pu^s=mu^s
-    \end{equation}
-    \begin{equation}
-        \bar u^s\slashed p=m\bar u^s
-    \end{equation}
-
-    于是
     \begin{align}
-        2m\bar u^s\gamma^\mu u_{s'}=\bar u^s\slashed p\gamma^\mu u_{s'}+\bar u^s\gamma^\mu\slashed pu_{s'}=p_\nu\bar u^s\{\gamma^\mu, \gamma^\nu\}u_{s'}=2p^\mu\cdot 2m\delta_{ss'}=4mp^\mu\delta_{ss'}
+        2m\bar u_{s'}(\vec p')\gamma^\mu u_s(\vec p)&=\bar u_{s'}(\vec p')\slashed p'\gamma^\mu u_s(\vec p)+\bar u_{s'}(\vec p')\gamma^\mu\slashed pu_s(\vec p)\\
+        &=\bar u_{s'}(\vec p')\left(\slashed p'\gamma^\mu+\gamma^\mu\slashed p\right)u_s(\vec p)\\
+        &=\bar u_{s'}(\vec p')\left[(p'+p)^\mu-2iS^{\mu\nu}(p'-p)_\nu\right]u_s(\vec p)
     \end{align}
-
-    所以
-    \begin{equation}
-        \bar u^s\gamma^\mu u_{s'}=2p^\mu\delta_{ss'}
-    \end{equation}
-    同理
-    \begin{equation}
-        \bar v^s\gamma^\mu v_{s'}=2p^\mu\delta_{ss'}
-    \end{equation}
+    其中, 第三个等号利用定理\ref{gamma-p-contraction}. 而对于后三个等式的证明同理, 在此不赘述.
 \end{proof}
-\kaishu 注: 但需要注意$\bar u^s\gamma^\mu v_{s'}\neq0$
 
-因为考虑
+对定理\ref{ugammau-contraction}取$p'=p$, 就有
 \begin{equation}
-    2m\bar u^s\gamma^\mu v_{s'}=\bar u^s\slashed p\gamma^\mu v_{s'}-\bar u^s\gamma^\mu\slashed pv_{s'}=\bar u^sp_\nu[\gamma^\nu, \gamma^\mu]v_{s'}\neq0
+    \bar u^s(\vec p)\gamma^\mu u_{s'}(\vec p)=2p^\mu\delta_{ss'}
 \end{equation}
-\songti
+\begin{equation}
+    \bar v^s(\vec p)\gamma^\mu v_{s'}(\vec p)=2p^\mu\delta_{ss'}
+\end{equation}
+不过需要注意$\bar u^s(\vec p)\gamma^\mu v_{s'}(\vec p)\neq0$:
+\begin{equation}
+    2m\bar u^s(\vec p)\gamma^\mu v_{s'}(\vec p)=\bar u^s\slashed p\gamma^\mu v_{s'}-\bar u^s\gamma^\mu\slashed pv_{s'}=\bar u^sp_\nu[\gamma^\nu, \gamma^\mu]v_{s'}\neq0
+\end{equation}
+. 但是对于$\vec p'=-\vec p$, 我们根据此定理有推论
+\begin{theorem}\label{ubar-gamma-v}
+    \begin{equation}
+        \bar u_{s'}(\vec p)\gamma^0 v_s(-\vec p)=\bar v_{s'}(\vec p)\gamma^0 u_s(-\vec p)=0
+    \end{equation}
+\end{theorem}
 
-接下来由于涉及到对易子的问题, 为了能够区分对易子的乘法顺序以及做乘法的方式(内积还是外积), 我们对$\gamma, \psi$引入指标:
+关于$u, v$性质的讨论告一段落. 接下来由于涉及到对易子的问题, 为了能够区分对易子的乘法顺序以及做乘法的方式(内积还是外积), 我们对$\gamma, \psi$引入指标:
 \begin{align}
     &\psi\to\psi_A\\
     &\bar\psi\to\bar\psi^A\\
@@ -1320,8 +1344,13 @@ $A'^\mu$的EoM就变成:
     \braket{\psi_A(y)\bar\psi^B(x)}=\int\dddd p\frac{i(\slashed p_A^{~~B}+m)}{p^2-m^2+i\epsilon}\exp{ip(x-y)}
 \end{equation}
 
-\subsection{旋量QED}
-然后我们尝试和电磁场耦合. 同样考虑局部$U(1)$规范变换, 即
+\subsection{Majorana旋量}
+
+\newpage
+\section{旋量QED}
+然后我们试图将Dirac旋量与电磁场耦合, 考虑Dirac旋量与电磁场的相互作用, 即标准的量子电动力学(QED).
+\subsection{最小耦合}
+同样考虑局部$U(1)$规范变换, 即
 \begin{equation}
     \psi\to\exp{-i\alpha}\psi
 \end{equation}
@@ -1352,7 +1381,65 @@ $A'^\mu$的EoM就变成:
     J^\mu=e\bar\psi\gamma^\mu\psi
 \end{equation}
 
-\subsection{Majorana旋量}
+还有EoM
+\begin{align}
+    \begin{cases}
+        &(i\slashed\partial-m)\psi=e\slashed A\psi\\
+        &\partial_\mu F^{\mu\nu}=e\bar\psi\gamma^\nu\psi
+    \end{cases}
+\end{align}
+
+\subsection{旋量LSZ公式}
+我们首先有引理
+\begin{lemma}
+    \begin{equation}
+        \int\d^4xi\exp{ipx}\bar u_s(m-i\slashed\partial)\psi=\sqrt{2\om p}(\a p^s(+\infty)-\a p^s(-\infty))
+    \end{equation}
+    \begin{equation}
+        \int\d^4xi\exp{-ipx}\bar v_s(-m-i\slashed\partial)\psi=\sqrt{2\om p}(\b p^{\dagger s}(+\infty)-\b p^{\dagger s}(-\infty))
+    \end{equation}
+    \begin{equation}
+        \int\d^4xi\exp{-ipx}\Tr\left[(-m-i\slashed\partial)u_s\bar\psi\right]=\sqrt{2\om p}(\a p^{\dagger s}(+\infty)-\a p^{\dagger s}(-\infty))
+    \end{equation}
+    \begin{equation}
+        \int\d^4xi\exp{ipx}\Tr\left[(m-i\slashed\partial)v_s\bar\psi\right]=\sqrt{2\om p}(\b p^{\dagger s}(+\infty)-\b p^{\dagger s}(-\infty))
+    \end{equation}
+\end{lemma}
+\begin{proof}
+    \begin{align}
+        \int\d^4xi\exp{ipx}\bar u_s(m-i\slashed\partial)\psi&=\int\d^4xi\exp{ipx}\bar u_s(m--i\gamma^i\partial_i-i\gamma^0\partial_0)\psi\\
+        &=\int\d^4xi\exp{ipx}\bar u_s(m-\gamma^ip_i-i\gamma^0\partial_0)\psi=
+    \end{align}
+    根据
+    \begin{equation}
+        \partial_0(\exp{ipx}\bar u_s\gamma^0\psi)=ip_0\exp{ipx}\bar u_s\gamma^0\psi+\exp{ipx}\bar u_s\gamma^0\partial_0\psi
+    \end{equation}
+    我们有
+    \begin{align}
+        &\;\;\int\d^4xi\exp{ipx}\bar u_s(m-i\slashed\partial)\psi\\
+        &=\int\d^4xi\exp{ipx}\bar u^s(m-\slashed p)\psi\notag\\
+        &\;+\int\d^3x\exp{ipx}\bar u_s\gamma^0\int\ldsq q{}\sum_{s'}\left(u_{s'}\a q^s\exp{-iqx}+v_s\b q^{\dagger s}\exp{iqx}\right)\Big|_{-\infty}^{+\infty}\\
+        &=\bar u_s\gamma^0\int\ldsq q{\dpi3}\sum_{s'}\left(u_{s'}\a q^s\delta^3(\vec p-\vec q)+v_s\b q^{\dagger s}\delta^3(\vec p+\vec q)\right)\Big|_{-\infty}^{+\infty}
+    \end{align}
+    而根据定理\ref{ugammau-contraction}我们知道
+    \begin{equation}
+        \bar u_s(\vec p)\gamma^0u_{s'}(\vec p)=2p^0\delta_{ss'}, \bar u_s(\vec p)\gamma^0v_{s'}(\vec p)=0
+    \end{equation}
+    从而有
+    \begin{equation}
+        \int\d^4xi\exp{ipx}\bar u_s(m-i\slashed\partial)\psi=\sqrt{2\om p}(\a p^s(+\infty)-\a p^s(-\infty))
+    \end{equation}
+
+    剩下三个式子证明同理.
+\end{proof}
+
+于是我们可以有最终结论
+\begin{align}
+    \braket{f, +\infty|i, -\infty}&=\int\d^4xi\exp{ip_1x_1}\bar u_s(m-i\slashed\partial_1)\textcolor{blue}{\int\d^4x_2i\exp{-ipx}\bar v_s(-m-i\slashed\partial_2)}\notag\\
+    &\;\partial_{3\mu}\partial_{4\nu}\braket{\psi_1\psi_2...\bar\psi_3\bar\psi_4}\notag\\
+    &\;\int\d^4xi\exp{-ip_3x_3}(-m-i\gamma^\mu)u_s\textcolor{blue}{\int\d^4xi\exp{ip_4x_4}(m-i\gamma^\nu)v_s}
+\end{align}
+其中, 第一行第一个为出射正粒子, 第一行第二个为出射反粒子, 第三行第一个为入射正粒子, 第三行第四个为入射反粒子.
 
 \newpage
 \section{离散变换}

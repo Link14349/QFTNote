@@ -319,7 +319,7 @@ $A'^\mu$的EoM就变成:
 \newpage
 
 \section{旋量}
-\subsection{Lorentz群\label{Lorentz}}
+\subsection{Lorentz群的性质\label{Lorentz}}
 我们首先考虑对矢量的Lorentz变换.
 \begin{definition}[Lorentz变换]
     Lorentz变换为一种保内积的变换:
@@ -545,7 +545,7 @@ $A'^\mu$的EoM就变成:
         &=-i\epsilon_{ijk}J^k
     \end{align}
 \end{proof}
-\subsection{分解Lorentz群}
+\subsubsection{分解Lorentz群}
 正如我们在定义\ref{lorentz-generators}中看到的那样, 洛伦兹群有六个生成元, 从而将Lorentz变换表示为:
 \begin{equation}
     \Lambda=\exp{i\theta_i J^i+i\beta_i K^i}
@@ -616,7 +616,7 @@ $A'^\mu$的EoM就变成:
 
 于是我们发现不可约表示$(m, n)$的维度为$(2m+1)(2n+1)$.
 
-\subsection{不可约表示}
+\subsubsection{不可约表示}
 \begin{example}[$(0, 0)$型]
     其维度为1, 并且其是Lorentz不变的. 因此我们指出$(0, 0)$型就是标量.
 \end{example}
@@ -940,7 +940,7 @@ $A'^\mu$的EoM就变成:
     [S^{\mu\nu}, S^{\rho\sigma}]=i(-g^{\mu\rho}S^{\nu\sigma}-g^{\sigma\nu}S^{\mu\rho}+g^{\mu\sigma}S^{\nu\rho}+g^{\rho\nu}S^{\mu\sigma})
 \end{equation}
 
-\subsection{Clifford代数\label{clifford}}
+\subsubsection{Clifford代数\label{clifford}}
 上一节中, 我们定义出来的$\gamma^\mu$有其独特的代数结构, 本节我们将它抽象出来, 提升到代数的角度研究$\gamma^\mu$.
 \begin{definition}[Clifford代数]
     Clifford代数即满足
@@ -1045,7 +1045,7 @@ $A'^\mu$的EoM就变成:
     \end{align}
 \end{proof}
 
-\subsection{Dirac旋量的二次量子化\label{2ndq-dirac}}
+\subsubsection{Dirac旋量的二次量子化\label{2ndq-dirac}}
 首先是第一步, 解EoM. 设在Weyl基底下一个一般的解为$(\psi_L \psi_R)^T$, 于是EoM可以写为
 \begin{equation}
     \begin{pmatrix}
@@ -1320,9 +1320,6 @@ $A'^\mu$的EoM就变成:
     \braket{\psi_A(y)\bar\psi^B(x)}=\int\dddd p\frac{i(\slashed p_A^{~~B}+m)}{p^2-m^2+i\epsilon}\exp{ip(x-y)}
 \end{equation}
 
-\subsection{C,P,T变换}
-在本节我们尝试讨论对场的$C,P,T$变换. 
-
 \subsection{旋量QED}
 然后我们尝试和电磁场耦合. 同样考虑局部$U(1)$规范变换, 即
 \begin{equation}
@@ -1356,3 +1353,59 @@ $A'^\mu$的EoM就变成:
 \end{equation}
 
 \subsection{Majorana旋量}
+
+\newpage
+\section{离散变换}
+在本节我们尝试讨论对场的三种幺正离散变换, 即$C,P,T$变换. 所谓的$C$, 其实就是电荷共轭(Charge Conjugate), 就是指将粒子变为反粒子, 反转其的所有量子荷(比如电荷, 但还包括轻子数、重子数等所有性质). 而$P$就是大名鼎鼎的宇称(Parity), 就是指$\vec x\to-\vec x$的镜像变换. $T$则是时间反演(Time reversal), 也就是将对象的运动过程反演: $t\to-t$. 
+
+\subsection{C变换}
+$C$变换就是取反粒子, 若我们有一个粒子态$\ket p$, 我们将$C$作用在它上面, 根据要求我们有:
+\begin{equation}
+    C\ket p=\ket{\bar p}
+\end{equation}
+其中$\ket{\bar p}$即$\ket p$的反粒子态.
+
+而这也就是说
+\begin{align}
+    & C\b{p}^\dagger\ket0=\a{p}^\dagger\ket 0\\
+    & C\a{p}^\dagger\ket0=\b{p}^\dagger\ket 0
+\end{align}
+
+在$\b{p}^\dagger, \a{p}^\dagger$与$\ket 0$间插入$C^\dagger c$, 我们有
+\begin{align}
+    & C\b{p}^\dagger C^\dagger C\ket0=\a{p}^\dagger\ket 0\\
+    & C\a{p}^\dagger C^\dagger C\ket0=\b{p}^\dagger\ket 0
+\end{align}
+
+这暗示我们
+\begin{align}
+    & C\b{p}^\dagger C^\dagger=\a{p}^\dagger\\
+    & C\a{p}^\dagger C^\dagger=\b{p}^\dagger
+\end{align}
+
+然后我们以实标量场、复标量场、Dirac旋量场为例讨论$C$的具体作用.
+\begin{example}[实标量场的电荷共轭]
+    由于实标量场只有一组产生湮灭算符, 它自己就是自己的反粒子, $C$变换对其不起作用, 于是我们有
+    \begin{eqnarray}
+        C=1
+    \end{eqnarray}
+\end{example}
+\begin{example}[复标量场的电荷共轭]
+    直接套用结论我们有
+    \begin{align}
+        &C\psi(x)C^\dagger=\int\ldsq p\left(\a p\exp{-ipx}+\b p^\dagger\exp{ipx}\right)=\psi^\dagger(x)\\
+        &C\pi(x)C^\dagger=\int\ddd pi\sqrt{\frac{\om p}2}\left(\b p^\dagger\exp{ipx}-\a p\exp{-ipx}\right)=\pi^\dagger(x)
+    \end{align}
+\end{example}
+\begin{example}[Dirac旋量的电荷共轭]
+    直接利用结论我们有
+    \begin{align}
+        &C\psi_AC^\dagger=\int\ldsq{p}\sum_s(u^s_A\b{p}^s\exp{-ipx}+v^{s}_A\a{p}^{s\dagger}\exp{ipx})
+    \end{align}
+
+    我们想要将其写为与$\psi^*$(注意, 这里如果是$\psi^\dagger$那么就变成行向量了, 结构不同, 而$\psi^*$则只是取共轭, 也就是将$a, b$取$\dagger$, 给$u, v$取$*$却不取$\dagger$)有关的东西, 那么我们就需要获得$u$与$v$之间的关系.
+\end{example}
+
+\subsection{P变换}
+
+\subsection{T变换}

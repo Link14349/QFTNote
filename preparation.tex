@@ -1,13 +1,12 @@
 \section{绪论}
-\subsection{Why QFT?}
-QFT is a framework for incorporating an infinite number of quantum degrees of
-freedom, arranged in spacetime, with the interactions constrained by locality, symmetry,
-unitarity, and causality. And it is the language of the laws of nature.\cite{qft:lecture1}
+这是我在上2025年秋季学期复旦大学物理系周洋老师开设的量子场论课程产生的课程笔记, 主要记录了这学期我学习量子场论期间学会的所有内容以及思考过程. 我补充了一些周老师没有提到或者没有讲清楚的内容, 并融合了历次作业中部分有启发性的题目, 从而形成了这一份笔记.
+\subsection{为什么我们需要QFT?}
+量子场论是一个框架，用于纳入无限数量的量子自由度，这些自由度在时空中排列，其相互作用受局域性、对称性、幺正性和因果性约束。它是描述自然规律的语言。\cite{qft:lecture1}
 \begin{itemize}
-    \item Locality: interactions occur at single points in spacetime
-    \item Symmetry: the laws of physics are invariant under certain transformations
-    \item Unitarity: the total probability of all possible outcomes of a quantum event is 1
-    \item Causality: cause precedes effect, and information cannot travel faster than light
+    \item 局域性: 相互作用发生在时空的单个点上
+    \item 对称性: 物理定律在特定变换下保持不变
+    \item 幺正性: 量子事件所有可能结果的总概率为1
+    \item 因果性: 原因先于结果，且信息传播速度不超过光速
 \end{itemize}
 \subsection{符号约定}
 \begin{itemize}
@@ -173,7 +172,7 @@ Lorentz群生成元
 
 
 \newpage
-\section{数学基础}
+\section{泛函基础简述}
 \subsection{泛函}
 \begin{definition}[泛函]
     泛函$f: \mathscr{F} \to \mathbb{R}$是定义在某个函数空间上的映射, 全体泛函组成的集合记为$\mathcal{F}$
@@ -185,8 +184,12 @@ Lorentz群生成元
     \end{equation}
     是$\mathcal{F}$上的一个泛函
 \end{example}
+\begin{example}\label{functional-delta}
+    \begin{equation}
+        \delta_x[\phi]=\phi(x)
+    \end{equation}
+\end{example}
 
-\subsection{$\delta$函数}
 \begin{definition}[$\delta$函数]
     $\delta(x)$是满足
     \begin{equation}
@@ -194,6 +197,7 @@ Lorentz群生成元
     \end{equation}
     的函数
 \end{definition}
+\kaishu 讨论: 数学人经常argue的一点是$\delta$函数并不是一个良定义的函数, 实际上如果要严格定义函数, 应当是将其定义为例\ref{functional-delta}中的那个泛函. \songti
 \begin{theorem}
     \begin{equation}
         \int \mathrm dx \mathrm e^{ikx}=2\pi \delta(k)\label{matheq1}
@@ -207,7 +211,7 @@ Lorentz群生成元
 
 \subsection{变分}
 \begin{definition}[变分]
-    设泛函$f: \mathcal{F} \to \mathbb{R}$\\
+    设泛函$f: \mathcal{F}\times\mathbb{R} \to \mathcal{F}$\\
     其变分
     \begin{equation}
         \frac{\delta f}{\delta \phi(x_0)} = \lim_{\epsilon \to 0} \frac{f[\phi(x) + \epsilon \delta(x-x_0)] - f[\phi]}{\epsilon}
@@ -216,11 +220,11 @@ Lorentz群生成元
 \begin{example}
     设泛函
     \begin{equation}
-        f[\phi] = \phi
+        f_x[\phi] = \phi(x)
     \end{equation}
     则
     \begin{equation}
-        \frac{\delta f}{\delta \phi(x_0)} = \delta(x-x_0)
+        \frac{\delta f_x}{\delta \phi(y)} = \delta(x-y)
     \end{equation}
 \end{example}
 \begin{example}
@@ -580,7 +584,8 @@ Lorentz群生成元
 
 
 \newpage
-\section{狭义相对论动力学技巧}
+\section{狭义相对论简述}
+\subsection{狭义相对论动力学技巧}
 一些常用技巧\cite{griffthsPPSRTrick}:
 \begin{enumerate}
     \item $\vec v=\frac{\vec p}{E}$

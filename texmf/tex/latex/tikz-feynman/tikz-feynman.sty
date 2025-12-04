@@ -1,0 +1,52 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% TikZ-Feynman
+% Feynman Diagrams with TikZ
+% Copyright (C) 2015  Joshua Ellis
+%
+%
+% This work may be distributed and/or modified under the terms of the GNU General
+% Public License as published by the Free Software Foundation, either version 3
+% of the License, or (at your option) any later version.
+%
+% This program is distributed in the hope that it will be useful, but WITHOUT
+% ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+% FOR A PARTICULAR PURPOSE.  See the LaTeX Project Public License for more
+% details.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\tikzfeynman@date{2016/02/05}
+\def\tikzfeynman@version@major{1}
+\def\tikzfeynman@version@minor{1}
+\def\tikzfeynman@version@patch{0}
+\edef\tikzfeynman@version{\tikzfeynman@version@major.\tikzfeynman@version@minor.\tikzfeynman@version@patch}
+
+\ProvidesPackage{tikz-feynman}[\tikzfeynman@date v\tikzfeynman@version Feynman diagrams with TikZ]
+
+\RequirePackage{tikz}[2013/12/13] % v3.0.0
+\RequirePackage{ifluatex}
+\RequirePackage{ifpdf}
+\RequirePackage{pgfopts}
+
+\usetikzlibrary{feynman}
+
+\ifpdf
+  \ifcsname pdfinfo\endcsname%
+    \pdfinfo{
+      /FeynmanDiagrams (TikZ-Feynman \tikzfeynman@version)
+    }
+  \else
+    \ifcsname pdfextension\endcsname%
+      \pdfextension info{
+        /FeynmanDiagrams (TikZ-Feynman \tikzfeynman@version)
+      }
+    \fi
+  \fi
+\fi
+
+\endinput
+
+% Local Variables:
+% TeX-master: "tikz-feynman"
+% End:

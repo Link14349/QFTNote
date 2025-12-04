@@ -165,7 +165,7 @@
     由此可见, 能动量守恒完全是时空平移不变性的体现.
 \end{example}
 \begin{example}[矢量场的时空平移对称性]
-    类似\ref{ex:ct_scalar_translation}, 时空中有Killing矢量场$\xi^\mu$.
+    类似例\ref{ex:ct_scalar_translation}, 时空中有Killing矢量场$\xi^\mu$.
     我们首先设两个辅助场:
     \begin{align}
         &\Pi^{\mu\nu}=2\pa{\mathcal L}{F_{\mu\nu}}\\
@@ -220,6 +220,28 @@
         T_{\mu\nu} = -2\Pi_{\mu}^{~~\lambda}F_{\lambda\nu}+B_\mu A_\nu-g_{\mu\nu}\mathcal L
     \end{equation}
     参考:本人25年首考后写的笔记\cite{LinkZhihu}(很惭愧, 现在尝试重新推导的时候卡了好久...无奈看了当时的笔记才推出来, 真是奇怪, 明明当时也是我自己推出来的, 怎么现在一点都推不出来了呢= =).
+\end{example}
+\begin{example}[Dirac场的时空平移对称性]
+    在推导Dirac场的时空平移对称性时, 为了具有一般性, 最大的难点在于给出旋量在一般的微分同胚群作用下的变换, 我们在此不做推导(我也不会推导...). 根据的Kosmann 1971年的成果\cite{LieSpinor}, 我们有对Dirac旋量场$\psi$的Lie导数表达式
+    \begin{equation}
+        \mathscr L_\xi\psi=\xi^a\nabla_a\psi-\frac14\nabla_{[a}\xi_{b]}\gamma^a\gamma^b\psi
+    \end{equation}
+    其中$\xi^a$为Killing矢量场.
+
+    如果你不放心, 我们可以验证后面脱拽项就是对旋量的Lorentz变换的正确性: 对于Minkovski时空中, 一般的Killing矢量场为
+    \begin{equation}
+        \xi^\mu=b^\mu+\omega^\mu_\nu x^\nu
+    \end{equation}
+    所以
+    \begin{align}
+        \mathscr L_\xi\psi&=\xi^\mu\nabla_\mu\psi+\frac14\omega_{\mu\nu}\gamma^\mu\gamma^\nu\psi\\
+        &=\xi^\mu\nabla_\mu\psi-\frac i2\omega_{\mu\nu} \frac i4[\gamma^\mu, \gamma^\nu]\psi\\
+        &=\xi^\mu\nabla_\mu\psi-\frac i2\omega_{\mu\nu}S^{\mu\nu}\psi
+    \end{align}
+    
+    于是我们发现对于Killing矢量场, 拖拽项确实是对旋量的Lorentz变换.
+
+    然后我们尝试推导能动张量.
 \end{example}
 \subsection{哈密顿量}
 \begin{definition}[共轭动量]

@@ -11,7 +11,25 @@
 \usepackage{tikz-feynman}
 \usepackage{slashed}
 \usepackage{cancel}
+\usepackage{geometry}
+\usepackage{feynmp-auto}
+\makeatletter
+\def\input@path{{./texmf/}}
+\makeatother
+\usepackage{tikz-feynman}
 \tikzfeynmanset{compat=1.1.0} % 推荐设置兼容性版本
+
+% 定义通用的样式设置，减少重复代码
+\tikzfeynmanset{
+    my_diagram/.style={
+        small, 
+        inline=(a.center), 
+        % baseline=-0.5ex, % 垂直居中对齐
+        horizontal=a to b,
+        dot, % <-- 添加这一行：将所有顶点渲染为实心黑点
+        % /tikz/dot/minimum size=4pt, % 可选：调整点的大小 (默认值通常是 4pt 左右)
+    }
+}
 
 \usetikzlibrary{calc}
 \usetikzlibrary{arrows.meta}
@@ -42,6 +60,12 @@
 \newcommand{\om}[1]{\omega_{\vec #1}}
 \newcommand{\ad}[1]{a^\dagger_{\vec #1}}
 \renewcommand{\d}{\mathrm d}
+\newcommand{\dx}{\mathrm dx}
+\newcommand{\dy}{\mathrm dy}
+\newcommand{\dz}{\mathrm dz}
+\newcommand{\dw}{\mathrm dw}
+\newcommand{\dt}{\mathrm dt}
+% \renewcommand{\dp}{\mathrm dp}
 \newcommand{\dpi}[1]{(2\pi)^{#1}}
 \renewcommand{\vec}[1]{\mathbf{#1}}
 \newcommand{\uvec}[1]{\mathbf{\hat{#1}}}

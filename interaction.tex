@@ -1,12 +1,21 @@
 \section{相互作用理论}
 
-在之前我们研究的都是线性没有相互作用的场论, Free Theory. 但是在自然界中, 总是存在粒子与粒子间的相互作用的, 这反映在Lagrangian上就是非二次项的出现. 这是得我们的方程不再是线性的波动方程, 不能再和我们二次量子化中的标准流程一样进行简正模的分解来获得最终结果了(悲). 为了能够将我们的理论拓展到相互作用上, Richard Feynman利用微扰展开, 通过Feynman规则\&Feynman图, 给予了我们的理论通过渐近展开处理相互作用的能力.
+在之前我们研究的都是线性没有相互作用的场论, Free Theory. 但是在自然界中, 总是存在粒子与粒子间的相互作用的, 这反映在Lagrangian上就是非二次项的出现. 这是得我们的方程不再是线性的波动方程, 不能再和我们二次量子化中的标准流程一样进行简正模的分解来获得最终结果了(悲). 为了能够将我们的理论拓展到相互作用上, Richard Feynman利用微扰展开, 通过Feynman规则\&Feynman图, 给予了我们的理论通过渐近展开处理相互作用的能力. 需要注意, 本节中我们使用Heisenberger绘景.
 
-而在本节中, 我们将考虑标量场的$\phi^3$理论, 即
+相互作用场论中, 真空态和自由场论不同, 为了区分我们记相互作用场论的真空态为$\ket{\Omega, t}$(需要注意, 因为我们在Heisenberger绘景下考虑, 基矢是含时的), 自由场论真空态为$\ket0$. 更具体来说, $\ket{\Omega, t}$满足
 \begin{equation}
-    \mathcal L=\mathcal L_0+\mathcal L_{int}=\frac12\partial_\mu\phi\partial^\mu\phi-\frac12m^2\phi^2+\frac g{3!}\phi^3
+    \a p(t)\ket{\Omega, t}=0
 \end{equation}
-其中$\mathcal L_{int}=\frac g{3!}\phi^3$为微扰的相互作用项.
+或者
+\begin{equation}
+    \ket{\Omega, t}=\mathcal T\exp{\int_{t_0}^{t} iHdt}\ket{\Omega, t_0}
+\end{equation}
+不过很多时候我们为了方便书写, 一般会将$\ket{\Omega, \pm\infty}$简记为$\ket\Omega$. 出现在算式左侧的$\bra\Omega$应理解为$\bra{\Omega, +\infty}$, 出现在右侧的$\ket\Omega$应理解为$\ket{\Omega, -\infty}$. 即
+\begin{equation}
+    \braket{\Omega|\Omega}:=\braket{\Omega, +\infty|\Omega, -\infty}=1\label{vaccum-contraction}
+\end{equation}
+
+而关于真空态的具体形式我们将在下一大节给出.
 
 \subsection{Feynman黄金规则}
 Feynman黄金规则, 在于给予S矩阵元实际的物理观测效应, 也就是利用S矩阵得到物理的散射截面、衰变率等可观测量.
@@ -14,7 +23,7 @@ Feynman黄金规则, 在于给予S矩阵元实际的物理观测效应, 也就�
 而所谓S算符, 其实也就是时间演化算符, 它和两个粒子态的缩并就是S矩阵的元素$\braket{f|S|i}$, 它的物理意义就是描述了初态$\ket i$经过时间演化, 处于终态$\ket f$的概率.
 \begin{definition}[S算符]
     \begin{equation}
-        S=\exp{\int_{-\infty}^{+\infty} -iHdt}
+        S=\prod_i\exp{-i\Delta tH(t_i)}=\mathcal T\{\exp{\int_{-\infty}^{+\infty} -iHdt}\}
     \end{equation}
 \end{definition}
 
@@ -23,7 +32,9 @@ Feynman黄金规则, 在于给予S矩阵元实际的物理观测效应, 也就�
     \braket{f, t=+\infty|i, t=-\infty}=\braket{f|S|i}=S_{fi}
 \end{equation}
 
-其中终态$\ket{f}$, 初态$\ket{i}$都为渐近自由态(Asymptotic State).
+需要注意的是, 这里$\ket{i, t=-\infty}$是指$t=-\infty$时的动量本征态, $\ket{f, t=+\infty}$是指$t=+\infty$时的动量本征态, 这两个本征态是不一样的$\a p$产生出来的.
+
+并且由于在初末态我们的理论都近似于自由场论, 终态$\ket{f, t=+\infty}$, 初态$\ket{i, t=-\infty}$都为渐近自由态(Asymptotic State).
 
 \begin{definition}[渐近自由态(Asymptotic State)]
     在$t=+\infty, -\infty$时在无穷远处没有互相作用的粒子即为渐近自由态. 因而渐近自由态是on-shell的, 并且可以利用Free Theory处理, 直接将$a^\dagger_{\vec p}$作用于$\ket0$即可.
@@ -186,7 +197,7 @@ Feynman黄金规则, 在于给予S矩阵元实际的物理观测效应, 也就�
 有了Feynman黄金规则, 我们下一步就在于计算散射振幅$\mathcal M$. 而本节的核心就在于将位置空间的关联函数与动量空间中的散射振幅连接起来, 得出LSZ公式:
 \begin{theorem}[LSZ公式]\label{LSZformula}
     \begin{equation}
-        \braket{f, +\infty|i, -\infty}=\int\d^4x_1 i\exp{-ip_1x_1}(\Box_1+m^2)\cdots\int\d^4x_n i\exp{ip_nx_n}(\Box_n+m^2)\braket{\phi_1\cdots\phi_n}
+        \braket{f, +\infty|i, -\infty}=\int\d^4x_1 i\exp{-ip_1x_1}(-p_1^2+m^2)\cdots\int\d^4x_n i\exp{ip_nx_n}(-p_n^2+m^2)\braket{\phi_1\cdots\phi_n}
     \end{equation}
     其中, 对入射态用$\int i\exp{-ip_1x_1}(\Box+m^2) $, 而对出射态用$\int i\exp{ip_1x_1}(\Box+m^2)$
 \end{theorem}
@@ -228,11 +239,16 @@ Feynman黄金规则, 在于给予S矩阵元实际的物理观测效应, 也就�
     \begin{equation}
         i\int\d^4x\exp{ipx}(\Box+m^2)\phi=\sqrt{2\om p}\left[\a p(+\infty)-\a p(-\infty)\right]
     \end{equation}
+
+    做分部积分我们还有等价形式
+        \begin{equation}
+        i\int\d^4x\exp{ipx}(-p^2+m^2)\phi=\sqrt{2\om p}\left[\a p(+\infty)-\a p(-\infty)\right]
+    \end{equation}
 \end{proof}
 
 将这个引理取共轭我们有:
 \begin{equation}
-    -i\int\d^4x\exp{-ipx}(\Box+m^2)\phi=\sqrt{2\om p}\left[\a{p}^\dagger(+\infty)-\a{p}^\dagger(-\infty)\right]
+    -i\int\d^4x\exp{-ipx}(-p^2+m^2)\phi=\sqrt{2\om p}\left[\a{p}^\dagger(+\infty)-\a{p}^\dagger(-\infty)\right]
 \end{equation}
 
 然后我们考虑计算$\braket{f, t=-\infty|i, t=+\infty}$, 
@@ -245,13 +261,13 @@ Feynman黄金规则, 在于给予S矩阵元实际的物理观测效应, 也就�
 \begin{align}
     \braket{f, +\infty|i, -\infty}&=\bra{\Omega}\mathcal T\prod_{p\in f}\sqrt{2\om p}\left[\a{p}(+\infty)-\a{p}(-\infty)\right]\notag\\
     &\quad\prod_{p\in i}\sqrt{2\om p}\left[\a{p}^\dagger(-\infty)-\a{p}^\dagger(+\infty)\right]\ket{\Omega}\\
-    &=\bra{\Omega}\mathcal T\prod i\int\d^4x_f\exp{ip_fx_f}(\Box_f+m^2)\phi_f\notag\\
-    &\quad\prod i\int\d^4x_i\exp{-ip_ix_i}(\Box_i+m^2)\phi_i\ket{\Omega}
+    &=\bra{\Omega}\mathcal T\prod i\int\d^4x_f\exp{ip_fx_f}(-p_f^2+m^2)\phi_f\notag\\
+    &\quad\prod i\int\d^4x_i\exp{-ip_ix_i}(-p_i^2+m^2)\phi_i\ket{\Omega}
 \end{align}
 
 于是我们最终得到了LSZ公式:
 \begin{equation}
-    \braket{f, +\infty|i, -\infty}=\int\d^4x_1 i\exp{-ip_1x_1}(\Box_1+m^2)\cdots\int\d^4x_n i\exp{ip_nx_n}(\Box_n+m^2)\braket{\phi_1\cdots\phi_n}
+    \braket{f, +\infty|i, -\infty}=\int\d^4x_1 i\exp{-ip_1x_1}(-p_1^2+m^2)\cdots\int\d^4x_n i\exp{ip_nx_n}(-p_n^2+m^2)\braket{\phi_1\cdots\phi_n}
 \end{equation}
 
 \subsection{Schwinger-Dyson定理}
@@ -302,7 +318,15 @@ Feynman黄金规则, 在于给予S矩阵元实际的物理观测效应, 也就�
 \end{proof}
 
 \subsection{Feynman规则, 启动!}
-目前, 所有的工具以及准备都已经摆在我们面前了, 我们还有什么理由停下来? \textbf{Feynman规则, 启动!} (此时配合经典门酱表情)
+目前, 所有的工具以及准备都已经摆在我们面前了, \textbf{Feynman规则, 启动!} 
+
+具体来说, 在本小节, 我们将考虑标量场的$\phi^3$理论, 即
+\begin{equation}
+    \mathcal L=\mathcal L_0+\mathcal L_{int}=\frac12\partial_\mu\phi\partial^\mu\phi-\frac12m^2\phi^2+\frac g{3!}\phi^3
+\end{equation}
+其中$\mathcal L_{int}=\frac g{3!}\phi^3$为微扰的相互作用项.
+
+
 \subsubsection{位形空间的Feynman规则}
 我们以$\braket{\phi_1\phi_2}$为例, 继而导出位置空间的Feynman规则.
 \begin{align}
@@ -327,7 +351,7 @@ Feynman黄金规则, 在于给予S矩阵元实际的物理观测效应, 也就�
 
 于是最后整理得
 \begin{equation}
-    \braket{\phi_1\phi_2}=D_{12}-\left(\frac g2\right)^2\int \d^4x\d^4y(2D_{1x}D_{xy}D_{xy}D_{y2}+D_{1x}D_{xx}D_{yy}D_{y2}+2D_{1x}D_{xy}D_{yy}D_{x2})
+    \braket{\phi_1\phi_2}=D_{12}-\left(\frac g2\right)^2\int \d^4x\d^4y(2D_{1x}D_{xy}D_{xy}D_{y2}+D_{1x}D_{xx}D_{yy}D_{y2}+2D_{1x}D_{xy}D_{yy}D_{x2})\label{2pt-correlation-expansion-schwinger-dyson}
 \end{equation}
 
 我们可以用这个fancy的图来表示这些二阶贡献, 这就是Feynman图:
@@ -443,7 +467,7 @@ $x$有$A_3^2=6$种选择来分别连接$x_1, x_2$, 然后$y$有$3$种选择连�
 而以如下方式进行对称因子的计算:
 \begin{important}
     \begin{enumerate}
-        \item 一对各有$n$个脚的 从$i$到$j$的脚的堆和从$j$到$i$的脚的堆($i\neq j$), 总共贡献$n!$的对称因子
+        \item 一对各有$n$个脚(这个脚可以单纯的自由传播子, 也可以是存在质量重整化等的传播子)的 从$i$到$j$的脚的堆和从$j$到$i$的脚的堆($i\neq j$), 总共贡献$n!$的对称因子
         \item $2n$(因为是两个脚相互连接, 因此一定是偶数个自己连接自己的脚)个自己连接自己的脚的顶点, 总共贡献$n!2^n$的对称因子
         \item 将所有的对称因子相乘即总的对称因子
     \end{enumerate}
@@ -538,3 +562,287 @@ $x$有$A_3^2=6$种选择来分别连接$x_1, x_2$, 然后$y$有$3$种选择连�
     \end{enumerate}
     其中, 数对称数目时, 一个内点$x$对应$\braket{\Phi_x\phi_x\phi_x}$
 \end{example}
+
+\newpage
+
+\section{Dyson级数}
+从本节开始我们从另一种方式理解微扰展开, 即Dyson级数. 利用Dyson级数我们可以比Schwinger Dyson更加容易看出微扰展开的结构, 从而更直观地导出Feynman规则并看出对称因子. 此外, 它还可以直接给出我们一直好奇的真空态$\Omega$的具体表达式. 而在此之前, 我们需要首先引入一个新的绘景: 相互作用绘景\cite{qft-amatuer-interaction-picture}.
+
+\subsection{相互作用绘景}
+存在相互作用时, 我们可以将哈密顿量分为不含时的自由哈密顿量与含时的微扰作用, 即
+\begin{equation}
+    H=H_0+H'(t)
+\end{equation}
+. 在这里我们认为微扰含时是因为我们做了个绝热近似: 在$t=\pm\infty$的时候关掉微扰相互作用, 这样子我们的场论就是严格的自由场论, 然后随着时间演化绝热地开启$H'$.
+
+在Heisenberger绘景中, 我们甚至无法写出$\phi$的具体表达式, 这是让我们头疼的地方. 相互作用绘景的Motivation就是让算符的含时形式和自由场一样:
+\begin{equation}
+    \phi_I(\vec x, t)=\exp{iH_0t}\phi(\vec x)\exp{-iH_0t}
+\end{equation}
+那么这样子我们还需要量子态也存在时间的演化, 设
+\begin{equation}
+    \ket{\psi_I, t}=U(t, t_0)\ket\psi
+\end{equation}
+.
+
+根据
+\begin{equation}
+    \braket{\phi_I, t|O_I|\psi_I, t}:=\braket{\phi_S, t|O|\psi_S, t}
+\end{equation}
+, 其中
+\begin{equation}
+    \ket{\psi_S, t}=S(t, t_0)\ket\psi, S(t, t_0)=\mathcal T\exp{\int^t_{t_0}-iH\d t}
+\end{equation}
+$\ket{\psi_S, t}$为Schoedinger绘景下的态矢, $S(t, t_0)$为Schoedinger绘景下的态矢量的时间演化算符.
+
+这样我们有
+\begin{equation}
+    U(t, t_0)=\exp{iH_0(t-t_0)}S(t, t_0)=\exp{iH_0(t-t_0)}\mathcal T\exp{\int^t_{t_0}-iH\d t}
+\end{equation}
+.
+
+然后我们发现$U$满足微分方程
+\begin{align}
+    i\de Ut&=-H_0U+\exp{iH_0t}H\mathcal T\exp{\int^t_{t_0}-iH\d t}\\
+    &=\exp{iH_0t}H'\mathcal T\exp{\int^t_{t_0}-iH\d t}\\
+    &=H'_I U
+\end{align}
+. 注意到, $U$的解为
+\begin{equation}
+    U=\mathcal T\exp{\int_{t_0}^t -iH'_I\d t}
+\end{equation}
+从而我们将$U$写为了更紧凑的形式.
+
+进一步地, 我们将$\exp{\int_{t_0}^t -iH'\d t}$展开, 就得到了Dyson级数:
+\begin{theorem}[Dyson级数]
+    \begin{equation}
+        U(t, t_0)=1+(-i)\int_{t_0}^tH'_I(t)\d z+\frac{(-i)^2}{2!}\int_{t_0}^t\d z\int_{t_0}^z\d w H'_I(z)H'_I(w) + \cdots
+    \end{equation}
+\end{theorem}
+
+最后, 我们可以总结三个不同绘景下算符、基矢、以及态的时间演化算符的关系
+\begin{table}[!htbp]
+    \begin{tabular}{c|c|c|c}
+        绘景 & 算符 & 基矢 & 时间演化算符\\
+        \hline
+        Schoedinger & $O_S=O$ & $\ket{\alpha_S}=\ket{\alpha}$ & $S(t, t_0)=\mathcal T\exp{\int^t_{t_0}-iH\d t}$\\
+        \hline
+        Heisenberger & $O_H(t)=S^\dagger_{tt_0}OS_{tt_0}$ & $\ket{\alpha_H, t}=S^\dagger_{tt_0}\ket{\alpha}$ & $1$ \\
+        \hline
+        相互作用 & $O_I(t)=\exp{iH_0t}O\exp{-iH_0t}$ & $\ket{\alpha_I, t}=U^\dagger_{tt_0}\ket{\alpha}$ & $U(t, t_0)=\mathcal T\exp{\int_{t_0}^t -iH'_I\d t}$
+    \end{tabular}
+    \caption{三种绘景下算符、基矢、时间演化算符的关系}
+    \label{tab:threepictures}
+\end{table}
+
+此外, 还有
+\begin{equation}
+    O_H=U^\dagger O_I U
+\end{equation}
+
+\subsection{真空态与Feynman规则}
+在上一大节中, 虽然我们引入了真空态, 但是我们并没有给出真空态的具体表达式. 在本节中, 利用Dyson级数, 我们可以得到真空态的具体形式\cite{schwartz-dyson}.
+
+为了得到其具体表达式, 我们希望它和自由场的真空态$\ket0$建立联系. 由于我们做了绝热近似, 在$t=\pm\infty$时就是自由场, 所以说我们有
+\begin{equation}
+    \ket{\Omega, \pm\infty}=\ket0
+\end{equation}
+
+我们指出, Heisenberger绘景下的真空态和相互作用绘景下的真空态基矢只差一个相位, 即
+\begin{align}
+    \ket{\Omega_H, t}&=\lim_{t_0\to-\infty}S^\dagger_{tt_0}\ket{0}\\
+    &=\lim_{t_0\to-\infty}U^\dagger_{tt_0}\exp{iH_0(t-t_0)}\ket0\\
+    &=\lim_{t_0\to-\infty}\exp{iE_0(t-t_0)}U^\dagger_{tt_0}\ket0\\
+    &=\lim_{t_0\to-\infty}\exp{iE_0(t-t_0)}\ket{\Omega_I, t}
+\end{align}
+, 其中$E_0$为真空能量. 或者我们可以直接验证
+\begin{align}
+    \a p(t)\ket{\Omega_I, t}&=\lim_{t_0\to-\infty}S^\dagger_{tt_0}\a pS_{tt_0}U^\dagger_{tt_0}\ket0\\
+    &=\lim_{t_0\to-\infty}S^\dagger_{tt_0}\a p\exp{iH_0(t-t_0)}\ket0\\
+    &=\lim_{t_0\to-\infty}\exp{iE_0(t-t_0)}S^\dagger_{tt_0}\a p\ket0\\
+    &=0
+\end{align}
+. 由于Heisenberger绘景下和相互作用绘景的真空态只差相位因子, 所以一般来说, 我们会将Heisenberger绘景下的真空态基矢也都乘以这个相位因子$\exp{-iE_0(t-t_0)}$, 从而让Heisenberger绘景下的真空态基矢与相互作用绘景下的真空态基矢相同, 从而将它们都简记为
+\begin{equation}
+    \ket{\Omega, t}=\ket{\Omega_I, t}=U^\dagger(t, -\infty)\ket{\Omega, -\infty}=U^\dagger(t, -\infty)\ket0
+\end{equation}
+
+于是我们得到
+\begin{equation}
+    \ket{\Omega, +\infty}=U^\dagger(+\infty, -\infty)\ket0
+\end{equation}
+, 它满足
+\begin{equation}
+    \braket{\Omega, +\infty|\Omega, +\infty}=1
+\end{equation}
+. 
+
+然而, 根据式\eqref{vaccum-contraction}, 我们要求
+\begin{equation}
+    \braket{\Omega|\Omega}=\braket{\Omega, +\infty|\Omega, -\infty}=0
+\end{equation}
+. 我们却发现
+\begin{align}
+    \braket{\Omega|\Omega}&=\braket{0|U(+\infty, -\infty)|0}\\
+    &=\bra0\left(1+(-i)\int_{-\infty}^{+\infty}H'_I(t)\d z+\frac{(-i)^2}{2!}\int_{-\infty}^{+\infty}\d z\int_{t_0}^z\d w H'_I(z)H'_I(w) + \cdots\right)\ket0\\
+    &=\bra0\left(1+(-i)\int\d^4x\mathcal H_I'+\frac{(-i)^2}{2!}\int\d^4x\d^4y \mathcal H_I'(x)\mathcal H_I'(y) + \cdots\right)\ket0
+\end{align}
+. 
+
+若我们考虑$\phi^3$理论, 即
+\begin{equation}
+    \mathcal H_I'=-\frac g{3!}\phi_I^3
+\end{equation}
+, 于是有
+\begin{align}
+    \braket{\Omega, +\infty|\Omega, -\infty}&=1+\frac{ig}{3!}\int\d^3x\braket{\phi_I(x)\phi_I(x)\phi_I(x)}_0\notag\\
+    &\;+\left(\frac{ig}{3!}\right)^2\int\d^3x\d^3y\braket{\phi_I(x)\phi_I(x)\phi_I(x)\phi_I(y)\phi_I(y)\phi_I(y)}_0+\cdots
+\end{align}
+, 其中
+\begin{equation}
+    \braket{...}_0:=\braket{0|\mathcal T...|0}
+\end{equation}
+.
+
+注意到, 这里的缩并都完全是自由场的缩并(相互作用绘景下的$\phi_I$就是自由场在Heisenberger绘景下的$\phi_0$). 然后利用Wick定理可以把这些缩并写为自由场传播子$D_F$的乘积与求和. 并且这个求和同样可以用Feynman图写出, 即真空图:
+\begin{align}
+    \braket{0|U(+\infty, -\infty)|0}&=1 + 
+    % --- 第一个图 (Dumbbell) ---
+    % 修改说明：
+    % 1. inline=(a.center): 强制让顶点 a 的中心对齐文字基线
+    % 2. baseline=-2.5pt: 这是一个微调参数，让图在等号的高度上视觉居中（因为基线实际上是在文字底部）
+    \feynmandiagram [small, horizontal=a to b, inline=(a.center), baseline=-0.5ex] {
+        a -- b,
+        % 左边的圈：调整角度使其向左凸出
+        a -- [loop, min distance=1cm, out=135, in=-135] a,
+        % 右边的圈：调整角度使其向右凸出
+        b -- [loop, min distance=1cm, out=45, in=-45] b,
+    };
+    + 
+    % --- 第二个图 (Sunset) ---
+    % 这里的 inline=(a.center) 同样用于确保两端点与加号对齐
+    \feynmandiagram [small, horizontal=a to b, inline=(a.center), baseline=-0.5ex] {
+        a -- b,
+        a -- [half left] b,
+        a -- [half right] b,
+    };
+    + \cdots
+\end{align}
+
+我们发现这个值并不为$0$, 即
+\begin{equation}
+    \braket{\Omega|\Omega}=\braket{\Omega, +\infty|\Omega, -\infty}=\braket{0|U(+\infty, -\infty)|0}\neq0
+\end{equation}
+, 这和式\eqref{vaccum-contraction}的要求不一致, 因此, 我们还需要进一步重新定义
+\begin{equation}
+    \ket{\Omega, +\infty}=\frac{U^\dagger(+\infty, -\infty)}{\braket{0|U(+\infty, -\infty)|0}}\ket0
+\end{equation}
+.
+
+从而, 我们有结论
+\begin{equation}
+    \braket{\Omega|...|\Omega}=\frac{\braket{0|U(+\infty, -\infty)\mathcal T...|0}}{\braket{0|U(+\infty, -\infty)|0}}
+\end{equation}
+并且根据
+\begin{align}
+    \braket{0|U(+\infty, -\infty)\mathcal T...|0}&=\Theta(...)...\braket{0|U(+\infty, -\infty)\phi(x_1)\cdots|0}+\cdots\\
+    &=\Theta(...)...\braket{0|U(+\infty, -\infty)U(-\infty, t_1)\phi_I(x_1)U(t_1, -\infty)\cdots|0}+\cdots\\
+    &=\Theta(...)...\braket{0|U(+\infty, t_1)\phi_I(x_1)U(t_1, t_2)\phi_I(x_2)\cdots|0}+\cdots\\
+    &=\braket{0|\mathcal T{\exp{\int\d^4 -i\mathcal H'_I}\phi_I(x_1)\phi_I(x_2)\cdots}|0}
+\end{align}
+所以最终我们有
+\begin{important}
+    \begin{equation}
+        \braket{\Omega|\phi(x_1)\phi(x_2)\cdots\phi(x_n)|\Omega}=\frac{\braket{0|\mathcal T{\exp{\int\d^4 -i\mathcal H'_I}\phi_I(x_1)\phi_I(x_2)\cdots\phi_I(x_n)}|0}}{\braket{0|\mathcal T\exp{\int\d^4 -i\mathcal H'_I}|0}}\label{corrleation-dyson-series}
+    \end{equation}
+\end{important}
+这个式子全都只含有自由场算子及其缩并, 因此是完全可以直接计算的.
+
+以$\braket{\phi_1\phi_2}$为例展开我们有
+\begin{equation}
+    \braket{\phi_1\phi_2}=\frac{
+        % --- 分子 (Numerator) ---
+        \displaystyle
+        % 1. 自由传播子 (Free Propagator)
+        \feynmandiagram [my_diagram] { a -- b };
+        + 
+        % 2. 蝌蚪图 (Tadpole)
+        \feynmandiagram [my_diagram] {
+            a -- b -- c,
+            b -- d [above=1.4cm of b], 
+            d -- [loop, min distance=0.8cm] d,
+        };
+        + 
+        % 3. 自能图/日落插入 (Self-Energy)
+        \feynmandiagram [my_diagram] {
+            a -- b -- [half left] c -- d,
+            c -- [half left] b,
+        };
+        + 
+        % 4. 离连图 1: 传播子 * 哑铃图 (Disconnected Dumbbell)
+        \feynmandiagram [my_diagram] { a -- b };
+        \; % 添加一点间距表示乘积
+        \feynmandiagram [my_diagram] {
+            a -- b,
+            a -- [loop, min distance=0.6cm, out=135, in=-135] a,
+            b -- [loop, min distance=0.6cm, out=45, in=-45] b,
+            a --[draw=none] z --[draw=none] b, % 辅助对齐
+        };
+        + 
+        % 5. 离连图 2: 传播子 * 日落图 (Disconnected Sunset)
+        \feynmandiagram [my_diagram] { a -- b };
+        \; 
+        \feynmandiagram [my_diagram] {
+            a -- b,
+            a -- [half left] b,
+            a -- [half right] b,
+        };
+        + \cdots
+    }{
+        % --- 分母 (Denominator) ---
+        \displaystyle
+        1 + 
+        % 分母图 1: 日落图 (Sunset)
+        \feynmandiagram [my_diagram] {
+            a -- b,
+            a -- [half left] b,
+            a -- [half right] b,
+        };
+        + 
+        % 分母图 2: 哑铃图 (Dumbbell)
+        \feynmandiagram [my_diagram] {
+            a -- b,
+            a -- [loop, min distance=0.6cm, out=135, in=-135] a,
+            b -- [loop, min distance=0.6cm, out=45, in=-45] b,
+            a --[draw=none] z --[draw=none] b,
+        };
+        + \cdots
+    }
+\end{equation}
+注意到, 如果我们将分母展开, 我们可以将所有与真空图乘积的图抵消掉, 于是有最终结果
+\begin{align}
+    \braket{\phi_1\phi_2} = \feynmandiagram [my_diagram] { a -- b };
+        + 
+        \feynmandiagram [my_diagram] {
+            a -- b -- c,
+            b -- d [above=1.4cm of b], 
+            d -- [loop, min distance=0.8cm] d,
+        };
+        + 
+        \feynmandiagram [my_diagram] {
+            a -- b -- [half left] c -- d,
+            c -- [half left] b,
+        };
+        + 
+        \feynmandiagram [my_diagram] {
+            a -- b -- [loop, min distance=0.6cm, out=45, in=-45] b,
+        };
+        \;
+        \feynmandiagram [my_diagram] {
+            a -- b,
+            a -- [loop, min distance=0.6cm, out=135, in=-135] a,
+        };
+        +\cdots
+\end{align}
+
+这与我们使用Schwinger-Dyson定理展开得到的式\eqref{2pt-correlation-expansion-schwinger-dyson}完全是一致的.

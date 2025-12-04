@@ -1,0 +1,473 @@
+\section{路径积分}
+在本节我们介绍另外一种导出Feynman规则的方法, 也就是Feynman所提出的路径积分方法. 需要注意, 本节我们的推导基于Heisenberger绘景.
+
+\subsection{单粒子路径积分}
+我们首先考虑经典量子力学中的路径积分表述. 所谓路径积分, 就是考虑粒子在所有可能传播路径的贡献, 然后将它们加起来. 这听起来是一个疯狂的想法, 但是我们在经典物理中可以找到一个简单的Motivation: 双缝干涉实验. 我们知道基尔霍夫衍射公式, 它将边界态的所有点发出的光线求和, 从而得到光场分布, 如果我们再进一步, 考虑光线的所有贡献路径, 那么就是路径积分.
+
+考虑传播子$\braket{x_f, t_f|x_i, t_i}$, 在Schodinger绘景下, 可以表示为
+\begin{equation}
+    \braket{x_f, t_f|x_i, t_i}=\bra{x_f}\exp{-i\int_{t_i}^{t_f}\d tH(t)}\ket{x_i}
+\end{equation}
+.
+
+我们将这个积分过程进行拆分, 分为$N+1$个部分, 有
+\begin{equation}
+    \braket{x_f, t_f|x_i, t_i}=\bra{x_f}\exp{-i\Delta tH(t_n)}\exp{-i\Delta tH(t_{n-1})}\cdots\exp{-i\Delta tH(t_1)}\exp{-i\Delta tH(t_i)}\ket{x_i}
+\end{equation}
+然后插入恒等算符
+\begin{equation}
+    \int\dx\ket{x}\bra{x}=1
+\end{equation}
+得到
+\begin{align}
+    \braket{x_f, t_f|x_i, t_i}&=\int\dx_n\dx_{n-1}\cdots\dx_1\bra{x_f}\exp{-i\Delta tH(t_n)}ket{x_n}\notag\\
+    &\;\bra{x_n}\exp{-i\Delta tH(t_{n-1})}\ket{x_{n-1}}\bra{x_{n-1}}\cdots\exp{-i\Delta tH(t_1)}\ket{x_{1}}\bra{x_{1}}\exp{-i\Delta tH(t_i)}\ket{x_i}
+\end{align}
+
+然后尝试计算
+\begin{align}
+    \bra{x_{j+1}}\exp{-i\Delta tH(t_j)}\ket{x_j}&=\int\frac{\d p}{2\pi}\braket{x_{j+1}|p}\bra p\exp{-i\Delta t(\frac{{\hat p}^2}{2m}+V(\hat x, t_j))}\ket{x_j}
+\end{align}
+因为$\Delta t\approx0$, 
+\begin{equation}
+    \exp{-i\Delta t(\frac{{\hat p}^2}{2m}+V(\hat x, t_j))}\approx1-i\Delta t(\frac{{\hat p}^2}{2m}+V(\hat x, t))
+\end{equation}
+所以
+\begin{align}
+    \bra p\exp{-i\Delta t(\frac{{\hat p}^2}{2m}+V(\hat x, t_j))}\ket{x_j}&\approx \bra p(1-i\Delta t(\frac{{\hat p}^2}{2m}+V(\hat x, t)))\ket{x_j}\\
+    &=\bra p(1-i\Delta t(\frac{p^2}{2m}+V(x_j, t_j)))\ket{x_j}\\
+    &\approx\bra p\exp{-i\Delta t(\frac{p^2}{2m}+V(x_j, t_j))}\ket{x_j}
+\end{align}
+再代入
+\begin{equation}
+    \braket{x|p}=\exp{ipx}
+\end{equation}
+于是
+\begin{align}
+    \bra{x_{j+1}}\exp{-i\Delta tH(t_j)}\ket{x_j}&=\int\frac{\d p}{2\pi}\exp{-i\frac{p^2}{2m}\Delta t+ip(x_{j+1}-x_j)\Delta t}\exp{-iV(x_j,t_j)\Delta t}\\
+\end{align}
+再根据Gaussian积分公式
+\begin{equation}
+    \int_{-\infty}^{+\infty}\dx\exp{-Ax^2+Bx}=\sqrt{\frac\pi A}\exp{\frac{B^2}{4A}}
+\end{equation}
+我们得到最终结果
+\begin{align}
+    \bra p\exp{-i\Delta t(\frac{{\hat p}^2}{2m}+V(\hat x, t_j))}\ket{x_j}&=\sqrt{\frac m{2\pi i\Delta t}}\exp{i\Delta t(\frac1{2m}(\frac{x_{j+1}-x_j}{\Delta t})^2-V(x_j, t_j))}\\
+    &=\sqrt{\frac m{2\pi i\Delta t}}\exp{i\Delta tL(x_{j+1}, x_j, t_j)}
+\end{align}
+.
+
+所以我们得出结论
+\begin{align}
+    \braket{x_f, t_f|x_i, t_i}&=\lim_{N\to\infty}\left(\frac m{2\pi i\Delta t}\right)^{\frac{N+1}2}\int \dx_n\dx_{n-1}\cdots\dx_1\exp{i\sum_{j=0}^N\Delta tL(x_{j+1}, x_j, t_j)}\\
+    &=\lim_{N\to\infty}\left(\frac m{2\pi i\Delta t}\right)^{\frac{N+1}2}\int \dx_n\dx_{n-1}\cdots\dx_1\exp{iS[x]}\\
+    &=\int \mathcal Dx\exp{iS[x]}
+\end{align}
+.
+
+\subsection{场论路径积分}
+为了能够应用QM中的路径积分, 我们首先对QM与QFT中的基本元素有如下类比
+\begin{table}[!htbp]
+    \centering
+    \begin{tabular}{c|c}
+        QM & QFT\\
+        \hline
+        $\hat x\ket x=x\ket x$ & $\hat\phi(x)\ket\phi=\phi(x)\ket\phi$\\
+        $\hat p\ket p=p\ket p$ & $\hat\pi(x)\ket\pi=\pi(x)\ket\pi$\\
+        $\braket{\vec p|\vec x}=\exp{-i\vec p\cdot\vec x}$ & $\braket{\pi|\phi}=\exp{-i\int\d^3x\pi(x)\phi(x)}$\\
+        $\braket{x_f, t_f|x_i, t_i}$ & $\braket{\Omega, t_f|\Omega, t_i}$
+    \end{tabular}
+    \caption{QM与QFT中路径积分需要用到的基本元素类比}
+\end{table}
+.
+
+设拉氏量
+\begin{equation}
+    L=\int\d^3x\left(\frac12(\partial_t\phi)^2-V(\phi)\right)
+\end{equation}
+做Legdren变换于是可以得到Hamiltonian
+\begin{equation}
+    H=\int\d^3x\left(\frac12\pi^2+V(\phi)\right)
+\end{equation}
+.
+
+然后我们对真空振幅进行完全类似的操作, 可以得到
+\begin{equation}
+    \braket{\Omega, t_f|\Omega, t_i}=\bra\Omega\exp{-i\Delta tH(t_n)}\exp{-i\Delta tH(t_{n-1})}\cdots\exp{-i\Delta tH(t_1)}\exp{-i\Delta tH(t_i)}\ket\Omega
+\end{equation}
+插入积分, 但是需要注意, 这里我们是直接对一个时间切片$t_j$下的场$\phi(\vec x, t_j)$空间分布的枚举, 这个枚举本身就是一个路径积分$\int\mathcal D\phi_j$, 所以我们有
+\begin{align}
+    \braket{\Omega, t_f|\Omega, t_i}&=N\int\mathcal D\phi_n\mathcal D\phi_{n-1}\cdots\mathcal D\phi_1\bra\Omega\exp{-i\Delta tH(t_n)}\ket{\phi_n}\notag\\
+    &\;\bra{\phi_n}\exp{-i\Delta tH(t_{n-1})}\ket{\phi_{n-1}}\cdots\bra{\phi_1}\exp{-i\Delta tH(t_i)}\ket\Omega
+\end{align}
+其中$N$为一个归一化系数.
+
+完全类似地, 我们考虑计算$\braket{\phi_{j+1}|\exp{-i\Delta tH(t_j)}|\phi_j}$的结果, 继续插入一个单位算子
+\begin{equation}
+    N\int\mathcal D\pi_j\ket{\pi_j}\bra{\pi_j}=1
+\end{equation}
+于是
+\begin{equation}
+    \braket{\phi_{j+1}|\exp{-i\Delta tH(t_j)}|\phi_j}=\int\mathcal D\pi_j\braket{\phi_{j+1}|\pi_j}\bra{\pi_j}\exp{-i\Delta tH(t_j)}\ket{\phi_j}
+\end{equation}
+这还是一个Gaussian积分, 我们可以计算得到
+\begin{equation}
+    \int\mathcal D\pi_j\braket{\phi_{j+1}|\pi_j}\bra{\pi_j}\exp{-i\Delta tH(t_j)}\ket{\phi_j}=N\exp{i\Delta t\left\{\int\d^3x\left(\frac{(\phi_{j+1}(x)-\phi_j(x))}{2\Delta t^2}-V(\phi_j)\right)\right\}}
+\end{equation}
+其中$N$还是某一归一化系数.
+
+于是我们可以得到完全类似QM中的路径积分表达式
+\begin{equation}
+    \braket{\Omega, t_f|\Omega, t_i}=N\int\mathcal D\phi\exp{iS[\phi]}
+\end{equation}
+
+然后我们考虑这个式子的含义
+\begin{equation}
+    N\int\mathcal D\phi\exp{iS[\phi]}\phi(\vec x_j, t_j)
+\end{equation}
+其中$\vec x_j, t_j$为某一个时空点.
+
+如果我们返回到路径积分的表达式中, 这也就是在切片$t_j$中插入一个$\phi(\vec x_j, t_j)$(如我们用红色高亮标出的部分)
+\begin{align}
+    N\int\mathcal D\phi\exp{iS[\phi]}\phi(\vec x_j, t_j)&=N\int\mathcal D\phi_n\mathcal D\phi_{n-1}\cdots\mathcal D\phi_1\notag\\
+    &\;\bra\Omega\exp{-i\Delta tH(t_n)}\ket{\phi_n}\bra{\phi_n}\exp{-i\Delta tH(t_{n-1})}\ket{\phi_{n-1}}\notag\\
+    &\;\cdots\textcolor{red}{\bra{\phi_{j+1}}\exp{-i\Delta tH(t_{j})}\phi_j(\vec x_j, t_j)\ket{\phi_{j}}}\cdots\bra{\phi_1}\exp{-i\Delta tH(t_i)}\ket\Omega
+\end{align}
+而这个等于
+\begin{equation}
+    \bra{\phi_{j+1}}\exp{-i\Delta tH(t_{j})}\phi(\vec x_j)\ket{\phi_{j}}
+\end{equation}
+还原到整体的表达式中即
+\begin{align}
+    N\int\mathcal D\phi\exp{iS[\phi]}\phi(\vec x_j, t_j)&=N\int\mathcal D\phi_n\mathcal D\phi_{n-1}\cdots\mathcal D\phi_1\notag\\
+    &\;\bra\Omega\exp{-i\Delta tH(t_n)}\ket{\phi_n}\bra{\phi_n}\exp{-i\Delta tH(t_{n-1})}\ket{\phi_{n-1}}\notag\\
+    &\;\cdots\textcolor{red}{\bra{\phi_{j+1}}\exp{-i\Delta tH(t_{j})}\phi(\vec x_j)\ket{\phi_{j}}}\cdots\bra{\phi_1}\exp{-i\Delta tH(t_i)}\ket\Omega\\
+    &=\bra\Omega\exp{-i\Delta tH(t_n)}\cdots\exp{-i\Delta tH(t_{j})}\phi(\vec x_j)\exp{-i\Delta tH(t_{j-1})}\cdots\exp{-i\Delta tH(t_i)}\ket\Omega\\
+    &=\bra\Omega\exp{-i(t_f-t_j)H}\phi(\vec x_j)\exp{-i(t_j-t_i)H}\ket\Omega\\
+    &=\bra\Omega\exp{-it_fH}\left(\exp{it_jH}\phi(\vec x_j)\exp{-it_jH}\right)\exp{it_iH}\ket\Omega\\
+    &=\braket{\Omega, t_f|\phi(x_j)|\Omega, t_i}
+\end{align}
+
+如果是插入两个$\phi$, 即
+\begin{equation}
+    N\int\mathcal D\phi\exp{iS[\phi]}\phi(\vec x_i, t_i)\phi(\vec x_j, t_j)
+\end{equation}
+. 与前面同理, 我们可以预料也就是在我们上面的式子中以先后顺序插入$\phi(\vec x_i), \phi(\vec x_j)$, 这样转换到最后算子的表达式中, 应当有结果
+\begin{equation}
+    N\int\mathcal D\phi\exp{iS[\phi]}\phi(\vec x_i, t_i)\phi(\vec x_j, t_j)=\braket{\Omega, t_f|\mathcal T\{\phi(x_i)\phi(x_j)\}|\Omega, t_i}
+\end{equation}
+
+而考虑归一化系数, 因为我们需要
+\begin{equation}
+    N\int\mathcal D\phi\exp{iS[\phi]}=\braket{\Omega, t_f|\Omega, t_i}=1
+\end{equation}
+所以
+\begin{equation}
+    N=\frac1{\int\mathcal D\phi\exp{iS[\phi]}}
+\end{equation}
+
+于是, 我们可以得到结论
+\begin{equation}
+    \braket{\Omega, t_f|\mathcal T\{\phi(x_1)\phi(x_2)\cdots\phi(x_n)\}|\Omega, t_i}=\frac{\int\mathcal D\phi\exp{iS[\phi]}\phi(x_1)\phi(x_2)\cdots\phi(x_n)}{\int\mathcal D\phi\exp{iS[\phi]}}
+\end{equation}
+或者记为简写形式
+\begin{equation}
+    \braket{\phi_1\phi_2\cdots\phi_n}=\frac{\int\mathcal D\phi\exp{iS[\phi]}\phi_1\phi_2\cdots\phi_n}{\int\mathcal D\phi\exp{iS[\phi]}}
+\end{equation}
+这个式子与我们通过Dyson级数得到的式\eqref{corrleation-dyson-series}非常相似, 待会我们将会看到, 它们的具体展开形式是完全一样的.
+
+所以现在我们知道通过计算路径积分, 可以直接得到真空期望. 但是留这给我们一个问题:
+\begin{equation}
+    \int\mathcal D\phi\exp{iS[\phi]}\phi_1\phi_2\cdots\phi_n=?
+\end{equation}
+
+我们可以从统计物理中获取灵感. 这个路径积分的式子与统计物理中计算物理量期望的形式极像:
+\begin{equation}
+    \braket{Q}=\frac{\int\d Q\exp{-\beta H}Q}{\int\d Q\exp{-\beta H}}
+\end{equation}
+在统计物理中我们可以引入配分函数
+\begin{equation}
+    Z=\int\d Q\exp{-\beta H'}
+\end{equation}
+其中
+\begin{equation}
+    H'=H+JQ
+\end{equation}
+于是可以写为
+\begin{equation}
+    \braket{Q}=-\frac1Z\frac{\partial Z}{\partial J}\bigg|_{J=0}
+\end{equation}
+
+那么类似地, 我们也给我们的路径积分引入配分函数
+\begin{equation}
+    Z[J]=\int\mathcal D\phi\exp{iS[\phi]+i\int\d^4xJ(x)\phi(x)}
+\end{equation}
+其中$J$为一个外加的源项, $Z$是关于$J$的泛函. 那么我们同样可以写出
+\begin{equation}
+    \braket{\phi_1\phi_2\cdots\phi_n}=\frac{(-i)^n}{Z[0]}\frac{\delta^n Z[J]}{\delta J(x_1)\delta J(x_2)\cdots\delta J(x_n)}\bigg|_{J=0}
+\end{equation}
+
+那么剩下的问题就是如何计算配分函数. 一般来说, 配分函数并不能解析计算, 我们需要引入微扰展开. 但是对于自由场, 我们是可以将其解析算出的.
+
+比如考虑实自由场
+\begin{equation}
+    \mathcal L=\frac12(\partial_\mu\phi)(\partial^\mu\phi)-\frac12m^2\phi^2=-\frac12\phi(\Box+m^2)\phi-\frac12m^2\phi^2
+\end{equation}
+
+我们定义内积
+\begin{equation}
+    \braket{f, g}:=\int\d^4x f(x)g(x)
+\end{equation}
+.
+定义算子
+\begin{equation}
+    K:=(\Box+m^2)
+\end{equation}
+. 不难发现它在我们定义的内积以及边界条件($\vec x\to\infty, \phi\to\infty, t\to\pm\infty, \partial_t\phi\to0$)下, 是自伴随的
+\begin{equation}
+    \braket{f, Kg}=\braket{Kf, g}
+\end{equation}
+
+那么$\rm{exp}$中的指数就可以写为
+\begin{equation}
+    S[\phi]+\int\d^4xJ(x)\phi(x)=-\frac12\braket{\phi, K\phi}+\braket{J, \phi}
+\end{equation}
+
+考虑配平方
+\begin{align}
+    \braket{\phi-K^{-1}J, K(\phi-K^{-1}J)}&=\braket{\phi-K^{-1}J, K\phi-J}\\
+    &=\braket{\phi, K\phi}+\braket{K^{-1}J, J}-\braket{K^{-1}J, K\phi}-\braket{\phi, J}\\
+    &=\braket{\phi, K\phi}+\braket{K^{-1}J, J}-\braket{KK^{-1}J, \phi}-\braket{\phi, J}\\
+    &=\braket{\phi, K\phi}-2\braket{\phi, J}+\braket{K^{-1}J, J}
+\end{align}
+于是我们发现
+\begin{equation}
+    S[\phi]+\int\d^4xJ(x)\phi(x)=-\frac12\braket{\phi-K^{-1}J, K(\phi-K^{-1}J)}+\frac12\braket{K^{-1}J, J}
+\end{equation}
+
+于是我们可以将配分函数写为
+\begin{align}
+    Z[J]&=\int\mathcal D\phi\exp{i\left(-\frac12\braket{\phi-K^{-1}J, K(\phi-K^{-1}J)}+\frac12\braket{K^{-1}J, J}\right)}\\
+    &=\exp{\frac i2\braket{K^{-1}J, J}}\int\mathcal D\phi\exp{i\left(-\frac12\braket{\phi-K^{-1}J, K(\phi-K^{-1}J)}\right)}
+\end{align}
+做积分换元
+\begin{equation}
+    \phi\to\phi+K^{-1}J
+\end{equation}
+则有
+\begin{align}
+    Z[J]&=\exp{\frac i2\braket{K^{-1}J, J}}\int\mathcal D\phi\exp{i\left(-\frac12\braket{\phi, K\phi}\right)}\\
+    &=Z[0]\exp{\frac i2\braket{K^{-1}J, J}}
+\end{align}
+
+而根据
+\begin{equation}
+    (\Box+m^2)D_F(x-y)=-i\delta^4(x-y)
+\end{equation}
+得
+\begin{equation}
+    (K^{-1}J)(x)=\int\d^4y iD_F(x-y)J(y)
+\end{equation}
+所以
+\begin{align}
+    Z[J]&=Z[0]\exp{-\frac12\int\d^4x\d^4y J(x)D_F(x-y)J(y)}
+\end{align}
+
+由于配分函数是无所谓前面的常数系数的, 所以最终我们可以有结论
+\begin{equation}
+    Z[J]=\exp{-\frac12\int\d^4x\d^4y J(x)D_F(x-y)J(y)}
+\end{equation}
+
+我们可以验证对$Z[J]$取变分确实有我们预期的结果
+\begin{equation}
+    \braket{\phi_1\phi_2}=(-i)^2\frac1{Z[0]}\frac{\delta^2 Z[J]}{\delta J(x_1)\delta J(x_2)}\bigg|_{J=0}=D_F(x_1-x_2)
+\end{equation}
+
+为了与接下来的相互作用理论做区分, 我们记自由场的配分函数$Z[J]$为$Z_0[J]$. 
+
+然后我们继续考虑$\phi^3$理论, 即相互作用拉氏量
+\begin{equation}
+    \mathcal L=-\frac12\phi(\Box+m^2)\phi+\frac{g}3!\phi^3
+\end{equation}
+我们可以写出配分函数
+\begin{align}
+    Z[J]&=\int\mathcal D\phi \exp{i\int d^4x[-\frac12\phi(\Box+m^2)\phi+J\phi+\frac g{3!}\phi^3]}\\
+    &=\int\mathcal D\phi \exp{i\int d^4x[-\frac12\phi(\Box+m^2)\phi+J\phi]}\exp{\frac{ig}{3!}\int d^4x\phi^3}
+\end{align}
+, 然后发现这个配分函数不能解析求解. 但是若$g\ll1$, 相互作用项可以做微扰展开, 即
+\begin{equation}
+    \exp{\frac{ig}{3!}\int d^4x\phi^3}\approx1+\frac{ig}{3!}\int\d^4x\phi^3(x)+\left(\frac{ig}{3!}\right)^2\int\d^4x\d^4y\phi^3(x)\phi^3(y)+\cdots
+\end{equation}
+于是可以微扰地计算配分函数
+\begin{align}
+    Z[J]&\approx\int\mathcal D\phi \exp{i\int d^4x[-\frac12\phi(\Box+m^2)\phi+J\phi]}\left(1+{\frac{ig}{3!}}^{}\int\d^4x\phi^3(x)\right.\notag\\
+    &\left.\;+\left(\frac{ig}{3!}\right)^2\int\d^4x\d^4y\phi^3(x)\phi^3(y)+\cdots\right)
+\end{align}
+. 可以发现, 微扰的相互作用配分函数就是自由配分函数以及对自由配分函数的配分的和, 即
+\begin{equation}
+    Z[J]\approx Z_0[J]+\frac{ig}{3!}(-i)\int\d^4x\frac{\delta^3 Z_0}{\delta J(x)^3}+\left(\frac{ig}{3!}\right)^2(-i)^2\int\d^4x\d^4y\frac{\delta^6 Z_0}{\delta J(x)^3 \delta J(y)^3}+\cdots
+\end{equation}
+.
+
+于是我们可以计算$n$点关联函数
+\begin{align}
+    \braket{\phi_1\phi_2\cdots\phi_n}&=\frac{(-i)^n}{Z[J]}\frac{\delta^n Z[J]}{\delta J(x_1)\delta J(x_2)\cdots\delta J(x_n)}\bigg|_{J=0}\\
+    &=\frac{Z_0}{Z}\frac{(-i)^n}{Z[J]}\frac{\delta^n Z_0[J]}{\delta J(x_1)\delta J(x_2)\cdots\delta J(x_n)}\bigg|_{J=0}\\
+    &=\frac{Z_0}{Z}\left[\braket{\phi_1\phi_2\cdots\phi_n}_0+\frac{ig}{3!}\int\d^4x\braket{\phi_x^3\phi_1\phi_2\cdots\phi_n}_0\right.\notag\\
+    &\;\left.+\left(\frac{ig}{3!}\right)^2\int\d^4x\d^4y\braket{\phi_x^3\phi_y^3\phi_1\phi_2\cdots\phi_n}_0+\cdots\right]
+\end{align}
+其中$\braket{\cdots}_0$表示在自由场理论下的真空期望值
+\begin{equation}
+    \braket{\phi_1\phi_2\cdots\phi_n}_0:=\braket{0|\mathcal T\{\phi_1\phi_2\cdots\phi_n\}|0}
+\end{equation}
+. 我们发现, 对于相互作用理论的微扰展开, $n$点关联函数即自由理论的关联函数以及其更高阶关联函数的积分的和.
+
+剩下的任务就是计算
+\begin{align}
+    \frac{Z}{Z_0}&=1+\frac{ig}{3!}\left(\frac{-i}{Z_0}\right)\int\d^4x\frac{\delta^3 Z_0}{\delta J(x)^3}+\left(\frac{ig}{3!}\right)^2\left(\frac{(-i)^2}{Z_0}\right)\int\d^4x\d^4y\frac{\delta^6 Z_0}{\delta J(x)^3 \delta J(y)^3}+\cdots\\
+    &=\braket{0|0}_0+\frac{ig}{3!}\int\d^4x\braket{\phi_x^3}_0+\left(\frac{ig}{3!}\right)^2\int\d^4x\d^4y\braket{\phi_x^3\phi_y^3}_0+\cdots
+\end{align}
+
+我们可以用Feynman图来表示这些项, 于是有:
+\begin{align}
+    \frac{Z}{Z_0} = 1 + 
+    % --- 第一个图 (Dumbbell) ---
+    % 修改说明：
+    % 1. inline=(a.center): 强制让顶点 a 的中心对齐文字基线
+    % 2. baseline=-2.5pt: 这是一个微调参数，让图在等号的高度上视觉居中（因为基线实际上是在文字底部）
+    \feynmandiagram [small, horizontal=a to b, inline=(a.center), baseline=-0.5ex] {
+        a -- b,
+        % 左边的圈：调整角度使其向左凸出
+        a -- [loop, min distance=1cm, out=135, in=-135] a,
+        % 右边的圈：调整角度使其向右凸出
+        b -- [loop, min distance=1cm, out=45, in=-45] b,
+    };
+    + 
+    % --- 第二个图 (Sunset) ---
+    % 这里的 inline=(a.center) 同样用于确保两端点与加号对齐
+    \feynmandiagram [small, horizontal=a to b, inline=(a.center), baseline=-0.5ex] {
+        a -- b,
+        a -- [half left] b,
+        a -- [half right] b,
+    };
+    + \cdots
+\end{align}
+, 从而将多点关联函数写为(在这里我们以两点关联函数为例)
+\begin{align}
+    \langle \phi_1 \phi_2 \rangle = \frac{
+        % --- 分子 (Numerator) ---
+        \displaystyle
+        % 1. 自由传播子 (Free Propagator)
+        \feynmandiagram [my_diagram] { a -- b };
+        + 
+        % 2. 蝌蚪图 (Tadpole)
+        \feynmandiagram [my_diagram] {
+            a -- b -- c,
+            b -- d [above=1.4cm of b], 
+            d -- [loop, min distance=0.8cm] d,
+        };
+        + 
+        % 3. 自能图/日落插入 (Self-Energy)
+        \feynmandiagram [my_diagram] {
+            a -- b -- [half left] c -- d,
+            c -- [half left] b,
+        };
+        + 
+        % 4. 离连图 1: 传播子 * 哑铃图 (Disconnected Dumbbell)
+        \feynmandiagram [my_diagram] { a -- b };
+        \; % 添加一点间距表示乘积
+        \feynmandiagram [my_diagram] {
+            a -- b,
+            a -- [loop, min distance=0.6cm, out=135, in=-135] a,
+            b -- [loop, min distance=0.6cm, out=45, in=-45] b,
+            a --[draw=none] z --[draw=none] b, % 辅助对齐
+        };
+        + 
+        % 5. 离连图 2: 传播子 * 日落图 (Disconnected Sunset)
+        \feynmandiagram [my_diagram] { a -- b };
+        \; 
+        \feynmandiagram [my_diagram] {
+            a -- b,
+            a -- [half left] b,
+            a -- [half right] b,
+        };
+        + \cdots
+    }{
+        % --- 分母 (Denominator) ---
+        \displaystyle
+        1 + 
+        % 分母图 1: 日落图 (Sunset)
+        \feynmandiagram [my_diagram] {
+            a -- b,
+            a -- [half left] b,
+            a -- [half right] b,
+        };
+        + 
+        % 分母图 2: 哑铃图 (Dumbbell)
+        \feynmandiagram [my_diagram] {
+            a -- b,
+            a -- [loop, min distance=0.6cm, out=135, in=-135] a,
+            b -- [loop, min distance=0.6cm, out=45, in=-45] b,
+            a --[draw=none] z --[draw=none] b,
+        };
+        + \cdots
+    }
+\end{align}
+注意到, 如果我们将分母展开, 我们可以将所有与真空图乘积的图抵消掉, 于是有最终结果
+\begin{align}
+    \langle \phi_1 \phi_2 \rangle = \feynmandiagram [my_diagram] { a -- b };
+        + 
+        \feynmandiagram [my_diagram] {
+            a -- b -- c,
+            b -- d [above=1.4cm of b], 
+            d -- [loop, min distance=0.8cm] d,
+        };
+        + 
+        \feynmandiagram [my_diagram] {
+            a -- b -- [half left] c -- d,
+            c -- [half left] b,
+        };
+        + 
+        \feynmandiagram [my_diagram] {
+            a -- b -- [loop, min distance=0.6cm, out=45, in=-45] b,
+        };
+        \;
+        \feynmandiagram [my_diagram] {
+            a -- b,
+            a -- [loop, min distance=0.6cm, out=135, in=-135] a,
+        };
+        +\cdots
+\end{align}
+注意到, 如果我们将分母展开, 我们可以将所有与真空图乘积的图抵消掉, 于是有最终结果
+\begin{align}
+    \braket{\phi_1\phi_2} = \feynmandiagram [my_diagram] { a -- b };
+        + 
+        \feynmandiagram [my_diagram] {
+            a -- b -- c,
+            b -- d [above=1.4cm of b], 
+            d -- [loop, min distance=0.8cm] d,
+        };
+        + 
+        \feynmandiagram [my_diagram] {
+            a -- b -- [half left] c -- d,
+            c -- [half left] b,
+        };
+        + 
+        \feynmandiagram [my_diagram] {
+            a -- b -- [loop, min distance=0.6cm, out=45, in=-45] b,
+        };
+        \;
+        \feynmandiagram [my_diagram] {
+            a -- b,
+            a -- [loop, min distance=0.6cm, out=135, in=-135] a,
+        };
+        +\cdots
+\end{align}
+
+可以发现, 在这里我们的具体展开与推导都和Dyson级数的推导方式完全一样. 至此为止, 三种处理相互作用体系的微扰方法: Schwinger-Dyson定理, Dyson级数以及路径积分我们都介绍完毕了, 从最终的结果上看, 它们都殊途同归, 得到了完全一致的结果.
+
+\subsection{路径积分在统计物理中的应用}
+在上节中我们看到, 路径积分具有和和统计物理配分函数完全类似的形式, 更确切地说, 其实从本质上来说, 对于相互作用体系, 统计物理的微扰处理方法和路径积分的做法完全是一样的, 只是将$iS$替换为了$-\beta H$罢了, 本质上都是对一个场的路径积分. 于是在这里, 我想给出两个统计物理中的例子\cite{SchroederClusterExpansion}\cite{LiuChuanIsing}, 用来说明路径积分在统计物理中处理相互作用体系的作用, 并给出完全类似的Feynman规则.
+\subsubsection{弱相互作用气体}
+
+\subsubsection{铁磁Ising模型的Landau自由能模型}

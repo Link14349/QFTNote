@@ -30,6 +30,39 @@
         % /tikz/dot/minimum size=4pt, % 可选：调整点的大小 (默认值通常是 4pt 左右)
     }
 }
+\tikzset{
+    scalar arrow/.style={
+        dashed, % 虚线
+        postaction={decorate}, % 允许装饰
+        decoration={
+            markings,
+            % 使用实心的 'stealth' 箭头，并设置其长度和宽度
+            mark=at position 0.5 with {\arrow[scale=1.5]{Stealth}} 
+            % 或者使用更通用的 latex 箭头并加大 scale:
+            % mark=at position 0.5 with {\arrow[scale=1.5]{latex}} 
+        }
+    }
+}
+\tikzset{
+    % 定义动量箭头样式
+    my momentum arrow/.style={
+        % 使用 postaction 来在线条绘制完成后再执行一个动作
+        postaction={
+            decorate,
+            decoration={
+                markings,
+                mark=at position 0.5 with {\arrow{>}}, % 在中点放置一个箭头
+            },
+        },
+        draw=none, % 不绘制线本身，只绘制箭头
+    },
+    % 动量标签位置调整
+    momentum label/.style={
+        sloped, % 让标签与路径平行
+        above,  % 标签在线的上方
+        yshift=2mm, % 垂直微调
+    }
+}
 
 \usetikzlibrary{calc}
 \usetikzlibrary{arrows.meta}

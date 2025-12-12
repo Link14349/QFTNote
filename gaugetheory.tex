@@ -1,5 +1,5 @@
-\section{电磁场}
-\subsection{重电磁场(Massive)}
+\section{矢量场}
+\subsection{有质量矢量场(Massive)}
 我们有拉格朗日量
 \begin{equation}
     \mathcal L=-\frac14 F_{\mu\nu}F^{\mu\nu}+\frac12 m^2 A_\mu A^\mu
@@ -89,46 +89,38 @@
     &=\int\ddd p\om p\sum_\lambda\left(a^\dagger_{\lambda\vec p}a_{\lambda\vec p}+\frac12\mathcal V\right)
 \end{align}
 
-(感兴趣的可以见图\ref{fig:massiveEDQ}的手动具体计算过程)
+% (感兴趣的可以见图\ref{fig:massiveEDQ}的手动具体计算过程)
 
-\begin{figure}[htbp!]
-    \centering
-    \includegraphics[width=0.8\textwidth]{image/massiveEM1.jpg}
-    \includegraphics[width=0.8\textwidth]{image/massiveEM2.jpg}
-    \caption{手算过程}
-    \label{fig:massiveEDQ}
-\end{figure}
+% \begin{figure}[htbp!]
+%     \centering
+%     \includegraphics[width=0.8\textwidth]{image/massiveEM1.jpg}
+%     \includegraphics[width=0.8\textwidth]{image/massiveEM2.jpg}
+%     \caption{手算过程}
+%     \label{fig:massiveEDQ}
+% \end{figure}
 
-写出$H$后, 我们尝试通过计算其Green函数继而得到重电磁场传播子. 
-
-在傅里叶空间, 我们有方程:
+然后我们计算它的传播子, 根据
+\begin{align}
+    \braket{0|A^\mu(x)A^\nu(y)|0}&=\int\ld p\exp{-ip(x-y)}\left(\sum_\lambda^3\epsilon^\mu_\lambda\epsilon^\nu_\lambda\right)\\
+    &=\int\ld p\exp{-ip(x-y)}\left(-g^{\mu\nu}+p^\mu p^\nu/p^2\right)
+\end{align}
+注意到, 此时$p$还是on shell的, 因此$p^2=m^2$, 从而有
 \begin{equation}
-    (-p^2+m^2)g_{\mu\nu}\tilde{A}^\mu=\tilde{J}_\nu
+    \braket{0|A^\mu(x)A^\nu(y)|0}=\int\ld p\exp{-ip(x-y)}\left(-g^{\mu\nu}+p^\mu p^\nu/m^2\right)
 \end{equation}
-
-于是
+从而不难计算得到
 \begin{equation}
-    \tilde{A}^\mu=\frac{-g^{\mu\nu}}{p^2-m^2} \tilde{J}_\nu=\frac{-g^{\mu\nu}}{p^2-m^2}\int d^4y J_\nu\exp{ipy}
+    \braket{0|\mathcal TA_\mu(x)A_\nu(y)|0}=\int\dddd p\exp{-ip(x-y)}\frac{-i(g_\mu\nu-p_\mu p_\nu/m^2)}{p^2-m^2+i\epsilon}.
 \end{equation}
-
-最终我们得到:
-\begin{equation}
-    A^\mu=\int\dddd p\tilde{A}^\mu\exp{-ipx}=\int\d^4y\left(\int\dddd p\frac{-g^{\mu\nu}}{p^2-m^2}\exp{-ip(x-y)}\right)J_\nu
-\end{equation}
-
-于是有Green函数:
-\begin{equation}
-    G_{\mu\nu}(x-y)=\int\dddd p\frac{-g^{\mu\nu}}{p^2-m^2}\exp{-ip(x-y)}
-\end{equation}
-
 因此传播子为:
 \begin{equation}
-    \frac{-ig_{\mu\nu}}{p^2-m^2+i\epsilon}
+    \frac{-i(g_{\mu\nu}-p_\mu p_\nu/m^2)}{p^2-m^2+i\epsilon}
 \end{equation}
 
-\subsection{电磁场(Massless)}
+\subsection{无质量的规范矢量场: 电磁场(Massless)}
 为了得到电磁场的二次量子化结果, 自然的想法就是对电磁场取$m\rightarrow0$的结果. 然而这会面临一个问题: 电磁场的$A^\mu$具有规范不变性, 即$A^\mu\rightarrow A^\mu+\partial^\mu\Lambda$不改变其物理意义, 进过规范变换$\partial_\mu A^\mu$也不一定为0. 这使得我们对电磁场的描述存在冗余自由度, 这的一个直接结果就是电磁场只有两个极化方向而不是重电磁场的三个. 
 
+\subsubsection{Lorentz规范}
 于是, 为了能够正确得处理自由度, 消除冗余, 我们引入Lorenz规范:
 \begin{equation}
     \nabla_\mu A^\mu=0
@@ -188,7 +180,7 @@
 \end{align}
 \songti
 
-接着下一个任务就是给出光子的传播子了. 我们从EoM开始:
+接着下一个任务就是给出光子的传播子了. 如果不做规范选取, 我们从EoM开始:
 \begin{equation}
     (g_{\mu\nu}\partial^2-\partial_\mu\partial_\nu)A^\nu=J_\mu
 \end{equation}
@@ -202,7 +194,35 @@
 
 然而不难发现, $-p^2g_{\mu\nu}+p_\mu p_\nu$是奇异的: $g_\mu\nu-\frac{p_\mu p_\nu}{p^2}$就是在度规张量在类光面上的诱导度规, 它的秩仅有2, 根本不可能找到逆.
 
-一个自然的想法是, 引入一个参数$\xi$来使得它有逆, 即:
+这个原因在于电磁场具有规范冗余, 而规范冗余会导致这个矩阵奇异. 因此我们需要做规范的选取. 最直接的想法就是我们在Lorentz规范下计算传播子. 那么我们首先需要计算
+\begin{equation}
+    \braket{0|A_i(x)A_j(y)|0}=\int\ld p\sum_s\epsilon_{si}(\vec p)\epsilon_{sj}(\vec p)\exp{-ip(x-y)}, 
+\end{equation}
+根据$\epsilon_i p^i=0$, 我们有
+\begin{equation}
+    \sum_s\epsilon_{si}(\vec p)\epsilon_{sj}(\vec p)=\delta_{ij}+\frac{p_ip_j}{\vec p^2}=-g_{ij}++\frac{p_ip_j}{\vec p^2}, 
+\end{equation}
+于是
+\begin{equation}
+    \braket{0|A_i(x)A_j(y)|0}=\int\ld p\left(g_{ij}+\frac{p_ip_j}{\vec p^2}\right)\exp{-ip(x-y)}.
+\end{equation}
+所以
+\begin{equation}
+    \Theta(t_x-t_y)\braket{0|A_i(x)A_j(y)|0}=\int i\dddd p\frac{\exp{-ip(x-y)}}{2|\vec p|(\omega-|\vec p|+i\epsilon)}\left(-g_{ij}+\frac{p_ip_j}{|\vec p|^2}\right)
+\end{equation}
+于是有Feynman传播子(但是并非下小节的Feynman规范的传播子)
+\begin{align}
+    \braket{0|\mathcal TA_i(x)A_j(y)|0}&=\int\dddd p\frac{-i(g_{ij}-p_i p_j/|\vec p|^2)}{p^2+i\epsilon}\exp{-ip(x-y)}
+\end{align}
+, 并且还有
+\begin{align}
+    \braket{0|\mathcal TA_0(x)A_\mu(y)|0}=\braket{0|\mathcal TA_\mu(x)A_0(y)|0}=0.
+\end{align}
+
+这个传播子实在有点丑, 而且很不方便. 这一问题来源于Lorentz规范下$A^0$并没有动力学, 这导致我们的传播子没有$00, 0i, i0$元素. 同时电磁场是没有纵模的, 只有横模的两个极化方向, 这导致传播子中需要将纵模剔除, 这导致$g_{ij}+p_ip_j/|\vec p|^2$中第二项的出现. 尽管理论上来说我们完全可以在Lorentz规范下进行计算, 但一般情况下我们并不希望使用这么复杂的传播子, 因此我们试图寻找一种新的规范固定方式, 使得其传播子拥有一个简洁的形式.
+
+\subsubsection{$\xi$规范}
+我们希望我们的传播子能够更加漂亮且方便, 我们引入一个所谓的$\xi$规范来进行规范固定(注意, 规范固定Gauge Fixing和规范条件Gauge Condition并不是一个概念, 我们上面的Lorentz规范是一个规范条件, 它用一个额外的方程强行约束了$A$, 但是接下来我们会看到, 规范固定采取一种不同的做法). 我们的Motivation是引入一个参数$\xi$来使得它有逆, 即:
 \begin{equation}
     (-p^2g_{\mu\nu}+p_\mu p_\nu)\to(-p^2g_{\mu\nu}+(1-\frac1\xi)p_\mu p_\nu)
 \end{equation}
@@ -217,20 +237,15 @@
     (g_{\mu\nu}\partial^2-(1-\frac1\xi)\partial_\mu\partial_\nu)A^\nu=J_\mu
 \end{equation}
 
-\kaishu
-这里我仍然不理解为什么规范变换可以改变EoM...
-\songti
-
 为了得到这样的EoM, 我们可以在拉氏量中加入一个规范项:
 \begin{equation}
-    \mathcal L=-\frac14F^2-J_\mu A^\mu-\frac1{2\xi}(\partial_\mu A^\mu)^2
+    \mathcal L=-\frac14F^2-J_\mu A^\mu-\frac1{2\xi}(\partial_\mu A^\mu)^2, 
 \end{equation}
-
-这样子就能得到要求的EoM, 并且注意到, 做规范变换$A'^\mu=A^\mu+\partial_\mu$, 其中
+从而得到我们想要的EoM. 并且注意到, 做规范变换$A'^\mu=A^\mu+\partial^\mu\Lambda$, 其中
 \begin{equation}
     \partial^2\partial_\nu\Lambda=\frac{\xi'-\xi}{\xi}\partial_\nu\partial_\mu A^\mu
 \end{equation}
-或者也可以写成
+或者写成
 \begin{equation}
     \partial^2\partial_\nu\Lambda=\frac{\xi'-\xi}{\xi'}\partial_\nu\partial_\mu A'^\mu
 \end{equation}
@@ -238,25 +253,57 @@ $A'^\mu$的EoM就变成:
 \begin{equation}
     (g_{\mu\nu}\partial^2+(\frac1{\xi'}-1)\partial_\mu\partial_\nu)A'^\mu=J_\nu
 \end{equation}
+这说明$\xi$的不同取值其实就对应不同的规范.
 
-由此可见, $\xi$的不同取值其实就对应不同的规范, 并且Lorenz规范就是$\xi=0$: 这时$\frac1\xi$变为无穷大, 为了满足EoM, 我们必须要求$\partial_\mu A^\mu=0$
+\kaishu
+这里我们会质疑, 规范变换不应当改变EoM, 为什么$\xi$规范会改变EoM? 我们可以证明, $\xi$规范带来的额外非物理贡献在涉及计算具体物理量, 比如$S$矩阵时是可以严格消掉的. (具体证明待续)
 
-于是, 这样我们就可以得到Green函数:
+进一步的理解就是, 这里的规范固定后的场已经不是我们经典意义下的电磁场了: 显而易见, 它的动力学和经典电磁场完全不同, 它并不是Maxwell方程所描述的电磁场. 我们回到经典情况下考虑, 这个$\xi$"规范"下电磁场的EoM为
+\begin{align}
+    \nabla\cdot\vec E=-\rho-\frac1\xi\partial_t\left(\partial_t A^0+\nabla\cdot\vec A\right)\\
+    \nabla\times\vec B-\partial_t\vec E=\vec J+\frac1\xi\nabla\left(\partial_t A^0+\nabla\cdot\vec A\right)
+\end{align}
+无源的两个Maxwell仍然满足:
+\begin{align}
+    \nabla\times\vec E+\partial_t\vec B=0\\
+    \nabla\cdot\vec B=0
+\end{align}
+粒子的受力仍然为
+\begin{equation}
+    \vec F=q(\vec E+\vec v\times\vec B).
+\end{equation}
+
+有源的两个方程组的修改导致$\vec E, \vec B$显然完全不是经典电磁场的值. 所以说经过这么一个规范固定过程, 我们相当于找到了一个并不满足经典电磁场运动学, 但是能够保持$S$矩阵不变的"辅助场", 在某个确定$\xi$的Lagrangian下, 它就是一个不具有规范不变性的场: 没有Lorentz规范之类的规范条件强行约束. 它不具有规范冗余, 单纯的一个EoM
+\begin{equation}
+    (g_{\mu\nu}\partial^2-(1-\frac1\xi)\partial_\mu\partial_\nu)A^\nu=0
+\end{equation}
+就足以描述它的全部动力学性质.
+\songti
+
+% 我们将EoM改写为
+% \begin{equation}
+%     \partial_\mu F^{\mu\nu}+\frac1\xi\partial^\nu\partial_\mu A^\mu=0,
+% \end{equation}
+% 利用$F^{\mu\nu}$的反称性, 对等式施加$\partial_\nu$, 我们有
+% \begin{equation}
+%     (\partial^2)\partial_\mu A^\mu=0.
+% \end{equation}
+% 在动量空间可以写为
+% \begin{equation}
+%     p^2 p\cdot A=0, 
+% \end{equation}
+
+% 由此可见, $\xi$的不同取值其实就对应不同的规范, 在不同规范下传播子是不同的:
+% % 并且Lorenz规范就是$\xi=0$: 这时$\frac1\xi$变为无穷大, 为了满足EoM, 我们必须要求$\partial_\mu A^\mu=0$
+我们直接写出Green函数
 \begin{equation}
     G_{\mu\nu}(x-y)=\int\dddd p\left(-\frac{g_{\mu\nu}+(\xi-1)p_\mu p_\nu/p^2}{p^2}\right)\exp{-ip(x-y)}
 \end{equation}
-
 从而得到光子传播子:
 \begin{equation}
     \frac{-i(g_{\mu\nu}+(\xi-1)p_\mu p_\nu/p^2)}{p^2+i\epsilon}
 \end{equation}
-
-所以说, 对于Lorenz规范, $\xi=0$, 传播子为:
-\begin{equation}
-    \frac{-i(g_{\mu\nu}-p_\mu p_\nu/p^2)}{p^2+i\epsilon}
-\end{equation}
-
-在这里我们介绍一个更为常见并且简单的规范: Feynman规范, 它的$\xi=1$, 于是在Feynman规范下, 传播子为:
+取$\xi=1$, 就是Feynman规范, 得到其传播子
 \begin{equation}
     \frac{-ig_{\mu\nu}}{p^2+i\epsilon}
 \end{equation}
@@ -312,9 +359,162 @@ $A'^\mu$的EoM就变成:
     &=i(\psi\partial^\nu\psi^*-\psi^*\partial^\nu\psi-2e\psi\psi^*A^\nu)
 \end{align}
 
-于是, 就从对规范不变性的追求中, 我们得到了标量QED.
+于是, 就从对规范不变性的追求中, 我们得到了标量QED. 
 
 \subsection{标量QED的Feynman规则}
+我们不难写出Dyson级数
+\begin{align}
+    \braket{0|\mathcal T\exp{-i\int\d^4x H_I'}|0}&=\braket{0|\mathcal T\exp{-e\int\d^4xA_\mu\left(\psi\partial^\mu\psi^\dagger-\psi^\dagger\partial^\mu\psi-ie\psi^\dagger\psi A^\mu\right)}|0}\\
+    &=1-e\int\d^4xA_\mu\left(\psi\partial^\mu\psi^\dagger-\psi^\dagger\partial^\mu\psi-ie\psi^\dagger\psi A^\mu\right)+\cdots
+\end{align}
+
+这里主要的难点在于这个$\partial_\mu\psi, \partial_\mu\psi^\dagger$怎么处理. 我们可以首先将$\partial_\mu$提出缩并外, 考虑到
+\begin{equation}
+    \braket{0|\mathcal T\psi_x\psi_y^\dagger|0}=\int\dddd p\frac{i}{p^2-m^2+i\epsilon}\exp{-ip(x-y)}
+\end{equation}
+所以说$\partial_\mu\psi$就相当于一个$-ip_\mu\psi$, $\partial_\mu\psi^\dagger$就相当于$ip_\mu\psi^\dagger$, 我们可以将$p_\mu$给放在相互作用顶点中, 于是我们可以总结Feynman规则
+\begin{enumerate}
+    \item 复标量传播子
+    $$
+        \begin{tikzpicture}[baseline=(current bounding box.center)]
+            \begin{feynman}
+                \vertex (a);
+                \vertex [right=2cm of a] (b);
+                \diagram* {
+                    % dashed, arrow=... 添加了方向箭头
+                    (a) -- [scalar arrow, momentum'=\(p\)] (b),
+                };
+            \end{feynman}
+        \end{tikzpicture}
+        = \frac{i}{p^2 - m^2 + i\epsilon}
+    $$
+    \item 光子传播子
+    $$
+        \begin{tikzpicture}[baseline=(current bounding box.center)]
+            \begin{feynman}
+                \vertex (a) {\(\mu\)};
+                \vertex [right=2cm of a] (b) {\(\nu\)};
+                \diagram* {
+                    (a) -- [photon, momentum'=\(p\)] (b),
+                };
+            \end{feynman}
+        \end{tikzpicture}
+        = \frac{-i g_{\mu\nu}}{p^2 + i\epsilon}
+    $$
+    \item 标量-光子三点顶角
+    $$
+        \begin{tikzpicture}[baseline=(current bounding box.center)]
+            \begin{feynman}
+                \vertex (a);
+                \vertex [above right=1.5cm of a] (b); % 出射标量 p'
+                \vertex [below right=1.5cm of a] (c); % 入射标量 p
+                \vertex [left=1.5cm of a] (d) {\(\mu\)}; % 光子
+                \diagram* {
+                    % 注意箭头的方向：从 c 到 a，从 a 到 b
+                    (c) -- [scalar arrow, momentum=\(p\)] (a),
+                    (a) -- [scalar arrow, momentum'=\(p'\)] (b),
+                    (a) -- [photon] (d),
+                };
+            \end{feynman}
+        \end{tikzpicture}
+        = -ie(p+p')^\mu
+    $$
+    \item 标量-双光子四点顶角
+    $$
+        \begin{tikzpicture}[baseline=(current bounding box.center)]
+            \begin{feynman}
+                \vertex (a);
+                \vertex [above left=1.5cm of a] (b) {\(\mu\)};
+                \vertex [below left=1.5cm of a] (c) {\(\nu\)};
+                \vertex [above right=1.5cm of a] (d);
+                \vertex [below right=1.5cm of a] (e);
+                \diagram* {
+                    (b) -- [photon] (a),
+                    (c) -- [photon] (a),
+                    % 标量线箭头流向一致 (例如，从 e 到 a，从 a 到 d)
+                    (e) -- [scalar arrow] (a), 
+                    (a) -- [scalar arrow] (d),
+                };
+            \end{feynman}
+        \end{tikzpicture}
+        = 2ie^2 g^{\mu\nu}
+    $$
+\end{enumerate}
+
+对于所有外线都有对应的因子:
+\begin{itemize}
+    \item 入射光子 (${\gamma}$): $\epsilon^\mu(p, \lambda)$
+    \item 出射光子 (${\gamma}$): $\epsilon^{\mu*}(p, \lambda)$
+    \item 其他复标量粒子: $1$
+\end{itemize}
+
+这里有一个suble的点就是有关三点顶角中$p^\mu$还是$-p^\mu$的问题, 我们在这里标动量方向的时候都是保持和粒子流的方向一致的, 这样子导致$p, p'$都是正号. 但是如果我们的$p$在图中标的方向和粒子流相反, 也就是说我们在我们的复标量传播子
+$$
+    \braket{0|\mathcal \psi_1\psi_2^\dagger|0}=\int\dddd p\frac{i}{p^2-m^2+i\epsilon}\exp{-ip(x_1-x_2)}
+$$
+中做了个$p\to-p$换元, 得到
+$$
+    \braket{0|\mathcal \psi_1\psi_2^\dagger|0}=\int\dddd p\frac{i}{p^2-m^2+i\epsilon}\exp{ip(x_1-x_2)}
+$$
+这会导致$\partial_\mu$的作用多了个$-$号, 于是就从$+ip_\mu$变成了$-ip_\mu$, 从而顶角变成
+\begin{equation}
+    -ie(p-p')^\mu
+\end{equation}
+
+然后我们可以计算几个散射的例子作为尝试.
+\begin{example}[pion散射]
+    $\pi^+, \pi^-$是一对spin0的复标量粒子, 我们考虑散射
+    $$
+        \pi^+(p)\pi^-(p')\to\pi^+(k)\pi^-(k').
+    $$
+    计算到树图阶, 不难发现散射有s-channel以及t-channel, 我们直接计算有
+    \begin{align}
+        \begin{tikzpicture}[baseline=(current bounding box.center)]
+            \begin{feynman}
+                \vertex (a);
+                \vertex [right=1.5cm of a] (b);
+                \vertex [above left=1.5cm of a] (ipion);
+                \vertex [below left=1.5cm of a] (iantipion);
+                \vertex [above right=1.5cm of b] (opion);
+                \vertex [below right=1.5cm of b] (oantipion);
+                \diagram* {
+                    (a) -- [photon] (b),
+                    (ipion) -- [scalar arrow] (a),
+                    (a) -- [scalar arrow] (iantipion),
+                    (b) -- [scalar arrow] (opion),
+                    (oantipion) -- [scalar arrow] (b),
+                };
+            \end{feynman}
+        \end{tikzpicture}&=(-ie)^2(p-p')^\mu(k-k')^\nu\frac{-ig_\mu\nu}{(p+p')^2}=ie^2\frac{u-t}{s}
+    \end{align}
+    \begin{align}
+        \begin{tikzpicture}[baseline=(current bounding box.center)]
+            \begin{feynman}
+                \vertex (a);
+                \vertex [below=1.5cm of a] (b);
+                \vertex [above left=1.5cm of a] (ipion);
+                \vertex [above right=1.5cm of a] (opion);
+                \vertex [below left=1.5cm of b] (iantipion);
+                \vertex [below right=1.5cm of b] (oantipion);
+                \diagram* {
+                    (a) -- [photon] (b),
+                    (ipion) -- [scalar arrow] (a),
+                    (a) -- [scalar arrow] (opion),
+                    (b) -- [scalar arrow] (oantipion),
+                    (iantipion) -- [scalar arrow] (b),
+                };
+            \end{feynman}
+        \end{tikzpicture}&=-(-ie)^2(p+k)^\mu(p'+k')^\nu\frac{-ig_\mu\nu}{(p-k')^2}=ie^2\frac{u-s}{t}
+    \end{align}
+    于是有总振幅
+    \begin{equation}
+        \mathcal M=e^2\left(\frac{u-t}s+\frac{u-s}t\right)
+    \end{equation}
+    从而计算得到质心系中的散射截面
+    \begin{equation}
+        \left(\frac{\d\sigma}{\d\Omega}\right)_{CM}=\frac{e^4}{64\pi^2E_{CM}|\vec p_i|}\left(\frac{u-t}s+\frac{u-s}t\right)^2
+    \end{equation}
+\end{example}
 
 \newpage
 
@@ -1066,7 +1266,33 @@ $A'^\mu$的EoM就变成:
     \end{align}
 \end{proof}
 
+关于$\gamma$矩阵乘积的迹, 我们还有如下定理\cite{griffthsClifford}
+\begin{theorem}[$\gamma$乘积迹定理]
+    对于奇数个$\gamma$乘积
+    \begin{equation}
+        \rm{Tr}(\gamma^{\mu_1}\gamma^{\mu_2}\cdots\gamma^{\mu_{2n-1}})=0
+    \end{equation}
+    对于偶数个$\gamma$乘积, 我们有
+    \begin{align}
+        &\rm{Tr}(\gamma^\mu\gamma^\nu)=4g^{\mu\nu}\\
+        &\rm{Tr}(\gamma^\mu\gamma^\nu\gamma^\lambda\gamma^\sigma)=4(g^{\mu\nu}g^{\lambda\sigma}+g^{\mu\sigma}g^{\lambda\nu}-g^{\mu\lambda}g^{\nu\sigma})\\
+        &\cdots\notag
+    \end{align}
+\end{theorem}
+
+特别地, 如果$\gamma$乘积后最外侧的左右两个$\gamma$指标缩并, 即如$\gamma^\mu\gamma^\nu\gamma_\mu$, 我们有
+\begin{theorem}[$\gamma$缩并定理]
+    \begin{align}
+        &\gamma_\mu\gamma^\mu=4\\
+        &\gamma_\mu\gamma^\nu\gamma^\mu=-2\gamma^\nu\\
+        &\gamma_\mu\gamma^\nu\gamma^\nu\gamma^\mu=4g^{\nu\lambda}\\
+        &\gamma_\mu\gamma^{\nu}\gamma^\lambda\gamma^\sigma\gamma^\mu=-2\gamma^\sigma\gamma^\lambda\gamma^\nu\\
+        &\cdots\notag
+    \end{align}
+\end{theorem}
+
 \subsection{Dirac旋量的二次量子化\label{2ndq-dirac}}
+\subsubsection{旋量运动方程}
 首先是第一步, 解EoM. 设在Weyl基底下一个一般的解为$(\psi_L \psi_R)^T$, 于是EoM可以写为
 \begin{equation}
     \begin{pmatrix}
@@ -1104,8 +1330,9 @@ $A'^\mu$的EoM就变成:
 
 可见, $\psi_R, \psi_L$分别是螺旋度的本征矢. 这里螺旋度的物理意义就是, 自旋指向和运动方向的夹角. 在这里我们发现, Weyl旋量的左右手其实分别就是自旋方向和运动方向分别是左手螺旋和右手螺旋的关系.
 
-我们一般认为中微子的$m\approx0$, 所以中微子是具有固定的手型. 由于我们世界Parity的破缺, 导致自然界中其实基本上只存在左手中微子.
+我们一般认为中微子的$m\approx0$, 所以中微子是具有固定的手性. 由于我们世界Parity的破缺, 导致自然界中其实基本上只存在左手中微子.
 
+\subsubsection{旋量的极化}
 一般性的讨论结束, 我们开始从EoM中寻求可以拿来正则量子化的解. 设正能解$\psi=u^s\exp{-ipx}$, 负能解$\psi=v^s\exp{ipx}$
 
 对于$u^s$
@@ -1288,7 +1515,7 @@ $A'^\mu$的EoM就变成:
 
 对定理\ref{ugammau-contraction}取$p'=p$, 就有
 \begin{equation}
-    \bar u^s(\vec p)\gamma^\mu u_{s'}(\vec p)=2p^\mu\delta_{ss'}
+    \bar u^s(\vec p)\gamma^\mu u_{s'}(\vec p)=2p^\mu\delta_{ss'}\label{gamma-p-p-contraction}
 \end{equation}
 \begin{equation}
     \bar v^s(\vec p)\gamma^\mu v_{s'}(\vec p)=2p^\mu\delta_{ss'}
@@ -1304,6 +1531,7 @@ $A'^\mu$的EoM就变成:
     \end{equation}
 \end{theorem}
 
+\subsubsection{反对易的二次量子化与关联函数}
 关于$u, v$性质的讨论告一段落. 接下来由于涉及到对易子的问题, 为了能够区分对易子的乘法顺序以及做乘法的方式(内积还是外积), 我们对$\gamma, \psi$引入指标:
 \begin{align}
     &\psi\to\psi_A\\
@@ -1318,33 +1546,217 @@ $A'^\mu$的EoM就变成:
     &\psi\bar\psi\to\psi_A\bar\psi^B=\bar\psi^B\psi_A
 \end{align}
 
-于是我们开始将Dirac场量子化
+首先对$\mathcal L$做Legdren变换, 注意到$\mathcal L$中只有$\partial_0\psi$而没有$\partial_0\psi^\dagger$, 因此我们只需要定义
+\begin{equation}
+    \pi=\pa{\mathcal L}{\partial_0\psi}=i\bar\psi\gamma^0=i\psi^\dagger
+\end{equation}
+而不需要定义共轭动量(注意$\pi^{(\dagger)}$是指$\psi^\dagger$的正则动量, 而不是正则动量$\pi$的共轭, 即$\pi^{(\dagger)}\neq\pi^\dagger$)
+\begin{equation}
+    \pi^{(\dagger)}=\pa{\mathcal L}{\partial_0\psi^\dagger}=0
+\end{equation}
+, 从而
+\begin{align}
+    \mathcal H&=\pi\partial_0\psi-\mathcal L=\bar\psi(m-i\gamma^i\partial_i)\psi.
+\end{align}
+
+引入$\a p, \b p$, 我们可以将Dirac场量子化
 \begin{align}
     &\psi_A=\int\ldsq{p}\sum_s(u^s_A\a{p}^s\exp{-ipx}+v^{s}_A\b{p}^{s\dagger}\exp{ipx})\\
-    &\bar\psi^A=\int\ldsq{p}\sum_s(\bar u^{sA}\a{p}^{s\dagger}\exp{ipx}+\bar v^{sA}\b{p}^{s}\exp{-ipx})
+    &\bar\psi^A=\int\ldsq{p}\sum_s(\bar u^{sA}\a{p}^{s\dagger}\exp{ipx}+\bar v^{sA}\b{p}^{s}\exp{-ipx}).
 \end{align}
 
-然后我们尝试计算两点关联函数
+我们可以计算得到
 \begin{align}
-    \braket{0|\psi_A(y)\bar\psi^B(x)|0}&=\int\ld{p}\frac{\slashed p_A^{~~B}+m}{2\om p}\exp{ip(x-y)}\\
-    &=(-i\slashed\partial_A^{~~B}+m)\int\ld p\exp{ip(x-y)}
+    m\int\d^3x\bar\psi_x\psi_x&=\int\d^3x\int\ldsq p\sum_s\left(\bar u^s\a p^{s\dagger}\exp{ipx}+\bar v^s\b p^s\exp{-ipx}\right)\notag\\
+    &\;\;\int\ldsq q\sum_{s'}\left(u^{s'}\a q^{s'}\exp{-iqx}+v^{s'}\b q^{s'\dagger}\exp{iqx}\right)\\
+    &=\int\ddd p\frac{m^2}{\om p}\sum_s\left(\a p^\dagger\a p-\b p\b p^\dagger\right)
 \end{align}
+以及
 \begin{align}
-    \braket{0|\bar\psi^B(x)\psi_A(y)|0}&=\int\ld{p}\frac{\slashed p_A^{~~B}-m}{2\om p}\exp{ip(x-y)}\\
-    &=(i\slashed\partial_A^{~~B}-m)\int\ld p\exp{-ip(x-y)}
+    \int\d^3x\bar\psi(-i\gamma^i\partial_i)\psi&=\int\d^3x\ldsq q\sum_s\left(\bar u^s\a q^{s\dagger}\exp{iqx}+\bar v^s\b q^s\exp{-iqx}\right)\notag\\
+    &\;\;\int\ldsq p[\gamma^ip_i]\sum_{s'}\left(-u^{s'}\a p\exp{-ipx}+v^{s'}\b p^{s'\dagger}\exp{ipx}\right)\\
+    &=\int\ld p\sum_{ss'}\left(-\bar u^s\gamma^ip_i u^{s'}\a p^{s\dagger}\a p^{s'}+\bar v^s\gamma^ip_iv^{s'}\b p^s\b p^{s'\dagger}\right)
 \end{align}
-
-考虑Fermion的反交换性, 我们定义
+利用式\eqref{gamma-p-p-contraction}, 我们有
+\begin{align}
+    \bar u^s\gamma^ip_i u^{s'}&=-2\vec p^2\delta_{ss'}\\
+    \bar v^s\gamma^ip_i v^{s'}&=-2\vec p^2\delta_{ss'}
+\end{align}
+从而有
+\begin{align}
+    \int\d^3x\bar\psi(-i\gamma^i\partial_i)\psi&=\int\ddd p\frac{\vec p^2}{\om p}\sum_s\left(\a p^\dagger\a p-\b p\b p^\dagger\right)
+\end{align}
+利用这两式, 我们可以得到Hamiltonian
 \begin{equation}
-    \mathcal T\left\{\psi_A(y)\bar\psi^B(x)\right\}\equiv\psi_A(y)\bar\psi^B(x)\Theta(y^0-x^0)-\bar\psi^B(x)\psi_A(y)\Theta(x^0-y^0)
+    H=\int\d^3\mathcal H=\int\ddd p\om p\sum_s\left(\a p^\dagger\a p-\b p\b p^\dagger\right)
 \end{equation}
 
-于是可得Feynman传播子
+类似地, 我们利用正则对易关系, $\b p, \b p^\dagger$给对易过来, 似乎就可以得到最终结果了...?
 \begin{equation}
-    \braket{\psi_A(y)\bar\psi^B(x)}=\int\dddd p\frac{i(\slashed p_A^{~~B}+m)}{p^2-m^2+i\epsilon}\exp{ip(x-y)}
+    H=\int\d^3\mathcal H=\int\ddd p\om p\sum_s\left(\a p^\dagger\a p-\b p^\dagger\b p\right)
 \end{equation}
+但是这个式子有个巨大的问题: 非正定! 也就是说, 如果$\b p^\dagger$激发产生一个反粒子, 那么它的能量是负的! 而大自然会倾向于低能量的状态, 也就是这会导致Dirac旋量场会自发放出无穷大的能量! 这个在物理上显然是荒谬的. 而我们可以确信我们上述的计算过程是没有问题的, 那么只有两个地方的假设可能是错的: 1. Dirac场能用极化旋量和$\a p, \b p$表示. 2. 正则对易关系.
+
+而第一个假设如果放弃, 我们会失去一切. 因此我们的首选做法是放弃第二个假设. 注意到, 如果我们引入反对易关系:
+\begin{align}
+    & \{\a p, \a q^\dagger\}=\dpi3\delta^3(\vec p-\vec q), \{\a b, \b q^\dagger\}=\dpi3\delta^3(\vec p-\vec q)\\
+    & \{\a p, \a q\}=\{\a p^\dagger, \a q^\dagger\}=\{\b p, \b q\}=\{\b p^\dagger, \b q^\dagger\}=0
+\end{align}
+
+则Hamiltonian可以对易为
+\begin{equation}
+    H=\int\d^3\mathcal H=\int\ddd p\om p\sum_s\left(\a p^\dagger\a p+\b p^\dagger\b p+\mathcal V\right)
+\end{equation}
+这样就可以得到正确的结果.
+
+反对易关系的引入, 还导致了在统计上与对易关系的玻色子的重大区别: Pauli不相容原理, 即
+\begin{equation}
+    \a p^\dagger\a p^\dagger\ket0=0.
+\end{equation}
+我们不能让两个电子处于完全一样的态, 这样的粒子称为费米子, 遵从Fermi-Dirac分布, 而满足对易关系的粒子称为玻色子, 遵从Bose-Einstein分布. 接下来我们还将从关联函数协变性的角度更深刻地看到费米子反对易性的必要性.
+
+然后我们尝试计算两点关联函数, 首先有
+\begin{align}
+    \braket{0|\psi_A(y)\bar\psi^B(x)|0}&=\int\ddd{p}\frac{\slashed p_A^{~~B}+m}{2\om p}\exp{ip(x-y)}
+\end{align}
+\begin{align}
+    \braket{0|\bar\psi^B(x)\psi_A(y)|0}&=\int\ddd{p}\frac{\slashed p_A^{~~B}-m}{2\om p}\exp{-ip(x-y)}
+\end{align}
+
+考虑Fermion的反交换性, 我们很自然地要求
+\begin{equation}
+    \mathcal T\left\{\psi_x\bar\psi_y\right\}=-\mathcal T\left\{\bar\psi_y\psi_x\right\}
+\end{equation}
+这需要我们定义对Dirac场的编时算符为
+\begin{equation}
+    \mathcal T\left\{\psi_A(y)\bar\psi^B(x)\right\}\equiv\Theta(y^0-x^0)\psi_A(y)\bar\psi^B(x)-\Theta(x^0-y^0)\bar\psi^B(x)\psi_A(y)
+\end{equation}
+
+这样我们经过类似\ref{2pt-real-scalar}节后半段的方法计算可以得到
+\begin{align}
+    \Theta(y^0-x^0)\psi_A(y)\bar\psi^B(x)&=\int\frac{i\d\omega}{2\pi}\frac{\exp{i\omega(t_x-t_y)}}{\omega+i\epsilon}\int\ld p[\slashed p+m]\exp{ip(x-y)}\\
+    &=\int i\dddd p\frac{\slashed p-(p^0-\om p)\gamma^0+m}{2\om p(p^0-\om p+i\epsilon)}\exp{ip(x-y)}\label{dirac-spinor-2pt1}\\
+    \mathcal T\left\{\bar\psi_y\psi_x\right\}&=\int i\dddd p\frac{-\slashed p+(p^0+\om p)\gamma^0-m}{2\om p(-p^0-\om p+i\epsilon)}\exp{ip(x-y)}\label{dirac-spinor-2pt2}
+\end{align}
+
+将\eqref{dirac-spinor-2pt1}, \eqref{dirac-spinor-2pt2}两式相减即可得Feynman传播子
+\begin{equation}
+    \braket{\psi_A(y)\bar\psi^B(x)}=\int\dddd p\frac{i(\slashed p+m)}{p^2-m^2+i\epsilon}\exp{ip(x-y)}
+\end{equation}
+不难看出这是协变的.
+
+\kaishu
+而如果我们仍然强加对易关系到编时算符上, 即定义
+\begin{equation}
+    \mathcal T\left\{\psi_A(y)\bar\psi^B(x)\right\}\equiv\Theta(y^0-x^0)\psi_A(y)\bar\psi^B(x)+\Theta(x^0-y^0)\bar\psi^B(x)\psi_A(y)
+\end{equation}
+则需要将\eqref{dirac-spinor-2pt1}, \eqref{dirac-spinor-2pt2}两式相加, 得到
+\begin{equation}
+    \braket{\psi_A(y)\bar\psi^B(x)}=\int i\dddd p\frac{\omega}{\om p}\frac{\slashed p-\frac{p^2-m^2}{\omega}\gamma^0+m}{p^2-m^2+i\epsilon}
+\end{equation}
+这又丑又完全不协变, 是一个灾难性的结果.
+\songti
 
 \subsection{Majorana旋量}
+
+\newpage
+\section{离散变换}
+在本节我们尝试讨论对场的三种幺正离散变换, 即$C,P,T$变换. 所谓的$C$, 其实就是电荷共轭(Charge Conjugate), 就是指将粒子变为反粒子, 反转其的所有量子荷(比如电荷, 但还包括轻子数、重子数等所有性质). 而$P$就是大名鼎鼎的宇称(Parity), 就是指$\vec x\to-\vec x$的镜像变换. $T$则是时间反演(Time reversal), 也就是将对象的运动过程反演: $t\to-t$. 
+
+\subsection{C变换}
+$C$变换就是取反粒子, 若我们有一个粒子态$\ket p$, 我们将$C$作用在它上面, 根据要求我们有:
+\begin{equation}
+    C\ket p=\ket{\bar p}
+\end{equation}
+其中$\ket{\bar p}$即$\ket p$的反粒子态.
+
+而这也就是说
+\begin{align}
+    & C\b{p}^\dagger\ket0=\a{p}^\dagger\ket 0\\
+    & C\a{p}^\dagger\ket0=\b{p}^\dagger\ket 0
+\end{align}
+
+在$\b{p}^\dagger, \a{p}^\dagger$与$\ket 0$间插入$C^\dagger c$, 我们有
+\begin{align}
+    & C\b{p}^\dagger C^\dagger C\ket0=\a{p}^\dagger\ket 0\\
+    & C\a{p}^\dagger C^\dagger C\ket0=\b{p}^\dagger\ket 0
+\end{align}
+
+这暗示我们
+\begin{align}
+    & C\b{p}^\dagger C^\dagger=\a{p}^\dagger\\
+    & C\a{p}^\dagger C^\dagger=\b{p}^\dagger
+\end{align}
+
+然后我们以实标量场、复标量场、Dirac旋量场为例讨论$C$的具体作用.
+\begin{example}[实标量场的电荷共轭]
+    由于实标量场只有一组产生湮灭算符, 它自己就是自己的反粒子, $C$变换对其不起作用, 于是我们有
+    \begin{eqnarray}
+        C=1
+    \end{eqnarray}
+\end{example}
+\begin{example}[复标量场的电荷共轭]
+    直接套用结论我们有
+    \begin{align}
+        &C\psi(x)C^\dagger=\int\ldsq p\left(\a p\exp{-ipx}+\b p^\dagger\exp{ipx}\right)=\psi^\dagger(x)\\
+        &C\pi(x)C^\dagger=\int\ddd pi\sqrt{\frac{\om p}2}\left(\b p^\dagger\exp{ipx}-\a p\exp{-ipx}\right)=\pi^\dagger(x)
+    \end{align}
+\end{example}
+\begin{example}[Dirac旋量的电荷共轭]
+    直接利用结论我们有
+    \begin{align}
+        &C\psi_AC^\dagger=\int\ldsq{p}\sum_s(u^s_A\b{p}^s\exp{-ipx}+v^{s}_A\a{p}^{s\dagger}\exp{ipx})
+    \end{align}
+    将其与
+    \begin{equation}
+        \psi_A=\int\ldsq{p}\sum_s(u^s_A\a{p}^s\exp{-ipx}+v^{s}_A\b{p}^{s\dagger}\exp{ipx})\\
+    \end{equation}
+    对比, 我们发现, 这暗示着
+    \begin{equation}
+        \psi_C=C\psi C^\dagger=\boldsymbol{\mathrm C}\psi^*=\int\ldsq{p}\sum_s(\boldsymbol{\mathrm C}v^{s*}\b{p}^{s}\exp{-ipx}+\boldsymbol{\mathrm C}u^{s*}\a{p}^{s\dagger}\exp{ipx})
+    \end{equation}
+    其中$\boldsymbol{\mathrm C}$为一个矩阵. 这也就是说
+    \begin{align}
+        \boldsymbol{\mathrm C}v^{s*}=u^s\\
+        \boldsymbol{\mathrm C}u^{s*}=v^s\label{uv-conguate-star}.
+    \end{align}
+    而这意味着
+    \begin{align}
+        (\slashed p-m)\boldsymbol{\mathrm C}v^{s*}=0\\
+        (\slashed p+m)\boldsymbol{\mathrm C}u^{s*}=0.
+    \end{align}
+    又因为
+    \begin{align}
+        m\boldsymbol{\mathrm C}u^{s*}&=\boldsymbol{\mathrm C}(mu)^{s*}\\
+        &=p_\mu\boldsymbol{\mathrm C}\gamma^{\mu*} u^{s*}
+    \end{align}
+    同时根据式\eqref{uv-conguate-star}, 我们有
+    \begin{align}
+        m\boldsymbol{\mathrm C}u^{s*}=mv^s=-p_\mu\gamma^\mu v^s=-p_\mu\gamma^\mu\boldsymbol{\mathrm C}u^{s*}
+    \end{align}
+    所以有
+    \begin{equation}
+        \boldsymbol{\mathrm C}\gamma^\mu\boldsymbol{\mathrm C}^\dagger=-\gamma^{\mu*}.
+    \end{equation}
+
+    又注意到, 
+    \begin{align}
+        \gamma^{\mu*}=\gamma^\mu, \mu=0,1,3\\
+        \gamma^{2*}=-\gamma^2.
+    \end{align}
+    所以我们不难猜想, $\boldsymbol{\mathrm C}$应当与$\gamma^2$有关. 不难验证,
+    \begin{equation}
+        \boldsymbol{\mathrm C}=i\gamma^2
+    \end{equation}
+    是满足这一要求的电荷共轭矩阵.
+
+    % 我们想要将其写为与$\psi^*$(注意, 这里如果是$\psi^\dagger$那么就变成行向量了, 结构不同, 而$\psi^*$则只是取共轭, 也就是将$a, b$取$\dagger$, 给$u, v$取$*$却不取$\dagger$)有关的东西, 那么我们就需要获得$u$与$v$之间的关系.
+\end{example}
+
+\subsection{P变换}
+
+
+\subsection{T变换}
 
 \newpage
 \section{旋量QED}
@@ -1441,58 +1853,61 @@ $A'^\mu$的EoM就变成:
 \end{align}
 其中, 第一行第一个为出射正粒子, 第一行第二个为入射反粒子, 第三行第一个为入射正粒子, 第三行第四个为出射反粒子.
 
-\newpage
-\section{离散变换}
-在本节我们尝试讨论对场的三种幺正离散变换, 即$C,P,T$变换. 所谓的$C$, 其实就是电荷共轭(Charge Conjugate), 就是指将粒子变为反粒子, 反转其的所有量子荷(比如电荷, 但还包括轻子数、重子数等所有性质). 而$P$就是大名鼎鼎的宇称(Parity), 就是指$\vec x\to-\vec x$的镜像变换. $T$则是时间反演(Time reversal), 也就是将对象的运动过程反演: $t\to-t$. 
+\subsection{旋量QED Feynman规则}
+我们可以不难从Lagrangian中读出Feynman规则
+\begin{enumerate}
+    \item Dirac旋量传播子
+    $$
+        \begin{tikzpicture}[baseline=(current bounding box.center)]
+            \begin{feynman}
+                \vertex (a) {\(p\)};
+                \vertex [right=2cm of a] (b);
+                \diagram* {
+                    (a) -- [fermion, momentum'=\(p\)] (b),
+                };
+            \end{feynman}
+        \end{tikzpicture}
+        = \frac{i(\slashed{p} + m)}{p^2 - m^2 + i\epsilon}
+    $$
+    \item 光子传播子
+    $$
+        \begin{tikzpicture}[baseline=(current bounding box.center)]
+            \begin{feynman}
+                \vertex (a) {\(\mu\)};
+                \vertex [right=2cm of a] (b) {\(\nu\)};
+                \diagram* {
+                    (a) -- [photon, momentum'=\(p\)] (b),
+                };
+            \end{feynman}
+        \end{tikzpicture}
+        = \frac{-i g_{\mu\nu}}{p^2 + i\epsilon} \quad (\text{Feynman 规范})
+    $$
+    \item 旋量-光子三点顶角
+    $$
+    \begin{tikzpicture}[baseline=(current bounding box.center)]
+        \begin{feynman}
+            \vertex (a);
+            \vertex [above right=1.5cm of a] (b);
+            \vertex [below right=1.5cm of a] (c);
+            \vertex [left=1.5cm of a] (d);
+            \diagram* {
+                (b) -- [fermion] (a) -- [fermion] (c),
+                (a) -- [photon] (d),
+            };
+        \end{feynman}
+    \end{tikzpicture}
+    = -ie\gamma^\mu
+    $$
+\end{enumerate}
 
-\subsection{C变换}
-$C$变换就是取反粒子, 若我们有一个粒子态$\ket p$, 我们将$C$作用在它上面, 根据要求我们有:
-\begin{equation}
-    C\ket p=\ket{\bar p}
-\end{equation}
-其中$\ket{\bar p}$即$\ket p$的反粒子态.
+对于每一个过程的外线，都有对应的因子:
+\begin{itemize}
+    \item 入射电子(${e^-}$): $u(p, s)$
+    \item 出射电子 (${e^-}$): $\bar{u}(p, s)$
+    \item 入射正电子 (${e^+}$): $\bar{v}(p, s)$
+    \item 出射正电子 (${e^+}$): $v(p, s)$
+    \item 入射光子 (${\gamma}$): $\epsilon^\mu(p, \lambda)$
+    \item 出射光子 (${\gamma}$): $\epsilon^{\mu*}(p, \lambda)$
+\end{itemize}
 
-而这也就是说
-\begin{align}
-    & C\b{p}^\dagger\ket0=\a{p}^\dagger\ket 0\\
-    & C\a{p}^\dagger\ket0=\b{p}^\dagger\ket 0
-\end{align}
-
-在$\b{p}^\dagger, \a{p}^\dagger$与$\ket 0$间插入$C^\dagger c$, 我们有
-\begin{align}
-    & C\b{p}^\dagger C^\dagger C\ket0=\a{p}^\dagger\ket 0\\
-    & C\a{p}^\dagger C^\dagger C\ket0=\b{p}^\dagger\ket 0
-\end{align}
-
-这暗示我们
-\begin{align}
-    & C\b{p}^\dagger C^\dagger=\a{p}^\dagger\\
-    & C\a{p}^\dagger C^\dagger=\b{p}^\dagger
-\end{align}
-
-然后我们以实标量场、复标量场、Dirac旋量场为例讨论$C$的具体作用.
-\begin{example}[实标量场的电荷共轭]
-    由于实标量场只有一组产生湮灭算符, 它自己就是自己的反粒子, $C$变换对其不起作用, 于是我们有
-    \begin{eqnarray}
-        C=1
-    \end{eqnarray}
-\end{example}
-\begin{example}[复标量场的电荷共轭]
-    直接套用结论我们有
-    \begin{align}
-        &C\psi(x)C^\dagger=\int\ldsq p\left(\a p\exp{-ipx}+\b p^\dagger\exp{ipx}\right)=\psi^\dagger(x)\\
-        &C\pi(x)C^\dagger=\int\ddd pi\sqrt{\frac{\om p}2}\left(\b p^\dagger\exp{ipx}-\a p\exp{-ipx}\right)=\pi^\dagger(x)
-    \end{align}
-\end{example}
-\begin{example}[Dirac旋量的电荷共轭]
-    直接利用结论我们有
-    \begin{align}
-        &C\psi_AC^\dagger=\int\ldsq{p}\sum_s(u^s_A\b{p}^s\exp{-ipx}+v^{s}_A\a{p}^{s\dagger}\exp{ipx})
-    \end{align}
-
-    我们想要将其写为与$\psi^*$(注意, 这里如果是$\psi^\dagger$那么就变成行向量了, 结构不同, 而$\psi^*$则只是取共轭, 也就是将$a, b$取$\dagger$, 给$u, v$取$*$却不取$\dagger$)有关的东西, 那么我们就需要获得$u$与$v$之间的关系.
-\end{example}
-
-\subsection{P变换}
-
-\subsection{T变换}
+需要注意, 由于Fermion场的反对易性, 对于一些构型我们会有额外的$-1$因子, 比如Fermion环. 比较保险的方法是将图还原到Dyson级数的缩并中具体地检查正负号.

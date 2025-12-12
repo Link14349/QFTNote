@@ -4,7 +4,7 @@
 \subsection{单粒子路径积分}
 我们首先考虑经典量子力学中的路径积分表述. 所谓路径积分, 就是考虑粒子在所有可能传播路径的贡献, 然后将它们加起来. 这听起来是一个疯狂的想法, 但是我们在经典物理中可以找到一个简单的Motivation: 双缝干涉实验. 我们知道基尔霍夫衍射公式, 它将边界态的所有点发出的光线求和, 从而得到光场分布, 如果我们再进一步, 考虑光线的所有贡献路径, 那么就是路径积分.
 
-考虑传播子$\braket{x_f, t_f|x_i, t_i}$, 在Schodinger绘景下, 可以表示为
+考虑传播子$\braket{x_f, t_f|x_i, t_i}$, 在Heisenberg绘景下, 可以表示为
 \begin{equation}
     \braket{x_f, t_f|x_i, t_i}=\bra{x_f}\exp{-i\int_{t_i}^{t_f}\d tH(t)}\ket{x_i}
 \end{equation}
@@ -416,31 +416,6 @@
 注意到, 如果我们将分母展开, 我们可以将所有与真空图乘积的图抵消掉, 于是有最终结果
 \begin{align}
     \langle \phi_1 \phi_2 \rangle = \feynmandiagram [my_diagram] { a -- b };
-        + 
-        \feynmandiagram [my_diagram] {
-            a -- b -- c,
-            b -- d [above=1.4cm of b], 
-            d -- [loop, min distance=0.8cm] d,
-        };
-        + 
-        \feynmandiagram [my_diagram] {
-            a -- b -- [half left] c -- d,
-            c -- [half left] b,
-        };
-        + 
-        \feynmandiagram [my_diagram] {
-            a -- b -- [loop, min distance=0.6cm, out=45, in=-45] b,
-        };
-        \;
-        \feynmandiagram [my_diagram] {
-            a -- b,
-            a -- [loop, min distance=0.6cm, out=135, in=-135] a,
-        };
-        +\cdots
-\end{align}
-注意到, 如果我们将分母展开, 我们可以将所有与真空图乘积的图抵消掉, 于是有最终结果
-\begin{align}
-    \braket{\phi_1\phi_2} = \feynmandiagram [my_diagram] { a -- b };
         + 
         \feynmandiagram [my_diagram] {
             a -- b -- c,

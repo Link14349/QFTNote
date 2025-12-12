@@ -31,13 +31,48 @@
 \input{gaugetheory.tex}
 
 \newpage
+\input{renormalization.tex}
+
+\newpage
 \appendix
 \section{Clebsch-Gordan系数表}
 \begin{figure}[!htbp]
-  \centering
-  \includegraphics[page=1,width=1.0\textwidth]{clebsch-gordan.pdf}
-  \caption{Clebsch-Gordan系数表}\label{cgcoeff}
+    \centering
+    \includegraphics[page=1,width=1.0\textwidth]{clebsch-gordan.pdf}
+    \caption{Clebsch-Gordan系数表}\label{cgcoeff}
 \end{figure}
+
+\section{数学公式参考}
+\subsection{$\Gamma$函数}
+\begin{definition}[$\Gamma$函数]
+    \begin{equation}
+        \Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt
+    \end{equation}
+\end{definition}
+通过分部积分我们可以证明
+\begin{theorem}[$\Gamma$函数递推关系]
+    \begin{equation}
+        \Gamma(z+1) = z\Gamma(z)
+    \end{equation}
+\end{theorem}
+从而有推论
+\begin{theorem}
+    \begin{equation}
+        \Gamma(n+1)=n!, \forall n\in\mathbb N.
+    \end{equation}
+\end{theorem}
+
+我们还可以计算得到
+\begin{equation}
+    \Gamma(\frac12)=\sqrt\pi.
+\end{equation}
+
+利用$\Gamma$函数我们有$n$维球面角公式
+\begin{theorem}[$n$维球面角]
+    \begin{equation}
+        \Omega_n=\frac{2\pi^{n/2}}{\Gamma(n/2)}
+    \end{equation}
+\end{theorem}
 
 \newpage
 \nocite{*}

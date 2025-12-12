@@ -228,9 +228,9 @@
     \end{equation}
     其中$\xi^a$为Killing矢量场.
 
-    如果你不放心, 我们可以验证后面脱拽项就是对旋量的Lorentz变换的正确性: 对于Minkovski时空中, 一般的Killing矢量场为
+    如果你不放心, 我们可以验证后面拖拽项就是对旋量的Lorentz变换的正确性: 对于Minkovski时空中, 一般的Killing矢量场为
     \begin{equation}
-        \xi^\mu=b^\mu+\omega^\mu_\nu x^\nu
+        \xi^\mu=b^\mu+\omega^\mu_{~~\nu} x^\nu
     \end{equation}
     所以
     \begin{align}
@@ -241,7 +241,7 @@
     
     于是我们发现对于Killing矢量场, 拖拽项确实是对旋量的Lorentz变换.
 
-    然后我们尝试推导能动张量.
+    然后我们尝试推导能动张量. (似乎有点不太对, 等我再思考酝酿下)
 \end{example}
 \subsection{哈密顿量}
 \begin{definition}[共轭动量]
@@ -607,9 +607,16 @@ Fourier逆变换可以得到:
     Q_N=\int\ddd p\left(\b p^\dagger\b p-\a p^\dagger\a p\right)
 \end{equation}
 
+并且有对易关系
+\begin{align}\label{complex-scalar-Q-commutation-relations}
+    &[Q_N, \psi_x]=\psi_x\\
+    &[Q_N, \psi_x^\dagger]=-\psi_x^\dagger
+\end{align}
+
 \kaishu 讨论: 复标量场是双自由度的, 因此它有两个产生湮灭算子$a, b$. $a, b$分别代表正粒子和反粒子的运动模式. 而从其的$U(1)$对称性导出的守恒量中可以得出结论, 正粒子与反粒子数目之差为常数.\songti
 
 \subsection{两点关联函数}
+\subsubsection{实标量场}\label{2pt-real-scalar}
 \begin{definition}[关联函数$D(x-y)$\cite{peskinCausality}]
     \begin{equation}
         D(x-y)\equiv\braket{0|\phi(x)\phi(y)|0}
@@ -775,6 +782,7 @@ Fourier逆变换可以得到:
     \begin{equation}
         D_R(x-y)\equiv\lim_{\epsilon\rightarrow0^+}\int\dddd p \frac i{(p+i\epsilon)^2-m^2}\exp{-ip(x-y)}
     \end{equation}
+    (这里$p+i\epsilon$的意思是对$p^0+i\epsilon$, 其三维部分是不动的)
 \end{theorem}
 不难发现, 对于$x^0<y^0$, 围道内不含有任何pole, 故$D_R(x-y)=0$, 而对于$x^0>y^0$, 围道内含有pole, 故$D_R(x-y)=D(x-y)-D(y-x)$
 
@@ -786,11 +794,6 @@ Fourier逆变换可以得到:
 
 类似地, 我们可以定义提前关联函数
 \begin{theorem}[提前关联函数$D_A(x-y)$]
-    取围道$C$如图\ref{fig:q2f2}
-    \begin{equation}
-        D_A(x-y)\equiv\int\dddd p \frac i{p^2-m^2}\exp{-ip(x-y)}\label{q2eq4}
-    \end{equation}
-    或者等价于取一个无穷小正数$\epsilon$:
     \begin{equation}
         D_A(x-y)\equiv\lim_{\epsilon\rightarrow0^+}\int\dddd p \frac i{(p-i\epsilon)^2-m^2}\exp{-ip(x-y)}
     \end{equation}
@@ -801,74 +804,74 @@ Fourier逆变换可以得到:
 \end{equation}
 
 这正与电动力学中所谓的提前势相对应.
-\begin{figure}
-    \begin{subfigure}[b]{0.45\textwidth}
-        \centering
-        \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-.7,xscale=.7]
-            \draw  (108,169.55) -- (470,169.55)(285.38,21.5) -- (285.38,303.5) (463,164.55) -- (470,169.55) -- (463,174.55) (280.38,28.5) -- (285.38,21.5) -- (290.38,28.5)  ;
-            %Flowchart: Connector [id:dp1477182047051221] 
-            \draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (246,170) .. controls (246,168.9) and (246.9,168) .. (248,168) .. controls (249.1,168) and (250,168.9) .. (250,170) .. controls (250,171.1) and (249.1,172) .. (248,172) .. controls (246.9,172) and (246,171.1) .. (246,170) -- cycle ;
-            %Flowchart: Connector [id:dp1451620126132538] 
-            \draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (322,170) .. controls (322,168.9) and (322.9,168) .. (324,168) .. controls (325.1,168) and (326,168.9) .. (326,170) .. controls (326,171.1) and (325.1,172) .. (324,172) .. controls (322.9,172) and (322,171.1) .. (322,170) -- cycle ;
-            %Straight Lines [id:da554770276238623] 
-            \draw    (137,169.75) -- (203.5,169.27) ;
-            \draw [shift={(206.5,169.25)}, rotate = 179.59] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
-            %Straight Lines [id:da2352474286511015] 
-            \draw    (374.5,170.25) -- (380.5,169.92) ;
-            \draw [shift={(383.5,169.75)}, rotate = 176.82] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
-            %Shape: Arc [id:dp2545574686176101] 
-            \draw  [draw opacity=0] (152.03,171.94) .. controls (152.03,171.69) and (152.02,171.44) .. (152.02,171.19) .. controls (151.71,96.54) and (211.97,35.78) .. (286.61,35.47) .. controls (361.25,35.16) and (422.01,95.41) .. (422.32,170.05) .. controls (422.33,170.37) and (422.33,170.68) .. (422.33,171) -- (287.17,170.62) -- cycle ; \draw   (152.03,171.94) .. controls (152.03,171.69) and (152.02,171.44) .. (152.02,171.19) .. controls (151.71,96.54) and (211.97,35.78) .. (286.61,35.47) .. controls (361.25,35.16) and (422.01,95.41) .. (422.32,170.05) .. controls (422.33,170.37) and (422.33,170.68) .. (422.33,171) ;  
-            %Straight Lines [id:da07283350213642492] 
-            \draw    (217,55.25) -- (212.52,58.13) ;
-            \draw [shift={(210,59.75)}, rotate = 327.26] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
-            %Shape: Arc [id:dp1734533961545065] 
-            \draw  [draw opacity=0] (241.24,170.23) .. controls (241.36,174.31) and (244.42,177.55) .. (248.13,177.49) .. controls (251.86,177.42) and (254.83,174.02) .. (254.76,169.89) .. controls (254.76,169.83) and (254.76,169.77) .. (254.76,169.71) -- (248,170) -- cycle ; \draw   (241.24,170.23) .. controls (241.36,174.31) and (244.42,177.55) .. (248.13,177.49) .. controls (251.86,177.42) and (254.83,174.02) .. (254.76,169.89) .. controls (254.76,169.83) and (254.76,169.77) .. (254.76,169.71) ;  
-            %Shape: Arc [id:dp1937528136867961] 
-            \draw  [draw opacity=0] (317.27,169.22) .. controls (317.24,169.52) and (317.23,169.81) .. (317.24,170.11) .. controls (317.31,174.25) and (320.39,177.55) .. (324.13,177.49) .. controls (327.86,177.43) and (330.84,174.02) .. (330.76,169.89) .. controls (330.76,169.83) and (330.76,169.77) .. (330.76,169.71) -- (324,170) -- cycle ; \draw   (317.27,169.22) .. controls (317.24,169.52) and (317.23,169.81) .. (317.24,170.11) .. controls (317.31,174.25) and (320.39,177.55) .. (324.13,177.49) .. controls (327.86,177.43) and (330.84,174.02) .. (330.76,169.89) .. controls (330.76,169.83) and (330.76,169.77) .. (330.76,169.71) ;  
+% \begin{figure}
+%     \begin{subfigure}[b]{0.45\textwidth}
+%         \centering
+%         \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-.7,xscale=.7]
+%             \draw  (108,169.55) -- (470,169.55)(285.38,21.5) -- (285.38,303.5) (463,164.55) -- (470,169.55) -- (463,174.55) (280.38,28.5) -- (285.38,21.5) -- (290.38,28.5)  ;
+%             %Flowchart: Connector [id:dp1477182047051221] 
+%             \draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (246,170) .. controls (246,168.9) and (246.9,168) .. (248,168) .. controls (249.1,168) and (250,168.9) .. (250,170) .. controls (250,171.1) and (249.1,172) .. (248,172) .. controls (246.9,172) and (246,171.1) .. (246,170) -- cycle ;
+%             %Flowchart: Connector [id:dp1451620126132538] 
+%             \draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (322,170) .. controls (322,168.9) and (322.9,168) .. (324,168) .. controls (325.1,168) and (326,168.9) .. (326,170) .. controls (326,171.1) and (325.1,172) .. (324,172) .. controls (322.9,172) and (322,171.1) .. (322,170) -- cycle ;
+%             %Straight Lines [id:da554770276238623] 
+%             \draw    (137,169.75) -- (203.5,169.27) ;
+%             \draw [shift={(206.5,169.25)}, rotate = 179.59] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+%             %Straight Lines [id:da2352474286511015] 
+%             \draw    (374.5,170.25) -- (380.5,169.92) ;
+%             \draw [shift={(383.5,169.75)}, rotate = 176.82] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+%             %Shape: Arc [id:dp2545574686176101] 
+%             \draw  [draw opacity=0] (152.03,171.94) .. controls (152.03,171.69) and (152.02,171.44) .. (152.02,171.19) .. controls (151.71,96.54) and (211.97,35.78) .. (286.61,35.47) .. controls (361.25,35.16) and (422.01,95.41) .. (422.32,170.05) .. controls (422.33,170.37) and (422.33,170.68) .. (422.33,171) -- (287.17,170.62) -- cycle ; \draw   (152.03,171.94) .. controls (152.03,171.69) and (152.02,171.44) .. (152.02,171.19) .. controls (151.71,96.54) and (211.97,35.78) .. (286.61,35.47) .. controls (361.25,35.16) and (422.01,95.41) .. (422.32,170.05) .. controls (422.33,170.37) and (422.33,170.68) .. (422.33,171) ;  
+%             %Straight Lines [id:da07283350213642492] 
+%             \draw    (217,55.25) -- (212.52,58.13) ;
+%             \draw [shift={(210,59.75)}, rotate = 327.26] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+%             %Shape: Arc [id:dp1734533961545065] 
+%             \draw  [draw opacity=0] (241.24,170.23) .. controls (241.36,174.31) and (244.42,177.55) .. (248.13,177.49) .. controls (251.86,177.42) and (254.83,174.02) .. (254.76,169.89) .. controls (254.76,169.83) and (254.76,169.77) .. (254.76,169.71) -- (248,170) -- cycle ; \draw   (241.24,170.23) .. controls (241.36,174.31) and (244.42,177.55) .. (248.13,177.49) .. controls (251.86,177.42) and (254.83,174.02) .. (254.76,169.89) .. controls (254.76,169.83) and (254.76,169.77) .. (254.76,169.71) ;  
+%             %Shape: Arc [id:dp1937528136867961] 
+%             \draw  [draw opacity=0] (317.27,169.22) .. controls (317.24,169.52) and (317.23,169.81) .. (317.24,170.11) .. controls (317.31,174.25) and (320.39,177.55) .. (324.13,177.49) .. controls (327.86,177.43) and (330.84,174.02) .. (330.76,169.89) .. controls (330.76,169.83) and (330.76,169.77) .. (330.76,169.71) -- (324,170) -- cycle ; \draw   (317.27,169.22) .. controls (317.24,169.52) and (317.23,169.81) .. (317.24,170.11) .. controls (317.31,174.25) and (320.39,177.55) .. (324.13,177.49) .. controls (327.86,177.43) and (330.84,174.02) .. (330.76,169.89) .. controls (330.76,169.83) and (330.76,169.77) .. (330.76,169.71) ;  
 
-            % Text Node
-            \draw (236,178.9) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$-\omega _{\vec{p}}$};
-            % Text Node
-            \draw (316.73,180.9) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$\omega _{\vec{p}}$};
-        \end{tikzpicture}
-        \caption{$x^0<y^0$的围道}
-        \label{fig:q1f2a}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\textwidth}
-        \centering
-        \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-.7,xscale=.7]
-            \draw  (108,169.55) -- (470,169.55)(285.38,21.5) -- (285.38,303.5) (463,164.55) -- (470,169.55) -- (463,174.55) (280.38,28.5) -- (285.38,21.5) -- (290.38,28.5)  ;
-            %Flowchart: Connector [id:dp1477182047051221] 
-            \draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (246,170) .. controls (246,168.9) and (246.9,168) .. (248,168) .. controls (249.1,168) and (250,168.9) .. (250,170) .. controls (250,171.1) and (249.1,172) .. (248,172) .. controls (246.9,172) and (246,171.1) .. (246,170) -- cycle ;
-            %Flowchart: Connector [id:dp1451620126132538] 
-            \draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (322,170) .. controls (322,168.9) and (322.9,168) .. (324,168) .. controls (325.1,168) and (326,168.9) .. (326,170) .. controls (326,171.1) and (325.1,172) .. (324,172) .. controls (322.9,172) and (322,171.1) .. (322,170) -- cycle ;
-            %Straight Lines [id:da554770276238623] 
-            \draw    (137,169.75) -- (203.5,169.27) ;
-            \draw [shift={(206.5,169.25)}, rotate = 179.59] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
-            %Straight Lines [id:da2352474286511015] 
-            \draw    (374.5,170.25) -- (380.5,169.92) ;
-            \draw [shift={(383.5,169.75)}, rotate = 176.82] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
-            %Shape: Arc [id:dp2545574686176101] 
-            \draw  [draw opacity=0] (422.32,169.25) .. controls (422.32,169.5) and (422.32,169.75) .. (422.32,170.01) .. controls (422.66,244.65) and (362.43,305.43) .. (287.79,305.77) .. controls (213.15,306.11) and (152.36,245.87) .. (152.02,171.23) .. controls (152.02,170.92) and (152.02,170.6) .. (152.02,170.29) -- (287.17,170.62) -- cycle ; \draw   (422.32,169.25) .. controls (422.32,169.5) and (422.32,169.75) .. (422.32,170.01) .. controls (422.66,244.65) and (362.43,305.43) .. (287.79,305.77) .. controls (213.15,306.11) and (152.36,245.87) .. (152.02,171.23) .. controls (152.02,170.92) and (152.02,170.6) .. (152.02,170.29) ;  
-            %Straight Lines [id:da07283350213642492] 
-            \draw    (379,270.25) -- (375.3,273.33) ;
-            \draw [shift={(373,275.25)}, rotate = 320.19] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
-            %Shape: Arc [id:dp1734533961545065] 
-            \draw  [draw opacity=0] (241.24,170.23) .. controls (241.36,174.31) and (244.42,177.55) .. (248.13,177.49) .. controls (251.86,177.42) and (254.83,174.02) .. (254.76,169.89) .. controls (254.76,169.83) and (254.76,169.77) .. (254.76,169.71) -- (248,170) -- cycle ; \draw   (241.24,170.23) .. controls (241.36,174.31) and (244.42,177.55) .. (248.13,177.49) .. controls (251.86,177.42) and (254.83,174.02) .. (254.76,169.89) .. controls (254.76,169.83) and (254.76,169.77) .. (254.76,169.71) ;  
-            %Shape: Arc [id:dp1937528136867961] 
-            \draw  [draw opacity=0] (317.27,169.22) .. controls (317.24,169.52) and (317.23,169.81) .. (317.24,170.11) .. controls (317.31,174.25) and (320.39,177.55) .. (324.13,177.49) .. controls (327.86,177.43) and (330.84,174.02) .. (330.76,169.89) .. controls (330.76,169.83) and (330.76,169.77) .. (330.76,169.71) -- (324,170) -- cycle ; \draw   (317.27,169.22) .. controls (317.24,169.52) and (317.23,169.81) .. (317.24,170.11) .. controls (317.31,174.25) and (320.39,177.55) .. (324.13,177.49) .. controls (327.86,177.43) and (330.84,174.02) .. (330.76,169.89) .. controls (330.76,169.83) and (330.76,169.77) .. (330.76,169.71) ;  
-            % Text Node
-            \draw (235.5,151.4) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$-\omega _{\vec{p}}$};
-            % Text Node
-            \draw (316.73,152.9) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$\omega _{\vec{p}}$};    
-        \end{tikzpicture}
-        \caption{$x^0>y^0$的围道}
-        \label{fig:q1f2b}
-    \end{subfigure}
-    \caption{$D_A(x-y)$围道示意图}
-    \label{fig:q2f2}
-\end{figure}
+%             % Text Node
+%             \draw (236,178.9) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$-\omega _{\vec{p}}$};
+%             % Text Node
+%             \draw (316.73,180.9) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$\omega _{\vec{p}}$};
+%         \end{tikzpicture}
+%         \caption{$x^0<y^0$的围道}
+%         \label{fig:q1f2a}
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}[b]{0.45\textwidth}
+%         \centering
+%         \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-.7,xscale=.7]
+%             \draw  (108,169.55) -- (470,169.55)(285.38,21.5) -- (285.38,303.5) (463,164.55) -- (470,169.55) -- (463,174.55) (280.38,28.5) -- (285.38,21.5) -- (290.38,28.5)  ;
+%             %Flowchart: Connector [id:dp1477182047051221] 
+%             \draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (246,170) .. controls (246,168.9) and (246.9,168) .. (248,168) .. controls (249.1,168) and (250,168.9) .. (250,170) .. controls (250,171.1) and (249.1,172) .. (248,172) .. controls (246.9,172) and (246,171.1) .. (246,170) -- cycle ;
+%             %Flowchart: Connector [id:dp1451620126132538] 
+%             \draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (322,170) .. controls (322,168.9) and (322.9,168) .. (324,168) .. controls (325.1,168) and (326,168.9) .. (326,170) .. controls (326,171.1) and (325.1,172) .. (324,172) .. controls (322.9,172) and (322,171.1) .. (322,170) -- cycle ;
+%             %Straight Lines [id:da554770276238623] 
+%             \draw    (137,169.75) -- (203.5,169.27) ;
+%             \draw [shift={(206.5,169.25)}, rotate = 179.59] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+%             %Straight Lines [id:da2352474286511015] 
+%             \draw    (374.5,170.25) -- (380.5,169.92) ;
+%             \draw [shift={(383.5,169.75)}, rotate = 176.82] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+%             %Shape: Arc [id:dp2545574686176101] 
+%             \draw  [draw opacity=0] (422.32,169.25) .. controls (422.32,169.5) and (422.32,169.75) .. (422.32,170.01) .. controls (422.66,244.65) and (362.43,305.43) .. (287.79,305.77) .. controls (213.15,306.11) and (152.36,245.87) .. (152.02,171.23) .. controls (152.02,170.92) and (152.02,170.6) .. (152.02,170.29) -- (287.17,170.62) -- cycle ; \draw   (422.32,169.25) .. controls (422.32,169.5) and (422.32,169.75) .. (422.32,170.01) .. controls (422.66,244.65) and (362.43,305.43) .. (287.79,305.77) .. controls (213.15,306.11) and (152.36,245.87) .. (152.02,171.23) .. controls (152.02,170.92) and (152.02,170.6) .. (152.02,170.29) ;  
+%             %Straight Lines [id:da07283350213642492] 
+%             \draw    (379,270.25) -- (375.3,273.33) ;
+%             \draw [shift={(373,275.25)}, rotate = 320.19] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+%             %Shape: Arc [id:dp1734533961545065] 
+%             \draw  [draw opacity=0] (241.24,170.23) .. controls (241.36,174.31) and (244.42,177.55) .. (248.13,177.49) .. controls (251.86,177.42) and (254.83,174.02) .. (254.76,169.89) .. controls (254.76,169.83) and (254.76,169.77) .. (254.76,169.71) -- (248,170) -- cycle ; \draw   (241.24,170.23) .. controls (241.36,174.31) and (244.42,177.55) .. (248.13,177.49) .. controls (251.86,177.42) and (254.83,174.02) .. (254.76,169.89) .. controls (254.76,169.83) and (254.76,169.77) .. (254.76,169.71) ;  
+%             %Shape: Arc [id:dp1937528136867961] 
+%             \draw  [draw opacity=0] (317.27,169.22) .. controls (317.24,169.52) and (317.23,169.81) .. (317.24,170.11) .. controls (317.31,174.25) and (320.39,177.55) .. (324.13,177.49) .. controls (327.86,177.43) and (330.84,174.02) .. (330.76,169.89) .. controls (330.76,169.83) and (330.76,169.77) .. (330.76,169.71) -- (324,170) -- cycle ; \draw   (317.27,169.22) .. controls (317.24,169.52) and (317.23,169.81) .. (317.24,170.11) .. controls (317.31,174.25) and (320.39,177.55) .. (324.13,177.49) .. controls (327.86,177.43) and (330.84,174.02) .. (330.76,169.89) .. controls (330.76,169.83) and (330.76,169.77) .. (330.76,169.71) ;  
+%             % Text Node
+%             \draw (235.5,151.4) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$-\omega _{\vec{p}}$};
+%             % Text Node
+%             \draw (316.73,152.9) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$\omega _{\vec{p}}$};    
+%         \end{tikzpicture}
+%         \caption{$x^0>y^0$的围道}
+%         \label{fig:q1f2b}
+%     \end{subfigure}
+%     \caption{$D_A(x-y)$围道示意图}
+%     \label{fig:q2f2}
+% \end{figure}
 \begin{figure}
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
@@ -939,74 +942,74 @@ Fourier逆变换可以得到:
     \caption{$D_F(x-y)$围道示意图}
     \label{fig:q2f3}
 \end{figure}
-\begin{figure}
-    \begin{subfigure}[b]{0.45\textwidth}
-        \centering
-        \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-.7,xscale=.7]
-            \draw  (108,169.55) -- (470,169.55)(285.38,21.5) -- (285.38,303.5) (463,164.55) -- (470,169.55) -- (463,174.55) (280.38,28.5) -- (285.38,21.5) -- (290.38,28.5)  ;
-            %Flowchart: Connector [id:dp1477182047051221] 
-            \draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (246,170) .. controls (246,168.9) and (246.9,168) .. (248,168) .. controls (249.1,168) and (250,168.9) .. (250,170) .. controls (250,171.1) and (249.1,172) .. (248,172) .. controls (246.9,172) and (246,171.1) .. (246,170) -- cycle ;
-            %Flowchart: Connector [id:dp1451620126132538] 
-            \draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (322,170) .. controls (322,168.9) and (322.9,168) .. (324,168) .. controls (325.1,168) and (326,168.9) .. (326,170) .. controls (326,171.1) and (325.1,172) .. (324,172) .. controls (322.9,172) and (322,171.1) .. (322,170) -- cycle ;
-            %Straight Lines [id:da554770276238623] 
-            \draw    (137,169.75) -- (203.5,169.27) ;
-            \draw [shift={(206.5,169.25)}, rotate = 179.59] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
-            %Straight Lines [id:da2352474286511015] 
-            \draw    (374.5,170.25) -- (380.5,169.92) ;
-            \draw [shift={(383.5,169.75)}, rotate = 176.82] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
-            %Shape: Arc [id:dp2545574686176101] 
-            \draw  [draw opacity=0] (152.03,169.39) .. controls (152.68,95.64) and (212.47,35.86) .. (286.47,35.47) .. controls (360.84,35.08) and (421.5,94.84) .. (422.32,169.11) -- (287.17,170.62) -- cycle ; \draw   (152.03,169.39) .. controls (152.68,95.64) and (212.47,35.86) .. (286.47,35.47) .. controls (360.84,35.08) and (421.5,94.84) .. (422.32,169.11) ;  
-            %Straight Lines [id:da07283350213642492] 
-            \draw    (216,56.25) -- (211.52,59.13) ;
-            \draw [shift={(209,60.75)}, rotate = 327.26] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
-            %Shape: Arc [id:dp1734533961545065] 
-            \draw  [draw opacity=0] (254.77,170.05) .. controls (254.81,165.97) and (251.88,162.6) .. (248.18,162.52) .. controls (244.44,162.43) and (241.33,165.7) .. (241.24,169.84) .. controls (241.23,169.9) and (241.23,169.95) .. (241.23,170.01) -- (248,170) -- cycle ; \draw   (254.77,170.05) .. controls (254.81,165.97) and (251.88,162.6) .. (248.18,162.52) .. controls (244.44,162.43) and (241.33,165.7) .. (241.24,169.84) .. controls (241.23,169.9) and (241.23,169.95) .. (241.23,170.01) ;  
-            %Shape: Arc [id:dp1937528136867961] 
-            \draw  [draw opacity=0] (317.24,170.3) .. controls (317.41,174.38) and (320.51,177.59) .. (324.21,177.49) .. controls (327.81,177.39) and (330.66,174.19) .. (330.76,170.26) -- (324,170) -- cycle ; \draw   (317.24,170.3) .. controls (317.41,174.38) and (320.51,177.59) .. (324.21,177.49) .. controls (327.81,177.39) and (330.66,174.19) .. (330.76,170.26) ;  
-            % Text Node
-            \draw (236,178.9) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$-\omega _{\vec{p}}$};
-            % Text Node
-            \draw (317.73,179.4) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$\omega _{\vec{p}}$};
-        \end{tikzpicture}
-        \caption{$x^0<y^0$的围道}
-        \label{fig:q1f4a}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\textwidth}
-        \centering
-        \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-.7,xscale=.7]
-            %Shape: Axis 2D [id:dp2814236532414889] 
-            \draw  (108,169.55) -- (470,169.55)(285.38,21.5) -- (285.38,303.5) (463,164.55) -- (470,169.55) -- (463,174.55) (280.38,28.5) -- (285.38,21.5) -- (290.38,28.5)  ;
-            %Flowchart: Connector [id:dp1477182047051221] 
-            \draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (246,170) .. controls (246,168.9) and (246.9,168) .. (248,168) .. controls (249.1,168) and (250,168.9) .. (250,170) .. controls (250,171.1) and (249.1,172) .. (248,172) .. controls (246.9,172) and (246,171.1) .. (246,170) -- cycle ;
-            %Flowchart: Connector [id:dp1451620126132538] 
-            \draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (322,170) .. controls (322,168.9) and (322.9,168) .. (324,168) .. controls (325.1,168) and (326,168.9) .. (326,170) .. controls (326,171.1) and (325.1,172) .. (324,172) .. controls (322.9,172) and (322,171.1) .. (322,170) -- cycle ;
-            %Straight Lines [id:da554770276238623] 
-            \draw    (137,169.75) -- (203.5,169.27) ;
-            \draw [shift={(206.5,169.25)}, rotate = 179.59] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
-            %Straight Lines [id:da2352474286511015] 
-            \draw    (374.5,170.25) -- (380.5,169.92) ;
-            \draw [shift={(383.5,169.75)}, rotate = 176.82] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
-            %Shape: Arc [id:dp2545574686176101] 
-            \draw  [draw opacity=0] (422.32,172.01) .. controls (421.58,245.76) and (361.71,305.47) .. (287.72,305.77) .. controls (213.34,306.07) and (152.76,246.23) .. (152.03,171.96) -- (287.17,170.62) -- cycle ; \draw   (422.32,172.01) .. controls (421.58,245.76) and (361.71,305.47) .. (287.72,305.77) .. controls (213.34,306.07) and (152.76,246.23) .. (152.03,171.96) ;  
-            %Straight Lines [id:da07283350213642492] 
-            \draw    (361.5,283.75) -- (357.02,286.63) ;
-            \draw [shift={(354.5,288.25)}, rotate = 327.26] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
-            %Shape: Arc [id:dp1734533961545065] 
-            \draw  [draw opacity=0] (254.77,170.05) .. controls (254.81,165.97) and (251.88,162.6) .. (248.18,162.52) .. controls (244.44,162.43) and (241.33,165.7) .. (241.24,169.84) .. controls (241.23,169.9) and (241.23,169.95) .. (241.23,170.01) -- (248,170) -- cycle ; \draw   (254.77,170.05) .. controls (254.81,165.97) and (251.88,162.6) .. (248.18,162.52) .. controls (244.44,162.43) and (241.33,165.7) .. (241.24,169.84) .. controls (241.23,169.9) and (241.23,169.95) .. (241.23,170.01) ;  
-            %Shape: Arc [id:dp1937528136867961] 
-            \draw  [draw opacity=0] (317.24,170.3) .. controls (317.41,174.38) and (320.51,177.59) .. (324.21,177.49) .. controls (327.81,177.39) and (330.66,174.19) .. (330.76,170.26) -- (324,170) -- cycle ; \draw   (317.24,170.3) .. controls (317.41,174.38) and (320.51,177.59) .. (324.21,177.49) .. controls (327.81,177.39) and (330.66,174.19) .. (330.76,170.26) ;  
-            % Text Node
-            \draw (236,178.9) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$-\omega _{\vec{p}}$};
-            % Text Node
-            \draw (317.73,179.4) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$\omega _{\vec{p}}$};
-        \end{tikzpicture}
-        \caption{$x^0>y^0$的围道}
-        \label{fig:q1f4b}
-    \end{subfigure}
-    \caption{$\widetilde{D}_F(x-y)$围道示意图}
-    \label{fig:q2f4}
-\end{figure}
+% \begin{figure}
+%     \begin{subfigure}[b]{0.45\textwidth}
+%         \centering
+%         \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-.7,xscale=.7]
+%             \draw  (108,169.55) -- (470,169.55)(285.38,21.5) -- (285.38,303.5) (463,164.55) -- (470,169.55) -- (463,174.55) (280.38,28.5) -- (285.38,21.5) -- (290.38,28.5)  ;
+%             %Flowchart: Connector [id:dp1477182047051221] 
+%             \draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (246,170) .. controls (246,168.9) and (246.9,168) .. (248,168) .. controls (249.1,168) and (250,168.9) .. (250,170) .. controls (250,171.1) and (249.1,172) .. (248,172) .. controls (246.9,172) and (246,171.1) .. (246,170) -- cycle ;
+%             %Flowchart: Connector [id:dp1451620126132538] 
+%             \draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (322,170) .. controls (322,168.9) and (322.9,168) .. (324,168) .. controls (325.1,168) and (326,168.9) .. (326,170) .. controls (326,171.1) and (325.1,172) .. (324,172) .. controls (322.9,172) and (322,171.1) .. (322,170) -- cycle ;
+%             %Straight Lines [id:da554770276238623] 
+%             \draw    (137,169.75) -- (203.5,169.27) ;
+%             \draw [shift={(206.5,169.25)}, rotate = 179.59] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+%             %Straight Lines [id:da2352474286511015] 
+%             \draw    (374.5,170.25) -- (380.5,169.92) ;
+%             \draw [shift={(383.5,169.75)}, rotate = 176.82] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+%             %Shape: Arc [id:dp2545574686176101] 
+%             \draw  [draw opacity=0] (152.03,169.39) .. controls (152.68,95.64) and (212.47,35.86) .. (286.47,35.47) .. controls (360.84,35.08) and (421.5,94.84) .. (422.32,169.11) -- (287.17,170.62) -- cycle ; \draw   (152.03,169.39) .. controls (152.68,95.64) and (212.47,35.86) .. (286.47,35.47) .. controls (360.84,35.08) and (421.5,94.84) .. (422.32,169.11) ;  
+%             %Straight Lines [id:da07283350213642492] 
+%             \draw    (216,56.25) -- (211.52,59.13) ;
+%             \draw [shift={(209,60.75)}, rotate = 327.26] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+%             %Shape: Arc [id:dp1734533961545065] 
+%             \draw  [draw opacity=0] (254.77,170.05) .. controls (254.81,165.97) and (251.88,162.6) .. (248.18,162.52) .. controls (244.44,162.43) and (241.33,165.7) .. (241.24,169.84) .. controls (241.23,169.9) and (241.23,169.95) .. (241.23,170.01) -- (248,170) -- cycle ; \draw   (254.77,170.05) .. controls (254.81,165.97) and (251.88,162.6) .. (248.18,162.52) .. controls (244.44,162.43) and (241.33,165.7) .. (241.24,169.84) .. controls (241.23,169.9) and (241.23,169.95) .. (241.23,170.01) ;  
+%             %Shape: Arc [id:dp1937528136867961] 
+%             \draw  [draw opacity=0] (317.24,170.3) .. controls (317.41,174.38) and (320.51,177.59) .. (324.21,177.49) .. controls (327.81,177.39) and (330.66,174.19) .. (330.76,170.26) -- (324,170) -- cycle ; \draw   (317.24,170.3) .. controls (317.41,174.38) and (320.51,177.59) .. (324.21,177.49) .. controls (327.81,177.39) and (330.66,174.19) .. (330.76,170.26) ;  
+%             % Text Node
+%             \draw (236,178.9) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$-\omega _{\vec{p}}$};
+%             % Text Node
+%             \draw (317.73,179.4) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$\omega _{\vec{p}}$};
+%         \end{tikzpicture}
+%         \caption{$x^0<y^0$的围道}
+%         \label{fig:q1f4a}
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}[b]{0.45\textwidth}
+%         \centering
+%         \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-.7,xscale=.7]
+%             %Shape: Axis 2D [id:dp2814236532414889] 
+%             \draw  (108,169.55) -- (470,169.55)(285.38,21.5) -- (285.38,303.5) (463,164.55) -- (470,169.55) -- (463,174.55) (280.38,28.5) -- (285.38,21.5) -- (290.38,28.5)  ;
+%             %Flowchart: Connector [id:dp1477182047051221] 
+%             \draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (246,170) .. controls (246,168.9) and (246.9,168) .. (248,168) .. controls (249.1,168) and (250,168.9) .. (250,170) .. controls (250,171.1) and (249.1,172) .. (248,172) .. controls (246.9,172) and (246,171.1) .. (246,170) -- cycle ;
+%             %Flowchart: Connector [id:dp1451620126132538] 
+%             \draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (322,170) .. controls (322,168.9) and (322.9,168) .. (324,168) .. controls (325.1,168) and (326,168.9) .. (326,170) .. controls (326,171.1) and (325.1,172) .. (324,172) .. controls (322.9,172) and (322,171.1) .. (322,170) -- cycle ;
+%             %Straight Lines [id:da554770276238623] 
+%             \draw    (137,169.75) -- (203.5,169.27) ;
+%             \draw [shift={(206.5,169.25)}, rotate = 179.59] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+%             %Straight Lines [id:da2352474286511015] 
+%             \draw    (374.5,170.25) -- (380.5,169.92) ;
+%             \draw [shift={(383.5,169.75)}, rotate = 176.82] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+%             %Shape: Arc [id:dp2545574686176101] 
+%             \draw  [draw opacity=0] (422.32,172.01) .. controls (421.58,245.76) and (361.71,305.47) .. (287.72,305.77) .. controls (213.34,306.07) and (152.76,246.23) .. (152.03,171.96) -- (287.17,170.62) -- cycle ; \draw   (422.32,172.01) .. controls (421.58,245.76) and (361.71,305.47) .. (287.72,305.77) .. controls (213.34,306.07) and (152.76,246.23) .. (152.03,171.96) ;  
+%             %Straight Lines [id:da07283350213642492] 
+%             \draw    (361.5,283.75) -- (357.02,286.63) ;
+%             \draw [shift={(354.5,288.25)}, rotate = 327.26] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+%             %Shape: Arc [id:dp1734533961545065] 
+%             \draw  [draw opacity=0] (254.77,170.05) .. controls (254.81,165.97) and (251.88,162.6) .. (248.18,162.52) .. controls (244.44,162.43) and (241.33,165.7) .. (241.24,169.84) .. controls (241.23,169.9) and (241.23,169.95) .. (241.23,170.01) -- (248,170) -- cycle ; \draw   (254.77,170.05) .. controls (254.81,165.97) and (251.88,162.6) .. (248.18,162.52) .. controls (244.44,162.43) and (241.33,165.7) .. (241.24,169.84) .. controls (241.23,169.9) and (241.23,169.95) .. (241.23,170.01) ;  
+%             %Shape: Arc [id:dp1937528136867961] 
+%             \draw  [draw opacity=0] (317.24,170.3) .. controls (317.41,174.38) and (320.51,177.59) .. (324.21,177.49) .. controls (327.81,177.39) and (330.66,174.19) .. (330.76,170.26) -- (324,170) -- cycle ; \draw   (317.24,170.3) .. controls (317.41,174.38) and (320.51,177.59) .. (324.21,177.49) .. controls (327.81,177.39) and (330.66,174.19) .. (330.76,170.26) ;  
+%             % Text Node
+%             \draw (236,178.9) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$-\omega _{\vec{p}}$};
+%             % Text Node
+%             \draw (317.73,179.4) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$\omega _{\vec{p}}$};
+%         \end{tikzpicture}
+%         \caption{$x^0>y^0$的围道}
+%         \label{fig:q1f4b}
+%     \end{subfigure}
+%     \caption{$\widetilde{D}_F(x-y)$围道示意图}
+%     \label{fig:q2f4}
+% \end{figure}
 
 此外, 我们还有两种取围道的方式, 由此定义两种关联函数, 也就是所谓的Feynman传播子.
 % \newpage
@@ -1021,11 +1024,11 @@ Fourier逆变换可以得到:
     \end{equation}
 \end{theorem}
 \begin{theorem}[共轭Feynman传播子$\widetilde{D}_F(x-y)$]
-    取围道$C$如图\ref{fig:q2f4}
-    \begin{equation}
-        \widetilde D_F(x-y)\equiv\int\dddd p \frac i{p^2-m^2}\exp{-ip(x-y)}\label{q2eq6}
-    \end{equation}
-    或者等价于取一个无穷小正数$\epsilon$:
+    % 取围道$C$如图\ref{fig:q2f4}
+    % \begin{equation}
+    %     \widetilde D_F(x-y)\equiv\int\dddd p \frac i{p^2-m^2}\exp{-ip(x-y)}\label{q2eq6}
+    % \end{equation}
+    % 或者等价于取一个无穷小正数$\epsilon$:
     \begin{equation}
         \widetilde D_F(x-y)\equiv\lim_{\epsilon\rightarrow0^+}\int\dddd p \frac i{p^2-m^2-i\epsilon}\exp{-ip(x-y)}
     \end{equation}
@@ -1049,6 +1052,90 @@ Fourier逆变换可以得到:
 
 \kaishu 注意: 从\eqref{q2eq1}到\eqref{q2eq2}只有在一定条件下取正确的围道才成立, 并不能认为是一个任何条件下都恒等的关系. 它的作用在于启发性得导出传播子$\frac i{p^2-m^2}$, 并由此根据不同的围道取法定义出四种不同的关联函数. 因此\eqref{q2eq3}、\eqref{q2eq4}、\eqref{q2eq5}、\eqref{q2eq6}并不能视为是从\eqref{q2eq2}直接推导得到的.\songti
 
+在量子场论中我们只使用Feynman传播子, 这个原因在后面我们有关Dyson级数以及路径积分的讨论中可以清楚地看到. 为了能让我们对于Feynman传播子的讨论对于接下来的工作更有推广借鉴意义, 在此我们给出另一种从关联函数定义
+\begin{equation}
+    D_F(x, y)=\braket{0|\mathcal T\phi_x\phi_y|0}=\Theta(t_x-t_y)\braket{0|\phi_x\phi_y|0}+\Theta(t_y-t_x)\braket{0|\phi_y\phi_x|0}
+\end{equation}
+出发来得到Feynman传播子的方式, 这个方法在接下来的推导中更为有用. 
+
+根据式\eqref{Theta-definition}我们有
+\begin{equation}
+    D_F(x, y)=\int\frac{i\d\omega}{2\pi}\frac{\exp{-i\omega(t_x-t_y)}}{\omega+i\epsilon}\int\ld p[\exp{-ip(x-y)}]+\int\frac{i\d\omega}{2\pi}\frac{\exp{i\omega(t_x-t_y)}}{\omega+i\epsilon}\int\ld p[\exp{ip(x-y)}]\label{scalar-feynman-propagator-naively}
+\end{equation}
+(注意, 这里$p(x-y)=\omega(t_x-t_y)-\vec p\cdot(\vec x-\vec y)$). 我们设
+\begin{equation}
+    p'^\mu=(\omega, \vec p)^T
+\end{equation}
+, 则有
+\begin{equation}
+    D_F(x, y)=\int i\dddd p'\frac{\exp{-ip'(x-y)-i\om p(t_x-t_y)}}{(p'^0+i\epsilon)2\om p}+\int i\dddd p'\frac{\exp{ip'(x-y)+i\om p(t_x-t_y)}}{(p'^0+i\epsilon)2\om p}
+\end{equation}
+(注意, 这里$p(x-y)=p^0(t_x-t_y)-\vec p\cdot(\vec x-\vec y)$, 其中$p^0=\omega$, 因此这里$p(x-y)$与式\eqref{scalar-feynman-propagator-naively}的含义是不同的). 再做换元将$\om p$吸收到$p$中
+\begin{equation}
+    p^0=p'^0+\om p=p'^0+\sqrt{\vec p'^2+m^2}
+\end{equation}
+这个换元的Jacobi行列式
+\begin{equation}
+    |\frac{\partial p'}{\partial p}|=1
+\end{equation}
+, 得到
+\begin{equation}
+    D_F(x, y)=\int i\dddd p\left(\frac{\exp{-ip(x-y)}}{(p^0-\om p+i\epsilon)2\om p}+\frac{\exp{ip(x-y)}}{(p^0-\om p+i\epsilon)2\om p}\right)
+\end{equation}
+. 再对第二项做换元, 将$\exp{-ip(x-y)}$提到括号外
+\begin{equation}
+    p\to -p
+\end{equation}
+, 我们有
+\begin{align}
+    D_F(x, y)&=\int i\dddd p\frac{\exp{-ip(x-y)}}{2\om p}\left(\frac{1}{p^0-\om p+i\epsilon}+\frac{1}{-p^0-\om p+i\epsilon}\right)\\
+    &=\int i\dddd p\exp{-ip(x-y)}\frac1{(p'^0-\om p+i\epsilon)(p'^0+\om p-i\epsilon)}\\
+    &=\int i\dddd p\exp{-ip(x-y)}\frac1{(p'^0)^2-\om p^2+2i\om p\epsilon+\epsilon^2}
+\end{align}
+忽略掉$\epsilon$的二阶项, 并且将$\om p$吸收进$\epsilon$, 利用$\om p^2=\vec p^2+m^2$, 我们有
+\begin{align}
+    D_F(x, y)&=\int\dddd p\frac i{p^2-m^2+i\epsilon}\exp{-ip(x-y)}
+\end{align}
+. 这就是实标量场的Feynman传播子.
+
+\subsubsection{复标量场}
+我们还是首先计算
+\begin{align}
+    \braket{0|\psi_x\psi_y^\dagger|0}&=\bra0\int\ldsq p\left(\a p^\dagger\exp{ipx}+\b p\exp{-ipx}\right)\notag\\
+    &\;\int\ldsq q\left(\a q\exp{-iqy}+\b p^\dagger\exp{iqy}\right)\ket0\\
+    &=\int\ld p[\exp{-ip(x-y)}]\\
+    \braket{0|\psi_y^\dagger\psi_x|0}&=\bra0\int\ldsq q\left(\a q\exp{-iqy}+\b p^\dagger\exp{iqy}\right)\notag\\
+    &\;\int\ldsq p\left(\a p^\dagger\exp{ipx}+\b p\exp{-ipx}\right)\ket0\\
+    &=\int\ld p[\exp{ip(x-y)}]
+\end{align}
+
+类似地, 我们可以将$\Theta$展开为Fourier积分, 从而给出复标量场的Feynman传播子
+\begin{align}
+    \braket{0|\mathcal T\psi_x\psi_y^\dagger|0}=\int\dddd p\frac i{p^2-m^2+i\epsilon}\exp{-ip(x-y)}
+\end{align}
+
+读者可能会疑问, $\psi_x\psi_y, \psi_x^\dagger\psi_y^\dagger$是否也有传播子? 事实上它们的传播子为$0$, 也就是不传播.
+\begin{align}
+    \braket{\psi_x\psi_y}=\braket{\psi_x^\dagger\psi_y^\dagger}=0
+\end{align}
+
+这是因为根据$Q\ket0=0$, 即真空态电中性, 我们有
+\begin{align}
+    \braket{0|\mathcal T\psi_x\psi_y|0}&=\braket{0|\mathcal T\psi_x\psi_y|0}+\braket{0|Q_N\mathcal T\psi_x\psi_y|0}\\
+    &=\braket{0|\mathcal T\psi_x\psi_y|0}+\braket{0|\mathcal T\psi_xQ_N\psi_y|0}+\braket{0|\mathcal T\psi_x\psi_y|0}\\
+    &=2\braket{0|\mathcal T\psi_x\psi_y|0}+\braket{0|\mathcal T\psi_x\psi_yQ_N|0}+\braket{0|\mathcal T\psi_x\psi_y|0}\\
+    &=3\braket{0|\mathcal T\psi_x\psi_y|0}
+\end{align}
+(需要注意, 因为$Q_N$不含时, 所以可以自由进出$\mathcal T$, 然后利用式\eqref{complex-scalar-Q-commutation-relations}中给出的$Q_N$与$\psi_x$的对易关系). 因此
+\begin{align}
+    \braket{0|\mathcal T\psi_x\psi_y|0}=0
+\end{align}
+同理可得
+\begin{align}
+    \braket{0|\mathcal T\psi_x^\dagger\psi_y^\dagger|0}=0
+\end{align}
+
+\subsubsection{关联函数与Green函数}
 \begin{theorem}[关联函数的性质]
     这四个关联函数$D_R(x-y)$, $D_A(x-y)$, $D_F(x-y)$, $\widetilde D_F(x-y)$都是EoM的Green函数, 即:
     \begin{equation}
@@ -1159,3 +1246,9 @@ Fourier逆变换可以得到:
 
     \kaishu 最后补充一点, 对于Wick定理的证明, 我们并没有利用到任何Free Field的性质, 因此Wick定理也是可以适用于接下来的Interaction Theory的. \songti
 \end{proof}
+
+对于旋量, Wick定理同样满足, 但是在这时因为
+\begin{equation}
+    \braket{0|\mathcal T\psi_x\bar\psi_y|0}=-\braket{0|\mathcal T\bar\psi_y\psi_x|0}\neq\braket{0|\mathcal T\bar\psi_y\psi_x|0}
+\end{equation}
+, Wick收缩的内顺序(即两个场$\psi, \bar\psi$缩并时谁在前谁在后)是不可忽略的, 不难证明, 正确的缩并方法应该是在缩并内保持$\mathcal T$内的先后顺序.

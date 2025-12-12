@@ -195,7 +195,7 @@ Feynman黄金规则, 在于给予S矩阵元实际的物理观测效应, 也就�
 
 \subsection{Lehmann-Symanzik-Zimmermann公式}
 有了Feynman黄金规则, 我们下一步就在于计算散射振幅$\mathcal M$. 而本节的核心就在于将位置空间的关联函数与动量空间中的散射振幅连接起来, 得出LSZ公式:
-\begin{theorem}[LSZ公式]\label{LSZformula}
+\begin{theorem}[LSZ公式(实标量场)]\label{LSZformula}
     \begin{equation}
         \braket{f, +\infty|i, -\infty}=\int\d^4x_1 i\exp{-ip_1x_1}(\Box_1+m^2)\cdots\int\d^4x_n i\exp{ip_nx_n}(\Box_n+m^2)\braket{\phi_1\cdots\phi_n}
     \end{equation}
@@ -258,10 +258,32 @@ Feynman黄金规则, 在于给予S矩阵元实际的物理观测效应, 也就�
 \end{align}
 \kaishu 这里其实有一点subtle的地方, 就是说$\Box$能与$\mathcal T$换序吗? 在下一节我们会看到其实是不能换序的, 换序会制造出$\delta_{ij}$项. 但是这个结果是不影响的, 交换项的结果会被LSZ干掉, 最终贡献是$0$. \songti
 
-于是我们最终得到了LSZ公式:
-\begin{equation}
-    \braket{f, +\infty|i, -\infty}=\int\d^4x_1 i\exp{-ip_1x_1}(\Box_1+m^2)\cdots\int\d^4x_n i\exp{ip_nx_n}(\Box_n+m^2)\braket{\phi_1\cdots\phi_n}
-\end{equation}
+于是我们最终得到了实标量场的LSZ公式.
+
+类似地, 可以证明对于复标量场我们有引理
+\begin{lemma}
+    \begin{equation}
+        i\int\d^4x\exp{ipx}(\Box+m^2)\phi=\sqrt{2\omega_{\vec p}}[\a p(+\infty)-\a p(-\infty)]
+    \end{equation}
+    \begin{equation}
+        i\int\d^4x\exp{ipx}(\Box+m^2)\phi^\dagger=\sqrt{2\omega_{\vec p}}[\b p(+\infty)-\b p(-\infty)]
+    \end{equation}
+    \begin{equation}
+        -i\int\d^4x\exp{-ipx}(\Box+m^2)\phi^\dagger=\sqrt{2\omega_{\vec p}}[\a p^\dagger(+\infty)-\a p^\dagger(-\infty)]
+    \end{equation}
+    \begin{equation}
+        -i\int\d^4x\exp{-ipx}(\Box+m^2)\phi=\sqrt{2\omega_{\vec p}}[\b p^\dagger(+\infty)-\b p^\dagger(-\infty)]
+    \end{equation}
+\end{lemma}
+从而得到复标量场的LSZ公式.
+\begin{theorem}[LSZ公式(复标量场)]\label{LSZformula-complex}
+    \begin{align}
+        \braket{f, +\infty|i, -\infty}&=\int\d^4xi\exp{-ip_1x_1}(\Box_1+m^2)\int\d^4xi\exp{-ipx}(\Box_2+m^2)\cdots\notag\\
+        &\;\;\int\d^4xi\exp{ip_{n-1}x_{n-1}}(\Box_{n-1}+m^2)\int\d^4xi\exp{ip_nx_n}(\Box_n+m^2)\notag\\
+        &\;\;\;\;\braket{\psi_1^\dagger\psi_2\cdots\psi_{n-1}\psi_n^\dagger}
+    \end{align}
+    其中, 入射正粒子为$\int i\exp{-ip_1x_1}(\Box_1+m^2) $, 入射反粒子为$\int\d^4xi\exp{-ipx}(\Box_2+m^2)$, 出射正粒子为$\int\d^4xi\exp{ip_{n-1}x_{n-1}}(\Box_{n-1}+m^2)$, 出射反粒子为$\int\d^4xi\exp{ip_nx_n}(\Box_n+m^2)$
+\end{theorem}
 
 \subsection{Schwinger-Dyson定理}
 本节的核心在于通过为接下来微扰展开计算空间关联函数继而得到位置空间的Feynman规则做准备.
@@ -347,7 +369,7 @@ Feynman黄金规则, 在于给予S矩阵元实际的物理观测效应, 也就�
     \braket{\phi_1\phi_2}=D_{12}-\left(\frac g2\right)^2\int \d^4x\d^4y(2D_{1x}D_{xy}D_{xy}D_{y2}+D_{1x}D_{xx}D_{yy}D_{y2}+2D_{1x}D_{xy}D_{yy}D_{x2})\label{2pt-correlation-expansion-schwinger-dyson}
 \end{equation}
 
-我们可以用这个fancy的图来表示这些二阶贡献, 这就是Feynman图:
+我们可以用这些fancy的图来表示这些二阶贡献, 这就是Feynman图:
 \begin{figure}[htbp!]
     \begin{tikzpicture}
         \draw (-0.5,0) -- (1,0) ;

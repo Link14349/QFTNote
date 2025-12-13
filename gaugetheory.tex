@@ -1200,7 +1200,7 @@ $$
 
 \begin{theorem}
     \begin{equation}
-        \Lambda_s^{-1}\gamma^\mu\Lambda_s={\Lambda_v}^\mu_{~~\nu}\gamma^\nu
+        \Lambda_s^{-1}\gamma^\mu\Lambda_s=(\Lambda_v)^\mu_{~~\nu}\gamma^\nu
     \end{equation}
     其中$\Lambda_v$即$\omega$对应的对矢量的Lorentz变换矩阵.
 \end{theorem}
@@ -1663,14 +1663,27 @@ $$
 \section{离散变换}
 在本节我们尝试讨论对场的三种幺正离散变换, 即$C,P,T$变换. 所谓的$C$, 其实就是电荷共轭(Charge Conjugate), 就是指将粒子变为反粒子, 反转其的所有量子荷(比如电荷, 但还包括轻子数、重子数等所有性质). 而$P$就是大名鼎鼎的宇称(Parity), 就是指$\vec x\to-\vec x$的镜像变换. $T$则是时间反演(Time reversal), 也就是将对象的运动过程反演: $t\to-t$. 
 
-\subsection{C变换}
-$C$变换就是取反粒子, 若我们有一个粒子态$\ket p$, 我们将$C$作用在它上面, 根据要求我们有:
+一般性地讨论来说, 对于任意的离散变换算符$X$, 我们有如下定义
 \begin{equation}
-    C\ket p=\ket{\bar p}
+    X\psi(x)X^\dagger=\boldsymbol{\mathrm C}\psi(\Lambda_X\cdot x)
 \end{equation}
-其中$\ket{\bar p}$即$\ket p$的反粒子态.
+其中$\boldsymbol{\mathrm X}$是对场量的变换算符, $\Lambda_X$是对坐标的变换, 而$X$是一个幺正算符
+\begin{equation}
+    XX^\dagger=1.
+\end{equation}
 
-而这也就是说
+\subsection{C变换}
+$C$变换就是取反粒子, 也就是对场算符我们有如下要求
+\begin{equation}
+    C\psi(x)C^\dagger=\boldsymbol{\mathrm C}\psi^\dagger(x).
+\end{equation}
+这里取$\dagger$是因为正反粒子的相位旋转方向不同, 我们将场算符中的正反粒子反转必然需要取一个共轭. 并且其中$C$在幺正的基础上还满足
+\begin{equation}
+    C^2=1, 
+\end{equation}
+
+
+上面的要求等价于我们要求
 \begin{align}
     & C\b{p}^\dagger\ket0=\a{p}^\dagger\ket 0\\
     & C\a{p}^\dagger\ket0=\b{p}^\dagger\ket 0
@@ -1685,37 +1698,45 @@ $C$变换就是取反粒子, 若我们有一个粒子态$\ket p$, 我们将$C$�
 这暗示我们
 \begin{align}
     & C\b{p}^\dagger C^\dagger=\a{p}^\dagger\\
-    & C\a{p}^\dagger C^\dagger=\b{p}^\dagger
+    & C\a{p}^\dagger C^\dagger=\b{p}^\dagger.
 \end{align}
 
 然后我们以实标量场、复标量场、Dirac旋量场为例讨论$C$的具体作用.
-\begin{example}[实标量场的电荷共轭]
+\begin{example}[实标量场的电荷共轭变换]
     由于实标量场只有一组产生湮灭算符, 它自己就是自己的反粒子, $C$变换对其不起作用, 于是我们有
-    \begin{eqnarray}
-        C=1
-    \end{eqnarray}
+    \begin{equation}
+        C=1, \boldsymbol{\rm C}=1
+    \end{equation}
+    % 其中$\dagger$即为对场算符取$\dagger$
 \end{example}
-\begin{example}[复标量场的电荷共轭]
-    直接套用结论我们有
+\begin{example}[复标量场的电荷共轭变换]
+    对于复标量场, 我们也没有特殊的要求, 仍然有
+    \begin{equation}
+        \boldsymbol{\rm C}=1
+    \end{equation}
+    于是我们有结论
     \begin{align}
-        &C\psi(x)C^\dagger=\int\ldsq p\left(\a p\exp{-ipx}+\b p^\dagger\exp{ipx}\right)=\psi^\dagger(x)\\
-        &C\pi(x)C^\dagger=\int\ddd pi\sqrt{\frac{\om p}2}\left(\b p^\dagger\exp{ipx}-\a p\exp{-ipx}\right)=\pi^\dagger(x)
+        &C\psi(x)C^\dagger=\int\ldsq p\left(\a p\exp{-ipx}+\b p^\dagger\exp{ipx}\right)=\psi^\dagger(x)
+    \end{align}
+    所以
+    \begin{align}
+        & C\b{p}^\dagger C^\dagger=\a{p}^\dagger\\
+        & C\a{p}^\dagger C^\dagger=\b{p}^\dagger.
     \end{align}
 \end{example}
-\begin{example}[Dirac旋量的电荷共轭]
-    直接利用结论我们有
+\begin{example}[实矢量场的电荷共轭变换]
+    由于实矢量场只有一组产生湮灭算符, 它自己就是自己的反粒子, $C$变换对其不起作用, 于是我们有
+    \begin{equation}
+        C=1, \boldsymbol{\rm C}=1
+    \end{equation}
+\end{example}
+\begin{example}[Dirac旋量的电荷共轭变换]
+    我们首先推导$\boldsymbol{\mathrm C}$. 因为它负责将正粒子变为反粒子, 而正粒子反粒子的与$\slash p$乘积满足的条件是不一样的:
     \begin{align}
-        &C\psi_AC^\dagger=\int\ldsq{p}\sum_s(u^s_A\b{p}^s\exp{-ipx}+v^{s}_A\a{p}^{s\dagger}\exp{ipx})
+        (\slashed p-m)\boldsymbol{\mathrm C}u^{s}=0\\
+        (\slashed p+m)\boldsymbol{\mathrm C}v^{s}=0.
     \end{align}
-    将其与
-    \begin{equation}
-        \psi_A=\int\ldsq{p}\sum_s(u^s_A\a{p}^s\exp{-ipx}+v^{s}_A\b{p}^{s\dagger}\exp{ipx})\\
-    \end{equation}
-    对比, 我们发现, 这暗示着
-    \begin{equation}
-        \psi_C=C\psi C^\dagger=\boldsymbol{\mathrm C}\psi^*=\int\ldsq{p}\sum_s(\boldsymbol{\mathrm C}v^{s*}\b{p}^{s}\exp{-ipx}+\boldsymbol{\mathrm C}u^{s*}\a{p}^{s\dagger}\exp{ipx})
-    \end{equation}
-    其中$\boldsymbol{\mathrm C}$为一个矩阵. 这也就是说
+    所以说我们需要求一个$\boldsymbol{\mathrm C}$使得
     \begin{align}
         \boldsymbol{\mathrm C}v^{s*}=u^s\\
         \boldsymbol{\mathrm C}u^{s*}=v^s\label{uv-conguate-star}.
@@ -1748,13 +1769,146 @@ $C$变换就是取反粒子, 若我们有一个粒子态$\ket p$, 我们将$C$�
     \begin{equation}
         \boldsymbol{\mathrm C}=i\gamma^2
     \end{equation}
-    是满足这一要求的电荷共轭矩阵.
+
+    所以说我们得到
+    \begin{align}
+        &C\psi_AC^\dagger=\int\ldsq{p}\sum_s(u^s_A\b{p}^s\exp{-ipx}+v^{s}_A\a{p}^{s\dagger}\exp{ipx})
+    \end{align}
+    这同样要求
+    \begin{align}
+        & C\b{p}^\dagger C^\dagger=\a{p}^\dagger\\
+        & C\a{p}^\dagger C^\dagger=\b{p}^\dagger.
+    \end{align}
 
     % 我们想要将其写为与$\psi^*$(注意, 这里如果是$\psi^\dagger$那么就变成行向量了, 结构不同, 而$\psi^*$则只是取共轭, 也就是将$a, b$取$\dagger$, 给$u, v$取$*$却不取$\dagger$)有关的东西, 那么我们就需要获得$u$与$v$之间的关系.
 \end{example}
 
 \subsection{P变换}
+$P$变换就是宇称变换, 即将场的三维部分反转
+\begin{equation}
+    \psi(t, \vec x)\to\psi(t, -\vec x), 
+\end{equation}
+也就是
+\begin{equation}
+    P\psi(t, \vec x)P^\dagger=\boldsymbol{\mathbf P}\psi(t, -\vec x), 
+\end{equation}
+其中$P$在幺正的基础上还满足
+\begin{equation}
+    P^2=1.
+\end{equation}
 
+\begin{example}[实标量场的宇称变换]
+    对于标量来说(如果是赝标量那么就是$\boldsymbol{\mathbf P}=-1$了)
+    \begin{equation}
+        \boldsymbol{\mathbf P}=1
+    \end{equation}
+    我们发现这样要求
+    \begin{align}
+        &P\phi(x)P^\dagger=\int\ldsq p\left(\a p\exp{-i\omega t-i\vec p\cdot\vec x}+\a p^\dagger\exp{i\omega t+i\vec p\cdot\vec x}\right)
+    \end{align}
+    我们做换元$\vec p\to-\vec p$得到
+    \begin{align}
+        &P\psi(x)P^\dagger=\int\ldsq p\left(\a {-p}\exp{-ipx}+\a {-p}^\dagger\exp{ipx}\right)
+    \end{align}
+    所以说有结论
+    \begin{equation}
+        P\a p P^\dagger=\a{-p}
+    \end{equation}
+\end{example}
+\begin{example}[复标量场的宇称变换]
+    同样有
+    \begin{equation}
+        \boldsymbol{\mathbf P}=1
+    \end{equation}
+    我们发现这样要求
+    \begin{align}
+        &P\psi(x)P^\dagger=\int\ldsq p\left(\a p\exp{-i\om p t-i\vec p\cdot\vec x}+\b p^\dagger\exp{i\om p t+i\vec p\cdot\vec x}\right)
+    \end{align}
+    做换元$\vec p\to-\vec p$得到
+    \begin{align}
+        &P\psi(x)P^\dagger=\int\ldsq p\left(\a {-p}\exp{-ipx}+\b {-p}^\dagger\exp{ipx}\right)
+    \end{align}
+    所以说有结论
+    \begin{align}
+        P\a p P^\dagger=\a{-p}\\
+        P\b p P^\dagger=\b{-p}
+    \end{align}
+\end{example}
+\begin{example}[电磁场的宇称变换]
+    考虑到Lorentz规范下, 电磁4矢势满足
+    \begin{equation}
+        \Box A^\mu=J^\mu.
+    \end{equation}
+    而$J^\mu$在$P$变换下满足
+    \begin{equation}
+        \boldsymbol{\mathbf P}J^\mu=\boldsymbol{\mathbf P}(\rho, \vec j)^T=(\rho, -\vec j)^T,
+    \end{equation}
+    这个性质也自然地被诱导给$A^\mu$, 因此$A^\mu$同样满足
+    \begin{equation}
+        \boldsymbol{\mathbf P}A^\mu=\boldsymbol{\mathbf P}(\varphi, \vec A)^T=(\varphi, -\vec A)^T.
+    \end{equation}
+    
+    考虑到对于电磁波极化矢量$\epsilon_s^\mu$(在Lorentz规范下它是完全没有$t$分量的, 也就是$\epsilon^0=0$)我们有
+    \begin{align}
+        \boldsymbol{\mathbf P}\epsilon_1^\mu(\vec p)=-\epsilon_1^\mu(\vec p)=\epsilon_1^i(-\vec p)\\
+        \boldsymbol{\mathbf P}\epsilon_2^\mu(\vec p)=-\epsilon_2^\mu(\vec p)=\epsilon_2^i(-\vec p)
+    \end{align}
+    从而得到
+    \begin{align}
+        P\vec A P^\dagger&=\int\ldsq p\sum_{r=1}^2\left(\vec\epsilon_r(-\vec p)a_{\vec pr}\exp{-i\om pt-i\vec p\cdot\vec x}+\vec\epsilon_r^*(-\vec p)a_{\vec pr}^\dagger\exp{i\om pt+i\vec p\cdot\vec x}\right)\\
+        &=\int\ldsq p\sum_{r=1}^2\left(\vec\epsilon_r(\vec p)a_{-\vec pr}\exp{-ipx}+\vec\epsilon_r^*(\vec p)a_{-\vec pr}^\dagger\exp{ipx}\right)
+    \end{align}
+    所以说有结论
+    \begin{align}
+        P\a p P^\dagger=\a{-p}\\
+        P\b p P^\dagger=\b{-p}
+    \end{align}
+\end{example}
+\begin{example}[Dirac旋量的宇称变换]
+    首先我们需要推导旋量在宇称变换下的矩阵. 因为宇称变换是$\vec x\to-\vec x$这同样代表着$\vec p\to-\vec p$, 所以说我们要求一$\boldsymbol{\mathbf P}$满足
+    \begin{equation}
+        \boldsymbol{\mathbf P}u_s(\vec p)=\eta_s u_s(-\vec p)
+    \end{equation}
+    其中$\eta_s$为某一相位常数.
+
+    注意到
+    \begin{align}
+        \gamma^0u^s(\vec p)&=\gamma^0\begin{pmatrix}
+            \sqrt{p\sigma}\zeta_s\\
+            \sqrt{p\bar\sigma}\zeta_s
+        \end{pmatrix}=\begin{pmatrix}
+            \sqrt{p\bar\sigma}\zeta_s\\
+            \sqrt{p\sigma}\zeta_s
+        \end{pmatrix}=u^s(-\vec p)\\
+        \gamma^0`v^s(\vec p)&=\gamma^0\begin{pmatrix}
+            \sqrt{p\sigma}\zeta_s\\
+            -\sqrt{p\bar\sigma}\zeta_s
+        \end{pmatrix}=\begin{pmatrix}
+            -\sqrt{p\bar\sigma}\zeta_s\\
+            \sqrt{p\sigma}\zeta_s
+        \end{pmatrix}=-v^s(-\vec p)
+    \end{align}
+    所以说
+    \begin{equation}
+        \boldsymbol{\mathbf P}=\gamma^0.
+    \end{equation}
+
+    根据定义我们直接有
+    \begin{align}
+        P\psi(t,\vec x)P^\dagger&=\boldsymbol{\mathbf P}\psi(t,-\vec x)\\
+        &=\int\ldsq{p}\sum_s(u^s(-\vec p)\a{p}^s\exp{-i\om pt-i\vec p\cdot\vec x}-v^{s}(-\vec p)\b{p}^{s\dagger}\exp{i\om pt+i\vec p\cdot\vec x})
+    \end{align}
+    做$\vec p\to-\vec p$换元我们有
+    \begin{align}
+        P\psi(t,\vec x)P^\dagger&=\int\ldsq{p}\sum_s(u^s(\vec p)\a{-p}^s\exp{-ipx}-v^{s}(\vec p)\b{-p}^{s\dagger}\exp{ipx})
+    \end{align}
+
+    所以得到结论
+    \begin{align}
+        P\a p P^\dagger=\a{-p}\\
+        P\b p P^\dagger=-\b{-p}
+    \end{align}
+\end{example}
 
 \subsection{T变换}
 

@@ -1753,26 +1753,9 @@ $H$不含时, 因此$T$可与$H$交换. 同样地, $T$可以与时间导数算�
         &=2e^4\left((\frac us+\frac ut)^2+\frac{t^2}{s^2}+\frac{s^2}{t^2}\right).
     \end{align}
 
-    根据Feynman黄金规则, 我们利用例\ref{ex-2-2-scattering}中的结果, 在质心系下我们有
-    \begin{align}
-        \d\sigma&=\int_{p_3}\frac1{4E_1E_2|\vec v_1-\vec v_2|}\dpi4\delta^4|\mathcal M|^2\lips{p_3}\lips{p_4}\\
-        &=\int_{p_4}\frac1{4E_1E_2|\vec v_1-\vec v_2|}2\pi\delta(E_1+E_2-E_3-E_4)|\mathcal M|^2 \frac{p_4^2\d p_4\d\Omega}{\dpi3 4E_3E_4}
-    \end{align}
-    根据$E_1+E_2=E_{CM}$以及
+    根据Feynman黄金规则, 我们利用例\ref{ex-2-2-scattering}中的结果, 在质心系($|\vec p_f|=|\vec p_i|$)下我们有
     \begin{equation}
-        \delta(E_{CM}-E_3-E_4)=\delta(p_4-p_{40})\frac{E_3}{p_3}\frac{E_4}{p_4}=\delta(p_4-p_{40})\frac{E_3E_4}{p_4^2}
-    \end{equation}
-    我们有
-    \begin{align}
-        \left(\frac{\d\sigma}{\d\Omega}\right)_{CM}=\frac1{64E_1E_2}\frac{|\mathcal M|^2}{|\vec v_1-\vec v_2|}
-    \end{align}
-    此外
-    \begin{equation}
-        |\vec v_1-\vec v_2|=\frac{|\vec p_1|}{E_1}+\frac{|\vec p_2|}{E_1}=|\vec p_i|\frac{E_{CM}}{E_1E_2}
-    \end{equation}
-    从而有
-    \begin{equation}
-        \left(\frac{\d\sigma}{\d\Omega}\right)_{CM}=\frac{|\mathcal M|^2}{64\pi^2E_{CM}|\vec p_i|}
+        \left(\frac{\d\sigma}{\d\Omega}\right)_{CM}=\frac{|\mathcal M|^2}{64\pi^2E_{CM}^2}
     \end{equation}
     最后代入我们计算得到的$|\mathcal M_{aver}|$, 就有结果
     \begin{align}
@@ -1913,9 +1896,11 @@ $H$不含时, 因此$T$可与$H$交换. 同样地, $T$可以与时间导数算�
         \sum_i \epsilon_{2\mu}\epsilon_{2\nu}^*\to-g_{\mu\nu}
     \end{equation}
     利用s,t,u变量
-    \begin{equation}
-        s=m^2-2p_1p_2=m^2-2p_3p_4, t=m^2-2p_1p_3=-2p_2p_4, u=m^2-2p_1p_4=m^2-2p_2p_3
-    \end{equation}
+    \begin{align}
+        &s=m^2-2p_1p_2=m^2-2p_3p_4\\
+        &t=m^2-2p_1p_3=-2p_2p_4\\
+        &u=m^2-2p_1p_4=m^2-2p_2p_3
+    \end{align}
     做代换, 经过艰苦卓绝的计算我们可以得到
     \begin{align}
         |\mathcal M_{aver}|^2&=2e^4\left(\frac{m^4-2u+m^2(3s+u)}{(s-m^2)^2}+\frac{m^4-2u+m^2(3u+s)}{(u-m^2)^2}\right.\notag\\
@@ -1958,8 +1943,9 @@ $H$不含时, 因此$T$可与$H$交换. 同样地, $T$可以与时间导数算�
     \end{align}
     其中
     \begin{equation}
-        \frac{\omega'}{\omega}=\frac{m}{m+(1-\cos\theta)\omega}
+        \frac{\omega'}{\omega}=\frac{m}{m+(1-\cos\theta)\omega}.
     \end{equation}
+    此即Klein-Nishina公式, 这是Thomson微分界面的QED修正.
 \end{example}
 \begin{example}[Rutherford散射(半量子化)]
     Rutherford散射即电子与原子核的散射, 由于原子核是一个由质子中子复合形成的一个复杂束缚态, 而质子和中子又是由夸克组成的复杂束缚态. 如果我们采取直接全部量子化计算的方式, 过程将会非常复杂. 于是作为简化近似, 我们计算最低阶的散射截面时可以不将电磁场量子化, 仅仅量子化Dirac场, 保留经典的电磁场矢势$A_\mu$, 这样子就可以直接唯像地将原子核处理为一个点源了, 从而有相互作用Hamiltonian

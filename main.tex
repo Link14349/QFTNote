@@ -31,6 +31,9 @@
 \input{gaugetheory.tex}
 
 \newpage
+\input{spinor.tex}
+
+\newpage
 \input{renormalization.tex}
 
 \newpage
@@ -67,12 +70,276 @@
     \Gamma(\frac12)=\sqrt\pi.
 \end{equation}
 
-利用$\Gamma$函数我们有$n$维球面角公式
-\begin{theorem}[$n$维球面角]
+我们还有$\Gamma$函数的渐进形式
+\begin{theorem}
+    当$n\to+\infty$, 
+    \begin{equation}
+        \Gamma(n+1)\approx n^n\exp{-n}\sqrt{2\pi n}
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    对于$n\to+\infty$, 
+    \begin{align}
+        \Gamma(n+1)=\int_0^{+\infty} x^n\exp{-x}\d x
+    \end{align}
+    我们使用Gauss积分\cite{SchroederGamma}估计这个形式, 得到
+    \begin{equation}
+        x^n\exp{-x}\approx nn^n\exp{-n}\exp{-y^2/2n}
+    \end{equation}
+    其中
+    \begin{equation}
+        y=x-n.
+    \end{equation}
+    于是可以得到最终结果
+    \begin{equation}
+        \Gamma(n+1)\approx n^n\exp{-n}\sqrt{2\pi n}
+    \end{equation}
+\end{proof}
+
+\begin{definition}
+    \begin{equation}
+        \psi(z):=\de{}{z}\ln\Gamma(z)
+    \end{equation}
+\end{definition}
+\begin{theorem}
+    \begin{equation}
+        \psi(z+1)=\frac1z+\psi(z)
+    \end{equation}
+\end{theorem}
+\begin{definition}[Euler-Mascheroni常数]
+    \begin{equation}
+        \gamma=-\psi(1)\approx0.5772156649\cdots
+    \end{equation}
+\end{definition}
+
+\begin{theorem}
+    当$x\to0$, 
+    \begin{equation}
+        \Gamma(z)\approx \frac 1z-\gamma,
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    \begin{align}
+        \ln\Gamma(z+1)\approx\ln\Gamma(1)+z\psi(1)=z\psi(1)=-\gamma z
+    \end{align}
+    于是
+    \begin{equation}
+        \Gamma(z)=\frac{\Gamma(z+1)}{z}\approx\frac{\exp{-\gamma z}}{z}\approx\frac{1-\gamma z}{z}=\frac 1z-\gamma
+    \end{equation}
+\end{proof}
+
+\subsection{B函数}
+\begin{definition}
+    \begin{equation}
+        B(x,y)=\int_0^1 t^{x-1}(1-t)^{y-1}\d t
+    \end{equation}
+    其中$\rm{Re}(x), \rm{Re}(y)>0$
+\end{definition}
+\begin{theorem}
+    \begin{equation}
+        B(x,y)=B(y,x)
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    做换元$t'=1-t$, 则有
+    \begin{align}
+        B(x,y)&=-\int_1^0 (1-t')^{x-1}t'^{y-1}\d t'\\
+        &=\int_0^1(1-t')^{x-1}t'^{y-1}\d t'
+    \end{align}
+\end{proof}
+\begin{theorem}
+    \begin{equation}
+        B(x,y)=\frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    考虑
+    \begin{align}
+        \Gamma(x)\Gamma(y)&=\left(\int_0^{+\infty}u^{x-1}\exp{-u}\d u\right)\left(\int_0^{+\infty}u^{y-1}\exp{-v}\d v\right)\\
+        &=\int_0^{+\infty}\int_0^{+\infty}u^{x-1}v^{y-1}\exp{-(u+v)}\d u\d v
+    \end{align}
+    做换元$u=st, v=s(1-t)$, 有
+    \begin{align}
+        \Gamma(x)\Gamma(y)&=\int_0^1\d t\int_0^{+\infty}s\d s\exp{-s}\left(st\right)^{x-1}\left(s(1-t)\right)\\
+        &=\int_0^1\d t t^{x-1}(1-t)^{y-1}\int_0^{+\infty}\d ss^{x+y-1}\exp{-s}\\
+        &=B(x,y)\Gamma(x+y)
+    \end{align}
+\end{proof}
+\begin{theorem}\label{beta-equiv}
+    \begin{equation}
+        B(x,y)=\int_0^{+\infty}\frac{t^{x-1}}{(1+t)^{x+y}}\d t
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    对原始的积分定义换元, 设$t=\frac{t'}{t'+1}$, 于是有
+    \begin{align}
+        B(x,y)&=\int_0^1 t^{x-1}(1-t)^{y-1}\d t=\int_0^{+\infty} \left(\frac{t'}{t'+1}\right)^{x-1}{\frac1{1+t'}}^{y-1}\frac{\d t'}{(1+t')^2}\\
+        &=\int_0^{+\infty}\frac{t'^{x-1}}{(1+t')^{x+y}}\d t'
+    \end{align}
+\end{proof}
+
+\begin{theorem}
+    \begin{equation}
+        B(x,y)=2\int_0^{\frac\pi2}\sin^{2x-1}\theta\cos^{2y-1}\theta\d\theta
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    对于原始定义, 设$t=\sin^2\theta$, 则
+    \begin{align}
+        B(x,y)&=\int_0^1 t^{x-1}(1-t)^{y-1}\d t\\
+        &=\int_0^{\frac\pi2}\sin^{2(x-1)}\theta\cos^{2(y-1)}\theta\cdot2\sin\theta\cos\theta\d\theta\\
+        &=2\int_0^{\frac\pi2}\sin^{2x-1}\theta\cos^{2y-1}\theta\d\theta
+    \end{align}
+\end{proof}
+代入$x=\frac{n+1}2, y=\frac12$我们有推论
+\begin{theorem}\label{sin-n-integral}
+    \begin{equation}
+        \int_0^{\pi}\sin^n\theta\d\theta=\frac{\sqrt\pi\Gamma(\frac n2+\frac 12)}{\Gamma(\frac n2+1)}
+    \end{equation}
+\end{theorem}
+
+\begin{theorem}
+    \begin{equation}
+        B(1,x)=\frac 1x
+    \end{equation}
+\end{theorem}
+\begin{theorem}
+    \begin{equation}
+        B(x,1-x)=\frac{\pi}{\sin(n\pi)}
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    根据定理\ref{beta-equiv}, 我们使用等价形式
+    \begin{equation}
+        B(x,1-x)=\int_0^{+\infty}\frac{t^{x-1}}{1+t}\d t.
+    \end{equation}
+    考虑围道如图\ref{B-x-1-x-contour}(其中正实轴为$\ln z$的割线), 我们需要计算的积分即$\Gamma_{up}$部分, 即
+    \begin{figure}
+        \centering
+        \begin{tikzpicture}[scale=1.5,
+            >=Stealth,
+            thick,
+            decoration={markings,
+                mark=at position 0.5 with {\arrow{>}}},
+            % 定义波浪线风格
+            snake_cut/.style={decorate, decoration={snake, amplitude=0.5mm, segment length=2mm, post length=1mm}}
+        ]
+
+            % 参数：R（大半径，现在用得更大）, \epsilon（小半径）
+            \def\R{3.0}
+            \def\epsilon{0.1}
+
+            % 1. 绘制坐标轴
+            \draw[->] (-2.7, 0) -- (\R+0.5, 0) node[right] {Re($z$)};
+            \draw[->] (0, -2.5) -- (0, 2.5) node[above] {Im($z$)};
+            \node at (0, 0) [circle, fill, inner sep=1.5pt] {}; % 原点 0
+
+            % 2. 绘制极点 (红点)
+            \node at (-1, 0) [circle, fill=red, inner sep=2pt, label={[red]above: $z=-1$}] {}; % 极点 -1
+
+            % 3. 绘制分支切割（割线，波浪线）
+            % 我们用波浪线代替实轴，从 epsilon 之外一直延伸
+            \draw[snake_cut, blue!70] (0, 0) -- (\R, 0);
+
+            % --- 绘制锁孔路径 ---
+
+            % 4. 绘制路径 Gamma_up (上侧) - 从 R 到 epsilon (积分方向向左)
+            \draw[postaction={decorate}] (0, 0.1) -- (\R, 0.1);
+            \node[above] at (2, 0.1) {$\Gamma_{up}$};
+
+            % 5. 绘制路径 gamma_epsilon (小圆弧) - 绕过原点 (逆时针)
+            \draw[] (0, 0.1) arc (90:270:0.1);
+            % \node[right] at (\epsilon, 0) {$\gamma_\epsilon$};
+
+            % 6. 绘制路径 Gamma_down (下侧) - 从 epsilon 到 R (积分方向向右)
+            \draw[postaction={decorate}] (\R, -0.1) -- (0, -0.1);
+            \node[below] at (2, -0.1) {$\Gamma_{down}$};
+            % 调整下侧箭头方向，确保是从 R 到 epsilon 的逆向
+            % 由于 postaction 是沿着路径方向画箭头，如果路径是从 \epsilon 到 \R，则需要注意。
+            % 修正：标准 Keyhole Contour 是逆时针的，所以下侧是从 R 到 epsilon，但方向是左。
+            % 这里的 \draw 实际上是 \epsilon -> \R，我们标记方向是逆时针的。
+            % 为了符合闭合路径的逆时针方向，\Gamma_{down} 应该从 R 到 \epsilon，方向向左。
+
+            % 7. 绘制路径 Gamma_R (大圆弧) - 封闭路径 (逆时针)
+            % 确保大圆弧的尺寸与 \R 匹配
+            \draw[postaction={decorate}] (\R, 0.1) arc (1:357: \R); % 稍微夸张地画一个大弧
+            \node[above right] at (2.4, 1.8) {$\Gamma_{C}$};
+        \end{tikzpicture}
+        \caption{$B(x,1-x)$围道示意图}\label{B-x-1-x-contour}
+    \end{figure}
+    \begin{equation}
+        B(x,1-x)=\int_{\Gamma_{up}}\frac{z^{x-1}}{z+1}\d z=\int_{\Gamma_{up}}\frac{\exp{(x-1)\ln z}}{z+1}\d z
+    \end{equation}
+    不难发现, $\Gamma_{down}$部分的$\ln z$比$\Gamma_{up}$多$2\pi i$的相位, 于是有
+    \begin{equation}
+        \int_{\Gamma_{down}}\frac{\exp{(x-1)\ln z}}{z+1}\d z=-\int_{\Gamma_{up}}\frac{\exp{(x-1)(\ln z+2\pi i)}}{z+1}\d z=-\exp{2\pi xi}B(x,1-x)
+    \end{equation}
+    再利用大圆弧定理, 
+    \begin{equation}
+        \int_{\Gamma_{C}}\frac{\exp{(x-1)\ln z}}{z+1}\d z=0
+    \end{equation}
+    于是有
+    \begin{equation}
+        \left(\int_{\Gamma_{up}}+\int_{\Gamma_{down}}+\int_{\Gamma_{C}}\right)\frac{\exp{(x-1)\ln z}}{z+1}\d z=(1-\exp{2\pi xi})B(x,1-x)
+    \end{equation}
+    利用留数定理, 左边的积分正是
+    \begin{equation}
+        2\pi i\rm{Res}(\frac{\exp{(x-1)\ln z}}{z+1})=2\pi i\exp{(x-1)\pi i}=-2\pi i\exp{\pi xi}
+    \end{equation}
+
+    整理有
+    \begin{equation}
+        B(x,1-x)=\frac{\pi}{\sin\pi x}
+    \end{equation}
+\end{proof}
+
+\subsection{$n$维超球}
+\begin{definition}[n维超球]
+    在$n$维欧式空间中, 半径维$r$的$n$维超球即
+    \begin{equation}
+        \left\{(x_1,x_2, \cdots x_n)|\sum_{i=1}^n x_i^2\leq r^2\right\}
+    \end{equation}
+\end{definition}
+\begin{theorem}[$n$维超球面角]
     \begin{equation}
         \Omega_n=\frac{2\pi^{n/2}}{\Gamma(n/2)}
     \end{equation}
 \end{theorem}
+\begin{proof}
+    我们利用递推法, 有
+    \begin{align}
+        \Omega_n=\int_0^\pi\Omega_{n-1}\sin^{n-2}\theta\d\theta
+    \end{align}
+    根据定理\ref{sin-n-integral}, 我们有
+    \begin{equation}
+        \int_0^\pi\sin^{n-2}\theta\d\theta=\frac{\sqrt\pi\Gamma(\frac n2-\frac 12)}{\Gamma(\frac n2)}
+    \end{equation}
+    于是有
+    \begin{align}
+        \Omega_n=\frac{\sqrt\pi\Gamma(\frac n2-\frac 12)}{\Gamma(\frac n2)}\Omega_{n-1}
+    \end{align}
+    利用
+    \begin{equation}
+        \Omega_1=2
+    \end{equation}
+    所以有
+    \begin{align}
+        \Omega_n&=\frac{\sqrt\pi\Gamma(\frac{n-1}2)}{\Gamma(\frac n2)}\frac{\sqrt\pi\Gamma(\frac{n-2}2)}{\Gamma(\frac {n-1}2)}\cdots\frac{\sqrt\pi\Gamma(\frac{n-(n-1)}2)}{\Gamma(\frac {n+1-(n-1)}2)}\cdot2\\
+        &=\frac{2\pi^{n/2}}{\Gamma(n/2)}
+    \end{align}
+\end{proof}
+
+\begin{theorem}[n维超球体积]
+    半径维$r$的$n$维超球体积
+    \begin{equation}
+        V=\frac{\Omega_n}{n}r^n=\frac{2\pi^{n/2}}{n\Gamma(n/2)}r^n
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    \begin{align}
+        V&=\int_0^r\Omega_n r^{n-1}\d r=\frac{\Omega_n}{n}r^n
+    \end{align}
+\end{proof}
 
 \newpage
 \nocite{*}

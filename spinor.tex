@@ -1,0 +1,1957 @@
+\section{旋量}
+\subsection{Lorentz群的性质\label{Lorentz}}
+我们首先考虑对矢量的Lorentz变换.
+\begin{definition}[Lorentz变换]
+    Lorentz变换为一种保内积的变换:
+    \begin{equation}
+        \bar x^\mu=\Lambda^\mu_{~~\nu}x^\nu
+    \end{equation}
+    使得
+    \begin{equation}
+        \bar x^\mu\bar x_\mu=x^\mu x_\mu
+    \end{equation}
+\end{definition}
+\begin{theorem}[Lorentz变换的性质]\label{theorem:lorentz_property}
+    \begin{equation}
+        \Lambda^\mu_{~~\sigma}g_{\mu\nu}\Lambda^\nu_{~~\rho}=g_{\sigma\rho}
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    \begin{equation}
+        \bar{x}^2=g_{\mu\nu}\bar{x}^\mu\bar x^\nu=x^\sigma(\Lambda^\mu_{~~\sigma}g_{\mu\nu}\Lambda^\nu_{~~\rho})x^\rho=x^\sigma g_{\sigma\rho} x^\rho
+    \end{equation}
+\end{proof}
+于是我们可以有如下推论:
+\begin{theorem}[Lorentz变换的逆矩阵]\label{theorem:Lorentz_inverse}
+    \begin{equation}
+        (\Lambda^{-1})^{\mu}_{~~\nu}=\Lambda_\nu^{~~\mu}
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    由\ref{theorem:lorentz_property}可得
+    \begin{equation}
+        g^{\rho\beta}\Lambda^\mu_{~~\rho}\Lambda^\nu_{~~\sigma}g_{\mu\nu}=g_{\rho\sigma}g^{\rho\beta}=\delta^\beta_{~~\sigma}
+    \end{equation}
+    即:
+    \begin{equation}
+        \Lambda_\nu^{~~\beta}\Lambda^\nu_{~~\sigma}=\delta^\beta_{~~\sigma}
+    \end{equation}
+    于是可以得证.
+\end{proof}
+\begin{definition}[$\delta\omega^\mu_{~~\nu}$]\label{def:deltaomega}
+    对于无穷小Lorentz变换$\Lambda^\mu_{~~\nu}$, 定义
+    \begin{equation}
+        \Lambda^\mu_{~~\nu}=\delta^\mu_{~~\nu}+\delta\omega^\mu_{~~\nu}
+    \end{equation}
+\end{definition}
+通过\eqref{theorem:lorentz_property}可以发现$\delta\omega_{\mu\nu}$是反称的. 并且我们还可以进一步写成矩阵形式\:
+\begin{equation}
+    \delta\omega^\mu_{~~\nu}=\begin{bmatrix}
+        0 & v^1 & v^2 & v^3 \\
+        v^1 & 0 & \theta^3 & -\theta^2 \\
+        v^2 & -\theta^3 & 0 & \theta^1 \\
+        v^3 & \theta^2 & -\theta^1 & 0
+    \end{bmatrix}
+\end{equation}
+其中, $v^i$为参考系间的相对速度, $\theta^i$为沿着$i$轴旋转的角度. 或者写为降指标后的结果
+\begin{equation}
+    \delta\omega_{\mu\nu}=\begin{bmatrix}
+        0 & v^1 & v^2 & v^3 \\
+        -v^1 & 0 & -\theta^3 & \theta^2 \\
+        -v^2 & \theta^3 & 0 & -\theta^1\\
+        -v^3 & -\theta^2 & \theta^1 & 0
+    \end{bmatrix}
+\end{equation}
+
+于是我们还可以进一步写出Lorentz变换的显式形式
+\begin{align}\label{lorentz-for-vector}
+    \begin{cases}
+        \delta x^0=\beta^i x^i\\
+        \delta x^i=\beta^i x^0-\epsilon_{ijk}\theta^j x^k
+    \end{cases}
+\end{align}
+\begin{theorem}[$\delta\omega_{\mu\nu}$的性质]
+    \begin{equation}
+        \delta\omega_{\mu\nu}=\delta\omega_{[\mu\nu]}
+    \end{equation}
+\end{theorem}
+
+然后我们想要把Lorentz变换的操作抽象化, 一般化, 将其提升到群表示论的高度, 于是我们有一个用抽象的Lorentz变换参数$\omega_{\mu\nu}$表示的对某一个对象进行的Lorentz变换, 这成为Lorentz群的一个表示.
+\begin{definition}[无穷小Lorentz群变换的表示$U(\Lambda)$]
+    \begin{equation}
+        U(\mathbf 1+\delta\omega)=1-\frac i2\delta\omega_{\mu\nu}M^{\mu\nu}
+    \end{equation}
+    其中，$M^{\mu\nu}=M^{[\mu\nu]}$, 是某一个算符
+\end{definition}
+以此我们有有限Lorentz群变换的表示
+\begin{equation}
+    U(\omega)=\exp{-\frac i2\omega_{\mu\nu}M^{\mu\nu}}
+\end{equation}
+
+\begin{theorem}[结合律]\label{theorem:U_combine}
+    作为群表示, 我们要求$U$满足:
+    \begin{equation}
+        U(\Lambda\Lambda')=U(\Lambda)U(\Lambda')
+    \end{equation}
+\end{theorem}
+根据定理\ref{theorem:Lorentz_inverse}, 定理\ref{theorem:U_combine}, 定义\ref{def:deltaomega}, 我们要求$U(\Lambda^{-1}\Lambda'\Lambda)=U(\Lambda^{-1})U(\Lambda')U(\Lambda)$, 于是有\ref{theorem:UMU}:
+\begin{theorem}\label{theorem:UMU}
+    \begin{equation}
+        U^{-1}_\Lambda M^{\mu\nu}U_\Lambda=\Lambda^\mu_{~~\rho}\Lambda^\nu_{~~\sigma}M^{\rho\sigma}
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    \begin{equation}\label{2eq1}
+        U_\Lambda^{-1}U_{\Lambda'}U_\Lambda=1-\frac i2\delta{\omega'}_{\mu\nu}U_\Lambda^{-1}M^{\mu\nu}U_\Lambda
+    \end{equation}
+    \begin{equation}
+        U(\Lambda^{-1}\Lambda'\Lambda)=U(1+\Lambda^{-1}\omega'\Lambda)=1-\frac i2(\Lambda^{-1}\delta\omega'\Lambda)_{\mu\nu}M^{\mu\nu}
+    \end{equation}
+    计算$(\Lambda^{-1}\delta\omega'\Lambda)^{\mu}_{~~\nu}$
+    \begin{equation}
+        (\Lambda^{-1}\delta\omega'\Lambda)^{\mu}_{~~\nu}=\Lambda_\sigma^{~~\mu}\delta{\omega'}^\sigma_{~~\rho}\Lambda^\rho_{~~\nu}
+    \end{equation}
+    于是
+    \begin{equation}
+        (\Lambda^{-1}\delta\omega'\Lambda)_{\mu\nu}=\Lambda^{\sigma}_{~~\mu}\delta{\omega'}_{\sigma\rho}\Lambda^\rho_{~~\nu}
+    \end{equation}
+    因此
+    \begin{equation}\label{2eq2}
+        U(\Lambda^{-1}\Lambda'\Lambda)=U(1+\Lambda^{-1}\omega'\Lambda)=1-\frac i2\Lambda^{\sigma}_{~~\mu}\delta{\omega'}_{\sigma\rho}\Lambda^\rho_{~~\nu}M^{\mu\nu}
+    \end{equation}
+    将\eqref{2eq1}与\eqref{2eq2}取等我们有
+    \begin{equation}
+        \delta{\omega'}_{\rho\sigma}U_\Lambda^{-1}M^{\rho\sigma}U_\Lambda=\Lambda^{\sigma}_{~~\mu}\delta{\omega'}_{\sigma\rho}\Lambda^\rho_{~~\nu}M^{\mu\nu}
+    \end{equation}
+    于是
+    \begin{equation}
+        U^{-1}_\Lambda M^{\mu\nu}U_\Lambda=\Lambda^\mu_{~~\rho}\Lambda^\nu_{~~\sigma}M^{\rho\sigma}
+    \end{equation}
+\end{proof}
+进一步展开我们可以得到
+\begin{theorem}[$M^{\mu\nu}$的对易子]\label{M-commutator}
+    \begin{equation}
+        [M^{\mu\nu}, M^{\rho\sigma}]=i(-g^{\mu\rho}M^{\nu\sigma}-g^{\sigma\nu}M^{\mu\rho}+g^{\mu\sigma}M^{\nu\rho}+g^{\rho\nu}M^{\mu\sigma})
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    展开
+    \begin{equation}
+        (1+\frac i 2\delta \omega_{\alpha\beta}M^{\alpha\beta})M^{\mu\nu}(1-\frac i 2\delta \omega_{\rho\sigma}M^{\rho\sigma})=(\delta^\mu_{~~\rho}+\delta\omega^\mu_{~~\rho})(\delta^\nu_{~~\sigma}+\delta\omega^\nu_{~~\sigma})M^{\rho\sigma}
+    \end{equation}
+    化简整理得到
+    \begin{equation}
+        \frac i2\delta\omega_{\rho\sigma}[M^{\rho\sigma}, M^{\mu\nu}]=\delta\omega_{\rho\sigma}(M^{\mu\sigma}g^{\rho\nu}-M^{\rho\nu}g^{\mu\sigma})
+    \end{equation}
+    于是
+    \begin{equation}\label{eq3}
+        [M^{\mu\nu}, M^{\rho\sigma}]=2i(g^{\mu\sigma}M^{\nu\rho}+g^{\rho\nu}M^{\mu\sigma})+A^{\mu\nu\rho\sigma}
+    \end{equation}
+    其中$A^{\mu\nu\rho\sigma}=A^{\nu\mu\rho\sigma}$, $A^{\mu\nu\rho\sigma}=A^{\mu\nu\sigma\rho}$.\\
+    交换$\mu$, $\nu$:
+    \begin{equation}\label{eq4}
+        [M^{\nu\mu}, M^{\rho\sigma}]=2i(g^{\nu\sigma}M^{\mu\rho}+g^{\rho\mu}M^{\nu\sigma})+A^{\mu\nu\rho\sigma}
+    \end{equation}
+    注意到$M^{\mu\nu}$反称, \eqref{eq3}+\eqref{eq4}得到:
+    \begin{equation}
+        A^{\mu\nu\rho\sigma}=-i(g^{\mu\sigma}M^{\nu\rho}+g^{\nu\rho}M^{\mu\sigma}+g^{\mu\sigma}M^{\nu\sigma}+g^{\nu\sigma}M^{\mu\rho})
+    \end{equation}
+    于是可得
+    \begin{important}
+        \begin{equation}
+            [M^{\mu\nu}, M^{\rho\sigma}]=i(-g^{\mu\rho}M^{\nu\sigma}-g^{\sigma\nu}M^{\mu\rho}+g^{\mu\sigma}M^{\nu\rho}+g^{\rho\nu}M^{\mu\sigma})
+        \end{equation}
+    \end{important}
+\end{proof}
+\begin{definition}[Lorentz群生成元]\label{lorentz-generators}
+    \begin{equation}
+        J^i =\frac12\epsilon_{ijk}M^{jk}\Rightarrow M^{ij}=\epsilon_{ijk}J^k
+    \end{equation}
+    \begin{equation}
+        K^i=M^{i0}
+    \end{equation}
+\end{definition}
+写为矩阵形式就是
+\begin{equation}
+    M^{\mu\nu}=\begin{bmatrix}
+        0 & -K^1 & -K^2 & -K^3\\
+        K^1 & 0 & J^3 & -J^2\\
+        K^2 & -J^3 & 0 & J^1\\
+        K^3 & J^2 & -J^1 & 0
+    \end{bmatrix}
+\end{equation}
+
+然后我们可以将无穷小Lorentz群表示写为
+\begin{equation}
+    1+i\theta^iJ^i+i\beta^iK^i
+\end{equation}
+有限大的写为
+\begin{equation}
+    \exp{i\theta^iJ^i+i\beta^iK^i}
+\end{equation}
+
+然后我们有
+\begin{theorem}[Lorentz群生成元的对易关系]\label{lorentz-commutator}
+    \begin{equation}
+        [J^i, J^j]=i\epsilon_{ijk}J^k
+    \end{equation}
+    \begin{equation}
+        [J^i, K^j]=i\epsilon_{ijk}K^k
+    \end{equation}
+    \begin{equation}
+        [K^i, K^j]=-i\epsilon_{ijk}J^k
+    \end{equation}
+\end{theorem}
+注意, 在这里我们都认为是具体指标的计算, 因此不关心上下标的问题: 矢量就是上标, 体元就是下标, 从而避免(+---)度规三维部分升降指标会多出负号的恼人特性.
+
+\begin{proof}
+    \begin{align}
+        [J^i, J^j]&=\frac14\epsilon_{iml}\epsilon_{jnp}M^{ml}M^{np}\\
+        &=\frac14\epsilon_{iml}\epsilon_{jnp}\cdot 2i(g^{mp}M^{ln}+g^{lm}M^{mp})\\
+        &=-\frac i2\epsilon_{iml}\epsilon_{jnp}(\delta_{mp}M^{ln}+\delta_{ln}M^{mp})\\
+        &=-i\epsilon_{mli}\epsilon_{mjn}M^{ln}\\
+        &=-i(\delta_{lj}\delta_{in}-\delta_{ln}\delta_{ij})M^{ln}\\
+        &=iM^{ij}\\
+        &=i\epsilon_{ijk}J^k\\
+        [J^i, K^j]&=\frac12\epsilon_{imn}\cdot2i(g^{m0}M^{nj}+g^{nj}M^{m0})\\
+        &=i\epsilon_{imn}(-\delta_{nj})M^{m0}\\
+        &=i\epsilon_{ijk}M^{k0}\\
+        &=i\epsilon_{ijk}K^k
+    \end{align}
+    \begin{align}
+        [K^i, K^j]&=[M^{i0}, M^{j0}]\\
+        &=-i g^{00}M^{ij}\\
+        &=-iM^{ij}\\
+        &=-i\epsilon_{ijk}J^k
+    \end{align}
+\end{proof}
+\subsubsection{分解Lorentz群}
+正如我们在定义\ref{lorentz-generators}中看到的那样, 洛伦兹群有六个生成元, 从而将Lorentz变换表示为:
+\begin{equation}
+    \Lambda=\exp{i\theta_i J^i+i\beta_i K^i}
+\end{equation}
+
+并且定理\ref{lorentz-commutator}, 有对易关系
+\begin{equation}
+    [J_i, J_j]=i\epsilon_{ijk}J^k
+\end{equation}
+\begin{equation}
+    [J_i, K_j]=i\epsilon_{ijk}K^k
+\end{equation}
+\begin{equation}
+    [K_i, K_j]=-i\epsilon_{ijk}J^k
+\end{equation}
+
+或者写为一个张量形式
+\begin{equation}
+    M^{\mu\nu}=\begin{bmatrix}
+        0 & -K^1 & -K^2 & -K^3\\
+        K^1 & 0 & J^3 & -J^2\\
+        K^2 & -J^3 & 0 & J^1\\
+        K^3 & J^2 & -J^1 & 0
+    \end{bmatrix}
+\end{equation}
+
+并且根据定理\ref{M-commutator}我们有:
+\begin{equation}
+    [M^{\mu\nu}, M^{\rho\sigma}]=i(-g^{\mu\rho}M^{\nu\sigma}-g^{\sigma\nu}M^{\mu\rho}+g^{\mu\sigma}M^{\nu\rho}+g^{\rho\nu}M^{\mu\sigma})
+\end{equation}
+
+于是
+\begin{equation}
+    \Lambda=\exp{-\frac i2\omega_{\mu\nu}M^{\mu\nu}}
+\end{equation}
+
+我们设
+\begin{equation}
+    J_i^{\pm}=\frac12(J_i\pm iK_i)
+\end{equation}
+
+也就是:
+\begin{align}
+    \begin{cases}
+        & \vec J=\vec J^++\vec J^-\\
+        & \vec K=i(\vec J^--\vec J^+)
+    \end{cases}
+\end{align}
+
+于是有对易关系
+\begin{align}
+    \begin{cases}
+        & [J^+_i, J^+_j]=i\epsilon_{ijk}J^{+k} \\
+        & [J^-_i, J^-_j]=i\epsilon_{ijk}J^{-k} \\
+        & [J^+_i, J^-_j]=0
+    \end{cases}
+\end{align}
+我们发现，$\vec J^\pm$是解耦的, 而它们分别满足$\mathfrak{su}(2)$的Lie代数关系!
+
+于是我们得到结论
+\begin{important}
+    \begin{equation}
+        \mathfrak{so}(1, 3)=\mathfrak{su}(2)\otimes\mathfrak{su}(2)
+    \end{equation}
+\end{important}
+
+因此, 我们可以将Lorentz群的不可约表示用两个半整数$(m, n)$表示, 分别代表两个$\mathfrak{su}(2)$部分的角量子数. 
+
+于是我们发现不可约表示$(m, n)$的维度为$(2m+1)(2n+1)$.
+
+\subsubsection{不可约表示}
+\begin{example}[$(0, 0)$型]
+    其维度为1, 并且其是Lorentz不变的. 因此我们指出$(0, 0)$型就是标量.
+\end{example}
+\begin{example}[$(\frac12,\frac12)$型]
+    其维度为4, 并且我们有生成元
+    \begin{equation}
+        J^{+i}=J^{-i}=\frac{\sigma^i}2
+    \end{equation}
+
+    于是我们有
+    \begin{equation}
+        \vec J=\frac12\vec\sigma\otimes1+1\otimes\frac12\vec\sigma, \vec K=i\left(1\otimes\frac12\vec\sigma-\frac12\vec\sigma\otimes1\right)
+    \end{equation}
+    (千万不要直接将两个$\frac12\vec\sigma$相加, 因为它们是分别作用到不同的旋量部分的)
+
+    考虑两旋量$\xi, \eta$, 我们用矩阵$\xi\eta^T\sigma^2$表示这两旋量的张量积.(为什么这里这么奇怪地在最后插入一个$\sigma^2$? 原因在于只有$\sigma^{T2}=-\sigma^2\neq\sigma^2$, 如果没有这个$\sigma^2$就会使得接下来的变换规则非常奇怪)
+
+    而$\vec J, \vec K$对其的作用为
+    \begin{align}
+        & \vec J(\xi\eta^T)=\frac12(\sigma\xi\eta^T\sigma^2+\xi\eta^T\sigma^T\sigma^2)\\
+        & \vec K(\xi\eta^T)=\frac i2(-\sigma\xi\eta^T\sigma^2+\xi\eta^T\sigma^T\sigma^2)
+    \end{align}
+
+    需要注意到, 这里出现了$\vec\sigma^T$, 而
+    \begin{align}
+       &\sigma^{iT}=\sigma^i, i=0,1,3\\
+       &\sigma^{2T}=-\sigma^2
+    \end{align}
+
+    我们设
+    \begin{equation}
+        \xi\eta^T\sigma^2=V^\mu\bar\sigma_\mu
+    \end{equation}
+    (注意这里, 因为单纯$\xi\eta^T\sigma^2$的秩为$1$, 我们要表示任意的旋量其实需要多个$\xi\eta^T\sigma^2$做线性组合. 但是因为线性性使得对于单个$\xi\eta^T\sigma^2$成立的对于它们的线性组合式子也仍然成立, 所以这里出于书写简便性的考虑我们就不妨写一个$\xi\eta^T\sigma^2$来表示$V^\mu\bar\sigma_\mu$)
+
+    计算可以发现
+    \begin{align}
+        J^2(V^\mu\bar\sigma_\mu)&=\frac12(\sigma^2V^\mu\bar\sigma_\mu+V^\mu\bar\sigma_\mu\sigma^2\sigma^{2T}\sigma^2)\\
+        &=\frac12V^\mu(\sigma^2\bar\sigma_\mu-\bar\sigma_\mu\sigma^2)\\
+        &=i\bar\sigma_j\epsilon_{j2i}V^i
+    \end{align}
+    并且对于$k\neq2$, 我们不难计算得到
+    \begin{align}
+        J^k(V^\mu\bar\sigma_\mu)=i\bar\sigma_j\epsilon_{jki}V^i
+    \end{align}
+    整理结果有, 对于$k=1,2,3$
+    \begin{align}
+        J^k(V^\mu\bar\sigma_\mu)=i\bar\sigma_j\epsilon_{jki}V^i
+    \end{align}
+
+    同理我们有
+    \begin{equation}
+        K^i(V^\mu\bar\sigma_\mu)=\frac i2(-\sigma^kV^\mu\bar\sigma_\mu+V^\mu\bar\sigma_\mu\sigma^2\sigma^{kT}\sigma^2)
+    \end{equation}
+    于是我们可以计算得到
+    \begin{equation}
+        K^k(V^\mu\bar\sigma_\mu)=-i(V^k\bar\sigma_0+V^0\bar\sigma_k)
+    \end{equation}
+
+    所以我们发现, 对于$V^\mu\bar\sigma_\mu$做无穷小Lorentz变换有
+    \begin{align}
+        \delta(V^\mu\bar\sigma_\mu)&=\Lambda_{\theta^i, \beta^i}(V^\mu\bar\sigma_\mu)-V^\mu\bar\sigma_\mu\\
+        &=i\theta^kJ^k(V^\mu\bar\sigma_\mu)+i\beta^kK^k(V^\mu\bar\sigma_mu)\\
+        &=-\bar\sigma_j\epsilon_{jki}\theta^kV^i+\beta^k(V^k\bar\sigma_0+V^0\bar\sigma_k)
+    \end{align}
+
+    对照\eqref{lorentz-for-vector}这符合Lorentz群作用下矢量的变换, 因此我们指出, $(\frac12, \frac12)$其实代表的就是4矢量.
+\end{example}
+\begin{example}[$(0,\frac12)$型-右手Weyl旋量]
+    其维度为2. 于是我们可以将其记为$\psi_R$, 是一个二维列向量. 根据生成元
+    \begin{align}
+        \begin{cases}
+            &\vec J^-=0\\
+            &\vec J^+=\frac{\sigma}2
+        \end{cases}
+    \end{align}
+    我们有得到Lorentz变换的群作用
+    \begin{equation}
+        \psi_R=\exp{\frac12(i\theta^i\sigma^i+\beta^i\sigma^i)}\psi_R        
+    \end{equation}
+    对无穷小Lorentz变换有
+    \begin{equation}
+        \delta\psi_R=\frac12(i\theta^j+\beta^j)\sigma^j\psi_R
+    \end{equation}
+
+    我们计算发现
+    \begin{equation}
+        \delta(\psi_R^\dagger\psi_R)=\beta^i\psi_R^\dagger\sigma^i\psi_R
+    \end{equation}
+    \begin{equation}
+        \delta(\psi_R^\dagger\sigma^i\psi_R)=-\epsilon_{ijk}\theta^j\psi_R^\dagger\sigma^k\psi_R+\beta^i\psi_R^\dagger\psi_R
+    \end{equation}
+    如果我们将它们组合为$(\psi_R^\dagger\psi_R, \psi_R^\dagger\sigma^i\psi_R)^T$, 可以发现这正是矢量的Lorentz变换形式. 因此我们发现了一个4矢量
+    \begin{equation}
+        \psi_R^\dagger\sigma^\mu\psi_R
+    \end{equation}, 其中
+    \begin{equation}
+        \sigma^0=\begin{pmatrix}
+            1 & 0 \\
+            0 & 1
+        \end{pmatrix}
+    \end{equation}
+
+    从这里我们也可以体会到所谓"旋量是矢量开平方根"的说法的道理: 我们将两个旋量组合在一起, 就能乘出一个矢量.
+\end{example}
+\begin{example}[$(\frac12,0)$型-左手Weyl旋量]
+    其维度为2. 于是我们可以将其记为$\psi_L$, 是一个二维列向量. 生成元为
+    \begin{align}
+        \begin{cases}
+            &\vec J^-=\frac{\sigma}2\\
+            &\vec J^+=0\
+        \end{cases}
+    \end{align}
+    我们有得到Lorentz变换的群作用
+    \begin{equation}
+        \psi_L=\exp{\frac12(i\theta^i\sigma^i-\beta^i\sigma^i)}\psi_R        
+    \end{equation}
+    对无穷小Lorentz变换有
+    \begin{equation}
+        \delta\psi_L\frac12(i\theta^j-\beta^j)\sigma^j\psi_R
+    \end{equation}
+
+    我们定义$\bar\sigma^\mu=(1, -\sigma^i)^T$, 并计算发现
+    \begin{equation}
+        \delta(\psi_L^\dagger\psi_L)=-\beta^i\psi_L^\dagger\sigma^i\psi_L=\beta^i\psi_L^\dagger\bar\sigma^i\psi_L
+    \end{equation}
+    \begin{equation}
+        \delta(\psi_L^\dagger\bar\sigma^i\psi_L)=-\sigma_{ijk}\theta^j\psi_L^\dagger\sigma^k\psi_L+\beta^i\psi_L^\dagger\psi_L
+    \end{equation}
+
+    于是我们发现
+    \begin{equation}
+        \psi_L^\dagger\bar\sigma^\mu\psi_L
+    \end{equation}
+    是一个4矢量
+\end{example}
+
+进一步地, 我们还可以发现
+\begin{equation}
+    \delta(\psi_L^\dagger\psi_R)=\delta(\psi_R^\dagger\psi_L)=0
+\end{equation}
+于是$\psi_L^\dagger\psi_R, \psi_R^\dagger\psi_L$是Lorentz标量.
+
+再计算
+\begin{equation}
+    \delta(\psi^\dagger_R\sigma^\mu\partial_\mu\psi_R)
+\end{equation}
+根据
+\begin{equation}
+    \delta(\partial_\mu)=\partial_\mu'-\partial_\mu
+\end{equation}
+即
+\begin{align}
+    &\delta(\partial_0)=-\beta^i\partial_i\\
+    &\delta(\partial_i)=-\beta^i\partial_0+\epsilon_{kji}\theta^j\partial_k
+\end{align}
+我们有
+\begin{equation}
+    \delta(\psi^\dagger_R\sigma^\mu\partial_\mu\psi_R)=0
+\end{equation}
+这个结论对于$\psi^\dagger_L\bar\sigma^\mu\partial_\mu\psi_L$同样成立.
+
+所以我们发现
+\begin{equation}
+    \psi^\dagger_R\sigma^\mu\partial_\mu\psi_R, \psi^\dagger_L\bar\sigma^\mu\partial_\mu\psi_L
+\end{equation}
+是Lorentz标量.
+
+\subsection{Dirac旋量}
+利用上一节中我们组合出来的标量, 我们可以构造一个Lagrangian
+\begin{equation}
+    \mathcal L=i\psi^\dagger_R\sigma^\mu\partial_\mu\psi_R+i\psi^\dagger_R\sigma^\mu\partial_\mu\psi_R-m(\psi_R^\dagger\psi_L+\psi_L^\dagger\psi_R)
+\end{equation}
+
+我们将$\psi_L, \psi_R$拼到一起
+\begin{equation}
+    \psi=\begin{pmatrix}
+        \psi_L\\
+        \psi_R
+    \end{pmatrix}
+\end{equation}
+然后构造
+\begin{equation}
+    \gamma^\mu=\begin{pmatrix}
+        0 & \sigma^\mu\\
+        \bar\sigma^\mu & 0
+    \end{pmatrix}
+\end{equation}
+定义
+\begin{equation}
+    \bar\psi=\psi^\dagger\gamma^0=(\psi_R^\dagger,\psi_L^\dagger)
+\end{equation}
+
+就有
+\begin{equation}
+    \mathcal L=\bar\psi(i\slashed\partial-m)\psi
+\end{equation}
+其中
+\begin{equation}
+    \slashed\partial=\gamma^\mu\partial^\mu
+\end{equation}
+
+并且从矩阵形式我们注意到
+\begin{equation}
+    \{\gamma^\mu, \gamma^\nu\}=2g^{\mu\nu}
+\end{equation}
+以及
+\begin{equation}\label{gamma-conj-idx}
+    \gamma^{0\dagger}=\gamma^0, \gamma^{i\dagger}=-\gamma^i
+\end{equation}
+利用
+\begin{equation}
+    \gamma^0\gamma^0=g^{00}=1, \gamma^i\gamma0=-\gamma^0\gamma^i
+\end{equation}
+我们可以将式\eqref{gamma-conj-idx}写为更紧凑的形式
+\begin{equation}
+    \gamma^{\mu\dagger}=\gamma^0\gamma^\mu\gamma^0
+\end{equation}
+
+在下一节\ref{clifford}中我们将会看到一般化的对于$\gamma^\mu$性质的讨论.
+
+接着我们继续考虑Dirac旋量, 我们可以从Lagrangian中得到EoM:
+\begin{equation}
+    (i\slashed\partial-m)\psi=0
+\end{equation}
+
+这是一个一阶的PDE, 似乎与预期中的Klein-Gordan方程不符? 我们可以将其左乘$(i\slashed\partial+m)$, 得到
+\begin{equation}
+    (i\slashed\partial+m)(i\slashed\partial-m)\psi=(-\partial^2-m^2)\psi=0
+\end{equation}
+于是我们发现, 将其解耦为二阶PDE后, 它仍然是满足Klein-Gordan方程的, 从而具有我们所预期的色散关系
+\begin{equation}
+    \omega^2=\vec p^2+m^2
+\end{equation}
+
+关于EoM的讨论我们见\ref{2ndq-dirac}节, 在那我们将会详细地讨论Dirac方程的解, 并将其二次量子化.
+
+然后我们尝试获得Dirac旋量的Lorentz变换及其生成元. 我们首先直接考虑$\psi$的变换:
+\begin{align}
+    \delta\psi&=\begin{pmatrix}
+        \delta\psi_L\\
+        \delta\psi_R
+    \end{pmatrix}=\frac i2\theta^i\begin{pmatrix}
+        \sigma^i & 0\\
+        0 & \sigma^i
+    \end{pmatrix}\psi+\frac12v^i\begin{pmatrix}
+        \bar\sigma^i & 0\\
+        0 & \sigma^i
+    \end{pmatrix}\psi
+\end{align}
+考虑到
+\begin{equation}
+    [\gamma^j, \gamma^k]=-[\sigma^j, \sigma^k]\begin{pmatrix}
+        1 & 0\\
+        0 & 1
+    \end{pmatrix}=-i\epsilon_{jkl}\sigma^l\begin{pmatrix}
+        1 & 0\\
+        0 & 1
+    \end{pmatrix}
+\end{equation}
+即
+\begin{equation}
+    \epsilon_{ijk}[\gamma^j, \gamma^k]=-2i\sigma^i\begin{pmatrix}
+        1 & 0\\
+        0 & 1
+    \end{pmatrix}
+\end{equation}
+还有
+\begin{align}
+    \gamma^0\gamma^i=\begin{pmatrix}
+        \bar\sigma^i & 0\\
+        0 & \sigma^i
+    \end{pmatrix}, \gamma^i\gamma^0=\begin{pmatrix}
+        -\bar\sigma^i & 0\\
+        0 & -\sigma^i
+    \end{pmatrix}
+\end{align}
+即
+\begin{equation}
+    [\gamma^i, \gamma^0]=-2\begin{pmatrix}
+        \bar\sigma^i & 0\\
+        0 & \sigma^i
+    \end{pmatrix}
+\end{equation}
+于是
+\begin{align}
+    \delta\psi&=i\epsilon_{ijk}\theta^i(\frac i4[\gamma^j, \gamma^k])\psi+iv^i(\frac i4[\gamma^i, \gamma^0])\\
+    &=-\frac i2\omega_{\mu\nu}(\frac i4[\gamma^\mu, \gamma^\nu])
+\end{align}
+
+所以我们发现, 
+\begin{definition}[Dirac旋量生成元]
+    \begin{equation}
+        S^{\mu\nu}=\frac i4[\gamma^\mu, \gamma^\nu]
+    \end{equation}
+\end{definition}
+对Dirac旋量, Lorentz变换为
+\begin{equation}
+    \psi\to\Lambda_s\psi, \Lambda_s=\exp{-\frac i2\omega_{\mu\nu}S^{\mu\nu}}
+\end{equation}
+并且有旋转与Boost生成元
+\begin{align}
+    & J^{i}=\frac12\epsilon_{ijk}S^{jk}=\frac i8\epsilon_{ijk}[\gamma^j, \gamma^k]\\
+    & K^i=S^{i0}=\frac i4[\gamma^i, \gamma^0]
+\end{align}
+\begin{equation}
+    \psi\to\Lambda_s\psi, \Lambda_s=\exp{i\vec\theta\cdot\vec J+i\vec v\cdot\vec K}
+\end{equation}
+
+并且我们可以验证$S^{\mu\nu}$满足定理\ref{M-commutator}: 首先计算对易子
+\begin{equation}\label{S-gamma-commutator}
+    [S^{\mu\nu}, \gamma^\rho]=i(\gamma^\mu g^{\nu\rho}-\gamma^\nu g^{\mu\rho})
+\end{equation}
+所以
+\begin{align}
+    [S^{\mu\nu}, S_{\rho\sigma}]&=\frac i4\left([S^{\mu\nu}, \gamma^\rho\gamma^\sigma]-[S^{\mu\nu}, \gamma^\sigma\gamma^\rho]\right)\\
+    &=\frac i4\left(\gamma^\rho[S^{\mu\nu}, \gamma^\sigma][S^{\mu\nu}, \gamma^\rho]\gamma^\sigma-\gamma^\sigma[S^{\mu\nu}, \gamma^\rho]-[S^{\mu\nu}, \gamma^\sigma]\gamma^\rho\right)
+\end{align}
+于是可得
+\begin{equation}
+    [S^{\mu\nu}, S^{\rho\sigma}]=i(-g^{\mu\rho}S^{\nu\sigma}-g^{\sigma\nu}S^{\mu\rho}+g^{\mu\sigma}S^{\nu\rho}+g^{\rho\nu}S^{\mu\sigma})
+\end{equation}
+
+\subsection{Clifford代数\label{clifford}}
+上一节中, 我们定义出来的$\gamma^\mu$有其独特的代数结构, 本节我们将它抽象出来, 提升到代数的角度研究$\gamma^\mu$.
+\begin{definition}[Clifford代数]
+    Clifford代数即满足
+    \begin{equation}
+        \{\gamma^\mu, \gamma^\nu\}=2g^{\mu\nu}
+    \end{equation}
+    \begin{equation}
+        \gamma^{\mu\dagger}=\gamma^0\gamma^\mu\gamma^0
+    \end{equation}
+    的代数.
+\end{definition}
+
+Spinor的代数空间是一个$4\times4$的复矩阵线性空间, 所以它应当有16个基矢. 我们可以将单位阵$1$以及$\gamma^\mu$作为其中的5个基矢, 然后利用它们的乘积得到剩下的12个基矢. 首先是我们定义一个新的基矢
+\begin{equation}
+    \gamma^5=i\gamma^0\gamma^1\gamma^2\gamma^3.
+\end{equation}
+可以验证它具有这些性质
+\begin{align}
+    \left(\gamma^5\right)^2=1\\
+    \gamma^{5\dagger}=\gamma^5\\
+    \rm{Tr}(\gamma^5)=0\\
+    \{\gamma^5, \gamma^\mu\}=0
+\end{align}
+再将$\gamma^5$与$\gamma^\mu$做乘法得到4个基矢$\gamma^5\gamma^\mu$(由于$\gamma^5$和$\gamma^\mu$反对易, 所以我们只需要任选一个$\gamma^5$在左或者在右的定义即可), 最后加上根据$[\gamma^\mu, \gamma^\nu]$定义出来的6个基矢$S^{\mu\nu}=\frac i4[\gamma^\mu, \gamma^\nu]$, 就得到了这个线性空间的全部16个基矢. 它们之间的所有乘法都可以用它们的线性组合表示. 比如说
+\begin{equation}
+    \gamma^\mu\gamma^\nu=\frac12\left(\{\gamma^\mu, \gamma^\nu\}+[\gamma^\mu, \gamma^\nu]\right)=g^{\mu\nu}-2iS^{\mu\nu}
+\end{equation}
+
+% 我们通过如下表格归纳这16个基矢中的一些性质
+% \begin{table}[!htbp]
+%     \centering
+%     \begin{tabular}{c|ccc}
+%             & ${}^2$ & ${}^\dagger$ & $\rm{Tr}$ \\
+%         \hline
+%         $1$ &  $1$    &    $1$       &    $4$      \\
+%         $\gamma^0$ &  $1$     &    $\gamma^0$       &    $0$    \\
+%         $\gamma^i$ &  $-1$     &   $-\gamma^i$        &    $0$      \\
+%         $\gamma^5$ &   $1$   &   $\gamma^5$        &     $0$    \\
+%         % $\gamma^5\gamma^\mu$ &        &              &            \\
+%         % $S^{\mu\nu}$ &        &              &            \\ 
+%     \end{tabular}
+%     \caption{Clifford空间基矢的性质}
+% \end{table}
+
+我们用如下表格归纳一些基矢之间的对易与反对易关系
+\begin{table}[!htbp]
+    \centering
+    \begin{tabular}{c|ccccc}
+                             & $1$                   & $\gamma^\mu$          & $\gamma^5$         & $\gamma^5\gamma^\mu$ & $S^{\mu\nu}$\\
+        \hline
+        $1$                  & $\{2\}$                   & $\{2\gamma^\mu\}$ & $\{2\gamma^5\}$     & $\{2\gamma^5\gamma^\mu\}$ & $\{2S^{\mu\nu}\}$ \\
+        $\gamma^\nu$         & $\{2\gamma^\nu\}$         & $\{2g^{\mu\nu}\}$ & $\{0\}$             & $[2\gamma^5g^{\mu\nu}]$    &                   \\
+        $\gamma^5$           & $\{2\gamma^5\}$           & $\{0\}$           & $\{2\}$            &  $\{0\}$                     &  $[0]$    \\
+        $\gamma^5\gamma^\nu$ & $\{2\gamma^5\gamma^\nu\}$ &  $[-2\gamma^5g^{\mu\nu}]$            & $\{0\}$            &                              &               \\
+        $S^{\rho\sigma}$     & $\{2S^{\rho\sigma}\}$     &                  &    $[0]$               &                           & %$[-i(-g^{\mu\rho}S^{\nu\sigma}-g^{\sigma\nu}S^{\mu\rho}+g^{\mu\sigma}S^{\nu\rho}+g^{\rho\nu}S^{\mu\sigma})]$
+    \end{tabular}
+    \caption{Cliffod空间基矢(反)对易关系}
+\end{table}
+其中$[]$内的内容表示对易关系(行在前列在后), $\{\}$内的内容表示是反对易关系.
+
+然后我们可以首先研究这些基矢在$O(1, 3)$变换下的性质.
+
+\begin{theorem}
+    \begin{equation}
+        \Lambda_s^{-1}\gamma^\mu\Lambda_s=(\Lambda_v)^\mu_{~~\nu}\gamma^\nu
+    \end{equation}
+    \begin{equation}
+        \Lambda_s^{-1}\gamma^5\gamma^\mu\Lambda_s=(\Lambda_v)^\mu_{~~\nu}\gamma^5\gamma^\nu
+    \end{equation}
+    其中$\Lambda_v$即$\omega$对应的对矢量的Lorentz变换矩阵.
+\end{theorem}
+\begin{proof}
+    考虑无穷小Lorentz变换.
+    \begin{equation}
+        \Lambda_s=(1-\frac12i\omega_{\alpha\beta}S^{\alpha\beta}), \Lambda_s^{-1}=(1+\frac12i\omega_{\alpha\beta}S^{\alpha\beta})
+    \end{equation}
+    于是
+    \begin{align}
+        \Lambda_s^{-1}\gamma^\mu\Lambda_s&=(1+\frac i2\omega_{\alpha\beta}S^{\alpha\beta})\gamma^\mu(1-\frac i2\omega_{\alpha\beta}S^{\alpha\beta})\\
+        &=\gamma^\mu+\frac i2\omega_{\alpha\beta}[S^{\alpha\beta}, \gamma^\mu]
+    \end{align}
+
+    利用式\eqref{S-gamma-commutator}我们有
+    \begin{align}
+        \Lambda_s^{-1}\gamma^\mu\Lambda_s&=\gamma^\mu-\frac 12\omega_{\alpha\beta}(\gamma^\alpha g^{\beta\mu}-\gamma^\beta g^{\alpha\mu})\\
+        &=\gamma^\mu+\frac12\omega_{\beta\alpha}g^{\beta\mu}\gamma^\alpha+\frac12\theta_{\alpha\beta}g^{\alpha\mu}\gamma^\beta\\
+        &=\gamma^\mu+\omega^\mu_{~~\nu}\gamma^\nu\\
+        &=(\delta^\mu_{~~\nu}+\omega^\mu_{~~\nu})\gamma^\nu\\
+        &=(\Lambda_v)^\mu_{~~\nu}\gamma^\nu
+    \end{align}
+    其中
+    \begin{equation}
+        (\Lambda_v)^\mu_{~~\nu}=\delta^\mu_{~~\nu}+\omega^\mu_{~~\nu}
+    \end{equation}
+    即矢量的Lorentz变换.\\
+\end{proof}
+
+\begin{theorem}
+    \begin{equation}
+        \gamma^0\gamma^0\gamma^0=\gamma^0, \gamma^0\gamma^i\gamma^0=-\gamma^i
+    \end{equation}
+    \begin{equation}
+        \gamma^0\gamma^5\gamma^0=-\gamma^5
+    \end{equation}
+\end{theorem}
+
+\begin{theorem}
+    \begin{equation}
+        \gamma^0\Lambda_s^\dagger\gamma^0=\Lambda_s^{-1}
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    我们求生成元的共轭
+    \begin{align}
+        S^{\mu\nu\dagger}&=-\frac i4(\gamma^\mu\gamma^\nu-\gamma^\nu\gamma^\mu)^\dagger\\
+        &=-\frac i4(\gamma^{\nu\dagger}\gamma^{\mu\dagger}-\gamma^{\mu\dagger}\gamma^{\nu\dagger})\\
+        &=\frac i4(\gamma^0\gamma^\mu\gamma^0\gamma^0\gamma^\nu\gamma^0-\gamma^0\gamma^\nu\gamma^0\gamma^0\gamma^\mu\gamma^0)\\
+        &=\gamma^0S^{\mu\nu}\gamma^0
+    \end{align}
+
+    然后由于$\gamma^0\gamma^0=1$, 所以$\gamma^0$可以从$\Lambda_s^\dagger$的两边拎入指数中:
+    \begin{equation}
+        \gamma^0\Lambda_s^\dagger\gamma^0=\gamma^0\exp{\frac i2\omega_{\mu\nu}S^{\mu\nu\dagger}}\gamma^0=\exp{\frac i2\omega_{\mu\nu}\gamma^0S^{\mu\nu\dagger}\gamma^0}=\exp{\frac i2\omega_{\mu\nu}S^{\mu\nu}}=\Lambda_s^{-1}
+    \end{equation}
+\end{proof}
+
+\begin{theorem}
+    $\bar\psi\psi$是Lorentz标量, $\bar\psi\gamma^5\psi$是Lorentz赝标量, $\bar\psi\gamma^\mu\psi$是Loretnz矢量, $\bar\psi\gamma^5\gamma^\mu\psi$是Loretnz赝矢量, $\bar\psi\gamma^\mu\gamma^\nu\psi$是Lorentz张量.
+\end{theorem}
+\begin{proof}
+    \begin{align}
+        \bar\psi\psi=\psi^\dagger\gamma^0\psi\to \psi^\dagger\Lambda_s^\dagger\gamma^0\Lambda_s\psi=\psi^\dagger\gamma^0\Lambda_s^{-1}\Lambda_s\psi=\psi^\dagger\gamma^0\psi=\bar\psi\psi
+    \end{align}
+    \begin{align}
+        \bar\psi\gamma^\mu\psi=\psi^\dagger\gamma^0\gamma^\mu\psi&\to\psi^\dagger\Lambda_s^\dagger\gamma^0\gamma^\mu\Lambda_s\psi=\psi^\dagger\Lambda_s^{-1}\gamma^\mu\Lambda_s\psi\notag\\
+        &=\psi^\dagger\gamma^0(\Lambda_v)^\mu_{~~\nu}\psi=(\Lambda_v)^\mu_{~~\nu}\gamma^\nu\bar\psi\gamma^\mu\psi
+    \end{align}
+    \begin{align}
+        \bar\psi\gamma^\mu\gamma^\nu\psi=\psi^\dagger\gamma^0\gamma^\mu\gamma^\nu\psi&\to\psi^\dagger\Lambda_s^\dagger\gamma^0\gamma^\mu\gamma^\nu\Lambda_s\psi=\psi^\dagger\Lambda_s^{-1}\gamma^\mu\Lambda_s\Lambda_s^{-1}\gamma^\nu\Lambda_s\psi\notag\\
+        &=\psi^\dagger\gamma^0(\Lambda_v)^\mu_{~~\alpha}\gamma^\alpha(\Lambda_v)^\nu_{~~\beta}\gamma^\beta\psi=(\Lambda_v)^\mu_{~~\alpha}(\Lambda_v)^\nu_{~~\beta}\bar\psi\gamma^\alpha\gamma^\beta\psi
+    \end{align}
+\end{proof}
+
+\begin{definition}[Slash]
+    对于矢量$A^\mu$, 其slash
+    \begin{equation}
+        \slashed A\equiv \gamma^\mu A_\mu
+    \end{equation}
+\end{definition}
+
+关于$\gamma$矩阵乘积的迹, 我们还有如下定理\cite{griffthsClifford}
+\begin{theorem}[$\gamma$乘积迹定理]\label{gamma-mutiply-trace-them}
+    对于奇数个$\gamma$乘积
+    \begin{equation}
+        \rm{Tr}(\gamma^{\mu_1}\gamma^{\mu_2}\cdots\gamma^{\mu_{2n-1}})=0
+    \end{equation}
+    对于偶数个$\gamma$乘积, 我们有
+    \begin{align}
+        &\rm{Tr}(\gamma^\mu\gamma^\nu)=4g^{\mu\nu}\\
+        &\rm{Tr}(\gamma^\mu\gamma^\nu\gamma^\lambda\gamma^\sigma)=4(g^{\mu\nu}g^{\lambda\sigma}+g^{\mu\sigma}g^{\lambda\nu}-g^{\mu\lambda}g^{\nu\sigma})\\
+        &\cdots\notag
+    \end{align}
+\end{theorem}
+
+利用定理\ref{gamma-mutiply-trace-them}, 我们可以有如下结论
+\begin{theorem}
+    \begin{align}
+        &\rm{Tr}(\slashed p)=0\\
+        &\rm{Tr}(\slashed p\slashed q)=4pq\\
+        &\rm{Tr}(\slashed p\slashed q\slashed k)=0\\
+        &\rm{Tr}(\slashed p_1\slashed p_2\slashed p_3\slashed p_4)=4\left[(p_1p_2)(p_3p_4)+(p_1p_4)(p_3p_2)-(p_1p_3)(p_2p_4)\right]\\
+        &\cdots\notag
+    \end{align}
+\end{theorem}
+
+特别地, 如果$\gamma$乘积后最外侧的左右两个$\gamma$指标缩并, 即如$\gamma^\mu\gamma^\nu\gamma_\mu$, 我们有
+\begin{theorem}[$\gamma$缩并定理]\label{gamma-contraction-them}
+    \begin{align}
+        &\gamma_\mu\gamma^\mu=4\\
+        &\gamma_\mu\gamma^\nu\gamma^\mu=-2\gamma^\nu\\
+        &\gamma_\mu\gamma^\nu\gamma^\lambda\gamma^\mu=4g^{\nu\lambda}\\
+        &\gamma_\mu\gamma^{\nu}\gamma^\lambda\gamma^\sigma\gamma^\mu=-2\gamma^\sigma\gamma^\lambda\gamma^\nu\label{gamma-contraction-last-eq}\\
+        &\cdots\notag
+    \end{align}
+\end{theorem}
+\begin{proof}
+    作为示例, 我们仅给出式\eqref{gamma-contraction-last-eq}的证明:
+    \begin{align}
+        \gamma^\mu\gamma^\sigma\gamma^\nu\gamma^\rho\gamma_\mu&=\gamma^\mu\gamma^\sigma\gamma^\nu(2\delta^\rho_{~~\mu}-\gamma_\mu\gamma^\rho)\\
+        &=\cdots\notag\\
+        &=2\gamma^\rho\gamma^\sigma\gamma^\nu-2\gamma^\nu\gamma^\sigma\gamma^\rho-2\gamma^\sigma\gamma^\nu\gamma^\rho\\
+        &=2\gamma^\rho\gamma^\sigma\gamma^\nu-4g^{\nu\sigma}\gamma^\rho\\
+        &=-2\gamma^\rho\gamma^\nu\gamma^\sigma
+    \end{align}
+\end{proof}
+
+利用定理\ref{gamma-contraction-them}我们可以得到如下结论
+\begin{theorem}
+    \begin{align}
+        &\slashed p\slashed p=p^2\\
+        &\gamma^\mu\gamma_\mu=4\\
+        &\gamma^\mu\slashed p\gamma_\mu=-2\slashed p\\
+        &\gamma^\mu\slashed p\slashed q\gamma_\mu=4pq\\
+        &\gamma^\mu\slashed p\slashed q\slashed k\gamma_\mu=-2\slashed k\slashed q\slashed p
+    \end{align}
+\end{theorem}
+
+特别地, 还有
+\begin{theorem}
+    \begin{equation}
+        \slashed p\slashed p=p^2
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    \begin{align}
+        \slashed p\slashed p&=\gamma^\mu\gamma^\nu p_{\mu}p_\nu=\frac12(\gamma^\mu\gamma^\nu+\gamma^\nu\gamma^\mu)p_\mu p_\nu=g^{\mu\nu}p_{\mu}p_{\nu}=p^2
+    \end{align}
+\end{proof}
+需要注意, $\slashed p\slashed q\neq pq$.
+
+对于$\slashed A$我们有如下结论\cite{sredinicki-ugammau}
+\begin{theorem}\label{gamma-p-contraction}
+    \begin{equation}
+        \gamma^\mu\slashed p=p^\mu-2iS^{\mu\nu}p_\nu
+    \end{equation}
+    \begin{equation}
+        \slashed p\gamma^\mu=p^\mu+2iS^{\mu\nu}p_\nu
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    \begin{align}
+        \gamma^\mu\slashed p&=\frac12\{\gamma^\mu, \gamma^\nu\}p_\nu+\frac12[\gamma^\mu, \gamma^\nu]p_\nu\\
+        &=p^\mu-2iS^{\mu\nu}p_\nu
+    \end{align}
+    \begin{align}
+        \slashed p\gamma^\mu&=\frac12\{\gamma^\mu, \gamma^\nu\}p_\nu+\frac12[\gamma^\nu, \gamma^\mu]p_\nu\\
+        &=p^\mu+2iS^{\mu\nu}p_\nu
+    \end{align}
+\end{proof}
+
+\subsection{Dirac旋量的二次量子化\label{2ndq-dirac}}
+\subsubsection{旋量运动方程}
+首先是第一步, 解EoM. 设在Weyl基底下一个一般的解为$(\psi_L \psi_R)^T$, 于是EoM可以写为
+\begin{equation}
+    \begin{pmatrix}
+        -m & i\sigma^\mu\partial_\mu\\
+        i\bar\sigma^\mu\partial_\mu & -m
+    \end{pmatrix}\begin{pmatrix}
+        \psi_L\\
+        \psi_R
+    \end{pmatrix}=0
+\end{equation}
+
+在动量空间中有
+\begin{align}
+    &\sigma^\mu p_\mu\psi_R=(E-\sigma\cdot\vec p)\psi_R=m\psi_L\\
+    &\bar\sigma^\mu p_\mu\psi_L=(E+\sigma\cdot\vec p)\psi_L=m\psi_R
+\end{align}
+
+对于零质量Fermion, 这个方程是解耦的:
+\begin{align}
+    &\sigma^\mu p_\mu\psi_R=(E-\vec\sigma\cdot\vec p)\psi_R=0\\
+    &\bar\sigma^\mu p_\mu\psi_L=(E+\vec\sigma\cdot\vec p)\psi_L=0
+\end{align}
+
+\begin{definition}[螺旋度]
+    \begin{equation}
+        H=\frac{\vec\sigma\cdot\vec p}{|p|}
+    \end{equation}
+\end{definition}
+
+可以发现
+\begin{align}
+    & H\psi_R=\psi_R\\
+    & H\psi_L=-\psi_L\\
+\end{align}
+
+可见, $\psi_R, \psi_L$分别是螺旋度的本征矢. 这里螺旋度的物理意义就是, 自旋指向和运动方向的夹角. 在这里我们发现, Weyl旋量的左右手其实分别就是自旋方向和运动方向分别是左手螺旋和右手螺旋的关系.
+
+我们一般认为中微子的$m\approx0$, 所以中微子是具有固定的手性. 由于我们世界Parity的破缺, 导致自然界中其实基本上只存在左手中微子.
+
+\subsubsection{旋量的极化}
+一般性的讨论结束, 我们开始从EoM中寻求可以拿来正则量子化的解. 设正能解$\psi=u^s\exp{-ipx}$, 负能解$\psi=v^s\exp{ipx}$
+
+对于$u^s$
+\begin{equation}
+    (\slashed p-m)u^s=0
+\end{equation}
+在Weyl基底中即
+\begin{equation}
+    \begin{pmatrix}
+        -m & p^\mu\sigma_\mu\\
+        p^\mu\bar\sigma_\mu & -m
+    \end{pmatrix}u^s=0
+\end{equation}
+
+根据
+\begin{align}
+    (\vec p\cdot\vec\sigma)^2&=p^ip^j\sigma^i\sigma^j=p^ip^j(\delta_{ij}+i\epsilon_{ijk}\sigma^k)=p^ip^i=\vec p^2
+\end{align}
+然后
+\begin{align}
+    (p\cdot\sigma)(p\cdot\bar\sigma)&=(p^0\sigma^0-\vec p\cdot\vec\sigma)(p^0\sigma^0+\vec p\cdot\vec\sigma)\\
+    &=(p^0)^2-(\vec p\cdot\sigma)^2=(p^0)^2-(\vec p)^2=p^2=m^2
+\end{align}
+即(都是算数平方根, 取正根, 这里没有负根的情况)
+\begin{equation}
+    \sqrt{(p\cdot\sigma)(p\cdot\bar\sigma)}=\sqrt{m^2}=m
+\end{equation}
+我们可以计算验证
+\begin{align}
+    \begin{pmatrix}
+        -m & p^\mu\sigma_\mu\\
+        p^\mu\bar\sigma_\mu & -m
+    \end{pmatrix}\begin{pmatrix}
+        \sqrt{p\sigma}\zeta_s\\
+        \sqrt{p\bar\sigma}\zeta_s
+    \end{pmatrix}&=\begin{pmatrix}
+        -m\sqrt{p\sigma}\zeta_s+p\sigma\sqrt{p\bar\sigma}\zeta_s\\
+        p\bar\sigma\sqrt{p\sigma}\zeta_s-m\sqrt{p\bar\sigma}\zeta_s
+    \end{pmatrix}\\
+    &=\begin{pmatrix}
+        \sqrt{p\sigma}\left(-m+\sqrt{(p\bar\sigma)(p\sigma)}\right)\zeta_s\\
+        \sqrt{p\bar\sigma}\left(\sqrt{(p\sigma)(p\bar\sigma)}-m\right)\zeta_s
+    \end{pmatrix}=0
+\end{align}
+
+所以
+\begin{equation}
+    u^s=\begin{pmatrix}
+        \sqrt{p\sigma}\zeta_s\\
+        \sqrt{p\bar\sigma}\zeta_s
+    \end{pmatrix}
+\end{equation}
+是EoM的解.
+
+对于$v^s$同理, 它满足
+\begin{equation}
+    (\slashed p+m)v^s=0
+\end{equation}
+
+可以验证
+\begin{equation}
+    v^s=\begin{pmatrix}
+        \sqrt{p\sigma}\eta_s\\
+        -\sqrt{p\bar\sigma}\eta_s
+    \end{pmatrix}
+\end{equation}
+是满足EoM的解.
+
+然后我们取正交基底张成$u^s, v^s$的解空间, 即我们取$\zeta_1, \zeta_2$以及$\eta_1, \eta_2$满足
+\begin{equation}
+    \zeta_r^\dagger\zeta_s=\delta_{rs}, \eta_r^\dagger\eta_s=\delta_{rs}
+\end{equation}
+然后取$\zeta_s, \eta_s$分别代入$u^s, v^s$得到$u^s, v^s$的解空间的基底.
+
+我们可以验证正交性
+\begin{equation}
+    \bar u^ru^s=\begin{pmatrix}
+        \sqrt{p\bar\sigma}\zeta_r^\dagger & \sqrt{p\sigma}\zeta_r^\dagger
+    \end{pmatrix}\begin{pmatrix}
+        \sqrt{p\sigma}\zeta_s\\
+        \sqrt{p\bar\sigma}\zeta_s
+    \end{pmatrix}=m\delta^{rs}+m\delta^{rs}=2m\delta^{rs}
+\end{equation}
+\begin{equation}
+    \bar v^rv^s=\begin{pmatrix}
+        -\sqrt{p\bar\sigma}\eta_r^\dagger & \sqrt{p\sigma}\eta_r^\dagger
+    \end{pmatrix}\begin{pmatrix}
+        \sqrt{p\sigma}\eta_s\\
+        -\sqrt{p\bar\sigma}\eta_s
+    \end{pmatrix}=-m\delta^{rs}-m\delta^{rs}=-2m\delta^{rs}
+\end{equation}
+\begin{equation}
+    \bar u^rv^s=\begin{pmatrix}
+        \sqrt{p\bar\sigma}\zeta_r^\dagger & \sqrt{p\sigma}\zeta_r^\dagger
+    \end{pmatrix}\begin{pmatrix}
+        \sqrt{p\sigma}\eta_s\\
+        -\sqrt{p\bar\sigma}\eta_s
+    \end{pmatrix}=0
+\end{equation}
+
+于是
+\begin{theorem}
+    \begin{equation}
+        \bar u^ru^s=-\bar v^rv^s=2m\delta_{rs}, \bar u^rv^s=\bar v^ru^s=0
+    \end{equation}
+\end{theorem}
+
+\begin{theorem}
+    \begin{equation}
+        \sum_s u^s\bar u^s=\slashed p+m
+    \end{equation}
+    \begin{equation}
+        \sum_s v^s\bar v^s=\slashed p-m
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    根据$\zeta_1, \zeta_2$是$\mathbb{C}^2$上的完备正交基底, 所以
+    \begin{equation}
+        \sum_s \zeta_s\zeta_s^\dagger=1
+    \end{equation}
+
+    于是
+    \begin{align}
+        \sum_s u^s\bar u^s&=\sum_s\begin{pmatrix}
+            \sqrt{p\sigma}\zeta_s\\
+            \sqrt{p\bar\sigma}\zeta_s
+        \end{pmatrix}\begin{pmatrix}
+            \sqrt{p\bar\sigma}\zeta_s^\dagger & \sqrt{p\sigma}\zeta_s^\dagger
+        \end{pmatrix}\notag\\
+        &=\sum_s\begin{pmatrix}
+            \sqrt{(p\sigma)(p\bar\sigma)}\zeta_s\zeta_s^\dagger & p\sigma\zeta_s\zeta_s^\dagger\\
+            p\bar\sigma\zeta_s\zeta_s^\dagger & \sqrt{(p\sigma)(p\bar\sigma)}\zeta_s\zeta_s^\dagger
+        \end{pmatrix}\notag\\
+        &=\begin{pmatrix}
+            m & p\sigma\\
+            p\bar\sigma & m
+        \end{pmatrix}=p\gamma+m=\slashed p+m
+    \end{align}
+    \begin{align}
+        \sum_s v^s\bar v^s&=\sum_s\begin{pmatrix}
+            \sqrt{p\sigma}\eta_s\\
+            -\sqrt{p\bar\sigma}\eta_s
+        \end{pmatrix}\begin{pmatrix}
+            -\sqrt{p\bar\sigma}\eta_s^\dagger & \sqrt{p\sigma}\eta_s^\dagger
+        \end{pmatrix}\notag\\
+        &=\sum_s\begin{pmatrix}
+            -\sqrt{(p\sigma)(p\bar\sigma)}\eta_s\eta_s^\dagger & p\sigma\eta_s\eta_s^\dagger\\
+            p\bar\sigma\eta_s\eta_s^\dagger & -\sqrt{(p\sigma)(p\bar\sigma)}\eta_s\eta_s^\dagger
+        \end{pmatrix}\notag\\
+        &=\begin{pmatrix}
+            -m & p\sigma\\
+            p\bar\sigma & -m
+        \end{pmatrix}=p\gamma-m=\slashed p-m
+    \end{align}
+\end{proof}
+
+\begin{theorem}\label{ugammau-contraction}
+    对于$u_s, v_s$我们有\cite{sredinicki-ugammau}:
+    \begin{equation}
+        2m\bar u_{s'}(\vec p')\gamma^\mu u_s(\vec p)=\bar u_{s'}(\vec p')\left[(p'+p)^\mu-2iS^{\mu\nu}(p'-p)_\nu\right]u_s(\vec p)
+    \end{equation}
+    \begin{equation}
+        -2m\bar v_{s'}(\vec p')\gamma^\mu v_s(\vec p)=\bar v_{s'}(\vec p')\left[(p'+p)^\mu-2iS^{\mu\nu}(p'-p)_\nu\right]v_s(\vec p)
+    \end{equation}
+    \begin{equation}
+        2m\bar u_{s'}(\vec p')\gamma^\mu v_s(\vec p)=\bar u_{s'}(\vec p')\left[(p'-p)^\mu-2iS^{\mu\nu}(p'+p)_\nu\right]v_s(\vec p)
+    \end{equation}
+    \begin{equation}
+        -2m\bar v_{s'}(\vec p')\gamma^\mu u_s(\vec p)=\bar v_{s'}(\vec p')\left[(p'-p)^\mu-2iS^{\mu\nu}(p'+p)_\nu\right]u_s(\vec p)
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    \begin{align}
+        2m\bar u_{s'}(\vec p')\gamma^\mu u_s(\vec p)&=\bar u_{s'}(\vec p')\slashed p'\gamma^\mu u_s(\vec p)+\bar u_{s'}(\vec p')\gamma^\mu\slashed pu_s(\vec p)\\
+        &=\bar u_{s'}(\vec p')\left(\slashed p'\gamma^\mu+\gamma^\mu\slashed p\right)u_s(\vec p)\\
+        &=\bar u_{s'}(\vec p')\left[(p'+p)^\mu-2iS^{\mu\nu}(p'-p)_\nu\right]u_s(\vec p)
+    \end{align}
+    其中, 第三个等号利用定理\ref{gamma-p-contraction}. 而对于后三个等式的证明同理, 在此不赘述.
+\end{proof}
+
+对定理\ref{ugammau-contraction}取$p'=p$, 就有
+\begin{equation}
+    \bar u^s(\vec p)\gamma^\mu u_{s'}(\vec p)=2p^\mu\delta_{ss'}\label{gamma-p-p-contraction}
+\end{equation}
+\begin{equation}
+    \bar v^s(\vec p)\gamma^\mu v_{s'}(\vec p)=2p^\mu\delta_{ss'}
+\end{equation}
+不过需要注意$\bar u^s(\vec p)\gamma^\mu v_{s'}(\vec p)\neq0$:
+\begin{equation}
+    2m\bar u^s(\vec p)\gamma^\mu v_{s'}(\vec p)=\bar u^s\slashed p\gamma^\mu v_{s'}-\bar u^s\gamma^\mu\slashed pv_{s'}=\bar u^sp_\nu[\gamma^\nu, \gamma^\mu]v_{s'}\neq0
+\end{equation}
+. 但是对于$\vec p'=-\vec p$, 我们根据此定理有推论
+\begin{theorem}\label{ubar-gamma-v}
+    \begin{equation}
+        \bar u_{s'}(\vec p)\gamma^0 v_s(-\vec p)=\bar v_{s'}(\vec p)\gamma^0 u_s(-\vec p)=0
+    \end{equation}
+\end{theorem}
+
+\subsubsection{反对易的二次量子化与关联函数}
+关于$u, v$性质的讨论告一段落. 接下来由于涉及到对易子的问题, 为了能够区分对易子的乘法顺序以及做乘法的方式(内积还是外积), 我们对$\gamma, \psi$引入指标:
+\begin{align}
+    &\psi\to\psi_A\\
+    &\bar\psi\to\bar\psi^A\\
+    &\gamma^\mu\to\gamma^{\mu~~B}_{~~A}\\
+    &\slashed p\to\slashed p_A^{~~B}
+\end{align}
+
+那么
+\begin{align}
+    &\bar\psi\psi\to\bar\psi^A\psi_A=\psi_A\bar\psi^A\\
+    &\psi\bar\psi\to\psi_A\bar\psi^B=\bar\psi^B\psi_A
+\end{align}
+
+首先对$\mathcal L$做Legdren变换, 注意到$\mathcal L$中只有$\partial_0\psi$而没有$\partial_0\psi^\dagger$, 因此我们只需要定义
+\begin{equation}
+    \pi=\pa{\mathcal L}{\partial_0\psi}=i\bar\psi\gamma^0=i\psi^\dagger
+\end{equation}
+而不需要定义共轭动量(注意$\pi^{(\dagger)}$是指$\psi^\dagger$的正则动量, 而不是正则动量$\pi$的共轭, 即$\pi^{(\dagger)}\neq\pi^\dagger$)
+\begin{equation}
+    \pi^{(\dagger)}=\pa{\mathcal L}{\partial_0\psi^\dagger}=0
+\end{equation}
+, 从而
+\begin{align}
+    \mathcal H&=\pi\partial_0\psi-\mathcal L=\bar\psi(m-i\gamma^i\partial_i)\psi.
+\end{align}
+
+引入$\a p, \b p$, 我们可以将Dirac场量子化
+\begin{align}
+    &\psi_A=\int\ldsq{p}\sum_s(u^s_A\a{p}^s\exp{-ipx}+v^{s}_A\b{p}^{s\dagger}\exp{ipx})\\
+    &\bar\psi^A=\int\ldsq{p}\sum_s(\bar u^{sA}\a{p}^{s\dagger}\exp{ipx}+\bar v^{sA}\b{p}^{s}\exp{-ipx}).
+\end{align}
+
+我们可以计算得到
+\begin{align}
+    m\int\d^3x\bar\psi_x\psi_x&=\int\d^3x\int\ldsq p\sum_s\left(\bar u^s\a p^{s\dagger}\exp{ipx}+\bar v^s\b p^s\exp{-ipx}\right)\notag\\
+    &\;\;\int\ldsq q\sum_{s'}\left(u^{s'}\a q^{s'}\exp{-iqx}+v^{s'}\b q^{s'\dagger}\exp{iqx}\right)\\
+    &=\int\ddd p\frac{m^2}{\om p}\sum_s\left(\a p^\dagger\a p-\b p\b p^\dagger\right)
+\end{align}
+以及
+\begin{align}
+    \int\d^3x\bar\psi(-i\gamma^i\partial_i)\psi&=\int\d^3x\ldsq q\sum_s\left(\bar u^s\a q^{s\dagger}\exp{iqx}+\bar v^s\b q^s\exp{-iqx}\right)\notag\\
+    &\;\;\int\ldsq p[\gamma^ip_i]\sum_{s'}\left(-u^{s'}\a p\exp{-ipx}+v^{s'}\b p^{s'\dagger}\exp{ipx}\right)\\
+    &=\int\ld p\sum_{ss'}\left(-\bar u^s\gamma^ip_i u^{s'}\a p^{s\dagger}\a p^{s'}+\bar v^s\gamma^ip_iv^{s'}\b p^s\b p^{s'\dagger}\right)
+\end{align}
+利用式\eqref{gamma-p-p-contraction}, 我们有
+\begin{align}
+    \bar u^s\gamma^ip_i u^{s'}&=-2\vec p^2\delta_{ss'}\\
+    \bar v^s\gamma^ip_i v^{s'}&=-2\vec p^2\delta_{ss'}
+\end{align}
+从而有
+\begin{align}
+    \int\d^3x\bar\psi(-i\gamma^i\partial_i)\psi&=\int\ddd p\frac{\vec p^2}{\om p}\sum_s\left(\a p^\dagger\a p-\b p\b p^\dagger\right)
+\end{align}
+利用这两式, 我们可以得到Hamiltonian
+\begin{equation}
+    H=\int\d^3\mathcal H=\int\ddd p\om p\sum_s\left(\a p^\dagger\a p-\b p\b p^\dagger\right)
+\end{equation}
+
+类似地, 我们利用正则对易关系, $\b p, \b p^\dagger$给对易过来, 似乎就可以得到最终结果了...?
+\begin{equation}
+    H=\int\d^3\mathcal H=\int\ddd p\om p\sum_s\left(\a p^\dagger\a p-\b p^\dagger\b p\right)
+\end{equation}
+但是这个式子有个巨大的问题: 非正定! 也就是说, 如果$\b p^\dagger$激发产生一个反粒子, 那么它的能量是负的! 而大自然会倾向于低能量的状态, 也就是这会导致Dirac旋量场会自发放出无穷大的能量! 这个在物理上显然是荒谬的. 而我们可以确信我们上述的计算过程是没有问题的, 那么只有两个地方的假设可能是错的: 1. Dirac场能用极化旋量和$\a p, \b p$表示. 2. 正则对易关系.
+
+而第一个假设如果放弃, 我们会失去一切. 因此我们的首选做法是放弃第二个假设. 注意到, 如果我们引入反对易关系:
+\begin{align}
+    & \{\a p, \a q^\dagger\}=\dpi3\delta^3(\vec p-\vec q), \{\a b, \b q^\dagger\}=\dpi3\delta^3(\vec p-\vec q)\\
+    & \{\a p, \a q\}=\{\a p^\dagger, \a q^\dagger\}=\{\b p, \b q\}=\{\b p^\dagger, \b q^\dagger\}=0
+\end{align}
+
+则Hamiltonian可以对易为
+\begin{equation}
+    H=\int\d^3\mathcal H=\int\ddd p\om p\sum_s\left(\a p^\dagger\a p+\b p^\dagger\b p+\mathcal V\right)
+\end{equation}
+这样就可以得到正确的结果.
+
+反对易关系的引入, 还导致了在统计上与对易关系的玻色子的重大区别: Pauli不相容原理, 即
+\begin{equation}
+    \a p^\dagger\a p^\dagger\ket0=0.
+\end{equation}
+我们不能让两个电子处于完全一样的态, 这样的粒子称为费米子, 遵从Fermi-Dirac分布, 而满足对易关系的粒子称为玻色子, 遵从Bose-Einstein分布. 接下来我们还将从关联函数协变性的角度更深刻地看到费米子反对易性的必要性.
+
+然后我们尝试计算两点关联函数, 首先有
+\begin{align}
+    \braket{0|\psi_A(y)\bar\psi^B(x)|0}&=\int\ddd{p}\frac{\slashed p_A^{~~B}+m}{2\om p}\exp{ip(x-y)}
+\end{align}
+\begin{align}
+    \braket{0|\bar\psi^B(x)\psi_A(y)|0}&=\int\ddd{p}\frac{\slashed p_A^{~~B}-m}{2\om p}\exp{-ip(x-y)}
+\end{align}
+
+考虑Fermion的反交换性, 我们很自然地要求
+\begin{equation}
+    \mathcal T\left\{\psi_x\bar\psi_y\right\}=-\mathcal T\left\{\bar\psi_y\psi_x\right\}
+\end{equation}
+这需要我们定义对Dirac场的编时算符为
+\begin{equation}
+    \mathcal T\left\{\psi_A(y)\bar\psi^B(x)\right\}\equiv\Theta(y^0-x^0)\psi_A(y)\bar\psi^B(x)-\Theta(x^0-y^0)\bar\psi^B(x)\psi_A(y)
+\end{equation}
+
+这样我们经过类似\ref{2pt-real-scalar}节后半段的方法计算可以得到
+\begin{align}
+    \Theta(y^0-x^0)\psi_A(y)\bar\psi^B(x)&=\int\frac{i\d\omega}{2\pi}\frac{\exp{i\omega(t_x-t_y)}}{\omega+i\epsilon}\int\ld p[\slashed p+m]\exp{ip(x-y)}\\
+    &=\int i\dddd p\frac{\slashed p-(p^0-\om p)\gamma^0+m}{2\om p(p^0-\om p+i\epsilon)}\exp{ip(x-y)}\label{dirac-spinor-2pt1}\\
+    \mathcal T\left\{\bar\psi_y\psi_x\right\}&=\int i\dddd p\frac{-\slashed p+(p^0+\om p)\gamma^0-m}{2\om p(-p^0-\om p+i\epsilon)}\exp{ip(x-y)}\label{dirac-spinor-2pt2}
+\end{align}
+
+将\eqref{dirac-spinor-2pt1}, \eqref{dirac-spinor-2pt2}两式相减即可得Feynman传播子
+\begin{equation}
+    \braket{\psi_A(y)\bar\psi^B(x)}=\int\dddd p\frac{i(\slashed p+m)}{p^2-m^2+i\epsilon}\exp{ip(x-y)}
+\end{equation}
+不难看出这是协变的.
+
+\kaishu
+而如果我们仍然强加对易关系到编时算符上, 即定义
+\begin{equation}
+    \mathcal T\left\{\psi_A(y)\bar\psi^B(x)\right\}\equiv\Theta(y^0-x^0)\psi_A(y)\bar\psi^B(x)+\Theta(x^0-y^0)\bar\psi^B(x)\psi_A(y)
+\end{equation}
+则需要将\eqref{dirac-spinor-2pt1}, \eqref{dirac-spinor-2pt2}两式相加, 得到
+\begin{equation}
+    \braket{\psi_A(y)\bar\psi^B(x)}=\int i\dddd p\frac{\omega}{\om p}\frac{\slashed p-\frac{p^2-m^2}{\omega}\gamma^0+m}{p^2-m^2+i\epsilon}
+\end{equation}
+这又丑又完全不协变, 是一个灾难性的结果.
+\songti
+
+\newpage
+\section{离散变换}
+在本节我们尝试讨论对场的三种幺正离散变换, 即$C,P,T$变换. 所谓的$C$, 其实就是电荷共轭(Charge Conjugate), 就是指将粒子变为反粒子, 反转其的所有量子荷(比如电荷, 但还包括轻子数、重子数等所有性质). 而$P$就是大名鼎鼎的宇称(Parity), 就是指$\vec x\to-\vec x$的镜像变换. $T$则是时间反演(Time reversal), 也就是将对象的运动过程反演: $t\to-t$. 
+
+一般性地讨论来说, 对于任意的离散变换算符$X$, 我们有如下定义
+\begin{equation}
+    X\psi(x)X^\dagger=\boldsymbol{\mathrm C}\psi(\Lambda_X\cdot x)
+\end{equation}
+其中$\boldsymbol{\mathrm X}$是对场量的变换算符, $\Lambda_X$是对坐标的变换, 而$X$是一个幺正算符
+\begin{equation}
+    XX^\dagger=1.
+\end{equation}
+
+\subsection{C变换}
+$C$变换就是取反粒子, 也就是对场算符我们有如下要求
+\begin{equation}
+    C\psi(x)C^\dagger=\boldsymbol{\mathrm C}\psi^\dagger(x).
+\end{equation}
+这里取$\dagger$是因为正反粒子的相位旋转方向不同, 我们将场算符中的正反粒子反转必然需要取一个共轭. 并且其中$C$在幺正的基础上还满足
+\begin{equation}
+    C^2=1, 
+\end{equation}
+
+
+上面的要求等价于我们要求
+\begin{align}
+    & C\b{p}^\dagger\ket0=\a{p}^\dagger\ket 0\\
+    & C\a{p}^\dagger\ket0=\b{p}^\dagger\ket 0
+\end{align}
+
+在$\b{p}^\dagger, \a{p}^\dagger$与$\ket 0$间插入$C^\dagger c$, 我们有
+\begin{align}
+    & C\b{p}^\dagger C^\dagger C\ket0=\a{p}^\dagger\ket 0\\
+    & C\a{p}^\dagger C^\dagger C\ket0=\b{p}^\dagger\ket 0
+\end{align}
+
+这暗示我们
+\begin{align}
+    & C\b{p}^\dagger C^\dagger=\a{p}^\dagger\\
+    & C\a{p}^\dagger C^\dagger=\b{p}^\dagger.
+\end{align}
+
+然后我们以实标量场、复标量场、Dirac旋量场为例讨论$C$的具体作用.
+\begin{example}[实标量场的电荷共轭变换]
+    由于实标量场只有一组产生湮灭算符, 它自己就是自己的反粒子, $C$变换对其不起作用, 于是我们有
+    \begin{equation}
+        C=1, \boldsymbol{\rm C}=1
+    \end{equation}
+    % 其中$\dagger$即为对场算符取$\dagger$
+\end{example}
+\begin{example}[复标量场的电荷共轭变换]
+    对于复标量场, 我们也没有特殊的要求, 仍然有
+    \begin{equation}
+        \boldsymbol{\rm C}=1
+    \end{equation}
+    于是我们有结论
+    \begin{align}
+        &C\psi(x)C^\dagger=\int\ldsq p\left(\a p\exp{-ipx}+\b p^\dagger\exp{ipx}\right)=\psi^\dagger(x)
+    \end{align}
+    所以
+    \begin{align}
+        & C\b{p}^\dagger C^\dagger=\a{p}^\dagger\\
+        & C\a{p}^\dagger C^\dagger=\b{p}^\dagger.
+    \end{align}
+\end{example}
+\begin{example}[实矢量场的电荷共轭变换]
+    由于实矢量场只有一组产生湮灭算符, 它自己就是自己的反粒子, $C$变换对其不起作用, 于是我们有
+    \begin{equation}
+        C=1, \boldsymbol{\rm C}=1
+    \end{equation}
+\end{example}
+\begin{example}[Dirac旋量的电荷共轭变换]
+    我们首先推导$\boldsymbol{\mathrm C}$. 因为它负责将正粒子变为反粒子, 而正粒子反粒子的与$\slashed p$乘积满足的条件是不一样的:
+    \begin{align}
+        (\slashed p-m)\boldsymbol{\mathrm C}u^{s}=0\\
+        (\slashed p+m)\boldsymbol{\mathrm C}v^{s}=0.
+    \end{align}
+    所以说我们需要求一个$\boldsymbol{\mathrm C}$使得
+    \begin{align}
+        \boldsymbol{\mathrm C}v^{s*}=u^s\\
+        \boldsymbol{\mathrm C}u^{s*}=v^s\label{uv-conguate-star}.
+    \end{align}
+    而这意味着
+    \begin{align}
+        (\slashed p-m)\boldsymbol{\mathrm C}v^{s*}=0\\
+        (\slashed p+m)\boldsymbol{\mathrm C}u^{s*}=0.
+    \end{align}
+    又因为
+    \begin{align}
+        m\boldsymbol{\mathrm C}u^{s*}&=\boldsymbol{\mathrm C}(mu)^{s*}\\
+        &=p_\mu\boldsymbol{\mathrm C}\gamma^{\mu*} u^{s*}
+    \end{align}
+    同时根据式\eqref{uv-conguate-star}, 我们有
+    \begin{align}
+        m\boldsymbol{\mathrm C}u^{s*}=mv^s=-p_\mu\gamma^\mu v^s=-p_\mu\gamma^\mu\boldsymbol{\mathrm C}u^{s*}
+    \end{align}
+    所以有
+    \begin{equation}
+        \boldsymbol{\mathrm C}\gamma^\mu\boldsymbol{\mathrm C}^\dagger=-\gamma^{\mu*}.
+    \end{equation}
+
+    又注意到, 
+    \begin{align}
+        \gamma^{\mu*}=\gamma^\mu, \mu=0,1,3\\
+        \gamma^{2*}=-\gamma^2.
+    \end{align}
+    所以我们不难猜想, $\boldsymbol{\mathrm C}$应当与$\gamma^2$有关. 不难验证,
+    \begin{equation}
+        \boldsymbol{\mathrm C}=i\gamma^2
+    \end{equation}
+
+    所以说我们得到
+    \begin{align}
+        &C\psi_AC^\dagger=\int\ldsq{p}\sum_s(u^s_A\b{p}^s\exp{-ipx}+v^{s}_A\a{p}^{s\dagger}\exp{ipx})
+    \end{align}
+    这同样要求
+    \begin{align}
+        & C\b{p}^\dagger C^\dagger=\a{p}^\dagger\\
+        & C\a{p}^\dagger C^\dagger=\b{p}^\dagger.
+    \end{align}
+
+    % 我们想要将其写为与$\psi^*$(注意, 这里如果是$\psi^\dagger$那么就变成行向量了, 结构不同, 而$\psi^*$则只是取共轭, 也就是将$a, b$取$\dagger$, 给$u, v$取$*$却不取$\dagger$)有关的东西, 那么我们就需要获得$u$与$v$之间的关系.
+\end{example}
+
+\subsection{P变换}\label{sec-parity}
+$P$变换就是宇称变换, 即将场的三维部分反转
+\begin{equation}
+    \psi(t, \vec x)\to\psi(t, -\vec x), 
+\end{equation}
+也就是
+\begin{equation}
+    P\psi(t, \vec x)P^\dagger=\boldsymbol{\mathbf P}\psi(t, -\vec x), 
+\end{equation}
+其中$P$在幺正的基础上还满足
+\begin{equation}
+    P^2=1.
+\end{equation}
+
+\begin{example}[实标量场的宇称变换]
+    对于标量来说(如果是赝标量那么就是$\boldsymbol{\mathbf P}=-1$了)
+    \begin{equation}
+        \boldsymbol{\mathbf P}=1
+    \end{equation}
+    我们发现这样要求
+    \begin{align}
+        &P\phi(x)P^\dagger=\int\ldsq p\left(\a p\exp{-i\omega t-i\vec p\cdot\vec x}+\a p^\dagger\exp{i\omega t+i\vec p\cdot\vec x}\right)
+    \end{align}
+    我们做换元$\vec p\to-\vec p$得到
+    \begin{align}
+        &P\psi(x)P^\dagger=\int\ldsq p\left(\a {-p}\exp{-ipx}+\a {-p}^\dagger\exp{ipx}\right)
+    \end{align}
+    所以说有结论
+    \begin{equation}
+        P\a p P^\dagger=\a{-p}
+    \end{equation}
+\end{example}
+\begin{example}[复标量场的宇称变换]
+    同样有
+    \begin{equation}
+        \boldsymbol{\mathbf P}=1
+    \end{equation}
+    我们发现这样要求
+    \begin{align}
+        &P\psi(x)P^\dagger=\int\ldsq p\left(\a p\exp{-i\om p t-i\vec p\cdot\vec x}+\b p^\dagger\exp{i\om p t+i\vec p\cdot\vec x}\right)
+    \end{align}
+    做换元$\vec p\to-\vec p$得到
+    \begin{align}
+        &P\psi(x)P^\dagger=\int\ldsq p\left(\a {-p}\exp{-ipx}+\b {-p}^\dagger\exp{ipx}\right)
+    \end{align}
+    所以说有结论
+    \begin{align}
+        P\a p P^\dagger=\a{-p}\\
+        P\b p P^\dagger=\b{-p}
+    \end{align}
+\end{example}
+\begin{example}[电磁场的宇称变换]
+    考虑到Lorentz规范下, 电磁4矢势满足
+    \begin{equation}
+        \Box A^\mu=J^\mu.
+    \end{equation}
+    而$J^\mu$在$P$变换下满足
+    \begin{equation}
+        \boldsymbol{\mathbf P}J^\mu=\boldsymbol{\mathbf P}(\rho, \vec j)^T=(\rho, -\vec j)^T,
+    \end{equation}
+    这个性质也自然地被诱导给$A^\mu$, 因此$A^\mu$同样满足
+    \begin{equation}
+        \boldsymbol{\mathbf P}A^\mu=\boldsymbol{\mathbf P}(\varphi, \vec A)^T=(\varphi, -\vec A)^T.
+    \end{equation}
+    
+    考虑到对于电磁波极化矢量$\epsilon_s^\mu$(在Lorentz规范下它是完全没有$t$分量的, 也就是$\epsilon^0=0$)我们有
+    \begin{align}
+        \boldsymbol{\mathbf P}\epsilon_1^\mu(\vec p)=-\epsilon_1^\mu(\vec p)=\epsilon_1^i(-\vec p)\\
+        \boldsymbol{\mathbf P}\epsilon_2^\mu(\vec p)=-\epsilon_2^\mu(\vec p)=\epsilon_2^i(-\vec p)
+    \end{align}
+    从而得到
+    \begin{align}
+        P\vec A P^\dagger&=\int\ldsq p\sum_{r=1}^2\left(\vec\epsilon_r(-\vec p)a_{\vec pr}\exp{-i\om pt-i\vec p\cdot\vec x}+\vec\epsilon_r^*(-\vec p)a_{\vec pr}^\dagger\exp{i\om pt+i\vec p\cdot\vec x}\right)\\
+        &=\int\ldsq p\sum_{r=1}^2\left(\vec\epsilon_r(\vec p)a_{-\vec pr}\exp{-ipx}+\vec\epsilon_r^*(\vec p)a_{-\vec pr}^\dagger\exp{ipx}\right)
+    \end{align}
+    所以说有结论
+    \begin{align}
+        P\a p P^\dagger=\a{-p}\\
+        P\b p P^\dagger=\b{-p}
+    \end{align}
+\end{example}
+\begin{example}[Dirac旋量的宇称变换]
+    首先我们需要推导旋量在宇称变换下的矩阵. 因为宇称变换是$\vec x\to-\vec x$这同样代表着$\vec p\to-\vec p$, 所以说我们要求一$\boldsymbol{\mathbf P}$满足
+    \begin{equation}
+        \boldsymbol{\mathbf P}u_s(\vec p)=\eta_s u_s(-\vec p)
+    \end{equation}
+    其中$\eta_s$为某一相位常数.
+
+    注意到
+    \begin{align}
+        \gamma^0u^s(\vec p)&=\gamma^0\begin{pmatrix}
+            \sqrt{p\sigma}\zeta_s\\
+            \sqrt{p\bar\sigma}\zeta_s
+        \end{pmatrix}=\begin{pmatrix}
+            \sqrt{p\bar\sigma}\zeta_s\\
+            \sqrt{p\sigma}\zeta_s
+        \end{pmatrix}=u^s(-\vec p)\\
+        \gamma^0`v^s(\vec p)&=\gamma^0\begin{pmatrix}
+            \sqrt{p\sigma}\zeta_s\\
+            -\sqrt{p\bar\sigma}\zeta_s
+        \end{pmatrix}=\begin{pmatrix}
+            -\sqrt{p\bar\sigma}\zeta_s\\
+            \sqrt{p\sigma}\zeta_s
+        \end{pmatrix}=-v^s(-\vec p)
+    \end{align}
+    所以说
+    \begin{equation}
+        \boldsymbol{\mathbf P}=\gamma^0.
+    \end{equation}
+
+    根据定义我们直接有
+    \begin{align}
+        P\psi(t,\vec x)P^\dagger&=\boldsymbol{\mathbf P}\psi(t,-\vec x)\\
+        &=\int\ldsq{p}\sum_s(u^s(-\vec p)\a{p}^s\exp{-i\om pt-i\vec p\cdot\vec x}-v^{s}(-\vec p)\b{p}^{s\dagger}\exp{i\om pt+i\vec p\cdot\vec x})
+    \end{align}
+    做$\vec p\to-\vec p$换元我们有
+    \begin{align}
+        P\psi(t,\vec x)P^\dagger&=\int\ldsq{p}\sum_s(u^s(\vec p)\a{-p}^s\exp{-ipx}-v^{s}(\vec p)\b{-p}^{s\dagger}\exp{ipx})
+    \end{align}
+
+    所以得到结论
+    \begin{align}
+        P\a p P^\dagger=\a{-p}\\
+        P\b p P^\dagger=-\b{-p}
+    \end{align}
+\end{example}
+
+\subsection{T变换}
+$T$变换就是时间反演变换, 这个变换比较特殊, 因为它需要是反线性的: 在Schrödinger绘景下, 考虑态演化, 我们有
+\begin{equation}
+    (i\pa{}t-H)\ket{\psi(t)}=0.\label{time-reverse-schrodinger-eq}
+\end{equation}
+时间反演要求有
+\begin{equation}
+    T\ket{\psi(t)}=\ket{\psi(-t)}
+\end{equation}
+所以说
+\begin{equation}
+    (i\pa{}t+H)T\ket{\psi(t)}=0
+\end{equation}
+$H$不含时, 因此$T$可与$H$交换. 同样地, $T$可以与时间导数算子交换, 但如果$T$不是反线性, 就会有
+\begin{equation}
+    T\left((i\pa{}t+H)\ket{\psi(t)}\right)=0
+\end{equation}
+这和式\eqref{time-reverse-schrodinger-eq}是矛盾的. 但是如果$T$是反线性的, 即
+\begin{equation}
+    iT=-Ti
+\end{equation}
+那么我们就可以得到
+\begin{equation}
+    T\left((-i\pa{}t+H)\ket{\psi(t)}\right)=0.
+\end{equation}
+这个结果才是自洽的.
+
+对于场算符, 我们要求$T$的表现形式为
+\begin{equation}
+    T\psi(t, \vec x)T^\dagger=\boldsymbol{\rm T}\phi(-t, \vec x).
+\end{equation}
+
+\subsection{CPT不变性}
+如果$CPT$组合起来, 这是一个反线性算符, 并且对于复标量场我们容易验证
+\begin{equation}
+    CPT\psi(x)(CPT)^\dagger=\psi^\dagger(-x).
+\end{equation}
+
+\newpage
+\section{旋量QED}
+然后我们试图将Dirac旋量与电磁场耦合, 考虑Dirac旋量与电磁场的相互作用, 即标准的量子电动力学(QED).
+\subsection{最小耦合}
+同样考虑局部$U(1)$规范变换, 即
+\begin{equation}
+    \psi\to\exp{-i\alpha}\psi
+\end{equation}
+设
+\begin{equation}
+    \partial_\mu\to D_\mu=\partial_\mu+ieA_\mu
+\end{equation}
+让局域$U(1)$规范变换对$A_\mu$满足
+\begin{equation}
+    A_\mu\to A_\mu+\frac1e\partial_\mu\alpha
+\end{equation}
+则
+\begin{equation}
+    D_\mu(\exp{-i\alpha}\psi)=\exp{-i\alpha}D_\mu\psi
+\end{equation}
+
+于是根据最小耦合原理我们可以得到Lagrangian
+\begin{equation}
+    \mathcal L=\bar\psi(i\slashed D-m)\psi-\frac14F^2
+\end{equation}
+即
+\begin{equation}
+    \mathcal L=\bar\psi(i\partial_\mu-m)\psi-eA_\mu\bar\psi\gamma^\mu\psi
+\end{equation}
+
+于是我们发现电流项
+\begin{equation}
+    J^\mu=e\bar\psi\gamma^\mu\psi
+\end{equation}
+
+还有EoM
+\begin{align}
+    \begin{cases}
+        &(i\slashed\partial-m)\psi=e\slashed A\psi\\
+        &\partial_\mu F^{\mu\nu}=e\bar\psi\gamma^\nu\psi
+    \end{cases}
+\end{align}
+
+\subsection{旋量LSZ公式}
+我们首先有引理
+\begin{lemma}
+    \begin{equation}
+        \int\d^4xi\exp{ipx}\bar u_s(m-i\slashed\partial)\psi=\sqrt{2\om p}(\a p^s(+\infty)-\a p^s(-\infty))
+    \end{equation}
+    \begin{equation}
+        \int\d^4xi\exp{-ipx}\bar v_s(-m-i\slashed\partial)\psi=\sqrt{2\om p}(\b p^{\dagger s}(+\infty)-\b p^{\dagger s}(-\infty))
+    \end{equation}
+    \begin{equation}
+        \int\d^4xi\exp{-ipx}\Tr\left[(-m-i\slashed\partial)u_s\bar\psi\right]=\sqrt{2\om p}(\a p^{\dagger s}(+\infty)-\a p^{\dagger s}(-\infty))
+    \end{equation}
+    \begin{equation}
+        \int\d^4xi\exp{ipx}\Tr\left[(m-i\slashed\partial)v_s\bar\psi\right]=\sqrt{2\om p}(\b p^{\dagger s}(+\infty)-\b p^{\dagger s}(-\infty))
+    \end{equation}
+\end{lemma}
+\begin{proof}
+    \begin{align}
+        \int\d^4xi\exp{ipx}\bar u_s(m-i\slashed\partial)\psi&=\int\d^4xi\exp{ipx}\bar u_s(m--i\gamma^i\partial_i-i\gamma^0\partial_0)\psi\\
+        &=\int\d^4xi\exp{ipx}\bar u_s(m-\gamma^ip_i-i\gamma^0\partial_0)\psi=
+    \end{align}
+    根据
+    \begin{equation}
+        \partial_0(\exp{ipx}\bar u_s\gamma^0\psi)=ip_0\exp{ipx}\bar u_s\gamma^0\psi+\exp{ipx}\bar u_s\gamma^0\partial_0\psi
+    \end{equation}
+    我们有
+    \begin{align}
+        &\;\;\int\d^4xi\exp{ipx}\bar u_s(m-i\slashed\partial)\psi\\
+        &=\int\d^4xi\exp{ipx}\bar u^s(m-\slashed p)\psi\notag\\
+        &\;+\int\d^3x\exp{ipx}\bar u_s\gamma^0\int\ldsq q{}\sum_{s'}\left(u_{s'}\a q^s\exp{-iqx}+v_s\b q^{\dagger s}\exp{iqx}\right)\Big|_{-\infty}^{+\infty}\\
+        &=\bar u_s\gamma^0\int\ldsq q{\dpi3}\sum_{s'}\left(u_{s'}\a q^s\delta^3(\vec p-\vec q)+v_s\b q^{\dagger s}\delta^3(\vec p+\vec q)\right)\Big|_{-\infty}^{+\infty}
+    \end{align}
+    而根据定理\ref{ugammau-contraction}我们知道
+    \begin{equation}
+        \bar u_s(\vec p)\gamma^0u_{s'}(\vec p)=2p^0\delta_{ss'}, \bar u_s(\vec p)\gamma^0v_{s'}(\vec p)=0
+    \end{equation}
+    从而有
+    \begin{equation}
+        \int\d^4xi\exp{ipx}\bar u_s(m-i\slashed\partial)\psi=\sqrt{2\om p}(\a p^s(+\infty)-\a p^s(-\infty))
+    \end{equation}
+
+    剩下三个式子证明同理.
+\end{proof}
+
+于是我们可以有最终结论
+\begin{align}
+    \braket{f, +\infty|i, -\infty}&=\int\d^4xi\exp{ip_1x_1}\bar u_s(m-i\slashed\partial_1)\textcolor{blue}{\int\d^4x_2i\exp{-ipx}\bar v_s(-m-i\slashed\partial_2)}\notag\\
+    &\;\partial_{3\mu}\partial_{4\nu}\braket{\psi_1\psi_2...\bar\psi_3\bar\psi_4}\notag\\
+    &\;\int\d^4xi\exp{-ip_3x_3}(-m-i\gamma^\mu)u_s\textcolor{blue}{\int\d^4xi\exp{ip_4x_4}(m-i\gamma^\nu)v_s}
+\end{align}
+其中, 第一行第一个为出射正粒子, 第一行第二个为入射反粒子, 第三行第一个为入射正粒子, 第三行第四个为出射反粒子.
+
+\subsection{旋量QED的Feynman规则}
+我们可以不难从Lagrangian中读出Feynman规则
+\begin{enumerate}
+    \item Dirac旋量传播子
+    $$
+        \begin{tikzpicture}[baseline=(current bounding box.center)]
+            \begin{feynman}
+                \vertex (a) {\(p\)};
+                \vertex [right=2cm of a] (b);
+                \diagram* {
+                    (a) -- [fermion, momentum'=\(p\)] (b),
+                };
+            \end{feynman}
+        \end{tikzpicture}
+        = \frac{i(\slashed{p} + m)}{p^2 - m^2 + i\epsilon}
+    $$
+    \item 光子传播子
+    $$
+        \begin{tikzpicture}[baseline=(current bounding box.center)]
+            \begin{feynman}
+                \vertex (a) {\(\mu\)};
+                \vertex [right=2cm of a] (b) {\(\nu\)};
+                \diagram* {
+                    (a) -- [photon, momentum'=\(p\)] (b),
+                };
+            \end{feynman}
+        \end{tikzpicture}
+        = \frac{-i g_{\mu\nu}}{p^2 + i\epsilon} \quad (\text{Feynman 规范})
+    $$
+    \item 旋量-光子三点顶角
+    $$
+    \begin{tikzpicture}[baseline=(current bounding box.center)]
+        \begin{feynman}
+            \vertex (a);
+            \vertex [above right=1.5cm of a] (b);
+            \vertex [below right=1.5cm of a] (c);
+            \vertex [left=1.5cm of a] (d);
+            \diagram* {
+                (b) -- [fermion] (a) -- [fermion] (c),
+                (a) -- [photon] (d),
+            };
+        \end{feynman}
+    \end{tikzpicture}
+    = -ie\gamma^\mu
+    $$
+\end{enumerate}
+
+对于每一个过程的外线，都有对应的因子:
+\begin{itemize}
+    \item 入射电子(${e^-}$): $u(p, s)$
+    \item 出射电子 (${e^-}$): $\bar{u}(p, s)$
+    \item 入射正电子 (${e^+}$): $\bar{v}(p, s)$
+    \item 出射正电子 (${e^+}$): $v(p, s)$
+    \item 入射光子 (${\gamma}$): $\epsilon^\mu(p, \lambda)$
+    \item 出射光子 (${\gamma}$): $\epsilon^{\mu*}(p, \lambda)$
+\end{itemize}
+
+需要注意, 由于Fermion场的反对易性, 对于一些构型我们会有额外的$-1$因子, 比如Fermion环. 比较保险的方法是将图还原到Dyson级数的缩并中具体地检查正负号.
+
+\subsection{树图阶散射计算}
+接下来我们开始计算几个简单的例子来熟悉QED的计算, 并获得它们的散射界面. 在计算之前, 我们首先需要考虑一个问题: 在实际实验中, 我们是并不知道粒子的自旋设置的, 或者说它们的自旋方向是完全随机的, 而我们的实验只能测量随机方向自旋的总效应: 对于入射态, 我们需要对不同自旋方向的$|\mathcal M|^2$取平均; 对于出射态, 因为不同的自旋出射都贡献到总的散射截面中, 因此我们需要直接求和. 比如考虑$n\to m$散射, 我们就有
+\begin{equation}
+    |\mathcal M_{aver}|=\frac1{2^n}\sum_{i_n, f_m}|\mathcal M_{i_n, f_m}|^2
+\end{equation}
+\begin{example}[Bhabha散射]
+    Bhabha散射即电子-正电子散射:
+    $$ e^-+e^+\to e^-+e^+. $$
+
+    我们在树图阶考虑, 这有两个通道的贡献
+    \begin{align}
+        \begin{tikzpicture}[baseline=(current bounding box.center)]
+            \begin{feynman}
+                \coordinate (i1) at (-1, 1.5);
+                \coordinate (f1) at (1, 1.5);
+                \vertex (v1) at (0, 0.5); % 上侧顶点
+                \coordinate (i2) at (-1, -1.5);
+                \coordinate (f2) at (1, -1.5);
+                \vertex (v2) at (0, -0.5);  % 下侧顶点
+                \diagram* {
+                    (i1) -- [fermion] (v1) -- [fermion] (f1),
+                    (v1) -- [photon] (v2), % 交换的玻色子
+                    (f2) -- [fermion] (v2) -- [fermion] (i2),
+                };
+            \end{feynman}
+        \end{tikzpicture}&=-ie^2\bar u_3\gamma^\mu u_1\bar v_2\gamma_\mu v_4\frac1{t}
+    \end{align}
+    \begin{align}
+        \begin{tikzpicture}[baseline=(current bounding box.center)]
+            \begin{feynman}
+                \coordinate (i1) at (-1.5, 1);
+                \coordinate (i2) at (-1.5, -1);
+                \coordinate (f1) at (1.5, 1);
+                \coordinate (f2) at (1.5, -1);
+                \vertex (v1) at (-0.5, 0); % 左侧顶点
+                \vertex (v2) at (0.5, 0);  % 右侧顶点
+                \diagram* {
+                    (i1) -- [fermion] (v1),
+                    (v1) -- [fermion] (i2),
+                    (v1) -- [photon] (v2), % 交换的玻色子
+                    (v2) -- [fermion] (f1),
+                    (f2) -- [fermion] (v2),
+                };
+            \end{feynman}
+        \end{tikzpicture}&=ie^2\bar v_2\gamma^\mu u_1\bar u_3\gamma_\mu v_4\frac1{s}
+    \end{align}
+    所以我们可以得到树图阶的总振幅
+    \begin{align}
+        \mathcal M_{total}=e^2\left(\frac{-\bar v_2\gamma^\mu u_1\bar u_3\gamma_\mu v_4}{s}+\frac{\bar u_3\gamma^\mu u_1\bar v_2\gamma_\mu v_4}{t}\right).
+    \end{align}
+
+    为了简化我们的计算, 我们假设$p^2\gg m^2$, 因此$m^2$可以被忽略.
+
+    然后计算其模长平方
+    \begin{align}
+        |\mathcal M_{aver}|^2&=\frac14\sum|\mathcal M|^2\\
+        &=\frac{e^4}4\sum\left[-\frac{\bar u_1\gamma^\mu v_2\bar v_4\gamma_\mu u_3}{s}+\frac{\bar u_1\gamma^\mu u_3\bar v_4\gamma_\mu v_2}{t}\right]\notag\\
+        &\;\;\left[\frac{-\bar v_2\gamma^\mu u_1\bar u_3\gamma_\mu v_4}{s}+\frac{\bar u_3\gamma^\mu u_1\bar v_2\gamma_\mu v_4}{t}\right].
+    \end{align}
+    这是一个相当相当复杂的算式, 我们耐心地一项一项展开计算: 首先是$t^2$项
+    \begin{align}
+        \bar u_1\gamma^\mu v_2\bar v_4\gamma_\mu u_3\bar v_2\gamma^\mu u_1\bar u_3\gamma_\mu v_4&=\rm{Tr}\left[\gamma^\mu\slashed p_2\gamma^\nu\slashed p_1\right]\rm{Tr}\left[\gamma_\mu\slashed p_3\gamma_\nu\slashed p_4\right]\\
+        &=32\left[(p_2\cdot p_3)(p1\cdot p_4)+(p_2\cdot p_4)(p_1\cdot p_3)\right]\\
+        &=32\left[(m^2-\frac u2)^2+(m^2-\frac t2)^2\right]\\
+        &\approx8(u^2+t^2).
+    \end{align}
+    然后是$t, s$交叉项, 利用定理\ref{gamma-contraction-them}, 我们有
+    \begin{align}
+        \rm{Tr}\left[\bar u_1\gamma^\mu v_2\gamma^\nu v_4\bar v_4\gamma_\mu u_3\gamma_\nu u_1\right]=-8\rm{Tr}(\sl p_4\sl p_1)(p_2\cdot p_3)=-32(p_1\cdot p_4)(p_2\cdot p_3)
+    \end{align}
+    最后是$s^2$项, 我们有
+    \begin{align}
+        \bar u_1\gamma^\mu v_3\bar v_4\gamma_\mu u_2\bar v_3\gamma^\mu u_1\bar u_2\gamma_\mu v_4&=\rm{Tr}\left[\gamma^\mu\slashed p_3\gamma^\nu\slashed p_1\right]\rm{Tr}\left[\gamma_\mu\slashed p_2\gamma_\nu\slashed p_4\right]\\
+        &=32\left[(p_2\cdot p_3)(p1\cdot p_4)+(p_3\cdot p_4)(p_1\cdot p_2)\right]\\
+        &=32\left[(m^2-\frac u2)^2+(\frac s2-m^2)^2\right]\\
+        &\approx8(u^2+s^2).
+    \end{align}
+    于是最终我们有结论
+    \begin{align}
+        |\mathcal M_{aver}|&=2e^4\left(\frac{u^2+t^2}{s^2}+2\frac{u^2}{st}+\frac{u^2+s^2}{t^2}\right)\\
+        &=2e^4\left((\frac us+\frac ut)^2+\frac{t^2}{s^2}+\frac{s^2}{t^2}\right).
+    \end{align}
+
+    根据Feynman黄金规则, 我们利用例\ref{ex-2-2-scattering}中的结果, 在质心系下我们有
+    \begin{align}
+        \d\sigma&=\int_{p_3}\frac1{4E_1E_2|\vec v_1-\vec v_2|}\dpi4\delta^4|\mathcal M|^2\lips{p_3}\lips{p_4}\\
+        &=\int_{p_4}\frac1{4E_1E_2|\vec v_1-\vec v_2|}2\pi\delta(E_1+E_2-E_3-E_4)|\mathcal M|^2 \frac{p_4^2\d p_4\d\Omega}{\dpi3 4E_3E_4}
+    \end{align}
+    根据$E_1+E_2=E_{CM}$以及
+    \begin{equation}
+        \delta(E_{CM}-E_3-E_4)=\delta(p_4-p_{40})\frac{E_3}{p_3}\frac{E_4}{p_4}=\delta(p_4-p_{40})\frac{E_3E_4}{p_4^2}
+    \end{equation}
+    我们有
+    \begin{align}
+        \left(\frac{\d\sigma}{\d\Omega}\right)_{CM}=\frac1{64E_1E_2}\frac{|\mathcal M|^2}{|\vec v_1-\vec v_2|}
+    \end{align}
+    此外
+    \begin{equation}
+        |\vec v_1-\vec v_2|=\frac{|\vec p_1|}{E_1}+\frac{|\vec p_2|}{E_1}=|\vec p_i|\frac{E_{CM}}{E_1E_2}
+    \end{equation}
+    从而有
+    \begin{equation}
+        \left(\frac{\d\sigma}{\d\Omega}\right)_{CM}=\frac{|\mathcal M|^2}{64\pi^2E_{CM}|\vec p_i|}
+    \end{equation}
+    最后代入我们计算得到的$|\mathcal M_{aver}|$, 就有结果
+    \begin{align}
+        \left(\frac{\d\sigma}{\d\Omega}\right)_{CM}&=\frac{\alpha^2}{2E_{CM}|\vec p_i|}\left((\frac us+\frac ut)^2+\frac{t^2}{s^2}+\frac{s^2}{t^2}\right)\\
+        &=\frac{\alpha^2}{4E^2}\left((\frac us+\frac ut)^2+\frac{t^2}{s^2}+\frac{s^2}{t^2}\right).
+    \end{align}
+
+    然后我们尝试进一步化简, 将其写为偏转角$\theta$的函数. 我们设
+    \begin{align}
+        &p_1=(E, E, 0, 0), p_2=(E, -E, 0, 0)\\
+        &p_3=(E, E\cos\theta, E\sin\theta, 0), p_4=(E, -E\cos\theta, -E\sin\theta, 0)
+    \end{align}
+    从而计算得到
+    \begin{align}
+        s&\approx4E^2\\
+        t&\approx-4E^2\sin^2(\theta/2)\\
+        u&\approx-4E^2\cos^2(\theta/2)
+    \end{align}
+    因此有最终结论
+    \begin{equation}
+        \left(\frac{\d\sigma}{\d\Omega}\right)_{CM}=\frac{\alpha^2}{4E^2}\left(\left(-\cos^2(\theta/2)+\cot^2(\theta/2)\right)^2+\sin^4(\theta/2)+\frac1{\sin^4(\theta/2)}\right)
+    \end{equation}
+    
+    可以发现t通道对散射截面的贡献在$\theta\to0$的时候是发散的, 这是因为光子传播子的长程性质, 与我们在经典力学中的计算情况一致. 而总的计算结果则是在经典计算上加入了对正负电子湮灭然后产生的这一量子修正.
+\end{example}
+\begin{example}[Møller散射]
+    Møller散射即电子-电子散射:
+    $$ e^-e^-\to e^-e^-. $$
+
+    我们在树图阶计算, 有t通道与u通道的贡献
+    \begin{align}
+        \begin{tikzpicture}[baseline=(current bounding box.center)]
+            \begin{feynman}
+                \coordinate (i1) at (-1, 1.5);
+                \coordinate (f1) at (1, 1.5);
+                \vertex (v1) at (0, 0.5); % 上侧顶点
+                \coordinate (i2) at (-1, -1.5);
+                \coordinate (f2) at (1, -1.5);
+                \vertex (v2) at (0, -0.5);  % 下侧顶点
+                \diagram* {
+                    (i1) -- [fermion] (v1) -- [fermion] (f1),
+                    (v1) -- [photon] (v2), % 交换的玻色子
+                    (i2) -- [fermion] (v2) -- [fermion] (f2),
+                };
+            \end{feynman}
+        \end{tikzpicture}&=-ie^2\bar u_3\gamma^\mu u_1\bar u_4\gamma_\mu u_2\frac1{t}
+    \end{align}
+    \begin{align}
+        \begin{tikzpicture}[baseline=(current bounding box.center)]
+            \begin{feynman}
+                \coordinate (i1) at (-1, 1.5);
+                \coordinate (f1) at (1, 1.5);
+                \vertex (v1) at (0, 0.5); % 上侧顶点
+                \coordinate (i2) at (-1, -1.5);
+                \coordinate (f2) at (1, -1.5);
+                \vertex (v2) at (0, -0.5);  % 下侧顶点
+                \diagram* {
+                    (i1) -- [fermion] (v1) -- [fermion] (f2),
+                    (v1) -- [photon] (v2), % 交换的玻色子
+                    (i2) -- [fermion] (v2) -- [fermion] (f1),
+                };
+            \end{feynman}
+        \end{tikzpicture}&=ie^2\bar u_3\gamma^\mu u_2\bar u_4\gamma_\mu u_1\frac1{u}
+    \end{align}
+    所以我们可以得到树图阶的总振幅
+    \begin{align}
+        \mathcal M_{total}=e^2\left(\frac{-\bar u_3\gamma^\mu u_1\bar u_4\gamma_\mu u_2}{t}+\frac{\bar u_3\gamma^\mu u_2\bar u_4\gamma_\mu u_1}{u}\right).
+    \end{align}
+
+    然后计算其模长平方
+    \begin{align}
+        |\mathcal M_{aver}|^2&=2e^4\left(\frac{(s-2m)^2+(t-2m)^2+4m^2u}{u^2}\right.\notag\\
+        &\;\;\left.+\frac{(s-2m)^2+(u-2m)^2+4m^2t}{t^2}+2\frac{(s-2m^2)(2-6m^2)}{tu}\right)
+    \end{align}
+\end{example}
+\begin{example}[Rutherford散射(半量子化)]
+    Rutherford散射即电子与原子核的散射, 由于原子核是一个由质子中子复合形成的一个复杂束缚态, 而质子和中子又是由夸克组成的复杂束缚态. 如果我们采取直接全部量子化计算的方式, 过程将会非常复杂. 于是作为简化近似, 我们计算最低阶的散射截面时可以不将电磁场量子化, 仅仅量子化Dirac场, 保留经典的电磁场矢势$A_\mu$, 这样子就可以直接唯像地将原子核处理为一个点源了, 从而有相互作用Hamiltonian
+    \begin{equation}
+        H_I=\int\d^3x e\bar\psi\gamma^\mu\psi A_\mu.
+    \end{equation}
+    
+    我们首先尝试导出这一半量子化场论的Feynman规则. 我们计算两点关联函数
+    \begin{align}
+        \braket{\psi_1\bar\psi_2}&=\frac{\bra0\mathcal T\exp{-i\int\d^4x\bar\psi\gamma^\mu\psi A_\mu}\psi_1\bar\psi_2\ket0}{\braket{0|\mathcal T\exp{-i\int\d^4x\bar\psi\gamma^\mu\psi A_\mu}|0}}\\
+        &=\int\dddd p\frac{i(\slashed p+m)}{p^2-m^2}\exp{ip(x_2-x_1)}\notag\\
+        &\;-ie\int\d^4xA_\mu\int\dddd p\frac{i(\slashed p+m)}{p^2-m^2}\exp{-ip(x_1-x)}\gamma^\mu\int\dddd q\frac{i(\slashed q+m)}{q^2-m^2}\exp{-iq(x-x_2)}
+    \end{align}
+    利用旋量LSZ公式, 我们有
+    \begin{align}
+        \braket{p'|i\mathcal T|p}=\braket{f, +\infty|i, -\infty}&=-ie\int\d^4xA_\mu\exp{i(p'-p)x}\bar u_{s'}(p')\gamma^\mu u_s(p)\\
+        &=-ie\bar u_{s'}(p')\gamma^\mu u_s(p)\tilde{A_\mu}(p'-p).
+    \end{align}
+
+    对于原子核来说, 取原子核静系, $A_\mu$是不含时的, 因此$A_\mu$的傅里叶变换$\tilde A_\mu(p)$含有一个delta函数, 因此我们设
+    \begin{equation}
+        \braket{p'|i\mathcal T|p}=i\mathcal M(2\pi)\delta(E_i-E_f).
+    \end{equation}
+    这样就有如下的Feynman规则来计算$\mathcal M$
+    \begin{align}
+        \begin{tikzpicture}[baseline=(current bounding box.center)]
+            \begin{feynman}
+                \vertex (a) at (0, 0);
+                \coordinate (s) at (1, 0);
+                \coordinate (f1) at (-1, -1);
+                \coordinate (f2) at (-1, 1);
+                \diagram* {
+                    a -- [photon] s[crossed dot],
+                    f1 -- [fermion] a -- [fermion] f2,
+                };
+            \end{feynman}
+        \end{tikzpicture}&=-ie\gamma^\mu A_\mu
+    \end{align}
+
+    回到散射截面最原始的定义\ref{cross-section-def}
+    \begin{equation}
+        \frac Nv v_i T\d\sigma=N\d P\Rightarrow \d\sigma=\frac1{v_i}\frac VT\d P
+    \end{equation}
+    再根据
+    \begin{equation}
+        V\ddd{p_f}=1
+    \end{equation}
+    我们可以得到
+    \begin{align}
+        \d P&=\frac{|\braket{f|i}|^2}{\braket{f|f}\braket{i|i}}\\
+        &=\frac{|\mathcal M|^2 T^2}{2E_f\cdot2E_iV^2}V\ddd{p_f}
+    \end{align}
+    将$\d P$代入$\d\sigma$, 我们就有散射截面的表达式
+    \begin{align}
+        \d\sigma&=\frac{1}{v_i}\frac VT\frac{|\mathcal M|^2 T^2}{2E_f\cdot2E_iV^2}V\ddd{p_f}\\
+        &=\frac{1}{v_i}\frac{|\mathcal M|^2}{4E_iE_f}2\pi\delta(E_f-E_i)\ddd{p_f}
+    \end{align}
+
+    在原子核静止系中, 我们有
+    \begin{equation}
+        A^0=\frac{Ze}{4\pi r}
+    \end{equation}
+    做傅里叶变换有
+    \begin{equation}
+        \tilde A^0(\vec k)=-\frac{Ze^2}{k^2}.
+    \end{equation}
+
+    代入就有
+    \begin{equation}
+        \d\sigma=\frac1{4E_i^2v_i}\ddd{p_f}2\pi\delta(E_f-E_i)\frac12\sum\bar u(\vec p_f)\gamma^0u(\vec p_i)\bar u(\vec p_i)\gamma^0u(\vec p_f)\frac{Z^2e^4}{(\vec p_f-\vec p_i)^4}
+    \end{equation}
+    然后计算
+    \begin{align}
+        \sum\bar u(\vec p_f)\gamma^0u(\vec p_i)\bar u(\vec p_i)\gamma^0u(\vec p_f)&=\sum\rm{Tr}\left[\gamma^0(\slashed p_f+m)\gamma^0(\slashed p_i+m)\right]\\
+        &=\rm{Tr}\left[m^2+m\slashed p_i+m\slashed p_f+\gamma^0\gamma^0\slashed p_f\slashed p_i\right]\\
+        &=\rm{Tr}\left[m^2\right]+\rm{Tr}\left[\gamma^\mu\gamma^0\gamma^\nu\gamma^0\right]p_{i\mu}p_{f\nu}\\
+        &=4m^2-4p_i\cdot p_f+8p_i^0p_f^0
+    \end{align}
+    从而有
+    \begin{equation}
+        \d\sigma=\frac1{4E_i^2v_i}\ddd{p_f}2\pi\delta(E_f-E_i)(2m^2-2p_i\cdot p_f+4p_i^0p_f^0)\frac{Z^2e^4}{(\vec p_f-\vec p_i)^4}.
+    \end{equation}
+
+    取非相对论极限
+    \begin{equation}
+    2m^2-2p_i\cdot p_f+4p_i^0p_f^0\approx 4m^2, E_i\approx m
+    \end{equation}
+    我们得到
+    \begin{align}
+        \frac{\d\sigma}{\d\Omega}&=\frac{1}{4m^2v_i}\frac{p_i^2}{\dpi2}\frac{m}{p_i}4m^2\frac{Z^2e^4}{p_i^4(1-\cos\theta)^2}\\
+        &=\frac{Z^2e^4}{16\pi^2m^2v_i^4}\frac1{(1-\cos\theta)^2}\\
+        &=\frac{Z^2\alpha^2}{4m^2v_i^4\sin^4(\theta/2)}
+    \end{align}
+    这个结果和经典计算完全一致, 即Rutherford公式.
+
+    而考虑相对论的情况
+    \begin{align}
+        m^2-p_i\cdot p_f+2p_i^0p_f^0&=m^2+E_i^2+\vec p_i\cdot\vec p_f\\
+        &=m^2(1+\gamma^2+\gamma^2\beta^2\cos\theta)\\
+        &=2m^2\gamma^2(1-\beta^2\sin^2(\theta/2))
+    \end{align}
+    于是我们可以得到Motte公式
+    \begin{align}
+        \frac{\d\sigma}{\d\Omega}&=\frac1{4E_i^2v_i}\frac{p_i^2}{\dpi2}\frac{E_i}{p_i}2(m^2-p_i\cdot p_f+2p_i^0p_f^0)\frac{Z^2e^4}{4p_i^2(1-\cos\theta)^2}\\
+        &=\frac1{4E_i^2v_i}\frac{p_i^2}{\dpi2}\frac{E_i}{p_i}2(2m^2\gamma^2(1-\beta^2\sin^2(\theta/2)))\frac{Z^2e^4}{4p_i^2(1-\cos\theta)^2}\\
+        &=\frac{Z^2\alpha^2}{4|\vec p|^2\beta^2\sin^4(\theta/2)}(1-\beta^2\sin^2(\theta/2)).
+    \end{align}
+\end{example}

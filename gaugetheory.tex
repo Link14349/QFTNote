@@ -42,16 +42,16 @@
 \begin{align}
     \mathcal H&=\Pi^0_{~~i}\dot A^i-\mathcal L=-\Pi^{0i}\partial_t A^i-\mathcal L\\
     &=-\vec E\cdot\partial_t\vec A+\frac12 \vec  B^2-\frac12 \vec  E^2-\frac12m^2A_{\mu}A^{\mu}\\
-    &=-\vec E\cdot\partial_t\vec A+\frac12 \vec B^2-\frac12 \vec  E^2-\frac12m^2\phi^2+\frac12m^2\vec A^2
+    &=-\vec E\cdot\partial_t\vec A+\frac12 \vec B^2-\frac12 \vec  E^2-\frac12m^2\varphi^2+\frac12m^2\vec A^2
 \end{align}
 
 根据
 \begin{equation}
-    \vec E\cdot\nabla\phi=\nabla\cdot(\phi\vec E)-\phi\nabla\cdot\vec E
+    \vec E\cdot\nabla\varphi=\nabla\cdot(\varphi\vec E)-\varphi\nabla\cdot\vec E
 \end{equation}
 以及EoM
 \begin{equation}
-    \nabla\cdot\vec E=-m^2\phi
+    \nabla\cdot\vec E=-m^2\varphi
 \end{equation}
 我们最终得到
 \begin{equation}
@@ -260,7 +260,7 @@ $A'^\mu$的EoM就变成:
 
 进一步的理解就是, 这里的规范固定后的场已经不是我们经典意义下的电磁场了: 显而易见, 它的动力学和经典电磁场完全不同, 它并不是Maxwell方程所描述的电磁场. 我们回到经典情况下考虑, 这个$\xi$"规范"下电磁场的EoM为
 \begin{align}
-    \nabla\cdot\vec E=-\rho-\frac1\xi\partial_t\left(\partial_t A^0+\nabla\cdot\vec A\right)\\
+    \nabla\cdot\vec E=\rho-\frac1\xi\partial_t\left(\partial_t A^0+\nabla\cdot\vec A\right)\\
     \nabla\times\vec B-\partial_t\vec E=\vec J+\frac1\xi\nabla\left(\partial_t A^0+\nabla\cdot\vec A\right)
 \end{align}
 无源的两个Maxwell仍然满足:

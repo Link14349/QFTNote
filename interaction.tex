@@ -150,22 +150,16 @@ Feynman黄金规则, 在于给予S矩阵元实际的物理观测效应, 也就�
     \end{align}
     设$E_1+E_2=E_{CM}$, 并且根据
     \begin{equation}
-        \delta(E_{CM}-E_3-E_4)=\delta(p_4-p_{40})\frac{E_3}{p_3}\frac{E_4}{p_4}=\delta(p_4-p_{40})\frac{E_3E_4}{p_4^2}
+        \delta(E_{CM}-E_3-E_4)=\delta(p_4-p_{40})\frac1{p_4/E_4+p_4/E_4}=\delta(p_4-p_{40})\frac{E_3E_4}{E_{CM}p_4}
+    \end{equation}
+    以及
+    \begin{equation}
+        |\vec v_1-\vec v_2|=|\frac{\vec p_1}{E_1}-\frac{\vec p_2}{E_2}|=|\vec p_i||\frac1{E_1}+\frac1{E_2}|=|\vec p_i|\frac{E_{CM}}{E_1E_2}
     \end{equation}
 
-    我们有:
-    \begin{align}
-        \left(\frac{\d\sigma}{\d\Omega}\right)_{CM}=\frac1{64E_1E_2}\frac{|\mathcal M|^2}{|\vec v_1-\vec v_2|}
-    \end{align}
-
-    再根据
+    我们得到结论
     \begin{equation}
-        |\vec v_1-\vec v_2|=\frac{|\vec p_1|}{E_1}+\frac{|\vec p_2|}{E_1}=|\vec p_i|\frac{E_{CM}}{E_1E_2}
-    \end{equation}
-
-    于是
-    \begin{equation}
-        \left(\frac{\d\sigma}{\d\Omega}\right)_{CM}=\frac{|\mathcal M|^2}{64\pi^2E_{CM}|\vec p_i|}
+        \left(\frac{\d\sigma}{\d\Omega}\right)_{CM}=\frac{|\mathcal M|^2|\vec p_f|}{64\pi^2E_{CM}^2|\vec p_i|}
     \end{equation}
 \end{example}
 
@@ -179,10 +173,10 @@ Feynman黄金规则, 在于给予S矩阵元实际的物理观测效应, 也就�
     \begin{align}
         \Gamma&=\frac{1}{2M}\int\frac{\d^3p_1}{\dpi3}\frac1{2E_1}\frac{\d^3p_2}{\dpi3}\frac1{2E_2}\notag\\
         &\quad\quad\times|\mathcal M|^2\dpi3\delta^3(\vec p_1+\vec p_2)2\pi\delta(M-E_1-E_2)\\
-        &=\frac{1}{2M}\int\frac{\d^3p}{\dpi3}\frac{1}{4E^2}|\mathcal M|^2 2\pi\delta(M-2E)\\
-        &=\frac{1}{32\pi^2M}\int\frac{p^2\d\Omega\d p}{E^2}|\mathcal M|^2\delta(M-2E)\\
-        &=\frac{1}{32\pi^2M}\int\frac{p^2\d\Omega}{E^2}|\mathcal M|^2\delta(M-2E)\frac{E}{2p}\\
-        &=\frac{|\mathcal M|^2}{8\pi M^2}|\vec p|
+        &=\frac{1}{2M}\int\frac{\d^3p}{\dpi3}\frac{1}{4E_1E_2}|\mathcal M|^2 2\pi\delta(M-E_1-E_2)\\
+        &=\frac{1}{2M}\int\frac{p^2\d p\d\Omega}{\dpi3}\frac{1}{4E_1E_2}|\mathcal M|^2 2\pi\delta{p-p_0}\frac{E_1E_2}{E_CM p}\\
+        &=\frac{|\mathcal M|^2|\vec p|}{32\pi^2M^2}\int\d\Omega\\
+        &=\frac{|\mathcal M|^2|\vec p|}{8\pi M^2}
     \end{align}
 
     其中, 

@@ -1848,6 +1848,119 @@ $H$不含时, 因此$T$可与$H$交换. 同样地, $T$可以与时间导数算�
         &\;\;\left.+\frac{(s-2m)^2+(u-2m)^2+4m^2t}{t^2}+2\frac{(s-2m^2)(2-6m^2)}{tu}\right)
     \end{align}
 \end{example}
+\begin{example}[Campton散射]
+    Campton散射即
+    $$\gamma+e^-\to\gamma+e^-.$$
+    在Campton的原始实验中, 他将单色X光打在石墨上, X射线发生了散射, 并且存在不同散射角度不同光频的分布. 因此我们的散射发生在电子静止系中, 并且是考虑光子的散射. 设光子的散射角为$\theta$, 则根据能动量守恒我们很容易得到散射光$\omega'$与入射光$\omega$之间的关系
+    \begin{equation}
+        \frac m{\omega'}-\frac m\omega=1-\cos\theta.
+    \end{equation}
+    或者说
+    \begin{equation}
+        \omega'=\frac{m\omega}{m+(1-\cos\theta)\omega}
+    \end{equation}
+
+    然后我们考虑计算散射截面, 设入射电子动量$p_1$, 光子$p_2$; 出射电子动量$p_3$, 光子$p_4$, 计算$s,u$通道树图
+    \begin{align}
+        % --- s-channel ---
+        i\mathcal{M}_s &= 
+        \begin{tikzpicture}[baseline=(v1.base)]
+            \begin{feynman}
+                \vertex (v1);
+                \vertex [above left=1.5cm of v1] (i1);
+                \vertex [below left=1.5cm of v1] (i2);
+                \vertex [right=1.5cm of v1] (v2);
+                \vertex [above right=1.5cm of v2] (f1);
+                \vertex [below right=1.5cm of v2] (f2);
+                \diagram* {
+                    (i1) -- [fermion] (v1),
+                    (i2) -- [photon] (v1),
+                    (v1) -- [fermion] (v2),
+                    (v2) -- [fermion] (f1),
+                    (v2) -- [photon] (f2),
+                };
+            \end{feynman}
+        \end{tikzpicture}&=-ie^2\bar u_3\gamma^\nu\frac{\slashed{p_1}+\slashed{p_2}+m}{s-m^2}\gamma^\mu u_1\epsilon_{2\mu}\epsilon_{4\nu}^*
+    \end{align}
+    \begin{align}
+        i\mathcal{M}_u &= 
+        \begin{tikzpicture}[baseline=(v1.base)]
+            \begin{feynman}
+                \vertex (v1);
+                \vertex [below=1cm of v1] (v2);
+                \vertex [above left=1.5cm of v1] (ie);
+                \vertex [above right=1.5cm of v1] (ogamma);
+                \vertex [below left=1.5cm of v2] (igamma);
+                \vertex [below right=1.5cm of v2] (oe);
+                \diagram* {
+                    (ie) -- [fermion] (v1),
+                    (v1) -- [fermion] (v2),
+                    (v2) -- [fermion] (oe),
+                    (v1) -- [photon] (ogamma),
+                    (v2) -- [photon] (igamma),
+                };
+            \end{feynman}
+        \end{tikzpicture}&=-ie^2\bar u_3\gamma^\mu\frac{\slashed{p_1}-\slashed{p_4}+m}{u-m^2}\gamma^\nu u_1\epsilon_{4\nu}^*\epsilon_{2\mu}
+    \end{align}
+    得到总平均散射振幅
+    \begin{align}
+        |\mathcal M_{aver}|^2&=\frac14\sum|\mathcal M|^2\\
+        &=\frac{e^4}{4}\sum\epsilon_{4\mu}^*\epsilon_{2\nu}\epsilon_{4\alpha}\epsilon_{2\beta}^*\left(\frac{\bar u_3\gamma^\nu(\slashed{p_1}+\slashed{p_2}+m)\gamma^\mu u_1}{s-m^2}+\frac{\bar u_3\gamma^\mu(\slashed{p_1}-\slashed{p_4}+m)\gamma^\nu u_1}{u-m^2}\right)\notag\\
+        &\;\;\;\;\;\;\left(\frac{\bar u_1\gamma^\alpha(\slashed{p_1}+\slashed{p_2}+m)\gamma^\beta u_3}{s-m^2}+\frac{\bar u_1\gamma^\beta(\slashed{p_1}-\slashed{p_4}+m)\gamma^\alpha u_3}{u-m^2}\right)
+    \end{align}
+    利用Ward恒等式做替换:
+    \begin{equation}
+        \sum_i \epsilon_{2\mu}\epsilon_{2\nu}^*\to-g_{\mu\nu}
+    \end{equation}
+    利用s,t,u变量
+    \begin{equation}
+        s=m^2-2p_1p_2=m^2-2p_3p_4, t=m^2-2p_1p_3=-2p_2p_4, u=m^2-2p_1p_4=m^2-2p_2p_3
+    \end{equation}
+    做代换, 经过艰苦卓绝的计算我们可以得到
+    \begin{align}
+        |\mathcal M_{aver}|^2&=2e^4\left(\frac{m^4-2u+m^2(3s+u)}{(s-m^2)^2}+\frac{m^4-2u+m^2(3u+s)}{(u-m^2)^2}\right.\notag\\
+        &\;\;\;\;\left.+2m^2\frac{2m^2+s+u}{(s-m^2)(u-m^2)}\right)
+    \end{align}
+
+    然后我们取电子静止系具体计算s, u. 设
+    \begin{align}
+        p_1=(m,0,0,0), p_2=(\omega,\omega,0,0), p_4=(\omega',\omega'\cos\theta,\omega'\sin\theta)
+    \end{align}
+    则我们有
+    \begin{align}
+        s=m^2+2m\omega, u=m^2-2m\omega'
+    \end{align}
+    然后代入$s,u$得到
+    \begin{equation}
+        |\mathcal M_{aver}|^2=2e^4\left(\frac{\omega'}{\omega}+\frac{\omega}{\omega'}-\sin^2\theta\right)
+    \end{equation}
+
+    然后在电子静止系中推导散射截面和$|\mathcal M|^2$的关系:
+    \begin{align}
+        \d\sigma&=\frac{|\mathcal M|^2}{4E_1E_2|\vec v_1-\vec v_2|}\dpi4\delta^4\lips{p_1}\lips{p_2}\\
+        &=\frac{|\mathcal M|^2}{8m\omega\sin\theta/2}\frac{1}{4E'\omega'}2\pi\delta(m+\omega-E'-\omega')\frac{\omega'^2\d\omega'\d\Omega}{\dpi3}
+    \end{align}
+    根据
+    \begin{equation}
+        E'=\sqrt{(\omega'^2+\omega^2-2\omega\omega'\cos\theta)+m^2}
+    \end{equation}
+    所以
+    \begin{equation}
+        \de{E'}{\omega'}+\de{\omega'}{\omega'}=\frac{\omega'+E'-\omega\cos\theta}{E'}=\frac{m+(1-\cos\theta)\omega}{E'}
+    \end{equation}
+    从而
+    \begin{equation}
+        \delta(m+\omega-E'-\omega')=\frac{E'}{m+\omega(1-\cos\theta)}\delta(\omega'-\frac{m\omega}{m+(1-\cos\theta)\omega})
+    \end{equation}
+    于是可以化简得到
+    \begin{align}
+        \de{\sigma}{\Omega}&=\frac{e^4}{64\pi^2m^2}\frac{\omega'^2}{\omega^2}\left(\frac{\omega'}{\omega}-\sin^2\theta\right)
+    \end{align}
+    其中
+    \begin{equation}
+        \frac{\omega'}{\omega}=\frac{m}{m+(1-\cos\theta)\omega}
+    \end{equation}
+\end{example}
 \begin{example}[Rutherford散射(半量子化)]
     Rutherford散射即电子与原子核的散射, 由于原子核是一个由质子中子复合形成的一个复杂束缚态, 而质子和中子又是由夸克组成的复杂束缚态. 如果我们采取直接全部量子化计算的方式, 过程将会非常复杂. 于是作为简化近似, 我们计算最低阶的散射截面时可以不将电磁场量子化, 仅仅量子化Dirac场, 保留经典的电磁场矢势$A_\mu$, 这样子就可以直接唯像地将原子核处理为一个点源了, 从而有相互作用Hamiltonian
     \begin{equation}

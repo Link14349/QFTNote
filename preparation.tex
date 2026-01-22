@@ -588,9 +588,224 @@ Lorentz群生成元
 \end{equation}
 其中, 反线性幺正算符$K$满足$K^2=1$.
 
+\subsection{时间演化}
+\begin{definition}[时间演化算子]
+    量子态的演化可以用一个幺正的时间演化算子$U(t)$描述, 其满足
+    \begin{align}
+        \ket{\psi(t)}=U(t)\ket{\psi(0)}.
+    \end{align}
+\end{definition}
+\begin{theorem}[Schrodinger方程]
+    \begin{equation}
+        i\frac{\partial}{\partial t}U(t)=HU(t)
+    \end{equation}
+\end{theorem}
+
+我们有解
+\begin{align}
+    U(t)=\mathcal T\exp{\int-iH\d t}
+\end{align}
+
+\subsection{简谐振子}
+考虑一个简谐振子
+\begin{align}
+    H=\frac{p^2}{2m}+\frac12m\omega^2x^2.
+\end{align}
+
+设
+\begin{align}
+    a=\sqrt{\frac{m\omega}{2}}\left(x+\frac{i}{m\omega}p\right), \quad a^\dagger=\sqrt{\frac{m\omega}{2}}\left(x-\frac{i}{m\omega}p\right).
+\end{align}
+即
+\begin{align}
+    x=\frac{a+a^\dagger}{\sqrt{2m\omega}}, \quad p=-i\sqrt{\frac{m\omega}2}(a-a^\dagger).
+\end{align}
+
+我们有
+\begin{align}
+    [a, a^\dagger]=1
+\end{align}
+并且
+\begin{align}
+    H=\omega\left(a^\dagger a+\frac12\right).
+\end{align}
+
+设$N=a^\dagger a$, $N$是幺正算符, $N^\dagger=N$, 我们有
+\begin{align}
+    [N, a]=-a, \quad [N, a^\dagger]=a^\dagger.
+\end{align}
+故若$\ket n$为$N$的本征矢
+\begin{align}
+    N\ket n=n\ket n,
+\end{align}
+则
+\begin{align}
+    a\ket n=\sqrt n\ket{n-1},\\
+    a^\dagger\ket n=\sqrt{n+1}\ket{n+1}.
+\end{align}
+
+\begin{definition}[连续态(Coherent State)]
+    连续态$\ket\alpha$定义为$a$的本征矢
+    \begin{equation}
+        a\ket\alpha=\alpha\ket\alpha, \alpha\in\mathbb C.
+    \end{equation}
+\end{definition}
+不难验证, 
+\begin{align}
+    \ket\alpha=C\sum_n\frac{\alpha^n}{\sqrt{n!}}\ket n=C\sum_n\frac{\alpha^n}{n!}\sqrt{n!}\ket n=C\sum_n\frac{\alpha^n}{n!}(a^\dagger)^n\ket0
+\end{align}
+其中$C$为归一化系数. 从而得到
+\begin{theorem}
+    \begin{align}
+        \ket\alpha=\exp{-\frac{|\alpha|^2}2}\exp{\alpha a^\dagger}\ket 0.
+    \end{align}
+\end{theorem}
+
+计算$x, p, x^2, p^2$的平均值, 我们有
+\begin{align}
+    &\braket{x}=\braket{\alpha|x|\alpha}=\sqrt{\frac2{m\omega}}\rm{Re}\alpha\\
+    &\braket{x^2}=\braket{\alpha|x^2|\alpha}=\frac1{2m\omega}(1+4(\rm{Re}\alpha)^2)\\
+    &\braket{p}=\braket{\alpha|p|\alpha}=\sqrt{2m\omega}\rm{Im}\alpha\\
+    &\braket{p^2}=\braket{\alpha|p^2|\alpha}=\frac{m\omega}{2}(1+4(\rm{Im}\alpha)^2).
+\end{align}
+所以有
+\begin{align}
+    \Delta x^2=\braket{x^2}-\braket{x}^2=\frac1{2m\omega}, \quad\Delta p^2=\braket{p^2}-\braket{p}^2=\frac{m\omega}{2}
+\end{align}
+于是可以发现连续态可以让不确定关系取等号:
+\begin{align}
+    \Delta x\Delta p=\frac12.
+\end{align}
+
+根据
+\begin{align}
+    \alpha\braket{x|\alpha}=\braket{x|a|\alpha}=\sqrt{\frac{m\omega}2}\braket{x|x+\frac i{m\omega}p|\alpha}
+\end{align}
+我们有微分方程
+\begin{align}
+    \pa{}x\braket{x|\alpha}=-m\omega\left(x-\sqrt{\frac 2{m\omega}}\alpha\right)\braket{x|\alpha}
+\end{align}
+于是可以解得波函数是Gaussian分布
+\begin{align}
+    \braket{x|\alpha}=\left(\frac{m\omega}\pi\right)^{\frac14}\exp{-\frac12m\omega(x-\sqrt{\frac 2{m\omega}}\alpha)}
+\end{align}
+
+考虑连续态的时间演化, 
+\begin{align}
+    \ket{\alpha(t)}=U(t)\ket{\alpha(0)}.
+\end{align}
+不难得到
+\begin{align}
+    \ket{\alpha(t)}=\exp{-i\frac\omega2 t}\ket{\alpha(0)\exp{-i\omega t}}
+\end{align}
+
+因此我们有
+\begin{align}
+    &\braket{x(t)}=\sqrt{\frac2{m\omega}}|\alpha|\cos(\rm{Arg}\alpha-\omega t)\\
+    &\braket{p(t)}=\sqrt{2m\omega}|\alpha|\sin(\rm{Arg}\alpha-\omega t).
+\end{align}
 
 \newpage
 \section{狭义相对论简述}
+\subsection{Minkovski时空与Lorentz变换\label{sr-lorentz}}
+在惯性参考系下度规张量为
+\begin{align}
+    g_{\mu\nu}=\rm{diag}(1, -1, -1, -1)
+\end{align}
+的时空称为Minkkovski时空. 狭义相对论研究这个时空流形中的动力学.
+\begin{definition}[Lorentz变换]
+    可以保持度规张量形式的坐标变换称为Lorentz变换.
+\end{definition}
+
+设Lorentz变换为
+\begin{align}
+    x'^\mu=\lambda&\mu_{~~\nu}x^\nu,
+\end{align}
+根据定义可知Lorentz变换为一种保内积的变换:
+\begin{equation}
+    \bar x^\mu\bar x_\mu=x^\mu x_\mu.
+\end{equation}
+
+于是我们可得
+\begin{theorem}[Lorentz变换的性质]\label{theorem:lorentz_property}
+    \begin{equation}
+        \Lambda^\mu_{~~\sigma}g_{\mu\nu}\Lambda^\nu_{~~\rho}=g_{\sigma\rho}
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    \begin{equation}
+        \bar{x}^2=g_{\mu\nu}\bar{x}^\mu\bar x^\nu=x^\sigma(\Lambda^\mu_{~~\sigma}g_{\mu\nu}\Lambda^\nu_{~~\rho})x^\rho=x^\sigma g_{\sigma\rho} x^\rho
+    \end{equation}
+\end{proof}
+
+于是我们可以有如下推论:
+\begin{theorem}[Lorentz变换的逆矩阵]\label{theorem:Lorentz_inverse}
+    \begin{equation}
+        (\Lambda^{-1})^{\mu}_{~~\nu}=\Lambda_\nu^{~~\mu}
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    由\ref{theorem:lorentz_property}可得
+    \begin{equation}
+        g^{\rho\beta}\Lambda^\mu_{~~\rho}\Lambda^\nu_{~~\sigma}g_{\mu\nu}=g_{\rho\sigma}g^{\rho\beta}=\delta^\beta_{~~\sigma}
+    \end{equation}
+    即:
+    \begin{equation}
+        \Lambda_\nu^{~~\beta}\Lambda^\nu_{~~\sigma}=\delta^\beta_{~~\sigma}
+    \end{equation}
+    于是可以得证.
+\end{proof}
+\begin{definition}[$\delta\omega^\mu_{~~\nu}$]\label{def:deltaomega}
+    对于无穷小Lorentz变换$\Lambda^\mu_{~~\nu}$, 定义
+    \begin{equation}
+        \Lambda^\mu_{~~\nu}=\delta^\mu_{~~\nu}+\delta\omega^\mu_{~~\nu}
+    \end{equation}
+\end{definition}
+通过\eqref{theorem:lorentz_property}可以发现$\delta\omega_{\mu\nu}$是反称的. 并且我们还可以进一步写成矩阵形式\:
+\begin{equation}
+    \delta\omega^\mu_{~~\nu}=\begin{bmatrix}
+        0 & v^1 & v^2 & v^3 \\
+        v^1 & 0 & \theta^3 & -\theta^2 \\
+        v^2 & -\theta^3 & 0 & \theta^1 \\
+        v^3 & \theta^2 & -\theta^1 & 0
+    \end{bmatrix}
+\end{equation}
+其中, $v^i$为参考系间的相对速度, $\theta^i$为沿着$i$轴旋转的角度. 或者写为降指标后的结果
+\begin{equation}
+    \delta\omega_{\mu\nu}=\begin{bmatrix}
+        0 & v^1 & v^2 & v^3 \\
+        -v^1 & 0 & -\theta^3 & \theta^2 \\
+        -v^2 & \theta^3 & 0 & -\theta^1\\
+        -v^3 & -\theta^2 & \theta^1 & 0
+    \end{bmatrix}
+\end{equation}
+
+于是我们还可以进一步写出Lorentz变换的显式形式
+\begin{align}\label{lorentz-for-vector}
+    \begin{cases}
+        \delta x^0=\beta^i x^i\\
+        \delta x^i=\beta^i x^0-\epsilon_{ijk}\theta^j x^k
+    \end{cases}
+\end{align}
+\begin{theorem}[$\delta\omega_{\mu\nu}$的性质]
+    \begin{equation}
+        \delta\omega_{\mu\nu}=\delta\omega_{[\mu\nu]}
+    \end{equation}
+\end{theorem}
+
+\begin{definition}[Lorentz标量]
+    在Lorentz变换下不变的量称为Lorentz标量.
+\end{definition}
+\begin{theorem}
+    物体静质量$m$是Lorentz标量.
+\end{theorem}
+\begin{definition}[Lorentz矢量]
+    具有协变性的矢量称为Lorentz矢量.
+\end{definition}
+\begin{definition}[Lorentz张量]
+    具有协变性的张量称为Lorentz矢量.
+\end{definition}
+
 \subsection{狭义相对论动力学技巧}
 一些常用技巧\cite{griffthsPPSRTrick}:
 \begin{enumerate}

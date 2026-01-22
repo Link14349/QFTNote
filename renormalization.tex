@@ -1,2 +1,31 @@
 \section{重整化}
 在QFT中我们经常遇到传播子发散的情况, 为了解决这个问题, 我们引入重整化步骤, 将无穷大扫到地板下, 从而得到有限的可观测量预测.
+\subsection{维度调控}
+
+\subsection{旋量QED的重整化}
+\subsubsection{真空极化}
+考虑光子传播子的单圈修正
+\begin{align}
+    \begin{tikzpicture}[baseline=(current bounding box.center)]
+        \begin{feynman}
+            \diagram* {
+                a -- [photon] b -- [fermion, half left] c -- [photon] d,
+                c -- [fermion, half left] b,
+            };
+        \end{feynman}
+    \end{tikzpicture}=-(-ie)^2\int&\dddd p\frac{i}{(p-k)^2-m^2+i\epsilon}\frac{i}{k^2-m^2+i\epsilon}\notag\\
+    &\;\;\rm{Tr}\left(\gamma^\mu(\slashed k-\slashed p+m)\gamma^\nu(\slashed p+m)\right)
+\end{align}
+经过计算可得
+\begin{align}
+    \mathcal M_{\mu\nu}=-\frac{e^2p^2}{12\pi^2}g_{\mu\nu}\left(\frac2\epsilon+\frac16\ln\frac{\mu^2}{-p^2}+\frac5{18}\right)
+\end{align}
+其中
+\begin{equation}
+    \ln\mu^2=\ln(4\pi)-\gamma.
+\end{equation}
+
+% 所以我们可以计算得到光子传播子的一圈修正为
+% \begin{equation}
+    
+% \end{equation}

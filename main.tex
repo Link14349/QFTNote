@@ -28,6 +28,9 @@
 \input{path-integral.tex}
 
 \newpage
+\input{schwinger-dyson.tex}
+
+\newpage
 \input{gaugetheory.tex}
 
 \newpage
@@ -46,6 +49,22 @@
 \end{figure}
 
 \section{数学公式参考}
+\subsection{Gaussian积分公式}
+\begin{theorem}
+    \begin{align}
+        \int_{-\infty}^{+\infty}\d x\exp{-\frac12x^2}=\sqrt{2\pi}
+    \end{align}
+\end{theorem}
+\begin{theorem}
+    \begin{align}
+        \int\d^nx\exp{-\frac12x^TAx}=\sqrt{\frac{\dpi n}{\det A}}
+    \end{align}
+\end{theorem}
+\begin{theorem}
+    \begin{align}
+        \int\d^nx\exp{-\frac12x^TAx+x^T J}=\sqrt{\frac{\dpi n}{\det A}}\exp{\frac12 J^T AJ}
+    \end{align}
+\end{theorem}
 \subsection{$\Gamma$函数}
 \begin{definition}[$\Gamma$函数]
     \begin{equation}
@@ -203,9 +222,9 @@
         B(1,x)=\frac 1x
     \end{equation}
 \end{theorem}
-\begin{theorem}
+\begin{theorem}[余元公式]
     \begin{equation}
-        B(x,1-x)=\frac{\pi}{\sin(n\pi)}
+        B(x,1-x)=\frac{\pi}{\sin(\pi x)}
     \end{equation}
 \end{theorem}
 \begin{proof}

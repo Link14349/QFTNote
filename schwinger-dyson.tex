@@ -1,0 +1,158 @@
+\section{Schwinger-Dyson定理}
+这里我们介绍一种猎奇的方式(也是周洋老师上课讲的方法), 即通过Schwinger-Dyson定理来得到Feynman规则. 
+
+Schwinger-Dyson定理可以适用于非微扰的情况, 但是在微扰论框架下其有一个极大的缺点就是在推导Feynman规则时难以看出算式的结构, 因此Feynman规则的导出极不直观.
+
+\subsection{Schwinger-Dyson定理}
+% 本节的核心在于通过为接下来微扰展开计算空间关联函数继而得到位置空间的Feynman规则做准备.
+\begin{theorem}[Schwinger-Dyson定理]\label{SchwingerDysonTheorem}
+    \begin{equation}
+        (\Box_x+m^2)\braket{\phi_x\phi_1\cdots\phi_n}=\braket{(\Box_x+m^2)\phi_x\phi_1\cdots\phi_n}-i\sum_j\delta_{xj}\braket{\phi_1\cdots\phi_{j-1}\phi_{j+1}\cdots\phi_n}
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    首先考虑$\partial_t^2\mathcal T\left\{\phi_x\phi_1\cdots\phi_n\right\}$. 我们不妨假设$\phi_1, \phi_2\cdots\phi_n$是已经按先后顺序排列好的, 即$t_1\geq t_2\geq\cdots\geq t_n$.
+    
+    那么
+    \begin{align}
+        \mathcal T\left\{\phi_x\phi_1\cdots\phi_n\right\}&=(\phi_x\phi_1\cdots\phi_n)[\Theta(t-t_1)\Theta(t-t_2)\cdots\Theta(t-t_n)]\notag\\
+        &\quad+(\phi_1\phi_x\cdots\phi_n)[\Theta(t_1-t)\Theta(t-t_2)\cdots\Theta(t-t_n)]+\cdots
+    \end{align}
+
+    然后
+    \begin{align}
+        \partial_t\mathcal T\left\{\phi_x\phi_1\cdots\phi_n\right\}&=\mathcal T\left\{\partial_t\phi_x\phi_1\cdots\phi_n\right\}\notag\\
+        &\quad+(\phi_x\phi_1\cdots\phi_n)[\delta(t-t_1)\Theta(t-t_2)\cdots\Theta(t-t_n)]\notag\\
+        &\quad-(\phi_1\phi_x\cdots\phi_n)[\delta(t_1-t)\Theta(t-t_2)\cdots\Theta(t-t_n)]+\cdots\\
+        &=\mathcal T\left\{\partial_t\phi_x\phi_1\cdots\phi_n\right\}\notag\\
+        &\quad+([\phi_x, \phi_1]\cdots\phi_n)[\delta(t-t_1)\Theta(t-t_2)\cdots\Theta(t-t_n)]+\cdots\\
+        &=\mathcal T\left\{\partial_t\phi_x\phi_1\cdots\phi_n\right\}\\
+        &=\mathcal T\left\{\pi_x\phi_1\cdots\phi_n\right\}
+    \end{align}
+
+    再次求导
+    \begin{align}
+        \partial_t^2\mathcal T\left\{\phi_x\phi_1\cdots\phi_n\right\}&=\mathcal T\left\{\partial_t^2\phi_x\phi_1\cdots\phi_n\right\}\notag\\
+        &\quad+(\pi_x\phi_1\cdots\phi_n)[\delta(t-t_1)\Theta(t-t_2)\cdots\Theta(t-t_n)]\notag\\
+        &\quad-(\phi_1\pi_x\cdots\phi_n)[\delta(t_1-t)\Theta(t-t_2)\cdots\Theta(t-t_n)]+\cdots\\
+        &=\mathcal T\left\{\partial_t^2\phi_x\phi_1\cdots\phi_n\right\}\notag\\
+        &\quad+([\pi_x, \phi_1]\cdots\phi_n)[\delta(t-t_1)\Theta(t-t_2)\cdots\Theta(t-t_n)]+\cdots\\
+        &=\mathcal T\left\{\partial_t^2\phi_x\phi_1\cdots\phi_n\right\}\notag\\
+        &\quad-i\delta^3(\vec x-\vec x_1)\delta(t-t_1)(\cdots\phi_n)[\Theta(t-t_2)\cdots\Theta(t-t_n)]+\cdots\\
+        &=\mathcal T\left\{\partial_t^2\phi_x\phi_1\cdots\phi_n\right\}\notag\\
+        &\quad-i\delta_{x1}(\cdots\phi_n)[\Theta(t-t_2)\cdots\Theta(t-t_n)]+\cdots\\
+        &=\mathcal T\left\{\partial_t^2\phi_x\phi_1\cdots\phi_n\right\}-i\sum_j \delta_{xj}\mathcal T\left\{\phi_1\cdots\phi_{j-1}\phi_{j+1}\cdots\phi_n\right\}
+    \end{align}
+
+    然后由于$\nabla^2, m^2$都作用不到只含t的$\Theta$上, 因此可以直接提入$\braket{\phi_x\phi_1\cdots\phi_n}$内, 于是我们最终得到
+    \begin{equation}
+        (\Box_x+m^2)\braket{\phi_x\phi_1\cdots\phi_n}=\braket{(\Box_x+m^2)\phi_x\phi_1\cdots\phi_n}-i\sum_j\delta_{xj}\braket{\phi_1\cdots\phi_{j-1}\phi_{j+1}\cdots\phi_n}
+    \end{equation}
+\end{proof}
+
+\subsection{位形空间Feynman规则的推导}
+在本小节, 我们将考虑标量场的$\phi^3$理论, 即
+\begin{equation}
+    \mathcal L=\mathcal L_0+\mathcal L_{int}=\frac12\partial_\mu\phi\partial^\mu\phi-\frac12m^2\phi^2+\frac g{3!}\phi^3
+\end{equation}
+其中$\mathcal L_{int}=\frac g{3!}\phi^3$为微扰的相互作用项.
+
+我们以$\braket{\phi_1\phi_2}$为例, 继而导出位置空间的Feynman规则.
+\begin{align}
+    \braket{\phi_1\phi_2}&=\int\d^4x\delta_{1x}\braket{\phi_x\phi_2}=\int\d^4xi(\Box_x+m^2)D_{1x}\braket{\phi_x\phi_2}\\
+    &=\int\d^4xiD_{1x}(\Box_x+m^2)\braket{\phi_x\phi_2}\\
+    &=\int\d^4x\frac{ig}2 D_{1x}\braket{\phi_x^2\phi_2}-i\delta_{x2}\cdot iD_{1x}\\
+    &=D_{12}+\frac{ig}2\int\d^4xD_{1x}\braket{\phi_x^2\phi_2}
+\end{align}
+
+而依葫芦画瓢我们有
+\begin{align}
+    \braket{\phi_x^2\phi_2}&=\int\d^4 iD_{y2}(\Box_y+m^2)\braket{\phi_x^2\phi_y}\\
+    &=\frac{ig}2\int\d^4y D_{2y}\braket{\phi_x^2\phi_y^2}-2i\int\d^4y \delta_{xy}iD_{y2}\braket{\phi_x}\\
+    &=\frac{ig}2\int\d^4y D_{2y}\braket{\phi_x^2\phi_y^2}+2D_{x2}\braket{\phi_x}
+\end{align}
+
+梅开三度
+\begin{align}
+    \braket{\phi_x}&=\int\d^4y iD_{yx}(\Box_y+m^2)\braket{\phi_y}\\
+    &=\frac{ig}2\int\d^4y D_{yx}\braket{\phi_y^2}
+\end{align}
+
+于是最后整理得
+\begin{equation}
+    \braket{\phi_1\phi_2}=D_{12}-\left(\frac g2\right)^2\int \d^4x\d^4y(2D_{1x}D_{xy}D_{xy}D_{y2}+D_{1x}D_{xx}D_{yy}D_{y2}+2D_{1x}D_{xy}D_{yy}D_{x2})\label{2pt-correlation-expansion-schwinger-dyson}
+\end{equation}
+
+我们可以用Feynman图来表示这些二阶贡献:
+\begin{figure}[htbp!]
+    \begin{tikzpicture}
+        \draw (-0.5,0) -- (1,0) ;
+        \draw (2,0) -- (3.5,0);
+        \filldraw[black] (1,0) circle (1pt) node[below] {$x$} ;
+        \filldraw[black] (-0.5,0) circle (1pt)node[below] {$x_1$} ;
+        \filldraw[black] (2,0) circle (1pt) node[below] {$y$} ;
+        \filldraw[black] (3.5,0) circle (1pt)node[below] {$x_2$}  ;
+        \draw (1,0)..controls(0.4,1.2)and(1.6,1.2)..(1,0);
+        \draw (2,0)..controls(1.4,1.2)and(2.6,1.2)..(2,0);
+        \draw (4.2,0)--(4.5,0);
+        \draw (4.35,0.15)--(4.35,-0.15);
+        \draw (5.2,0)--(6.7,0);
+        \draw (7.7,0)--(9.2,0);
+        \filldraw[black] (6.7,0) circle (1pt);% node[below] {$x$} ;
+        \filldraw[black] (6.5,0)  node[below] {$x$} ;
+        \filldraw[black] (5.2,0) circle (1pt)node[below] {$x_1$} ;
+        \filldraw[black] (7.7,0) circle (1pt);
+        \filldraw[black] (7.9,0) node[below] {$y$} ;
+        \filldraw[black] (9.2,0) circle (1pt)node[below] {$x_2$}  ;
+        \draw (6.7,0) arc (180:0:0.5 and 0.5);
+        \draw (6.7,0) arc (180:360:0.5 and 0.5);
+        \draw (9.9,0)--(10.2,0);
+        \draw(10.05,0.15)--(10.05,-0.15);
+        \draw (10.9,0)--(12.4,0);
+        \draw (12.4,0)--(12.4,1);
+        \filldraw[black] (12.4,0) circle (1pt) node[below] {$x$} ;
+        \filldraw[black] (10.9,0) circle (1pt) node[below] {$x_1$} ;
+        \filldraw[black] (12.4,1) circle (1pt) node[left] {$y$} ;
+        \filldraw[black] (13.9,0) circle (1pt)node[below] {$x_2$}  ;
+        \draw (12.4,0)--(13.9,0);
+        \draw (12.4,1)..controls(13.6,1.6)and(13.6,0.4)..(12.4,1);
+    \end{tikzpicture}
+\end{figure}
+
+然后我们可以写下$\phi^3$理论在位形空间的Feynman规则
+\begin{important}
+    \begin{enumerate}
+        \item 标出所有外点
+        \item 标出所有内点, 一个内点写一个$\frac{ig}{3!}\int\d^4 x$
+        \item 对所有的内线(位形空间Feynman图只有内线), 写下Feynman传播子$D_{ij}$, 其中$i, j$为内线连接的两点
+        \item 乘以对称数目
+    \end{enumerate}
+\end{important}
+
+动量空间中Feynman规则使用LSZ公式导出即可, 与上一节的方法相同, 故不再讨论.
+
+% 对称数目的计算我们可以以图\ref{fig:scalarFeymanEx}为例来讨论\cite{TreeSymmetryFactor}.
+% \begin{figure}[htbp!]
+%     \centering
+%     \begin{tikzpicture}
+%         \draw (10.9,0)--(12.4,0);
+%         \draw (12.4,0)--(12.4,1);
+%         \filldraw[black] (12.4,0) circle (1pt) node[below] {$x$} ;
+%         \filldraw[black] (10.9,0) circle (1pt) node[below] {$x_1$} ;
+%         \filldraw[black] (12.4,1) circle (1pt) node[left] {$y$} ;
+%         \filldraw[black] (13.9,0) circle (1pt)node[below] {$x_2$}  ;
+%         \draw (12.4,0)--(13.9,0);
+%         \draw (12.4,1)..controls(13.6,1.6)and(13.6,0.4)..(12.4,1);
+%     \end{tikzpicture}
+%     \caption{一张Feynman图的例子}
+%     \label{fig:scalarFeymanEx}
+% \end{figure}
+
+% 具体来说, 我们写下
+% \begin{equation}
+%     \braket{\phi_x\phi_x\phi_x\phi_y\phi_y\phi_y}
+% \end{equation}
+
+% $x$有$A_3^2=6$种选择来分别连接$x_1, x_2$, 然后$y$有$3$种选择连接$x$, 于是总共的对称数目为$18$, 乘以$\frac1{(3!)^2}$也就是$\frac12$, 与我们前述的计算结果保持一致!
+
+\newpage

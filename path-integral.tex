@@ -6,9 +6,8 @@
 
 考虑传播子$\braket{x_f, t_f|x_i, t_i}$, 在Heisenberg绘景下, 可以表示为
 \begin{equation}
-    \braket{x_f, t_f|x_i, t_i}=\bra{x_f}\exp{-i\int_{t_i}^{t_f}\d tH(t)}\ket{x_i}
+    \braket{x_f, t_f|x_i, t_i}=\bra{x_f}\exp{-i\int_{t_i}^{t_f}\d tH(t)}\ket{x_i}.
 \end{equation}
-.
 
 我们将这个积分过程进行拆分, 分为$N+1$个部分, 有
 \begin{equation}
@@ -53,17 +52,15 @@
 我们得到最终结果
 \begin{align}
     \bra p\exp{-i\Delta t(\frac{{\hat p}^2}{2m}+V(\hat x, t_j))}\ket{x_j}&=\sqrt{\frac m{2\pi i\Delta t}}\exp{i\Delta t(\frac1{2m}(\frac{x_{j+1}-x_j}{\Delta t})^2-V(x_j, t_j))}\\
-    &=\sqrt{\frac m{2\pi i\Delta t}}\exp{i\Delta tL(x_{j+1}, x_j, t_j)}
+    &=\sqrt{\frac m{2\pi i\Delta t}}\exp{i\Delta tL(x_{j+1}, x_j, t_j)}.
 \end{align}
-.
 
 所以我们得出结论
 \begin{align}
     \braket{x_f, t_f|x_i, t_i}&=\lim_{N\to\infty}\left(\frac m{2\pi i\Delta t}\right)^{\frac{N+1}2}\int \dx_n\dx_{n-1}\cdots\dx_1\exp{i\sum_{j=0}^N\Delta tL(x_{j+1}, x_j, t_j)}\\
     &=\lim_{N\to\infty}\left(\frac m{2\pi i\Delta t}\right)^{\frac{N+1}2}\int \dx_n\dx_{n-1}\cdots\dx_1\exp{iS[x]}\\
-    &=\int \mathcal Dx\exp{iS[x]}
+    &=\int \mathcal Dx\exp{iS[x]}.
 \end{align}
-.
 
 \subsection{场论路径积分}
 为了能够应用QM中的路径积分, 我们首先对QM与QFT中的基本元素有如下类比
@@ -79,7 +76,6 @@
     \end{tabular}
     \caption{QM与QFT中路径积分需要用到的基本元素类比}
 \end{table}
-.
 
 设拉氏量
 \begin{equation}
@@ -87,9 +83,8 @@
 \end{equation}
 做Legdren变换于是可以得到Hamiltonian
 \begin{equation}
-    H=\int\d^3x\left(\frac12\pi^2+V(\phi)\right)
+    H=\int\d^3x\left(\frac12\pi^2+V(\phi)\right).
 \end{equation}
-.
 
 然后我们对真空振幅进行完全类似的操作, 可以得到
 \begin{equation}
@@ -439,7 +434,7 @@
         +\cdots
 \end{align}
 
-可以发现, 在这里我们的具体展开与推导都和Dyson级数的推导方式完全一样. 至此为止, 三种处理相互作用体系的微扰方法: Schwinger-Dyson定理, Dyson级数以及路径积分我们都介绍完毕了, 从最终的结果上看, 它们都殊途同归, 得到了完全一致的结果.
+可以发现, 在这里我们的具体展开与推导都和Dyson级数的推导方式完全一样. 
 
 \subsection{路径积分在统计物理中的应用}
 在上节中我们看到, 路径积分具有和和统计物理配分函数完全类似的形式, 更确切地说, 其实从本质上来说, 对于相互作用体系, 统计物理的微扰处理方法和路径积分的做法完全是一样的, 只是将$iS$替换为了$-\beta H$罢了, 本质上都是对一个场的路径积分. 于是在这里, 我想给出两个统计物理中的例子\cite{SchroederClusterExpansion}\cite{LiuChuanIsing}, 用来说明路径积分在统计物理中处理相互作用体系的作用, 并给出完全类似的Feynman规则.

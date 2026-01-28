@@ -1,0 +1,565 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global/global}
+    \entry{griffthsPPFeynman}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=ee7a3b028ea820072d79924df8252ad3}{%
+           family={Griffths(王青译)},
+           familyi={G\bibinitperiod},
+           given={David\bibnamedelima J.},
+           giveni={D\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {机械工业出版社}%
+      }
+      \strng{namehash}{ee7a3b028ea820072d79924df8252ad3}
+      \strng{fullhash}{ee7a3b028ea820072d79924df8252ad3}
+      \strng{fullhashraw}{ee7a3b028ea820072d79924df8252ad3}
+      \strng{bibnamehash}{ee7a3b028ea820072d79924df8252ad3}
+      \strng{authorbibnamehash}{ee7a3b028ea820072d79924df8252ad3}
+      \strng{authornamehash}{ee7a3b028ea820072d79924df8252ad3}
+      \strng{authorfullhash}{ee7a3b028ea820072d79924df8252ad3}
+      \strng{authorfullhashraw}{ee7a3b028ea820072d79924df8252ad3}
+      \field{extraname}{1}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{chapter}{6}
+      \field{title}{{粒子物理导论}}
+      \field{year}{2021}
+      \field{pages}{153\bibrangedash 155}
+      \range{pages}{3}
+    \endentry
+    \entry{griffthsPPSRTrick}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=ee7a3b028ea820072d79924df8252ad3}{%
+           family={Griffths(王青译)},
+           familyi={G\bibinitperiod},
+           given={David\bibnamedelima J.},
+           giveni={D\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {机械工业出版社}%
+      }
+      \strng{namehash}{ee7a3b028ea820072d79924df8252ad3}
+      \strng{fullhash}{ee7a3b028ea820072d79924df8252ad3}
+      \strng{fullhashraw}{ee7a3b028ea820072d79924df8252ad3}
+      \strng{bibnamehash}{ee7a3b028ea820072d79924df8252ad3}
+      \strng{authorbibnamehash}{ee7a3b028ea820072d79924df8252ad3}
+      \strng{authornamehash}{ee7a3b028ea820072d79924df8252ad3}
+      \strng{authorfullhash}{ee7a3b028ea820072d79924df8252ad3}
+      \strng{authorfullhashraw}{ee7a3b028ea820072d79924df8252ad3}
+      \field{extraname}{2}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{chapter}{3}
+      \field{title}{{粒子物理导论}}
+      \field{year}{2021}
+      \field{pages}{74\bibrangedash 81}
+      \range{pages}{8}
+    \endentry
+    \entry{griffthsClifford}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=ee7a3b028ea820072d79924df8252ad3}{%
+           family={Griffths(王青译)},
+           familyi={G\bibinitperiod},
+           given={David\bibnamedelima J.},
+           giveni={D\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {机械工业出版社}%
+      }
+      \strng{namehash}{ee7a3b028ea820072d79924df8252ad3}
+      \strng{fullhash}{ee7a3b028ea820072d79924df8252ad3}
+      \strng{fullhashraw}{ee7a3b028ea820072d79924df8252ad3}
+      \strng{bibnamehash}{ee7a3b028ea820072d79924df8252ad3}
+      \strng{authorbibnamehash}{ee7a3b028ea820072d79924df8252ad3}
+      \strng{authornamehash}{ee7a3b028ea820072d79924df8252ad3}
+      \strng{authorfullhash}{ee7a3b028ea820072d79924df8252ad3}
+      \strng{authorfullhashraw}{ee7a3b028ea820072d79924df8252ad3}
+      \field{extraname}{3}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{chapter}{7}
+      \field{title}{{粒子物理导论}}
+      \field{year}{2021}
+      \field{pages}{180\bibrangedash 183}
+      \range{pages}{4}
+    \endentry
+    \entry{LieSpinor}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=84f9488573001170ea67b9872ac767d5}{%
+           family={Kosmann},
+           familyi={K\bibinitperiod},
+           given={Y},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \strng{namehash}{84f9488573001170ea67b9872ac767d5}
+      \strng{fullhash}{84f9488573001170ea67b9872ac767d5}
+      \strng{fullhashraw}{84f9488573001170ea67b9872ac767d5}
+      \strng{bibnamehash}{84f9488573001170ea67b9872ac767d5}
+      \strng{authorbibnamehash}{84f9488573001170ea67b9872ac767d5}
+      \strng{authornamehash}{84f9488573001170ea67b9872ac767d5}
+      \strng{authorfullhash}{84f9488573001170ea67b9872ac767d5}
+      \strng{authorfullhashraw}{84f9488573001170ea67b9872ac767d5}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Annali di Matematica}
+      \field{title}{{Dérivées de Lie des spineurs}}
+      \field{volume}{91}
+      \field{year}{1971}
+      \field{pages}{317\bibrangedash 395}
+      \range{pages}{79}
+    \endentry
+    \entry{functionals}{book}{}{}
+      \name{author}{2}{}{%
+        {{hash=c6cc445cf5d78ae339f2a3560a8be5b9}{%
+           family={Lancaster},
+           familyi={L\bibinitperiod},
+           given={Tom},
+           giveni={T\bibinitperiod}}}%
+        {{hash=9cb4aa188ac98c095c36bc003373c966}{%
+           family={Blundell},
+           familyi={B\bibinitperiod},
+           given={Stephen\bibnamedelima J.},
+           giveni={S\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {世界图书出版公司}%
+      }
+      \strng{namehash}{ed4ab99da0057cd7b229d2eefd40de70}
+      \strng{fullhash}{ed4ab99da0057cd7b229d2eefd40de70}
+      \strng{fullhashraw}{ed4ab99da0057cd7b229d2eefd40de70}
+      \strng{bibnamehash}{ed4ab99da0057cd7b229d2eefd40de70}
+      \strng{authorbibnamehash}{ed4ab99da0057cd7b229d2eefd40de70}
+      \strng{authornamehash}{ed4ab99da0057cd7b229d2eefd40de70}
+      \strng{authorfullhash}{ed4ab99da0057cd7b229d2eefd40de70}
+      \strng{authorfullhashraw}{ed4ab99da0057cd7b229d2eefd40de70}
+      \field{extraname}{1}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{chapter}{1}
+      \field{title}{{Quantum Field Theory for the Gifted Amateur}}
+      \field{year}{2023}
+      \field{pages}{10\bibrangedash 17}
+      \range{pages}{8}
+    \endentry
+    \entry{qft-amatuer-interaction-picture}{book}{}{}
+      \name{author}{2}{}{%
+        {{hash=c6cc445cf5d78ae339f2a3560a8be5b9}{%
+           family={Lancaster},
+           familyi={L\bibinitperiod},
+           given={Tom},
+           giveni={T\bibinitperiod}}}%
+        {{hash=9cb4aa188ac98c095c36bc003373c966}{%
+           family={Blundell},
+           familyi={B\bibinitperiod},
+           given={Stephen\bibnamedelima J.},
+           giveni={S\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {世界图书出版公司}%
+      }
+      \strng{namehash}{ed4ab99da0057cd7b229d2eefd40de70}
+      \strng{fullhash}{ed4ab99da0057cd7b229d2eefd40de70}
+      \strng{fullhashraw}{ed4ab99da0057cd7b229d2eefd40de70}
+      \strng{bibnamehash}{ed4ab99da0057cd7b229d2eefd40de70}
+      \strng{authorbibnamehash}{ed4ab99da0057cd7b229d2eefd40de70}
+      \strng{authornamehash}{ed4ab99da0057cd7b229d2eefd40de70}
+      \strng{authorfullhash}{ed4ab99da0057cd7b229d2eefd40de70}
+      \strng{authorfullhashraw}{ed4ab99da0057cd7b229d2eefd40de70}
+      \field{extraname}{2}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{chapter}{18}
+      \field{title}{{Quantum Field Theory for the Gifted Amateur}}
+      \field{year}{2023}
+      \true{nocite}
+      \field{pages}{167\bibrangedash 169}
+      \range{pages}{3}
+    \endentry
+    \entry{LinkZhihu}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=97e7c9a7d06eac006a28bf05467fcc8b}{%
+           family={Link},
+           familyi={L\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {知乎}%
+      }
+      \strng{namehash}{97e7c9a7d06eac006a28bf05467fcc8b}
+      \strng{fullhash}{97e7c9a7d06eac006a28bf05467fcc8b}
+      \strng{fullhashraw}{97e7c9a7d06eac006a28bf05467fcc8b}
+      \strng{bibnamehash}{97e7c9a7d06eac006a28bf05467fcc8b}
+      \strng{authorbibnamehash}{97e7c9a7d06eac006a28bf05467fcc8b}
+      \strng{authornamehash}{97e7c9a7d06eac006a28bf05467fcc8b}
+      \strng{authorfullhash}{97e7c9a7d06eac006a28bf05467fcc8b}
+      \strng{authorfullhashraw}{97e7c9a7d06eac006a28bf05467fcc8b}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{知乎}
+      \field{title}{{Noether定理}}
+      \field{year}{2025}
+      \verb{urlraw}
+      \verb https://zhuanlan.zhihu.com/p/19149112768
+      \endverb
+      \verb{url}
+      \verb https://zhuanlan.zhihu.com/p/19149112768
+      \endverb
+    \endentry
+    \entry{peskinCausality}{book}{}{}
+      \name{author}{2}{}{%
+        {{hash=7bad35ca708cc14703fbf71be1b2dda8}{%
+           family={Peskin},
+           familyi={P\bibinitperiod},
+           given={Michael\bibnamedelima E.},
+           giveni={M\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+        {{hash=cc0fe4ad0bcb2f8883e7f5e5b5287dd9}{%
+           family={Schroeder},
+           familyi={S\bibinitperiod},
+           given={Daniel\bibnamedelima V.},
+           giveni={D\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {世界图书出版公司}%
+      }
+      \strng{namehash}{cbcdd646a15ae9af77377e5f1358ecb4}
+      \strng{fullhash}{cbcdd646a15ae9af77377e5f1358ecb4}
+      \strng{fullhashraw}{cbcdd646a15ae9af77377e5f1358ecb4}
+      \strng{bibnamehash}{cbcdd646a15ae9af77377e5f1358ecb4}
+      \strng{authorbibnamehash}{cbcdd646a15ae9af77377e5f1358ecb4}
+      \strng{authornamehash}{cbcdd646a15ae9af77377e5f1358ecb4}
+      \strng{authorfullhash}{cbcdd646a15ae9af77377e5f1358ecb4}
+      \strng{authorfullhashraw}{cbcdd646a15ae9af77377e5f1358ecb4}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{chapter}{2}
+      \field{title}{{Introduction to Quantum Field Theory}}
+      \field{year}{2018}
+      \field{pages}{27\bibrangedash 33}
+      \range{pages}{7}
+    \endentry
+    \entry{SchroederClusterExpansion}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=cc0fe4ad0bcb2f8883e7f5e5b5287dd9}{%
+           family={Schroeder},
+           familyi={S\bibinitperiod},
+           given={Daniel\bibnamedelima V.},
+           giveni={D\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Pearson Education Inc.}%
+      }
+      \strng{namehash}{cc0fe4ad0bcb2f8883e7f5e5b5287dd9}
+      \strng{fullhash}{cc0fe4ad0bcb2f8883e7f5e5b5287dd9}
+      \strng{fullhashraw}{cc0fe4ad0bcb2f8883e7f5e5b5287dd9}
+      \strng{bibnamehash}{cc0fe4ad0bcb2f8883e7f5e5b5287dd9}
+      \strng{authorbibnamehash}{cc0fe4ad0bcb2f8883e7f5e5b5287dd9}
+      \strng{authornamehash}{cc0fe4ad0bcb2f8883e7f5e5b5287dd9}
+      \strng{authorfullhash}{cc0fe4ad0bcb2f8883e7f5e5b5287dd9}
+      \strng{authorfullhashraw}{cc0fe4ad0bcb2f8883e7f5e5b5287dd9}
+      \field{extraname}{1}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{chapter}{8}
+      \field{title}{{An Introduction to Thermal Physics}}
+      \field{year}{2022}
+      \field{pages}{246\bibrangedash 254}
+      \range{pages}{9}
+    \endentry
+    \entry{SchroederGamma}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=cc0fe4ad0bcb2f8883e7f5e5b5287dd9}{%
+           family={Schroeder},
+           familyi={S\bibinitperiod},
+           given={Daniel\bibnamedelima V.},
+           giveni={D\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Pearson Education Inc.}%
+      }
+      \strng{namehash}{cc0fe4ad0bcb2f8883e7f5e5b5287dd9}
+      \strng{fullhash}{cc0fe4ad0bcb2f8883e7f5e5b5287dd9}
+      \strng{fullhashraw}{cc0fe4ad0bcb2f8883e7f5e5b5287dd9}
+      \strng{bibnamehash}{cc0fe4ad0bcb2f8883e7f5e5b5287dd9}
+      \strng{authorbibnamehash}{cc0fe4ad0bcb2f8883e7f5e5b5287dd9}
+      \strng{authornamehash}{cc0fe4ad0bcb2f8883e7f5e5b5287dd9}
+      \strng{authorfullhash}{cc0fe4ad0bcb2f8883e7f5e5b5287dd9}
+      \strng{authorfullhashraw}{cc0fe4ad0bcb2f8883e7f5e5b5287dd9}
+      \field{extraname}{2}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{chapter}{Appendix B}
+      \field{title}{{An Introduction to Thermal Physics}}
+      \field{year}{2022}
+      \field{pages}{290\bibrangedash 291}
+      \range{pages}{2}
+    \endentry
+    \entry{schwartzSymmetryFactor}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=1e7b6dde56467cb787f369fadc91b2df}{%
+           family={Schwartz},
+           familyi={S\bibinitperiod},
+           given={Matthew\bibnamedelima D.},
+           giveni={M\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge University Press}%
+      }
+      \strng{namehash}{1e7b6dde56467cb787f369fadc91b2df}
+      \strng{fullhash}{1e7b6dde56467cb787f369fadc91b2df}
+      \strng{fullhashraw}{1e7b6dde56467cb787f369fadc91b2df}
+      \strng{bibnamehash}{1e7b6dde56467cb787f369fadc91b2df}
+      \strng{authorbibnamehash}{1e7b6dde56467cb787f369fadc91b2df}
+      \strng{authornamehash}{1e7b6dde56467cb787f369fadc91b2df}
+      \strng{authorfullhash}{1e7b6dde56467cb787f369fadc91b2df}
+      \strng{authorfullhashraw}{1e7b6dde56467cb787f369fadc91b2df}
+      \field{extraname}{1}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{chapter}{7}
+      \field{title}{{Quantum Field Theory and the Standard Model}}
+      \field{year}{2014}
+      \field{pages}{82\bibrangedash 83}
+      \range{pages}{2}
+    \endentry
+    \entry{schwartz-dyson}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=1e7b6dde56467cb787f369fadc91b2df}{%
+           family={Schwartz},
+           familyi={S\bibinitperiod},
+           given={Matthew\bibnamedelima D.},
+           giveni={M\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Cambridege University Press}%
+      }
+      \strng{namehash}{1e7b6dde56467cb787f369fadc91b2df}
+      \strng{fullhash}{1e7b6dde56467cb787f369fadc91b2df}
+      \strng{fullhashraw}{1e7b6dde56467cb787f369fadc91b2df}
+      \strng{bibnamehash}{1e7b6dde56467cb787f369fadc91b2df}
+      \strng{authorbibnamehash}{1e7b6dde56467cb787f369fadc91b2df}
+      \strng{authornamehash}{1e7b6dde56467cb787f369fadc91b2df}
+      \strng{authorfullhash}{1e7b6dde56467cb787f369fadc91b2df}
+      \strng{authorfullhashraw}{1e7b6dde56467cb787f369fadc91b2df}
+      \field{extraname}{2}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{chapter}{7}
+      \field{title}{Quantum Field Theory and the Standard Model}
+      \field{year}{2014}
+      \field{pages}{87\bibrangedash 89}
+      \range{pages}{3}
+    \endentry
+    \entry{schwartz-lsz}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=1e7b6dde56467cb787f369fadc91b2df}{%
+           family={Schwartz},
+           familyi={S\bibinitperiod},
+           given={Matthew\bibnamedelima D.},
+           giveni={M\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Cambridege University Press}%
+      }
+      \strng{namehash}{1e7b6dde56467cb787f369fadc91b2df}
+      \strng{fullhash}{1e7b6dde56467cb787f369fadc91b2df}
+      \strng{fullhashraw}{1e7b6dde56467cb787f369fadc91b2df}
+      \strng{bibnamehash}{1e7b6dde56467cb787f369fadc91b2df}
+      \strng{authorbibnamehash}{1e7b6dde56467cb787f369fadc91b2df}
+      \strng{authornamehash}{1e7b6dde56467cb787f369fadc91b2df}
+      \strng{authorfullhash}{1e7b6dde56467cb787f369fadc91b2df}
+      \strng{authorfullhashraw}{1e7b6dde56467cb787f369fadc91b2df}
+      \field{extraname}{3}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{chapter}{6}
+      \field{title}{Quantum Field Theory and the Standard Model}
+      \field{year}{2014}
+      \field{pages}{70\bibrangedash 72}
+      \range{pages}{3}
+    \endentry
+    \entry{sredinicki-ugammau}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=dcf0b6d39b9c28db1835e7d435784d7b}{%
+           family={Srednicki},
+           familyi={S\bibinitperiod},
+           given={Mark},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Cambridege University Press}%
+      }
+      \strng{namehash}{dcf0b6d39b9c28db1835e7d435784d7b}
+      \strng{fullhash}{dcf0b6d39b9c28db1835e7d435784d7b}
+      \strng{fullhashraw}{dcf0b6d39b9c28db1835e7d435784d7b}
+      \strng{bibnamehash}{dcf0b6d39b9c28db1835e7d435784d7b}
+      \strng{authorbibnamehash}{dcf0b6d39b9c28db1835e7d435784d7b}
+      \strng{authornamehash}{dcf0b6d39b9c28db1835e7d435784d7b}
+      \strng{authorfullhash}{dcf0b6d39b9c28db1835e7d435784d7b}
+      \strng{authorfullhashraw}{dcf0b6d39b9c28db1835e7d435784d7b}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{chapter}{38}
+      \field{title}{Quantum Field Theory}
+      \field{year}{2007}
+      \field{pages}{240\bibrangedash 241}
+      \range{pages}{2}
+    \endentry
+    \entry{LiuChuanIsing}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=a0603c6ab13b31476fa7ec61b4d48b78}{%
+           family={刘川},
+           familyi={刘\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {北京大学出版社}%
+      }
+      \strng{namehash}{a0603c6ab13b31476fa7ec61b4d48b78}
+      \strng{fullhash}{a0603c6ab13b31476fa7ec61b4d48b78}
+      \strng{fullhashraw}{a0603c6ab13b31476fa7ec61b4d48b78}
+      \strng{bibnamehash}{a0603c6ab13b31476fa7ec61b4d48b78}
+      \strng{authorbibnamehash}{a0603c6ab13b31476fa7ec61b4d48b78}
+      \strng{authornamehash}{a0603c6ab13b31476fa7ec61b4d48b78}
+      \strng{authorfullhash}{a0603c6ab13b31476fa7ec61b4d48b78}
+      \strng{authorfullhashraw}{a0603c6ab13b31476fa7ec61b4d48b78}
+      \field{sortinit}{刘}
+      \field{sortinithash}{f3ff24b163d4496b49484b7a115b76c9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{热力学与统计物理}}
+      \field{year}{2022}
+      \field{pages}{142\bibrangedash 150}
+      \range{pages}{9}
+    \endentry
+    \entry{qft:lecture1}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=f3bb747a2b0e26f35dd856e6c29bff90}{%
+           family={周洋},
+           familyi={周\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {复旦大学量子场论PHYS60022.01课程讲义}%
+      }
+      \strng{namehash}{f3bb747a2b0e26f35dd856e6c29bff90}
+      \strng{fullhash}{f3bb747a2b0e26f35dd856e6c29bff90}
+      \strng{fullhashraw}{f3bb747a2b0e26f35dd856e6c29bff90}
+      \strng{bibnamehash}{f3bb747a2b0e26f35dd856e6c29bff90}
+      \strng{authorbibnamehash}{f3bb747a2b0e26f35dd856e6c29bff90}
+      \strng{authornamehash}{f3bb747a2b0e26f35dd856e6c29bff90}
+      \strng{authorfullhash}{f3bb747a2b0e26f35dd856e6c29bff90}
+      \strng{authorfullhashraw}{f3bb747a2b0e26f35dd856e6c29bff90}
+      \field{sortinit}{周}
+      \field{sortinithash}{60e043fe7e246b4843503d963e86e4fc}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{QM Review and Lecture}}
+      \field{year}{2025}
+    \endentry
+    \entry{TreeSymmetryFactor}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=aac7ae2c3930b759144b71de523484a9}{%
+           family={東雲正樹},
+           familyi={東\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {知乎}%
+      }
+      \strng{namehash}{aac7ae2c3930b759144b71de523484a9}
+      \strng{fullhash}{aac7ae2c3930b759144b71de523484a9}
+      \strng{fullhashraw}{aac7ae2c3930b759144b71de523484a9}
+      \strng{bibnamehash}{aac7ae2c3930b759144b71de523484a9}
+      \strng{authorbibnamehash}{aac7ae2c3930b759144b71de523484a9}
+      \strng{authornamehash}{aac7ae2c3930b759144b71de523484a9}
+      \strng{authorfullhash}{aac7ae2c3930b759144b71de523484a9}
+      \strng{authorfullhashraw}{aac7ae2c3930b759144b71de523484a9}
+      \field{sortinit}{東}
+      \field{sortinithash}{40869f05027ede3b9021f05bd312d5f3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{知乎}
+      \field{title}{{谁能通俗解释下，费曼图是如何做出来的呢?}}
+      \field{year}{2025}
+      \verb{urlraw}
+      \verb https://zhuanlan.zhihu.com/p/2460633052
+      \endverb
+      \verb{url}
+      \verb https://zhuanlan.zhihu.com/p/2460633052
+      \endverb
+    \endentry
+    \entry{LiangQMMath}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=5451d4526c974e6a3c63e869f2210a5a}{%
+           family={梁灿彬},
+           familyi={梁\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {科学出版社}%
+      }
+      \strng{namehash}{5451d4526c974e6a3c63e869f2210a5a}
+      \strng{fullhash}{5451d4526c974e6a3c63e869f2210a5a}
+      \strng{fullhashraw}{5451d4526c974e6a3c63e869f2210a5a}
+      \strng{bibnamehash}{5451d4526c974e6a3c63e869f2210a5a}
+      \strng{authorbibnamehash}{5451d4526c974e6a3c63e869f2210a5a}
+      \strng{authornamehash}{5451d4526c974e6a3c63e869f2210a5a}
+      \strng{authorfullhash}{5451d4526c974e6a3c63e869f2210a5a}
+      \strng{authorfullhashraw}{5451d4526c974e6a3c63e869f2210a5a}
+      \field{sortinit}{梁}
+      \field{sortinithash}{4da9e3d0b3d98bfb9d26b202ef34c2b3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{chapter}{附录B}
+      \field{title}{{微分几何入门与广义相对论(中册)}}
+      \field{year}{2009}
+      \field{pages}{196\bibrangedash 221}
+      \range{pages}{26}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

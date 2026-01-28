@@ -1,5 +1,129 @@
 \section{重整化}
-在QFT中我们经常遇到传播子发散的情况, 为了解决这个问题, 我们引入重整化步骤, 将无穷大扫到地板下, 从而得到有限的可观测量预测.
+在QFT中我们经常遇到某些量发散的情况, 为了解决这个问题, 我们引入重整化步骤, 将无穷大扫到地板下, 从而得到有限的可观测量预测.
+\subsection{动量截断}
+\subsubsection{Casmir效应}
+在\ref{2nd_quant_free_real_scalar}节中, 我们得知, 自由实标量场的真空零点能是无穷大. 不过这并不影响我们的物理实际, 因为能量并不是一个直接可观测量: 能量的差值才是, 比如说受力. 这就是Casmir效应: 在真空中的两块板之间, 由于板的存在产生的边界条件, 真空模态被改变, 导致两块板之间的能量密度与外部不同, 从而产生一个可观测的吸引力. 
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.4\textwidth]{./image/casmir.png}
+    \caption{Casmir效应示意图}
+    \label{fig:casmir}
+\end{figure}
+
+为了简单起见我们首先考虑一维的情况, 假设两板的距离为$a$. 边界条件要求
+\begin{align}
+    \begin{cases}
+        \phi(0,t)=0\\
+        \phi(a,t)=0,
+    \end{cases}
+\end{align}
+这要求波矢满足
+\begin{equation}
+    \vec k\cdot L\vec n=\vec p\cdot d\vec n=p_x d=n\pi
+\end{equation}
+于是
+\begin{equation}
+    k=\frac{n\pi}{a}.
+\end{equation}
+
+从而求出总能量
+\begin{align}
+    E(a)=\sum_{n=0}^{+\infty}\frac12\frac{n\pi}{a}=\frac{\pi}{2a}\sum_{n=0}^{+\infty}n.
+\end{align}
+
+这个求和显然是发散的, 发散的原因是我们直接将波矢推到了无穷远处的紫外区, 但是这一假设实际上是有问题的, 因为当波长到原子量级, 我们必须考虑它和极板之间的互相作用, 这样子自由场论也不适用了. 但是我们可以断定, 一个紫外完备的合适理论一定可以让高动量的贡献是被抑制的, 因此紫外的贡献实际上是可以被忽略掉的. 于是我们可以人为引入一个很高的截断动量$\Lambda$, 并让求和在此处截断:
+\begin{align}
+    n_{\rm{max}}=\lfloor a\Lambda \rfloor.
+\end{align}
+这等价于给求和乘了一个核函数
+\begin{align}
+    f(x)=\Theta(n_{\rm{max}}-r\Lambda x),
+\end{align}
+\begin{align}
+    E(a)=\frac{\pi}{2a}\sum_{n=0}^{+\infty}nf(\frac{n}{r \Lambda}).
+\end{align}
+当然, 也可以有其他的核函数取法(一个更详尽的核函数距离可以见Schwartz\cite{schwartz-kernel}), 比如指数衰减:
+\begin{align}
+    f(x)=\exp(-x), 
+\end{align}
+这称为热核函数.
+
+不过需要注意, 这只是两板之间的真空能, 我们应当把两板外侧的真空能一起算入. 在这里我们认为左侧板固定, 右侧板可以移动, 因此左侧板左侧的真空能量是常数, 我们可以不计入. 而为了方便计算右侧板上真空能的大小, 我们不妨在右侧板$L\gg a$出再引入一个极板, 来方便我们估计右侧的真空能, 从而有
+
+\begin{align}
+    E_{\rm{tol}}(a)=E(a)+E(L-a)
+\end{align}
+
+由于$L\gg a$, 我们可以做连续化近似, 将求和化为积分:
+\begin{align}
+    E(L-a)&=\frac{\pi}{2(L-a)}\sum_{n=0}^{+\infty}nf(\frac{n}{(L-a)\Lambda})\\
+    &=\frac\pi2(L-a)\Lambda^2\sum\frac1{(L-a)\Lambda}\frac{n}{r\Lambda}f(\frac{n}{(L-a)\Lambda})\\
+    &=\frac\pi2\Lambda^2(L-a)\int_0^{+\infty}\d xxf(x).
+\end{align}
+
+丢掉常数项, 我们可以得到总能量
+\begin{align}
+    E_{\rm{tot}}(a)&=-\frac\pi2\Lambda^2a\int_0^{+\infty}\d xxf(x)+\frac{\pi}{2a}\sum_{n=0}^{+\infty}nf(\frac{n}{r \Lambda})
+\end{align}
+再对积分做换元
+\begin{align}
+    x=\frac{n}{a\Lambda}
+\end{align}
+从而有
+\begin{align}
+    E_{\rm{tot}}(a)&=\frac{\pi}{2a}\left(\sum nf(\frac n{a\Lambda})-\int\d nnf(\frac n{a\Lambda})\right).
+\end{align}
+
+根据Euler-Maclaurin公式
+\begin{align}
+    \sum_{n=1}^NF(n)-\int_0^N\d n F(n)&=\frac{F(0)+F(N)}2+\frac{F'(N)-F'(0)}{12}\notag\\
+    &\;\;-\frac1{30}\frac{F^{(3)}(N)-F^{(3)}(0)}{4!}+\cdots+B_j\frac{F^{(j-1)}(N)-F^{(j-1)}(0)}{j!}+\cdots
+\end{align}
+其中, 对于$j>1$的奇数项, $B_j=0$. 我们可以计算得到一个有限值:
+\begin{align}
+    E_{\rm{tot}}(a)&=-\frac\pi{24a}, 
+\end{align}
+从而有受力
+\begin{align}
+    F(a)=-\de Ea=-\frac\pi{24a^2}. 
+\end{align}
+
+类似地, 我们可以计算三维标量场的Casmir效应, 假设极板距离为$a$, 面积为$A$:
+\begin{align}
+    \frac EA&=\sum_n\int\frac{d^2k}{\dpi2}\frac12\sqrt{\left(\frac{n\pi}a\right)^2+k^2}\\
+    &=\frac12\sum_n\int_0^{+\infty}\frac{k\d k}{2\pi}\sqrt{\left(\frac{n\pi}a\right)^2+k^2}.
+\end{align}
+
+同样地, 我们引入核函数
+\begin{align}
+    f(x)=\exp(-x), 
+\end{align}
+于是有
+\begin{align}
+    \frac EA&=\frac12\sum_n\int_0^{+\infty}\frac{k\d k}{2\pi}\sqrt{\left(\frac{n\pi}a\right)^2+k^2}f\left({\sqrt{\left(\frac{n\pi}a\right)^2+k^2}}/\Lambda\right)\\
+    &=\frac{\Lambda^3}{4\pi}\sum_n\int_{\frac{n\pi}{\Lambda a}}^{+\infty}u^2\exp{-u}\d u\\
+    &=\frac{\Lambda^3}{2\pi}\sum_n\left[1+\frac{n\pi}{\Lambda a}+\frac12\left(\frac{n\pi}{\Lambda a}\right)^2\right]\exp{-\frac{n\pi}{\Lambda a}}.
+\end{align}
+
+引入一个$L\gg a$处的极板, 我们有总能量
+\begin{align}
+    \frac{E_{\rm{tot}}}A&=\frac{\Lambda^3}{2\pi}\left(\sum_n\left[1+\frac{n\pi}{\Lambda a}+\frac12\left(\frac{n\pi}{\Lambda a}\right)^2\right]\exp{-\frac{n\pi}{\Lambda a}}-\int_0^{+\infty}\d n\left[1+\frac{n\pi}{\Lambda a}+\frac12\left(\frac{n\pi}{\Lambda a}\right)^2\right]\exp{-\frac{n\pi}{\Lambda a}}\right).
+\end{align}
+利用Euler-Maclaurin公式, 我们可以得到一个有限值:
+\begin{align}
+    \frac{E_{\rm{tot}}}A=-\frac{\pi^2}{1440a^3}.
+\end{align}
+
+如果是电磁波, 它有两个极化方向, 因此总能量是标量场的两倍:
+\begin{align}
+    \frac{E_{\rm{tot}}}A=-\frac{\pi^2}{720a^3}.
+\end{align}
+从而有受力
+\begin{align}
+    F=-\de Ea=-\frac{\pi^2}{240a^4}A
+\end{align}
+
 \subsection{维度调控}
 
 \subsection{旋量QED的重整化}

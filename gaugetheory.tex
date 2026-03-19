@@ -192,7 +192,7 @@
 
 似乎只要求出$-p^2g_{\mu\nu}+p_\mu p_\nu$的逆矩阵就好了...?
 
-然而不难发现, $-p^2g_{\mu\nu}+p_\mu p_\nu$是奇异的: $g_\mu\nu-\frac{p_\mu p_\nu}{p^2}$就是在度规张量在类光面上的诱导度规, 它的秩仅有2, 根本不可能找到逆.
+然而不难发现, $-p^2g_{\mu\nu}+p_\mu p_\nu$是奇异的: $g_{\mu\nu}-\frac{p_\mu p_\nu}{p^2}$就是在度规张量在类光面上的诱导度规, 它的秩仅有2, 根本不可能找到逆.
 
 这个原因在于电磁场具有规范冗余, 而规范冗余会导致这个矩阵奇异. 因此我们需要做规范的选取. 最直接的想法就是我们在Lorentz规范下计算传播子. 那么我们首先需要计算
 \begin{equation}
@@ -200,19 +200,19 @@
 \end{equation}
 根据$\epsilon_i p^i=0$, 我们有
 \begin{equation}
-    \sum_s\epsilon_{si}(\vec p)\epsilon_{sj}(\vec p)=\delta_{ij}+\frac{p_ip_j}{\vec p^2}=-g_{ij}++\frac{p_ip_j}{\vec p^2}, 
+    \sum_s\epsilon_{si}(\vec p)\epsilon_{sj}(\vec p)=\delta_{ij}-\frac{p_ip_j}{\vec p^2}, 
 \end{equation}
 于是
 \begin{equation}
-    \braket{0|A_i(x)A_j(y)|0}=\int\ld p\left(g_{ij}+\frac{p_ip_j}{\vec p^2}\right)\exp{-ip(x-y)}.
+    \braket{0|A_i(x)A_j(y)|0}=\int\ld p\left(\delta_{ij}-\frac{p_ip_j}{\vec p^2}\right)\exp{-ip(x-y)}.
 \end{equation}
 所以
 \begin{equation}
-    \Theta(t_x-t_y)\braket{0|A_i(x)A_j(y)|0}=\int i\dddd p\frac{\exp{-ip(x-y)}}{2|\vec p|(\omega-|\vec p|+i\epsilon)}\left(-g_{ij}+\frac{p_ip_j}{|\vec p|^2}\right)
+    \Theta(t_x-t_y)\braket{0|A_i(x)A_j(y)|0}=\int i\dddd p\frac{\exp{-ip(x-y)}}{2|\vec p|(\omega-|\vec p|+i\epsilon)}\left(\delta_{ij}-\frac{p_ip_j}{\vec p^2}\right)
 \end{equation}
 于是有Feynman传播子(但是并非下小节的Feynman规范的传播子)
 \begin{align}
-    \braket{0|\mathcal TA_i(x)A_j(y)|0}&=\int\dddd p\frac{-i(g_{ij}-p_i p_j/|\vec p|^2)}{p^2+i\epsilon}\exp{-ip(x-y)}
+    \braket{0|\mathcal TA_i(x)A_j(y)|0}&=\int\dddd p\frac{i(\delta_{ij}-\frac{p_ip_j}{\vec p^2})}{p^2+i\epsilon}\exp{-ip(x-y)}
 \end{align}
 , 并且还有
 \begin{align}

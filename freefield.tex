@@ -202,8 +202,8 @@
     于是
     \begin{equation}
         \begin{split}
-            \mathscr L_\xi\mathcal L &= \nabla_\mu(2\Pi^{\mu\nu F_{\lambda\nu}\xi^\lambda})-F_{\mu\nu}\xi^\lambda B^\nu+B^\nu(\xi^\lambda\nabla_\lambda A_\nu+A_\lambda\nabla_\nu\xi^\lambda)\\
-            &= \nabla_\mu(2\Pi^{\mu\nu F_{\lambda\nu}\xi^\lambda})-F_{\mu\nu}\xi^\lambda B^\nu+B^\nu\xi^\lambda\nabla_\lambda A_\nu-B^\nu\xi^\lambda\nabla_\nu A_\lambda\\
+            \mathscr L_\xi\mathcal L &= \nabla_\mu(2\Pi^{\mu\nu}F_{\lambda\nu}\xi^\lambda)-F_{\mu\nu}\xi^\lambda B^\nu+B^\nu(\xi^\lambda\nabla_\lambda A_\nu+A_\lambda\nabla_\nu\xi^\lambda)\\
+            &= \nabla_\mu(2\Pi^{\mu\nu}F_{\lambda\nu}\xi^\lambda)-F_{\mu\nu}\xi^\lambda B^\nu+B^\nu\xi^\lambda\nabla_\lambda A_\nu-B^\nu\xi^\lambda\nabla_\nu A_\lambda\\
             &\quad+B^\nu\nabla_\nu(A_\lambda\xi^\lambda)
         \end{split}
     \end{equation}
@@ -616,6 +616,43 @@ Fourier逆变换可以得到:
 \kaishu 讨论: 复标量场是双自由度的, 因此它有两个产生湮灭算子$a, b$. $a, b$分别代表正粒子和反粒子的运动模式. 而从其的$U(1)$对称性导出的守恒量中可以得出结论, 正粒子与反粒子数目之差为常数.\songti
 
 \subsection{两点关联函数}
+简单地说, 关联函数就是时空中$n$个不同的点处的场乘积的平均:
+$$
+    \braket{\phi_1\cdots\phi_n}.
+$$
+这个定义可能比较唐突, 我们难以理解为什么我们需要在场论中计算关联函数, 为什么关联函数非常重要. 因此在具体计算之前我们想给出一些具体的关联函数的意义的例子, 说明它的重要性和物理意义.
+
+我们知道, 某一个态可以通过场算符激发出来
+\begin{align}
+    \ket{X}=\phi(x)\cdots\ket\Omega,
+\end{align}
+进过演化后一个态到另一个态的概率振幅为
+\begin{align}
+    \braket{Y|X}=\braket{\Omega|\phi(y)\cdots\phi(x)|\Omega}
+\end{align}
+某个可观测量测量的平均值为
+\begin{align}
+    \braket{O}=\braket{X|O|X}=\braket{\Omega|\cdots\phi(x)O\phi(x)\cdots|\Omega}
+\end{align}
+可以看到, 这就是一个关联函数的形式. 在此基础之上, 因为, 微分散射截面、衰变率甚至能流分布等物理量本质上就是通过这两个表达式来表达, 因此也可以通过关联函数算出来.
+
+这是我们常见的粒子物理中的理解, 但是其可应用的范围远远不止于此. 在腾飞的讲义中给出了两个更加有意思的例子\cite{gft:lecture1}: 其一是黑洞散射发射出的引力波波形的计算, 可以表达为
+$$
+    h_{\mu\nu}(\tau, \theta, \phi)=\braket{\rm{in}|S^\dagger h_{\mu\nu} S|\rm{in}}_{\text{classical limit}}
+$$
+也就是说, 就连经典场的散射我们原则上也是可以利用QFT关联函数计算的框架最终取经典极限$\hbar\to0$得到! 
+
+再一个则是宇宙微波背景辐射的关联函数: 微波背景辐射近似是各向同性的, 这一点可以通过暴涨模型很好地解释(宇宙尺度很大, 但是可以让其中的光子气处于热平衡态, 只能是在宇宙很小的时候宇宙两点间相互作用很强的时代就已经达成了平衡). 但是实际上更精细的实验指出, 它实际上是存在微小涨落的, 而这个涨落的平均正是关联函数, 并且可以通过弯曲时空QFT计算出来!
+$$
+    \braket{\Omega|\phi(x_1)\phi(x_2)\phi(x_3)\phi(x_4)|\Omega}
+$$
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{./image/cmb.png}
+    \caption{微波背景辐射图}
+\end{figure}
+
 \subsubsection{实标量场}\label{2pt-real-scalar}
 \begin{definition}[关联函数$D(x-y)$\cite{peskinCausality}]
     \begin{equation}
@@ -795,7 +832,7 @@ Fourier逆变换可以得到:
 类似地, 我们可以定义提前关联函数
 \begin{theorem}[提前关联函数$D_A(x-y)$]
     \begin{equation}
-        D_A(x-y)\equiv\lim_{\epsilon\rightarrow0^+}\int\dddd p \frac i{(p-i\epsilon)^2-m^2}\exp{-ip(x-y)}
+        D_A(x-y)\equiv\lim_{\epsilon\rightarrow0^+}\int\dddd p \frac i{(p-i\epsilon)^2-m^2}\exp{-ip(x-y)}\label{q2eq4}
     \end{equation}
 \end{theorem}
 我们可以发现:
@@ -1030,7 +1067,7 @@ Fourier逆变换可以得到:
     % \end{equation}
     % 或者等价于取一个无穷小正数$\epsilon$:
     \begin{equation}
-        \widetilde D_F(x-y)\equiv\lim_{\epsilon\rightarrow0^+}\int\dddd p \frac i{p^2-m^2-i\epsilon}\exp{-ip(x-y)}
+        \widetilde D_F(x-y)\equiv\lim_{\epsilon\rightarrow0^+}\int\dddd p \frac i{p^2-m^2-i\epsilon}\exp{-ip(x-y)}\label{q2eq6}
     \end{equation}
 \end{theorem}
 

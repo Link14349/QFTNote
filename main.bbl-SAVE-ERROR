@@ -422,6 +422,36 @@
       \field{pages}{70\bibrangedash 72}
       \range{pages}{3}
     \endentry
+    \entry{schwartz-kernel}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=1e7b6dde56467cb787f369fadc91b2df}{%
+           family={Schwartz},
+           familyi={S\bibinitperiod},
+           given={Matthew\bibnamedelima D.},
+           giveni={M\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Cambridege University Press}%
+      }
+      \strng{namehash}{1e7b6dde56467cb787f369fadc91b2df}
+      \strng{fullhash}{1e7b6dde56467cb787f369fadc91b2df}
+      \strng{fullhashraw}{1e7b6dde56467cb787f369fadc91b2df}
+      \strng{bibnamehash}{1e7b6dde56467cb787f369fadc91b2df}
+      \strng{authorbibnamehash}{1e7b6dde56467cb787f369fadc91b2df}
+      \strng{authornamehash}{1e7b6dde56467cb787f369fadc91b2df}
+      \strng{authorfullhash}{1e7b6dde56467cb787f369fadc91b2df}
+      \strng{authorfullhashraw}{1e7b6dde56467cb787f369fadc91b2df}
+      \field{extraname}{4}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{chapter}{12}
+      \field{title}{Quantum Field Theory and the Standard Model}
+      \field{year}{2014}
+      \field{pages}{289\bibrangedash 293}
+      \range{pages}{5}
+    \endentry
     \entry{sredinicki-ugammau}{book}{}{}
       \name{author}{1}{}{%
         {{hash=dcf0b6d39b9c28db1835e7d435784d7b}{%
@@ -558,6 +588,30 @@
       \field{year}{2009}
       \field{pages}{196\bibrangedash 221}
       \range{pages}{26}
+    \endentry
+    \entry{gft:lecture1}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=31c16c4605f99ef84585a94b39b993e2}{%
+           family={腾飞},
+           familyi={腾\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {复旦大学规范场理论PHYS70012.01课程讲义}%
+      }
+      \strng{namehash}{31c16c4605f99ef84585a94b39b993e2}
+      \strng{fullhash}{31c16c4605f99ef84585a94b39b993e2}
+      \strng{fullhashraw}{31c16c4605f99ef84585a94b39b993e2}
+      \strng{bibnamehash}{31c16c4605f99ef84585a94b39b993e2}
+      \strng{authorbibnamehash}{31c16c4605f99ef84585a94b39b993e2}
+      \strng{authornamehash}{31c16c4605f99ef84585a94b39b993e2}
+      \strng{authorfullhash}{31c16c4605f99ef84585a94b39b993e2}
+      \strng{authorfullhashraw}{31c16c4605f99ef84585a94b39b993e2}
+      \field{sortinit}{腾}
+      \field{sortinithash}{6a48c7c12e4348d29bb5b01fbfba3828}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{Introduction}}
+      \field{year}{2026}
     \endentry
   \enddatalist
 \endrefsection

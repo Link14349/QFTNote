@@ -222,91 +222,111 @@
 这个传播子实在有点丑, 而且很不方便. 这一问题来源于Lorentz规范下$A^0$并没有动力学, 这导致我们的传播子没有$00, 0i, i0$元素. 同时电磁场是没有纵模的, 只有横模的两个极化方向, 这导致传播子中需要将纵模剔除, 这导致$g_{ij}+p_ip_j/|\vec p|^2$中第二项的出现. 尽管理论上来说我们完全可以在Lorentz规范下进行计算, 但一般情况下我们并不希望使用这么复杂的传播子, 因此我们试图寻找一种新的规范固定方式, 使得其传播子拥有一个简洁的形式.
 
 \subsubsection{$\xi$规范}
-我们希望我们的传播子能够更加漂亮且方便, 我们引入一个所谓的$\xi$规范来进行规范固定(注意, 规范固定Gauge Fixing和规范条件Gauge Condition并不是一个概念, 我们上面的Lorentz规范是一个规范条件, 它用一个额外的方程强行约束了$A$, 但是接下来我们会看到, 规范固定采取一种不同的做法). 我们的Motivation是引入一个参数$\xi$来使得它有逆, 即:
-\begin{equation}
-    (-p^2g_{\mu\nu}+p_\mu p_\nu)\to(-p^2g_{\mu\nu}+(1-\frac1\xi)p_\mu p_\nu)
-\end{equation}
-
-这样我们就能对$(-p^2g_{\mu\nu}+(1-\frac1\xi)p_\mu p_\nu)$求逆了:
-\begin{equation}
-    -\frac{g^{\mu\lambda}+(\xi-1)p^\mu p^\lambda/p^2}{p^2}(-p^2g_{\lambda\nu}+(1-\frac1\xi)p_\lambda p_\nu)
-\end{equation}
-
-也就是说我们想要EoM变为:
-\begin{equation}
-    (g_{\mu\nu}\partial^2-(1-\frac1\xi)\partial_\mu\partial_\nu)A^\nu=J_\mu
-\end{equation}
-
-为了得到这样的EoM, 我们可以在拉氏量中加入一个规范项:
-\begin{equation}
-    \mathcal L=-\frac14F^2-J_\mu A^\mu-\frac1{2\xi}(\partial_\mu A^\mu)^2, 
-\end{equation}
-从而得到我们想要的EoM. 并且注意到, 做规范变换$A'^\mu=A^\mu+\partial^\mu\Lambda$, 其中
-\begin{equation}
-    \partial^2\partial_\nu\Lambda=\frac{\xi'-\xi}{\xi}\partial_\nu\partial_\mu A^\mu
-\end{equation}
-或者写成
-\begin{equation}
-    \partial^2\partial_\nu\Lambda=\frac{\xi'-\xi}{\xi'}\partial_\nu\partial_\mu A'^\mu
-\end{equation}
-$A'^\mu$的EoM就变成:
-\begin{equation}
-    (g_{\mu\nu}\partial^2+(\frac1{\xi'}-1)\partial_\mu\partial_\nu)A'^\mu=J_\nu
-\end{equation}
-这说明$\xi$的不同取值其实就对应不同的规范.
-
-\kaishu
-这里我们会质疑, 规范变换不应当改变EoM, 为什么$\xi$规范会改变EoM? 我们可以证明, $\xi$规范带来的额外非物理贡献在涉及计算具体物理量, 比如$S$矩阵时是可以严格消掉的. (具体证明待续)
-
-进一步的理解就是, 这里的规范固定后的场已经不是我们经典意义下的电磁场了: 显而易见, 它的动力学和经典电磁场完全不同, 它并不是Maxwell方程所描述的电磁场. 我们回到经典情况下考虑, 这个$\xi$"规范"下电磁场的EoM为
+我们希望我们的传播子能够更加漂亮且方便, 我们尝试通过路径积分的方法来解决这个问题. 首先, 如果我们直接考虑路径积分
 \begin{align}
-    \nabla\cdot\vec E=\rho-\frac1\xi\partial_t\left(\partial_t A^0+\nabla\cdot\vec A\right)\\
-    \nabla\times\vec B-\partial_t\vec E=\vec J+\frac1\xi\nabla\left(\partial_t A^0+\nabla\cdot\vec A\right)
+    Z[J]=\int\mathcal DA\exp{i\int\d^4x(-\frac14 F^2+J\cdot A)}, 
 \end{align}
-无源的两个Maxwell仍然满足:
+由于
 \begin{align}
-    \nabla\times\vec E+\partial_t\vec B=0\\
-    \nabla\cdot\vec B=0
+    \det{g_{\mu\nu}\partial^2-\partial_\mu\partial_\nu}=0, 
 \end{align}
-粒子的受力仍然为
-\begin{equation}
-    \vec F=q(\vec E+\vec v\times\vec B).
-\end{equation}
+所以这个积分是发散的. 原因在于场$A$的选取具有规范自由度$A_\mu\to A_\mu+\partial_\mu\alpha$, 而在$\alpha$这个自由度上进行积分只是纯粹的累加, 并不会在$\rm{exp}$中贡献Gaussian压低, 进行无穷次累加后就会导致发散. 我们解决这一问题的方法在于将规范冗余的自由度提取出来, 将其变为与后面规范固定的部分相互独立的部分. 而所谓的提取, 就是将$\alpha$部分的路径积分单独提取出来写为一个$\int\mathcal D\alpha$.
 
-有源的两个方程组的修改导致$\vec E, \vec B$显然完全不是经典电磁场的值. 所以说经过这么一个规范固定过程, 我们相当于找到了一个并不满足经典电磁场运动学, 但是能够保持$S$矩阵不变的"辅助场", 在某个确定$\xi$的Lagrangian下, 它就是一个不具有规范不变性的场: 没有Lorentz规范之类的规范条件强行约束. 它不具有规范冗余, 单纯的一个EoM
-\begin{equation}
-    (g_{\mu\nu}\partial^2-(1-\frac1\xi)\partial_\mu\partial_\nu)A^\nu=0
-\end{equation}
-就足以描述它的全部动力学性质.
-\songti
+我们记$A\to A+\partial\alpha$为$\prescript{\alpha}{}{A}$, 即
+\begin{align}
+    \prescript{\alpha}{}{A_\mu}\equiv A_\mu+\partial_\mu\alpha.
+\end{align}
 
-% 我们将EoM改写为
-% \begin{equation}
-%     \partial_\mu F^{\mu\nu}+\frac1\xi\partial^\nu\partial_\mu A^\mu=0,
-% \end{equation}
-% 利用$F^{\mu\nu}$的反称性, 对等式施加$\partial_\nu$, 我们有
-% \begin{equation}
-%     (\partial^2)\partial_\mu A^\mu=0.
-% \end{equation}
-% 在动量空间可以写为
-% \begin{equation}
-%     p^2 p\cdot A=0, 
-% \end{equation}
+我们设我们使用的规范固定为
+\begin{align}
+    f(A)=0,
+\end{align}
+利用
+\begin{align}
+    \int\mathcal D\alpha\delta(f(\prescript{\alpha'}{}{A}))\Delta(A)=1, 
+\end{align}
+其中
+\begin{align}
+    \Delta(A)=\left|\frac{\delta f}{\delta\alpha}\right|_{\alpha=0}.
+\end{align}
+则可以将积分改写为
+\begin{align}
+    Z[J]=\int\mathcal D\alpha\int\mathcal DA\Delta(A)\delta(f(\prescript{\alpha}{}{A}))\exp{iS},
+\end{align}
+再利用
+\begin{align}
+    \mathcal D(A+\partial_\mu\alpha)&=\mathcal DA,\\
+    \Delta(A)^{-1}&=\int\mathcal D\alpha'\delta(f(\prescript{\alpha'}{}{A}))=\int\mathcal D(\alpha'+\alpha)\delta(f(\prescript{\alpha'+\alpha}{}{A}))\notag\\
+    &=\int\mathcal D\alpha'\delta(f(\prescript{\alpha'+\alpha}{}{A}))=\Delta(\prescript{\alpha}{}{A}),
+\end{align}
+我们有
+\begin{align}
+    Z[J]&=\int\mathcal D\alpha\int\mathcal D\prescript{\alpha}{}{A}\Delta(\prescript{\alpha}{}{A})\delta(f(\prescript{\alpha}{}{A}))\exp{iS}\\
+    &=\int\mathcal D\alpha\int\mathcal DA\Delta(A)\delta(f(A))\exp{iS}.
+\end{align}
 
-% 由此可见, $\xi$的不同取值其实就对应不同的规范, 在不同规范下传播子是不同的:
-% % 并且Lorenz规范就是$\xi=0$: 这时$\frac1\xi$变为无穷大, 为了满足EoM, 我们必须要求$\partial_\mu A^\mu=0$
-我们直接写出Green函数
-\begin{equation}
-    G_{\mu\nu}(x-y)=\int\dddd p\left(-\frac{g_{\mu\nu}+(\xi-1)p_\mu p_\nu/p^2}{p^2}\right)\exp{-ip(x-y)}
-\end{equation}
-从而得到光子传播子:
-\begin{equation}
-    \frac{-i(g_{\mu\nu}+(\xi-1)p_\mu p_\nu/p^2)}{p^2+i\epsilon}
-\end{equation}
-取$\xi=1$, 就是Feynman规范, 得到其传播子
-\begin{equation}
-    \frac{-ig_{\mu\nu}}{p^2+i\epsilon}
-\end{equation}
+然后我们考虑一个具体的规范固定方式, 比如选择
+\begin{align}
+    f(A)=\partial_\mu A^\mu-\omega(x)=0,
+\end{align}
+则根据
+\begin{align}
+    f(\prescript{\alpha}{}{A})=\partial_\mu A^\mu+\Box\alpha-\omega(x)=0,
+\end{align}
+我们有
+\begin{align}
+    \Delta(A)=\left|\frac{\delta f}{\delta\alpha}\right|_{\alpha=0}=|\Box|.
+\end{align}
+可以发现$\Delta(A)$与$A$是无关的. 不过考虑Non-Abelian的Yang-Mills理论, 则$\Delta(A)$是包含$A$的, 我们对此的处理会更加复杂一些. 
+
+于是有
+\begin{align}
+    Z[J]=\int\mathcal D\alpha\int\mathcal DA\Delta(A)\delta(\partial_\mu A^\mu-\omega)\exp{iS}.
+\end{align}
+由于$\rm{exp}$外面还有一个$\delta$函数, 这让我们非常不爽, 我们希望想办法把$\delta$消掉, 对此的解决方法可以是再对$\omega$做一次积分. 由于我们关心的是$\frac{Z[J]}{Z[0]}$, 所以$Z$上整体的因子多少是无所谓的, 于是我们可以直接给原来的路径积分再乘上一个常数因子: $\int\mathcal D\omega\exp{i\int\d^4x(-\frac{\omega^2}{2\xi})}$, 其中$\xi$为某一常数. 这里引入一个Gaussian分布是为了压制积分使之收敛. 再加上$\int\mathcal D\alpha$已经完全提取出来了规范自由度, 积分剩下的部分与$\alpha$无关, 因此这也是对$Z$的一个整体常数(虽然是无穷大), 我们可以将之丢掉, 于是最终有配分函数
+\begin{align}
+    Z[J]=\int\mathcal D\omega\int\mathcal DA\Delta(A)\delta(\partial_\mu A^\mu-\omega)\exp{i\int\d^4x(-\frac{\omega^2}{2\xi})}\exp{iS},
+\end{align}
+然后先对$\omega$积分我们即可将$\delta$消掉, 并丢掉与$A$无关的$\Delta(A)=|\Box|$, 得到
+\begin{align}
+    Z[J]=\int\mathcal DA\exp{i\int\d^4x(-\frac14 F^2-\frac{(\partial_\mu A^\mu)}{2\xi}+J\cdot A)}.
+\end{align}
+从而得到规范固定后的Lagrangian
+\begin{align}
+    \mathcal L_{GF}=-\frac14 F^2-\frac{(\partial_\mu A^\mu)}{2\xi}+J\cdot A=\frac12 A^\mu(g_{\mu\nu}\partial^2-(1-\frac1\xi)\partial_\mu\partial_\nu)A^\nu+J_\mu A^\mu.
+\end{align}
+
+我们设
+\begin{align}
+    O_{\mu\nu}=g_{\mu\nu}\partial^2-(1-\frac1\xi)\partial_\mu\partial_\nu
+\end{align}
+其逆为Green函数$G^{\mu\nu}$:
+\begin{align}
+    G^{\mu\nu}(x-y)=\int\dddd p\frac{-g^{\mu\nu}+(1-\xi)p^\mu p^\nu/p^2}{p^2+i\epsilon}\exp{-ip(x-y)}
+\end{align}
+于是
+\begin{align}
+    S&=\frac12\braket{A^\mu, O_{\mu\nu}A^\nu}+\braket{J_\mu, A^\mu}\\
+    &=\frac12\braket{A^\mu+G^{\mu\alpha}J_\alpha, O_{\mu\nu}(A^\nu+G^{\nu\alpha}J_\alpha)}-\frac12\braket{J_\mu, G^{\mu\nu}J_\nu}.
+\end{align}
+设光子传播子为
+\begin{align}
+    D_{\mu\nu}(x-y)\equiv iG_{\mu\nu}(x-y)=\int\dddd p\frac{-i}{p^2+i\epsilon}(g_{\mu\nu}+(1-\xi)p_\mu p_\nu/p^2)\exp{-ip(x-y)}
+\end{align}
+我们有
+\begin{align}
+    Z[J]=Z[0]\exp{-\frac12\int\d^4x\d^4yJ^\mu(x)D_{\mu\nu}(x-y)J^{\nu}(y)},
+\end{align}
+从而有
+\begin{align}
+    \braket{A_\mu(x)A_\nu(y)}=\frac{-1}{Z[0]}\frac{\delta}{\delta J(x)}\frac{\delta}{\delta J(y)}Z[J]\Big|_{J=0}=D_{\mu\nu}(x-y).
+\end{align}
+
+对于经典电动力学, 我们也是可以使用$\xi$规范固定下来的
+\begin{align}
+    \mathcal L_{GF}=-\frac14 F^2-\frac{(\partial_\mu A^\mu)}{2\xi}+J\cdot A\notag
+\end{align}
+进行计算.
 
 \newpage
 \section{标量QED}

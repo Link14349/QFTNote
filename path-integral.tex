@@ -436,10 +436,70 @@
         +\cdots
 \end{align}
 
-可以发现, 在这里我们的具体展开与推导都和Dyson级数的推导方式完全一样. 
+可以发现, 在这里我们的具体展开与推导都和Dyson级数的推导方式完全一样. 但是, 比起Dyson级数, 路径积分还有其他方式所不具有的优点: 极大的泛用性与可扩展性, 这使得它的应用远不止局限于量子场论的关联函数计算中. 凡是具有类似场论的数学结构的对象, 都可以利用路径积分来处理, 即使是完全的经典场, 或者半经典场, 都可以利用路径积分进行计算. 我们认为, 路径积分是一种处理无穷自由度体系的一种通用工具. 在下节中, 我们会给出一些具体的例子, 说明路径积分的其他用处.
 
-\subsection{路径积分在统计物理中的应用}
-在上节中我们看到, 路径积分具有和和统计物理配分函数完全类似的形式, 更确切地说, 其实从本质上来说, 对于相互作用体系, 统计物理的微扰处理方法和路径积分的做法完全是一样的, 只是将$iS$替换为了$-\beta H$罢了, 本质上都是对一个场的路径积分. 于是在这里, 我想给出两个统计物理中的例子\cite{SchroederClusterExpansion}\cite{LiuChuanIsing}, 用来说明路径积分在统计物理中处理相互作用体系的作用, 并给出完全类似的Feynman规则.
-\subsubsection{弱相互作用气体}
+\subsection{路径积分的其它应用}
+\subsubsection{从量子场到经典场相互作用}\label{pi-yukawa}
+考虑Pi介子的相互作用, 它是核力的传播粒子, 它有经典的Yukawa势
+\begin{align}
+    U(r)=-\frac{g_1 g_2\exp{-mr}}{4\pi r^2}.
+\end{align}
+这个经典势可以通过路径积分计算有效Lagrangian得到. 我们知道Pi介子自旋为$0$, 并且不带电荷, 因此可以用实标量场来描述.
+
+我们考虑有两个经典点粒子$m_1, m_2$相互作用, 以标量场为介导, 我们有作用量
+\begin{align}
+    S=\int -m_1\d\tau_1+\int-m_2\d\tau_2+\int\d^4x(\frac12(\partial\phi)^2-\frac12 m^2\phi^2+J\phi)
+\end{align}
+其中$J$为点粒子产生的源
+\begin{align}
+    J(x)=g_1\int\d\tau_1\delta(x-y_1(\tau_1))+g_2\int\d\tau_2\delta(x-y_2(\tau_2)).
+\end{align}
+我们的目标是通过路径积分将标量场$\phi$部分抹去, 只剩下一个经典的有效作用量, 
+\begin{align}
+    \exp{iS_{\rm{eff}}}=\int\mathcal D\phi\exp{iS}
+\end{align}
+然后我们期待$S_{\rm{eff}}$具有如下形式:
+\begin{align}
+    S_{\rm{eff}}=\int -m_1\d\tau_1+\int-m_2\d\tau_2-\int\d t U(\vec y_1-\vec y_2),
+\end{align}
+这样我们就可以从中直接提取出经典势的部分$U(r)$了.
+
+直接计算有
+\begin{align}
+    \exp{iS_{\rm{eff}}}=\exp{i(S_1+S_2)}\exp{-\frac12\int\d^4x_1\d^4x_2J(x_1)D_F(x_1-x_2)J(x_2)}.
+\end{align}
+我们假设质点$m_1, m_2$都是静止不动的, 于是得
+\begin{align}
+    S_{\rm{eff}}=\int -m_1\d t_1+\int-m_2\d t_2+\frac i2\int\d^4x_1\d^4x_2J(x_1)D_F(x_1-x_2)J(x_2),
+\end{align}
+直接展开, 只考虑相互作用项$S_{\rm{mutual}}$, 设$\vec y_1-\vec y_2=\vec r$, 我们有
+\begin{align}
+    S_{\rm{mutual}}&=i g_1g_2\int\d t_1\int\d t_2 D_F(y_1-y_2)\\
+    &=i g_1g_2\int\d t_1\int\d t_2\int\dddd p\frac i{p^2-m^2+i\epsilon}\exp{-i(\omega(t_1-t_2)-\vec p\cdot\vec r)}
+\end{align}
+首先对$t_1$积分, 得到一个$\delta(\omega)$, 消掉一个$\d p$, 我们有
+\begin{align}
+    S_{\rm{mutual}}&=\int\d tg_1g_2\int\ddd p\frac{\exp{i\vec p\cdot\vec r}}{\vec p^2+m^2}\\
+    &=\int\d tg_1g_2\frac{\exp{-mr}}{4\pi r}\\
+    &=\int\d t-U(r).
+\end{align}
+
+于是我们得到相互作用Yukawa势
+\begin{align}
+    U(r)=-\frac{g_1g_2\exp{-mr}}{4\pi r},
+\end{align}
+这正是我们所期望得到的! 进一步地, 我们考虑经典极限$\hbar\to 0$, 即$mr\to\infty$, 于是有
+\begin{align}
+    U(r)\approx0.
+\end{align}
+这告诉我们, 有质量标量场在$\hbar\to 0$的经典极限下, 不存在经典相互作用. 而无质量标量场则不受此印象, 始终都是
+\begin{align}
+    U(r)=-\frac{g_1g_2}{4\pi r}, 
+\end{align}
+这正是相互吸引的Coloumb势.
+
+\subsubsection{真空零点能的路径积分计算}
+
 
 \subsubsection{铁磁Ising模型的Landau自由能模型}
+在之前中我们看到, 路径积分具有和和统计物理配分函数完全类似的形式, 更确切地说, 其实从本质上来说, 对于相互作用体系, 统计物理的微扰处理方法和路径积分的做法完全是一样的, 只是将$iS$替换为了$-\beta H$罢了, 本质上都是对一个场的路径积分. 于是在这里, 我想给出两个统计物理中的例子: 弱相互作用气体(注意, 是指弱的相互作用, 而不是SM中的"弱相互作用")\cite{SchroederClusterExpansion}, 铁磁Ising模型\cite{LiuChuanIsing}, 用来说明路径积分在统计物理中处理相互作用体系的作用, 并给出完全类似的Feynman规则.

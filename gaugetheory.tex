@@ -322,11 +322,45 @@
     \braket{A_\mu(x)A_\nu(y)}=\frac{-1}{Z[0]}\frac{\delta}{\delta J(x)}\frac{\delta}{\delta J(y)}Z[J]\Big|_{J=0}=D_{\mu\nu}(x-y).
 \end{align}
 
-对于经典电动力学, 我们也是可以使用$\xi$规范固定下来的
+需要备注, 对于经典电动力学, 我们也是可以使用$\xi$规范固定下来的
 \begin{align}
     \mathcal L_{GF}=-\frac14 F^2-\frac{(\partial_\mu A^\mu)}{2\xi}+J\cdot A\notag
 \end{align}
 进行计算.
+
+\subsection{规范矢量场的经典相互作用势}
+这里我们利用类似\ref{pi-yukawa}节的方法, 计算验证我们导出的光子传播子确实符合我们熟知的经典Coloumb势
+\begin{align}
+    U(r)=\frac{e_1e_2}{4\pi r}.
+\end{align}
+
+考虑两带电粒子$q_1, q_2$, 电流为
+\begin{align}
+    J^\mu(x)=q_1\int\d\tau\de{y_1^\mu}{\tau}\delta^4(x-y_1)+q_2\int\d\tau\de{y_2^\mu}{\tau}\delta^4(x-y_2).
+\end{align}
+于是我们有
+\begin{align}
+    S_{\rm{eff}}&=\frac i2\int\d^4x_1\d^4x_2J^\mu(x_1)D_{\mu\nu}(x_1-x_2)J^\nu(x_2)\\
+    &=iq_1q_2\int\d\tau_1\int\d\tau_2\de{y_1^\mu}{\tau}\de{y_2^\nu}{\tau}D_{\mu\nu}(y_1-y_2),
+\end{align}
+我们继续假设带电粒子静止, 并且$\vec r=\vec y_1-\vec y_2$, 于是有
+\begin{align}
+    S_{\rm{eff}}&=iq_1q_2\int\d t_1\int\d t_2 D_{00}(y_1-y_2)\\
+    &=q_1q_2\int\d t_1\d t_2\int\dddd p\frac{g_{00}-(1-\xi)p_0p_0/p^2}{p^2+i\epsilon}\exp{-i(\omega(t_1-t_2)-\vec p\cdot(\vec y_1-\vec y_2))}
+\end{align}
+对$\d t_1$积分得到一个$\delta(\omega)$, 再消掉一个$\d p$, 代入$\omega=0$, 我们有,
+\begin{align}
+    S_{\rm{eff}}&=-q_1q_2\int\d t\int\ddd p\frac{\exp{i\vec p\cdot\vec r}}{\vec p^2}\\
+    &=-\int\d t\frac{q_1q_2}{4\pi r}\\
+    &=-\int\d t U(r).
+\end{align}
+
+从而我们有结论
+\begin{align}
+    U(r)=\frac{q_1q_2}{4\pi r}\notag,
+\end{align}
+这符合我们的预期.
+
 
 \newpage
 \section{标量QED}

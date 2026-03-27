@@ -499,7 +499,53 @@
 这正是相互吸引的Coloumb势.
 
 \subsubsection{真空零点能的路径积分计算}
+我们考虑真空演化
+\begin{align}
+    \braket{0, t=-\infty|0, t=+\infty}=\braket{0|\exp{-iHt}|0}=\braket{0|\exp{-iE_0T}|0}
+\end{align}
+其中$E_0$为真空零点能, $T=\int_{-\infty}^{\infty}\d t$. 这告诉我们, 我们其实可以利用
+\begin{align}
+    \braket{0, -\infty|0, +\infty}=\int\mathcal D\phi\exp{iS}=Z[0]
+\end{align}
+来计算真空零点能.
 
+考虑标量场
+\begin{align}
+    \mathcal L=-\frac12\phi(\Box+m^2)\phi,
+\end{align}
+利用Gaussian积分公式, 我们得到
+\begin{align}
+    Z[0]=\frac{C}{\sqrt{|\Box+m^2|}}.
+\end{align}
+其中$C$为一些与我们关注的无关的常数.
+
+利用公式
+\begin{align}
+    |A|=\Tr{\ln A},
+\end{align}
+我们有
+\begin{align}
+    Z[0]=C\exp{-\frac12\Tr\ln(\Box+m^2)}.
+\end{align}
+而
+\begin{align}
+    \Tr\ln(\Box+m^2)&=VT\cdot\int\dddd p\ln(-p^2+m^2-i\epsilon)\\
+    &=VT\cdot\int\ddd p\int\frac{\d omega}{2\pi}\ln(-\omega^2+\om{k}^2-i\epsilon)\\
+    &=VT\cdot\int\ddd p\pa{}{\alpha}\int\frac{\d omega}{2\pi}\frac{-1}{(-\omega^2+\om{k}^2-i\epsilon)^\alpha}
+\end{align}
+利用Mathematica进行艰苦卓绝的计算, 我们得到
+\begin{align}
+    \Tr\ln(\Box+m^2)=VT\int\ddd p\sqrt{-\om k^2+i\epsilon}=VT\int\ddd p i\om k.
+\end{align}
+又根据
+\begin{align}
+    \exp{-\frac12\Tr\ln(\Box+m^2)}=\exp{-iE_0 T},
+\end{align}
+于是我们有
+\begin{align}
+    \frac{E_0}{V}=\int\ddd p\frac12\om k.
+\end{align}
+这和正则量子化的结果一致.
 
 \subsubsection{铁磁Ising模型的Landau自由能模型}
 在之前中我们看到, 路径积分具有和和统计物理配分函数完全类似的形式, 更确切地说, 其实从本质上来说, 对于相互作用体系, 统计物理的微扰处理方法和路径积分的做法完全是一样的, 只是将$iS$替换为了$-\beta H$罢了, 本质上都是对一个场的路径积分. 于是在这里, 我想给出两个统计物理中的例子: 弱相互作用气体(注意, 是指弱的相互作用, 而不是SM中的"弱相互作用")\cite{SchroederClusterExpansion}, 铁磁Ising模型\cite{LiuChuanIsing}, 用来说明路径积分在统计物理中处理相互作用体系的作用, 并给出完全类似的Feynman规则.

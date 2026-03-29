@@ -436,7 +436,204 @@
         +\cdots
 \end{align}
 
-可以发现, 在这里我们的具体展开与推导都和Dyson级数的推导方式完全一样. 但是, 比起Dyson级数, 路径积分还有其他方式所不具有的优点: 极大的泛用性与可扩展性, 这使得它的应用远不止局限于量子场论的关联函数计算中. 凡是具有类似场论的数学结构的对象, 都可以利用路径积分来处理, 即使是完全的经典场, 或者半经典场, 都可以利用路径积分进行计算. 我们认为, 路径积分是一种处理无穷自由度体系的一种通用工具. 在下节中, 我们会给出一些具体的例子, 说明路径积分的其他用处.
+可以发现, 在这里我们的具体展开与推导都和Dyson级数的推导方式完全一样. 但是, 比起Dyson级数, 路径积分还有其他方式所不具有的优点: 极大的泛用性与可扩展性, 这使得它的应用远不止局限于量子场论的关联函数计算中. 凡是具有类似场论的数学结构的对象, 都可以利用路径积分来处理, 即使是完全的经典场, 或者半经典场, 都可以利用路径积分进行计算. 我们认为, 路径积分是一种处理无穷自由度体系的一种通用工具. 在本节接下来的部分中, 我们会给出一些具体的例子, 说明路径积分的其他用处.
+
+\subsection{Schwinger-Dyson定理}
+通过路径积分可以得到Schwinger-Dyson定理, 这个定理同样可以推导Feynman规则(但是比较猎奇). 这是一个非微扰的定理.
+\begin{theorem}[Schwinger-Dyson定理]\label{SchwingerDysonTheorem}
+    \begin{equation}
+        (\Box_x+m^2)\braket{\phi_x\phi_1\cdots\phi_n}=\braket{\mathcal L_{\rm{int}}'(\phi_x)\phi_1\cdots\phi_n}-i\sum_j\delta_{xj}\braket{\phi_1\cdots\phi_{j-1}\phi_{j+1}\cdots\phi_n}
+    \end{equation}
+\end{theorem}
+
+\begin{proof}
+    积分测度在场变换$\phi\to\phi+\epsilon(x)$下不变:
+    \begin{align}
+        \mathcal D\phi=\mathcal D(\phi+\epsilon), 
+    \end{align}
+    于是我们可以得到
+    \begin{align}
+        Z[J]=\int\mathcal D\phi\exp{iS}=\int\mathcal D(\phi-\epsilon)\exp{iS(\phi)}.
+    \end{align}
+
+    然后换元, 将$\phi-\epsilon$换为新的场$\phi$, 我们有
+    \begin{align}
+        Z[J]&=\int\mathcal D\phi\exp{i\int\d^4x(-\frac12\phi(\Box+m^2)\phi+\mathcal L_{\rm{int}}(\phi)+J\phi)}\notag\\
+        &=\int\mathcal D\phi\exp{i\int\d^4x(-\frac12(\phi+\epsilon)(\Box+m^2)(\phi+\epsilon)+\mathcal L_{\rm{int}}(\phi+\epsilon)+J(\phi+\epsilon))}.
+    \end{align}
+    
+    这告诉我们变换前后的$\delta Z=0$, 设$\epsilon$是小量, 展开到一阶, 于是有
+    \begin{align}
+        0=\delta Z[J]=\int\mathcal D\phi i\int\d^4x\epsilon(x)(-(\Box+m^2)\phi+\mathcal L_{\rm{int}}'+J)\exp{iS}.
+    \end{align}
+    又由于$\epsilon$是任意的, 我们将$i\int\d^4x\epsilon(x)$提取到路径积分外, 若要令结果对任意的$\epsilon(x)$都为零, 只能要求路径积分的结果为$0$, 即
+    \begin{align}
+        \int\mathcal D\phi(-(\Box+m^2)\phi+\mathcal L_{\rm{int}}'+J)\exp{iS}=0.
+    \end{align}
+    将这个结果求$J=0$处对$J$的n阶变分, 我们有
+    \begin{align}
+        (\Box_x+m^2)\braket{\phi_x\phi_1\cdots\phi_n}=\braket{\mathcal L_{\rm{int}}'(\phi_x)\phi_1\cdots\phi_n}-i\sum_j\delta_{xj}\braket{\phi_1\cdots\phi_{j-1}\phi_{j+1}\cdots\phi_n}.\notag
+    \end{align}
+\end{proof}
+
+然后我们展示通过这个定理, 考虑$\phi^3$理论, 以计算$\braket{\phi_1\phi_2}$为例, 导出位置空间的Feynman规则.
+\begin{align}
+    \braket{\phi_1\phi_2}&=\int\d^4x\delta_{1x}\braket{\phi_x\phi_2}=\int\d^4xi(\Box_x+m^2)D_{1x}\braket{\phi_x\phi_2}\\
+    &=\int\d^4xiD_{1x}(\Box_x+m^2)\braket{\phi_x\phi_2}\\
+    &=\int\d^4x\frac{ig}2 D_{1x}\braket{\phi_x^2\phi_2}-i\delta_{x2}\cdot iD_{1x}\\
+    &=D_{12}+\frac{ig}2\int\d^4xD_{1x}\braket{\phi_x^2\phi_2}
+\end{align}
+
+而依葫芦画瓢我们有
+\begin{align}
+    \braket{\phi_x^2\phi_2}&=\int\d^4 iD_{y2}(\Box_y+m^2)\braket{\phi_x^2\phi_y}\\
+    &=\frac{ig}2\int\d^4y D_{2y}\braket{\phi_x^2\phi_y^2}-2i\int\d^4y \delta_{xy}iD_{y2}\braket{\phi_x}\\
+    &=\frac{ig}2\int\d^4y D_{2y}\braket{\phi_x^2\phi_y^2}+2D_{x2}\braket{\phi_x}
+\end{align}
+
+梅开三度
+\begin{align}
+    \braket{\phi_x}&=\int\d^4y iD_{yx}(\Box_y+m^2)\braket{\phi_y}\\
+    &=\frac{ig}2\int\d^4y D_{yx}\braket{\phi_y^2}
+\end{align}
+
+于是最后整理得
+\begin{equation}
+    \braket{\phi_1\phi_2}=D_{12}-\left(\frac g2\right)^2\int \d^4x\d^4y(2D_{1x}D_{xy}D_{xy}D_{y2}+D_{1x}D_{xx}D_{yy}D_{y2}+2D_{1x}D_{xy}D_{yy}D_{x2})\label{2pt-correlation-expansion-schwinger-dyson}
+\end{equation}
+
+我们可以用Feynman图来表示这些二阶贡献, 并且类似地写下$\phi^3$理论在位形空间的Feynman规则.
+\begin{figure}[htbp!]
+    \begin{tikzpicture}
+        \draw (-0.5,0) -- (1,0) ;
+        \draw (2,0) -- (3.5,0);
+        \filldraw[black] (1,0) circle (1pt) node[below] {$x$} ;
+        \filldraw[black] (-0.5,0) circle (1pt)node[below] {$x_1$} ;
+        \filldraw[black] (2,0) circle (1pt) node[below] {$y$} ;
+        \filldraw[black] (3.5,0) circle (1pt)node[below] {$x_2$}  ;
+        \draw (1,0)..controls(0.4,1.2)and(1.6,1.2)..(1,0);
+        \draw (2,0)..controls(1.4,1.2)and(2.6,1.2)..(2,0);
+        \draw (4.2,0)--(4.5,0);
+        \draw (4.35,0.15)--(4.35,-0.15);
+        \draw (5.2,0)--(6.7,0);
+        \draw (7.7,0)--(9.2,0);
+        \filldraw[black] (6.7,0) circle (1pt);% node[below] {$x$} ;
+        \filldraw[black] (6.5,0)  node[below] {$x$} ;
+        \filldraw[black] (5.2,0) circle (1pt)node[below] {$x_1$} ;
+        \filldraw[black] (7.7,0) circle (1pt);
+        \filldraw[black] (7.9,0) node[below] {$y$} ;
+        \filldraw[black] (9.2,0) circle (1pt)node[below] {$x_2$}  ;
+        \draw (6.7,0) arc (180:0:0.5 and 0.5);
+        \draw (6.7,0) arc (180:360:0.5 and 0.5);
+        \draw (9.9,0)--(10.2,0);
+        \draw(10.05,0.15)--(10.05,-0.15);
+        \draw (10.9,0)--(12.4,0);
+        \draw (12.4,0)--(12.4,1);
+        \filldraw[black] (12.4,0) circle (1pt) node[below] {$x$} ;
+        \filldraw[black] (10.9,0) circle (1pt) node[below] {$x_1$} ;
+        \filldraw[black] (12.4,1) circle (1pt) node[left] {$y$} ;
+        \filldraw[black] (13.9,0) circle (1pt)node[below] {$x_2$}  ;
+        \draw (12.4,0)--(13.9,0);
+        \draw (12.4,1)..controls(13.6,1.6)and(13.6,0.4)..(12.4,1);
+    \end{tikzpicture}
+\end{figure}
+
+至此为止, 三种处理相互作用体系的微扰方法: Dyson级数, 路径积分以及Schwinger-Dyson定理我们都介绍完毕了. 从最终的结果上看, 它们都殊途同归, 得到了完全一致的结果.
+
+\subsection{Ward-Takahashi恒等式}
+我们考虑Noether定理在量子场论中的推广. 我们知道复标量场在$U(1)$变换下是不变的, 类似Schwinger-Dyson定理的推导, 我们假设$\alpha(x)$是局域的, 积分测度在$U(1)$变换下不变
+\begin{align}
+    \mathcal D\psi=\mathcal D(\exp{i\alpha}\psi),
+\end{align}
+然后将$\exp{i\alpha}\psi$替换为新的积分变量$\psi$, 结果应当是不变的. 但是假设$\alpha$是无穷小量, 将$S$中的变化展开到一阶, 我们发现多出正比于$\partial_\mu\alpha$的项. 具体来说, 就是
+\begin{align}
+    &\;\;\int\mathcal D\psi\mathcal D\psi^*\exp{i\int\d^4x(\partial_\mu\psi^*\partial^\mu\psi-\psi^*m^2\psi+J^*\psi+J\psi^*)}\\
+    &=\int\mathcal D\psi\mathcal D\psi^*\exp{i\int\d^4x(\partial_\mu\psi^*\partial^\mu\psi-\psi^*m^2\psi+J^*\psi+J\psi^*+\partial_\mu\alpha J^\mu+i\alpha J^*\psi-i\alpha J\psi^*)}
+\end{align}
+所以根据$\delta Z=0$我们有
+\begin{align}
+    \int\d^4x\alpha(x)\int\mathcal D\phi(-\partial_\mu J^\mu+iJ^*\psi-iJ\psi^*)\exp{iS}=0.
+\end{align}
+由于$\alpha(x)$是任意的, 只能是这个路径积分为$0$
+\begin{align}
+    \int\mathcal D\phi(-\partial_\mu J^\mu+iJ^*\psi-iJ\psi^*)\exp{iS}=0.
+\end{align}
+对$J$求二阶变分, 然后代入$J=0$, 我们得到
+\begin{align}
+    \partial_\mu\braket{J^\mu(x)\psi(x_1)\bar\psi(x_2)}=i\delta(x-x_1)\braket{\psi(x_1)\bar\psi(x_2)}-i\delta(x-x_2)\braket{\psi(x_1)\bar\psi(x_2)}.
+\end{align}
+如果求$n$阶变分, 这个等式可以推广为
+\begin{theorem}[Ward-Takahashi恒等式]
+    \begin{align}
+        \partial_\mu\braket{J^\mu(x)\psi(x_1)\bar\psi(x_2)\cdots\psi(x_n)}=\sum_j iQ_j\delta(x-x_j)\braket{\psi(x_1)\bar\psi(x_2)\cdots\psi(x_n)},
+    \end{align}
+\end{theorem}
+其中对于$\psi$, $Q_j=1$, 对于$\psi^*$, $Q_j=-1$.
+
+将此式做傅里叶变换到动量空间, 记$\braket{J^\mu(x)\psi(x_1)\bar\psi(x_2)\cdots\psi(x_n)}$的傅里叶变换为$\mathcal M^\mu(p, q_1,q_2\cdots q_n)$, $\braket{\psi(x_1)\bar\psi(x_2)\cdots\psi(x_n)}$的傅里叶变换为$M_0(q_1,q_2\cdots q_n)$, 则我们有动量空间的表达式
+\begin{theorem}[Ward-Takahashi恒等式(动量空间)]
+    \begin{align}
+        p_\mu\mathcal M^\mu(p, q_1,q_2\cdots q_n)=\sum_j Q_j M_0(q_1, q_2\cdots q_j+p \cdots q_n).
+    \end{align}
+\end{theorem}
+需要注意, 我们这里并没有约定出入射方向, 统一都认为是乘以$\int\d^4x\exp{-ipx}$, 如果要和LSZ适配, 对于出射的粒子需要将动量符号进行反转(从$+p$变成$-p$).
+
+这个结果即Ward-Takahashi恒等式. 考虑连通图, 将其分解为若干部分, 若在总振幅中出现若干$p_\mu M^\mu$的项, 由于Ward-Takahashi等式可以将其切割出不联通的子部分, 这部分贡献会变成不连通图, 因此在LSZ后, 代入黄金规则的时候不贡献可观测量. 于是我们得到结论, 对于on-shell连通图中的一部分, 有
+\begin{theorem}[Ward恒等式]\label{ward-identity}
+    \begin{align}
+        p_\mu M^\mu=0.
+    \end{align}
+\end{theorem}
+这个结果成为Ward恒等式.
+
+\subsection{真空零点能的路径积分计算}
+我们考虑真空演化
+\begin{align}
+    \braket{0, t=-\infty|0, t=+\infty}=\braket{0|\exp{-iHt}|0}=\braket{0|\exp{-iE_0T}|0}
+\end{align}
+其中$E_0$为真空零点能, $T=\int_{-\infty}^{\infty}\d t$. 这告诉我们, 我们其实可以利用
+\begin{align}
+    \braket{0, -\infty|0, +\infty}=\int\mathcal D\phi\exp{iS}=Z[0]
+\end{align}
+来计算真空零点能.
+
+考虑标量场
+\begin{align}
+    \mathcal L=-\frac12\phi(\Box+m^2)\phi,
+\end{align}
+利用Gaussian积分公式, 我们得到
+\begin{align}
+    Z[0]=\frac{C}{\sqrt{|\Box+m^2|}}.
+\end{align}
+其中$C$为一些与我们关注的无关的常数.
+
+利用公式
+\begin{align}
+    |A|=\Tr{\ln A},
+\end{align}
+我们有
+\begin{align}
+    Z[0]=C\exp{-\frac12\Tr\ln(\Box+m^2)}.
+\end{align}
+而
+\begin{align}
+    \Tr\ln(\Box+m^2)&=VT\cdot\int\dddd p\ln(-p^2+m^2-i\epsilon)\\
+    &=VT\cdot\int\ddd p\int\frac{\d\omega}{2\pi}\ln(-\omega^2+\om{k}^2-i\epsilon)\\
+    &=VT\cdot\int\ddd p\pa{}{\alpha}\int\frac{\d\omega}{2\pi}\frac{-1}{(-\omega^2+\om{k}^2-i\epsilon)^\alpha}
+\end{align}
+利用Mathematica进行艰苦卓绝的计算, 我们得到
+\begin{align}
+    \Tr\ln(\Box+m^2)=VT\int\ddd p\sqrt{-\om k^2+i\epsilon}=VT\int\ddd p i\om k.
+\end{align}
+又根据
+\begin{align}
+    \exp{-\frac12\Tr\ln(\Box+m^2)}=\exp{-iE_0 T},
+\end{align}
+于是我们有
+\begin{align}
+    \frac{E_0}{V}=\int\ddd p\frac12\om k.
+\end{align}
+这和正则量子化的结果一致.
 
 \subsection{路径积分的其它应用}
 \subsubsection{从量子场到经典场相互作用}\label{pi-yukawa}
@@ -497,55 +694,6 @@
     U(r)=-\frac{g_1g_2}{4\pi r}, 
 \end{align}
 这正是相互吸引的Coloumb势.
-
-\subsubsection{真空零点能的路径积分计算}
-我们考虑真空演化
-\begin{align}
-    \braket{0, t=-\infty|0, t=+\infty}=\braket{0|\exp{-iHt}|0}=\braket{0|\exp{-iE_0T}|0}
-\end{align}
-其中$E_0$为真空零点能, $T=\int_{-\infty}^{\infty}\d t$. 这告诉我们, 我们其实可以利用
-\begin{align}
-    \braket{0, -\infty|0, +\infty}=\int\mathcal D\phi\exp{iS}=Z[0]
-\end{align}
-来计算真空零点能.
-
-考虑标量场
-\begin{align}
-    \mathcal L=-\frac12\phi(\Box+m^2)\phi,
-\end{align}
-利用Gaussian积分公式, 我们得到
-\begin{align}
-    Z[0]=\frac{C}{\sqrt{|\Box+m^2|}}.
-\end{align}
-其中$C$为一些与我们关注的无关的常数.
-
-利用公式
-\begin{align}
-    |A|=\Tr{\ln A},
-\end{align}
-我们有
-\begin{align}
-    Z[0]=C\exp{-\frac12\Tr\ln(\Box+m^2)}.
-\end{align}
-而
-\begin{align}
-    \Tr\ln(\Box+m^2)&=VT\cdot\int\dddd p\ln(-p^2+m^2-i\epsilon)\\
-    &=VT\cdot\int\ddd p\int\frac{\d omega}{2\pi}\ln(-\omega^2+\om{k}^2-i\epsilon)\\
-    &=VT\cdot\int\ddd p\pa{}{\alpha}\int\frac{\d omega}{2\pi}\frac{-1}{(-\omega^2+\om{k}^2-i\epsilon)^\alpha}
-\end{align}
-利用Mathematica进行艰苦卓绝的计算, 我们得到
-\begin{align}
-    \Tr\ln(\Box+m^2)=VT\int\ddd p\sqrt{-\om k^2+i\epsilon}=VT\int\ddd p i\om k.
-\end{align}
-又根据
-\begin{align}
-    \exp{-\frac12\Tr\ln(\Box+m^2)}=\exp{-iE_0 T},
-\end{align}
-于是我们有
-\begin{align}
-    \frac{E_0}{V}=\int\ddd p\frac12\om k.
-\end{align}
-这和正则量子化的结果一致.
 
 \subsubsection{铁磁Ising模型的Landau自由能模型}
 在之前中我们看到, 路径积分具有和和统计物理配分函数完全类似的形式, 更确切地说, 其实从本质上来说, 对于相互作用体系, 统计物理的微扰处理方法和路径积分的做法完全是一样的, 只是将$iS$替换为了$-\beta H$罢了, 本质上都是对一个场的路径积分. 于是在这里, 我想给出两个统计物理中的例子: 弱相互作用气体(注意, 是指弱的相互作用, 而不是SM中的"弱相互作用")\cite{SchroederClusterExpansion}, 铁磁Ising模型\cite{LiuChuanIsing}, 用来说明路径积分在统计物理中处理相互作用体系的作用, 并给出完全类似的Feynman规则.

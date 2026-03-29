@@ -70,24 +70,22 @@
     \end{equation}
     即Maxwell方程.
 \end{example}
-\subsection{对称性与守恒量}
+\subsection{Noether定理}
 \songti 在这里我们考虑连续对称性.
 \begin{definition}[连续对称性]
     连续对称性是指在某个参数$\alpha$下，场的变换
     \begin{equation}
         \phi(x) \to \phi'(x) = \phi(x) + \alpha \Delta\phi(x)
     \end{equation}
-    其中, $\Delta$为某一算符.\\
-    若系统具有该变换的对称性, 则运动方程应该不变.\\
-    即:
+    其中, $\Delta$为某一算符. 若系统具有该变换的对称性, 则运动方程应该不变, 即:
     \begin{equation}
-        \mathcal L \to \mathcal L+\alpha\partial_{\mu} J^\mu
+        \mathcal L \to \mathcal L+\alpha\partial_{\mu} J^\mu.
     \end{equation}
 \end{definition}
 \theorem[Noether定理]
 对于存在某对称性的系统, 存在守恒流
 \begin{equation}
-    j^\mu=\Pi^\mu\Delta\phi - J^\mu
+    j^\mu=\Pi^\mu\Delta\phi - J^\mu.
 \end{equation}
 \begin{proof}
     \begin{subequations}
@@ -107,6 +105,54 @@
         \partial_\mu(\Pi^\mu\Delta\phi-J^\mu)=\partial_\mu j^\mu = 0
     \end{equation}
 \end{proof}
+
+\songti
+这里比较令人难以理解的其实是$J^\mu$, 这看着像是一个任意的, 我们不知道的量, 那我们又该如何确定Noether流呢? 其实是$J^\mu$是具有一个确定形式的. 对于内禀自由度的变换来说, 我们可以明确验证$\delta L=0$, 因此$J^\mu=0$; 而对于时空变换自由度来说, $J^\mu$是可以通过变换的Killing矢量场$\xi^\mu$完全确定的, 并且$J^\mu=-\xi^\mu\mathcal L$, 接下来我们将给出定理来具体介绍.
+
+\begin{theorem}
+    考虑流形$M$上的一个微分同胚$\psi: M\to M$, 对于其诱导的推出$\psi_*$、拉回映射$\psi^*$, 有
+    \begin{align}
+        \mathcal L(\psi^*\phi, \psi^*(\partial_a\phi))=\psi^*\mathcal L(\phi, \partial_a\phi).
+    \end{align}
+\end{theorem}
+\begin{proof}
+    \begin{align}
+        \mathcal L(\psi^*\phi, \psi^*(\partial_a\phi))\big|_p&=\mathcal L(\psi^*\phi, \partial_a\psi^*(\phi)|_p)\big|_p\\
+        &=\mathcal L(\phi(\psi(p)), \partial_a\phi(\psi(p)))\\
+        &=\mathcal L(\phi, \partial_a\phi)\big|_{\psi(p)}\\
+        &=\psi^*\mathcal L\big|_p.
+    \end{align}
+\end{proof}
+利用这个定理, 对于无穷小微分同胚变换, 我们有
+\begin{align}
+    \delta\mathcal L=-\xi^\mu\partial_\mu\mathcal L
+\end{align}
+对于Killing矢量场$\partial_\mu\xi^\mu=0$, 于是
+\begin{align}
+    \delta\mathcal L=\partial_\mu(-\xi^\mu\partial_\mu\mathcal L)
+\end{align}
+从而可以得到
+\begin{align}
+    J^\mu=-\xi^\mu\mathcal L.
+\end{align}
+
+% 读者可能会质疑, 我们这里的推导证明要求了$\xi^\mu$是保度规的微分同胚, 如果它不保微分同胚, 允许度规张量差一个共形因子呢? 似乎推导就不成立了? 这其实依然成立, 原因在于, 在引入共形对称性的时候, 因为度规张量的行列式$g$在变换后就不一定依然为常数$1$了, 而最一般的作用量的表达式为
+% \begin{align}
+%     S=\int\mathcal L=\int\d^4x\sqrt g\mathcal L,
+% \end{align}
+% 因此我们在考虑对称性时, 应当自然耦合引力, 考虑$\sqrt{\sqrt g\mathcal L}$整体的变换. 利用共形变换中
+% \begin{align}
+%     \delta\sqrt g=-\partial_a\xi^a\sqrt g, 
+% \end{align}
+% 我们得到
+% \begin{align}
+%     \delta(\sqrt g\mathcal L)=\sqrt g\left(-\partial_a\xi^a\mathcal L+\delta\mathcal L\right)=\sqrt g\left(-\partial_a(\xi^a\mathcal L)+\delta\mathcal L+\xi^a\partial_a\mathcal L\right).
+% \end{align}
+% 其中第一项为一个全微分(不需要将$\sqrt g$放入全微分, 因为Gauss定理为$\int\nabla_a v^a=\int v^a n_a$, 写到具体坐标系中本来就在外面乘了一个测度$\sqrt g$), 如果系统具有对称性, $\delta(\sqrt g\mathcal L)$不能有全微分以外的项, 因此剩下的两项应当为$0$, 于是仍然有
+% \begin{align}
+%     \delta\mathcal L=-\xi^\mu\partial_\mu\mathcal L.
+% \end{align}
+
 \begin{example}[复标量场的$U(1)$对称性]\label{csU1}
     考虑复标量场
     \begin{equation}

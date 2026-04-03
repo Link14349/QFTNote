@@ -494,7 +494,7 @@ Lorentz群生成元
     \end{equation}
 \end{proof}
 
-但是我们不能定义线性算符与反线性算符间的乘法, 因为若我们这么定义线性算符$A$与反线性算符$S$的乘法
+但是我们不能定义线性算符与反线性算符间的加法, 因为若我们这么定义线性算符$A$与反线性算符$S$的加法
 \begin{equation}
     (A+S)f\equiv A(f)+S(f)
 \end{equation}
@@ -537,9 +537,10 @@ Lorentz群生成元
 \end{theorem}
 \begin{proof}
     首先证明反线性算符的伴随算符同样是反线性算符:
-    \begin{equation}
-        S^\dagger(cf)=\eta^{-1}\circ S^*\circ\eta(cf)=\eta^{-1}[S^*(c\eta(f))]=\eta^{-1}[c^*S^*(\eta(f))]=c^*\eta^{-1}[S^*(\eta(f))]=c^*S^\dagger(f)
-    \end{equation}
+    \begin{align}
+        S^\dagger(cf)&=\eta^{-1}\circ S^*\circ\eta(cf)=\eta^{-1}[S^*(c\eta(f))]=\eta^{-1}[c^*S^*(\eta(f))]\notag\\
+        &=c^*\eta^{-1}[S^*(\eta(f))]=c^*S^\dagger(f)
+    \end{align}
 
     然后直接计算可以证明后面三式
     \begin{align}

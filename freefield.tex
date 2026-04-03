@@ -374,74 +374,69 @@
     \item 得到场方程
 \end{enumerate}
 \kaishu 注: 这里流程没按周洋讲的来, 因为我略微感觉他那样子做有一点点奇怪, 有些地方存在神秘的天降系数, 按照这样从Lagrangian出发的流程会更清晰一些.\songti
+
 写下Lagrangian:
 \begin{equation}
-    \mathcal L=\frac12\partial_\mu\phi\partial^\mu\phi - \frac12 m^2\phi^2
+    \mathcal L=\frac12\partial_\mu\phi\partial^\mu\phi - \frac12 m^2\phi^2,
 \end{equation}
 我们有EoM:
 \begin{equation}
-    (\partial_\mu\partial^\mu + m^2)\phi = 0
+    (\Box+m^2)\phi = 0,
 \end{equation}
-或者写成
+从而可以得到色散关系:
 \begin{equation}
-    (\Box + m^2)\phi = 0
+    \omega^2=\vec p^2+m^2,
 \end{equation}
-并有色散关系:
-\begin{equation}
-    \omega^2=\vec p^2+m^2
-\end{equation}
-满足这个关系的称为on-shell.
+满足这个色散关系的, 或者满足EoM的粒子称为称为on-shell的粒子.
 
-得到Hamiltonian:
+因此我们可以得到哈密顿量
 \begin{equation}
-    \mathcal H=\frac12(\pi^2+m^2\phi^2+(\nabla\phi)^2)
+    \mathcal H=\frac12(\pi^2+m^2\phi^2+(\nabla\phi)^2).
 \end{equation}
 
-做正则变换, 有母函数
+使用母函数
 \begin{equation}
-    U=-\int\Pi(\vec k)\pi(\vec x)\mathrm e^{i\vec k\cdot\vec x}\mathrm d^3x\mathrm d^3k
+    U=-\int\Pi(\vec k)\pi(\vec x)\mathrm e^{i\vec k\cdot\vec x}\mathrm d^3x\mathrm d^3k,
 \end{equation}
-
-因此
+进行正则变换可以得到
 \begin{align}
-    &\phi(\vec x)=\int\Phi_{\vec k}\mathrm e^{i\vec k\cdot\vec x}\mathrm d^3k\\
-    &\pi(\vec x)=\frac1{(2\pi)^3}\int\Pi_{\vec k}\mathrm e^{-i\vec k\cdot\vec x}\mathrm d^3k
+    &\phi(\vec x)=\int\Phi_{\vec k}\mathrm e^{i\vec k\cdot\vec x}\mathrm d^3k,\\
+    &\pi(\vec x)=\frac1{(2\pi)^3}\int\Pi_{\vec k}\mathrm e^{-i\vec k\cdot\vec x}\mathrm d^3k.
 \end{align}
 \begin{align}
-    &\Phi_{\vec k}=\frac1{(2\pi)^3}\int\phi(\vec x)\mathrm e^{-i\vec k\cdot\vec x}\mathrm d^3x\\
-    &\Pi_{\vec k}=\int\pi(\vec x)\mathrm e^{i\vec k\cdot\vec x}\mathrm d^3x
+    &\Phi_{\vec k}=\frac1{(2\pi)^3}\int\phi(\vec x)\mathrm e^{-i\vec k\cdot\vec x}\mathrm d^3x,\\
+    &\Pi_{\vec k}=\int\pi(\vec x)\mathrm e^{i\vec k\cdot\vec x}\mathrm d^3x.
 \end{align}
 并且有:
 \begin{equation}
-    \Phi_{\vec k}^\dagger=\Phi_{-\vec k}, \quad \Pi_{\vec k}^\dagger=\Pi_{-\vec k}
+    \Phi_{\vec k}^\dagger=\Phi_{-\vec k}, \quad \Pi_{\vec k}^\dagger=\Pi_{-\vec k},
 \end{equation}
 可以得到解耦后的Hamiltonian:
 \begin{equation}
-    H=\frac12\int \mathrm d^3k (\frac1{(2\pi)^3}\Pi_{\vec k}\Pi_{-\vec k}+(2\pi)^3\omega^2\Phi_{\vec k}\Phi_{-\vec k})
+    H=\frac12\int \mathrm d^3k (\frac1{(2\pi)^3}\Pi_{\vec k}\Pi_{-\vec k}+(2\pi)^3\omega^2\Phi_{\vec k}\Phi_{-\vec k}),
 \end{equation}
-其中$\omega^2=m^2+k^2$
+其中$\omega^2=m^2+k^2$.
 
 添加量子化条件:
 \begin{equation}
-    [\phi(\vec x, t),\pi(\vec y, t)]=i\delta^3(x-y)
+    [\phi(\vec x, t),\pi(\vec y, t)]=i\delta^3(x-y),
 \end{equation}
 于是有:
 \begin{equation}
-    [\Phi_{\vec k}, \Pi_{\vec p}]=i\delta^3(k-p)
+    [\Phi_{\vec k}, \Pi_{\vec p}]=i\delta^3(k-p).
 \end{equation}
-令:
+令
 \begin{align}
-    &a_{\vec k}=(2\pi)^3\sqrt{\frac{\omega}{2}}\left(\Phi_{\vec k}+\frac i{\omega}\frac1{(2\pi)^3}\Pi_{\vec k}^\dagger\right)=\frac1{\sqrt{2\om k}}\int\d^3x\exp{ikx}(\omega\phi+i\pi)\\
-    &a^\dagger_{\vec k}=(2\pi)^3\sqrt{\frac{\omega}{2}}\left(\Phi_{\vec k}^\dagger-\frac i{\omega}\frac1{(2\pi)^3}\Pi_{\vec k}\right)=\frac1{\sqrt{2\om k}}\int\d^3x\exp{-ikx}(\omega\phi-i\pi)
+    &a_{\vec k}=(2\pi)^3\sqrt{\frac{\omega}{2}}\left(\Phi_{\vec k}+\frac i{\omega}\frac1{(2\pi)^3}\Pi_{\vec k}^\dagger\right)=\frac1{\sqrt{2\om k}}\int\d^3x\exp{ikx}(\omega\phi+i\pi),\\
+    &a^\dagger_{\vec k}=(2\pi)^3\sqrt{\frac{\omega}{2}}\left(\Phi_{\vec k}^\dagger-\frac i{\omega}\frac1{(2\pi)^3}\Pi_{\vec k}\right)=\frac1{\sqrt{2\om k}}\int\d^3x\exp{-ikx}(\omega\phi-i\pi),
 \end{align}
-
-有对易子:
+于是有对易子:
 \begin{equation}
-    [a_{\vec k}, a_{\vec p}^\dagger]=(2\pi)^3\delta^3(\vec k-\vec p)
+    [a_{\vec k}, a_{\vec p}^\dagger]=(2\pi)^3\delta^3(\vec k-\vec p).
 \end{equation}
-更准确地说, 对于$[a_{\vec k}, a_{\vec k}^\dagger]$:
+更准确地说, 对于$[a_{\vec k}, a_{\vec k}^\dagger]$, 
 \begin{equation}
-    [a_{\vec k}, a_{\vec k}^\dagger]=\mathcal V
+    [a_{\vec k}, a_{\vec k}^\dagger]=\mathcal V, 
 \end{equation}
 $\mathcal V$为系统的总体积.
 
@@ -483,27 +478,6 @@ Fourier逆变换可以得到:
     &=\int\ld{p}[\vec p\omega_{\vec p}](a^\dagger_{\vec p} a_{\vec p}+a_{\vec p}a^\dagger_{\vec p})\\
     &=\int\ddd p\vec p a^\dagger_{\vec p} a_{\vec p}
 \end{align}
-% 动力学方程:
-% \begin{equation}
-%     (\partial^2+m^2)\phi=0
-% \end{equation}
-% 利用Fourier变换, 得:
-% \begin{equation}
-%     \omega^2=p^2+m^2
-% \end{equation}
-% 于是, 有
-% \begin{align}
-%     &\phi(x)=\int \frac{\mathrm d^3p}{(2\pi)^3} \frac{1}{\sqrt{2\omega_{\vec p}}}(a_{\vec p} e^{-ipx}+a_{\vec p}^\dagger e^{ipx})\\
-%     &\pi(x)=\dot\phi(x)=\int \frac{\mathrm d^3p}{(2\pi)^3} i\sqrt{\frac{\omega}{2}}(-a_{\vec p} e^{-ipx}+a_{\vec p}^\dagger e^{ipx})
-% \end{align}
-% 做Fourier逆变换, 有:
-% \begin{align}
-%     &\Phi(\vec p)=\int \mathrm d^3x \, \phi(x)e^{-ipx}=
-% \end{align}
-% 施加量子化条件:
-% \begin{equation}
-%     [\phi(\vec x, t),\pi(\vec y, t)]=i\delta^3(x-y)
-% \end{equation}
 
 这里需要补充一点:
 \begin{theorem}[Lorentz不变的体元]

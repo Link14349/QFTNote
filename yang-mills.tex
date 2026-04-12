@@ -1,0 +1,70 @@
+\section{Yang-Mills理论}
+\subsection{Lagrangian的构造}
+我们知道, 电磁场理论是$U(1)$规范场, 我们想要把理论拓展到non-Abelian的规范场, 也就是Yang-Mills理论. 我们考虑规范群为$G$的规范场, 其旋量表示为
+\begin{align}
+    \psi\to U\psi, \quad U\in G,
+\end{align}
+旋量满足自由Lagrangian
+\begin{align}
+    \mathcal L=\bar\psi(i\slashed\partial-m)\psi.
+\end{align}
+
+将变换Local化, 我们想要让$U$与偏导可以换序, 于是类似地定义
+\begin{align}
+    D_\mu=\partial_\mu-igA_\mu,
+\end{align}
+并且要求
+\begin{align}
+    D'_\mu(U\psi)\to U D_\mu\psi,
+\end{align}
+于是得到规范场的变换规律
+\begin{align}
+    A_\mu\to A'_\mu=UA_\mu U^\dagger-\frac ig\partial_\mu U U^\dagger.
+\end{align}
+
+然后我们考虑场的动力学, 我们假设其仍然具有形式
+\begin{align}
+    \mathcal L_{\rm{YM}}=-\frac14F_{\mu\nu}^kF^{\mu\nu}_k, 
+\end{align}
+其中$k$为$F$的内禀自由度指标, 之后我们会具体阐述这是什么意思. 而我们希望$\Tr(F_{\mu\nu}F^{\mu\nu})$在规范变换下不变, 也就是要求
+\begin{align}
+    F_{\mu\nu}\to UF_{\mu\nu}U^\dagger.
+\end{align}
+如果我们仍然设
+\begin{align}
+    F_{\mu\nu}=\partial_\mu A_\nu-\partial_\nu A_\mu,
+\end{align}
+我们计算发现
+\begin{align}
+    F_{\mu\nu}'=UF_{\mu\nu}U^\dagger+\cdots.
+\end{align}
+多出来了项, 这是我们不想要的. 然后就是杨振宁的伟大创造, 如果我们给$F_{\mu\nu}$引入
+\begin{align}
+    F_{\mu\nu}=\partial_\mu A_\nu-\partial_\nu A_\mu-ig[A_\mu, A_\nu],
+\end{align}
+则$[A_\mu, A_\nu]$的变换(我们需要注意到$UU^\dagger=1$于是$\partial_\mu UU^\dagger+U\partial_\mu U^\dagger=0$, 利用此等式化简)恰好可以抵消后面全部我们不需要的项!
+
+由于现在$A_\mu, F_{\mu\nu}$本身还是矩阵形式, 不好分析自由度也不好化简. 于是我们做如下处理: 假设我们的规范群是单连通的单群, 也就是所有的变换群元都可以被Lie代数生成元通过指数映射得到. 由于我们寻求的是基本表示(Fundemental Representation), 我们可以将$A_\mu, F_{\mu\nu}$都写为生成元$E_i$的实线性组合
+\begin{align}
+    A_\mu=A_\mu^i E_i, \quad F_{\mu\nu}=F_{\mu\nu}^i E_i,
+\end{align}
+其中生成元满足Lie代数对易关系
+\begin{align}
+    [E_i, E_j]=if^k_{~~ij}E_k,
+\end{align}
+其中$f^k_{~~ij}$称为结构常数. 特殊地, 对于$SU(2)$规范场, 结构常数
+\begin{align}
+    f^k_{~~ij}=\epsilon_{ijk}.
+\end{align}
+于是我们可以得到
+\begin{align}
+    F_{\mu\nu}^k=\partial_\mu A_\nu^k-\partial_\nu A_\mu^k+gf^k_{~~ij}A_\mu^i A_\nu^j.
+\end{align}
+
+最终我们可以化简得到Yang-Mills规范场的拉格朗日量
+\begin{align}
+    \mathcal L&=\bar\psi(i\slashed\partial-m)\psi-\frac14(\d A)^2\notag\\
+    &\;\;+g\bar\psi\gamma^\mu E_k\psi A_\mu^k-g f^k_{~~ij}A_\mu^iA_\nu^j\partial^\mu A^\nu_k-\frac{g^2}4 f^k_{~~ij}f_k^{~~lm} A^i_\mu A_\nu^jA^\mu_lA^\nu_m.
+\end{align}
+
+我们发现, 除了我们常见的旋量和规范场的相互作用顶点以外, 规范场具有自己和自己的自相互作用顶点. 

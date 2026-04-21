@@ -586,7 +586,7 @@
 \end{theorem}
 这个结果称为Ward恒等式.
 
-\subsection{真空零点能的路径积分计算}
+\subsection{真空零点能的路径积分计算}\label{vac-energy-path-integral}
 我们考虑真空演化
 \begin{align}
     \braket{0, t=-\infty|0, t=+\infty}=\braket{0|\exp{-iHt}|0}=\braket{0|\exp{-iE_0T}|0}
@@ -618,12 +618,12 @@
 而
 \begin{align}
     \Tr\ln(\Box+m^2)&=VT\cdot\int\dddd p\ln(-p^2+m^2-i\epsilon)\\
-    &=VT\cdot\int\ddd p\int\frac{\d\omega}{2\pi}\ln(-\omega^2+\om{k}^2-i\epsilon)\\
-    &=VT\cdot\int\ddd p\pa{}{\alpha}\int\frac{\d\omega}{2\pi}\frac{-1}{(-\omega^2+\om{k}^2-i\epsilon)^\alpha}
+    &=VT\cdot\int\ddd p\int\frac{\d\omega}{2\pi}\ln(-\omega^2+\om{p}^2-i\epsilon)\\
+    &=VT\cdot\int\ddd p\pa{}{\alpha}\int\frac{\d\omega}{2\pi}\frac{-1}{(-\omega^2+\om{p}^2-i\epsilon)^\alpha}
 \end{align}
 利用Mathematica进行艰苦卓绝的计算, 我们得到
 \begin{align}
-    \Tr\ln(\Box+m^2)=VT\int\ddd p\sqrt{-\om k^2+i\epsilon}=VT\int\ddd p i\om k.
+    \Tr\ln(\Box+m^2)=VT\int\ddd p\sqrt{-\om p^2+i\epsilon}=VT\int\ddd p i\om p.
 \end{align}
 又根据
 \begin{align}
@@ -631,7 +631,7 @@
 \end{align}
 于是我们有
 \begin{align}
-    \frac{E_0}{V}=\int\ddd p\frac12\om k.
+    \frac{E_0}{V}=\int\ddd p\frac12\om p.
 \end{align}
 这和正则量子化的结果一致.
 

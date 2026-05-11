@@ -264,6 +264,7 @@
     Z[J]&=\int\mathcal D\alpha\int\mathcal D\prescript{\alpha}{}{A}\Delta(\prescript{\alpha}{}{A})\delta(f(\prescript{\alpha}{}{A}))\exp{iS}\\
     &=\int\mathcal D\alpha\int\mathcal DA\Delta(A)\delta(f(A))\exp{iS}.
 \end{align}
+需要注意, 这里$S$在$A\to\prescript{\alpha}{}{A}$的变换下不变, 是因为我们要求$J^\mu$是守恒流: $\partial_\mu J^\mu=0$.
 
 然后我们考虑一个具体的规范固定方式, 比如选择
 \begin{align}
@@ -417,7 +418,7 @@
 
 于是, 就从对规范不变性的追求中, 我们得到了标量QED. 
 
-\subsection{标量QED的Feynman规则}
+\subsection{标量QED的Feynman规则}\label{SQED-feynman}
 我们不难写出Dyson级数
 \begin{align}
     \braket{0|\mathcal T\exp{-i\int\d^4x H_I'}|0}&=\braket{0|\mathcal T\exp{-e\int\d^4xA_\mu\left(\psi\partial^\mu\psi^\dagger-\psi^\dagger\partial^\mu\psi-ie\psi^\dagger\psi A^\mu\right)}|0}\\
@@ -428,7 +429,7 @@
 \begin{equation}
     \braket{0|\mathcal T\psi_x\psi_y^\dagger|0}=\int\dddd p\frac{i}{p^2-m^2+i\epsilon}\exp{-ip(x-y)}
 \end{equation}
-所以说$\partial_\mu\psi$就相当于一个$-ip_\mu\psi$, $\partial_\mu\psi^\dagger$就相当于$ip_\mu\psi^\dagger$, 我们可以将$p_\mu$给放在相互作用顶点中, 于是我们可以总结Feynman规则
+而我们的$\partial_\mu$就是将传播子求导, 因此也就是提取出来$\pm ip_\mu$, 但是正负号需要我们仔细考虑, 也就是说, 我们在写Feynman规则的时候, 应当标定顶点上预期的动量流向, 然后Feynman规则中的正负号可以利用LSZ公式来确定. 我们不妨选令动量流向与粒子流的方向一致, 于是我们可以发现$\partial_\mu\psi=-ip_\mu\psi$, $\partial_\mu\psi^\dagger=ip_\mu\psi^\dagger$. 这样就有Feynman规则,
 \begin{enumerate}
     \item 复标量传播子
     $$

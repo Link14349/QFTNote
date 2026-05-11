@@ -1,32 +1,64 @@
 \section{Yang-Mills理论}
 \subsection{Lagrangian的构造}
-我们知道, 电磁场理论是$U(1)$规范场, 我们想要把理论拓展到non-Abelian的规范场, 也就是Yang-Mills理论. 我们考虑规范群为$G$的规范场, 其旋量表示为
+我们知道, 电磁场理论是$U(1)$规范场, 我们想要把理论拓展到non-Abelian的规范场, 也就是Yang-Mills理论. 我们考虑规范群为$G$的规范场, 物质场$\psi$为规范群的基本表示(Fundemental Representation)或者伴随表示(Adjoint Representation). 对于基本表示, 在规范变换下, $\psi$的变换规律为
 \begin{align}
     \psi\to U\psi, \quad U\in G,
 \end{align}
-旋量满足自由Lagrangian
+从直接的表达形式看, 物质场$\psi$就是一个$N$维的列向量, 若是标量场, 就是$N$个标量; 而对于旋量来说, 这意味着$\psi$有双重指标, 一个是规范场指标$a$, 一个是旋量指标$i$. 换句话说, 这个$\psi$就是$N$个旋量排成的一个列向量. 而对于伴随表示, 则物质场$\psi$可以写为生成元$E_c$的线性组合, 即
 \begin{align}
-    \mathcal L=\bar\psi(i\slashed\partial-m)\psi.
+    \psi=\psi^cE_c,
+\end{align}
+其中$c$表示群作用的指标(不是抽象指标), 生成元$E_c$满足Lie代数对易关系
+\begin{align}
+    [E_a, E_b]=if^c_{~~ab}E_c.
+\end{align}
+这里$f^c_{~~ab}$称为结构常数. 特殊地, 对于$SU(2)$规范场, 结构常数
+\begin{align}
+    f^c_{~~ab}=\epsilon_{abc}.
+\end{align}
+由于是伴随表示, 故其在规范变换下的变换方式为
+\begin{align}
+    \psi\to U\psi U^\dagger.
 \end{align}
 
-将变换Local化, 我们想要让$U$与偏导可以换序, 于是类似地定义
+类似电磁场, 我们想要物质场的Lagrangian在局域的规范变换下不变, 这就需要想办法消掉$\partial_\mu U$这样的项. 于是类似地定义
 \begin{align}
     D_\mu=\partial_\mu-igA_\mu,
 \end{align}
-并且要求
+其中$A_\mu$就是千呼万唤始出来的规范场. 它也是规范群的伴随表示, 故
+\begin{align}
+    A_\mu=A_\mu^aE_a,
+\end{align}
+我们可能同样naively地要求$A_\mu$在的变换规律与$\psi$一致,
+\begin{align}
+    A_\mu\to U A_\mu U^\dagger.
+\end{align}
+但是这样子对于局域的规范变换$U$显然并不能消去$\partial_\mu U$这样的项, 因此我们预计对于局域的规范变换, $A_\mu$的变换中应当加入新的关于$\partial_\mu U$的一项.
+
+关于$D_\mu$的表达式里面有一点需要特别注意. 考虑某个处于基本表示或者伴随表示中的对象$X$, 我们计算$D_\mu X$, $D_\mu$中第二项$A_\mu$对$X$的作用由$X$所在的表示决定: 对于基本表示, 这是直接的矩阵乘法$A_\mu X$, 也就是说
+\begin{align}
+    D_\mu X=\partial_\mu X-igA_\mu X;
+\end{align}
+但如果$D_\mu$是作用到伴随表示上, 利用伴随表示中则生成元对其中元素的作用为对易子, 也就是$[A_\mu, X]$. 那么的话
+\begin{align}
+    D_\mu X=\partial_\mu X-ig[A_\mu, X].
+\end{align}
+
+然后我们考虑推导$A_\mu$在规范变换下缺失的那一项, 利用我们所要求的规范不变性(这里假设物质场$\psi$是基本表示)
 \begin{align}
     D'_\mu(U\psi)\to U D_\mu\psi,
 \end{align}
-于是得到规范场的变换规律
+就可以得到规范场$A$的完整变换方式
 \begin{align}
     A_\mu\to A'_\mu=UA_\mu U^\dagger-\frac ig\partial_\mu U U^\dagger.
 \end{align}
+不难验证(我们需要注意到$UU^\dagger=1$于是$\partial_\mu UU^\dagger+U\partial_\mu U^\dagger=0$, 利用此等式化简), 对于伴随表示的物质场$\psi$, 这个变换方式同样可以满足规范不变性.
 
-然后我们考虑场的动力学, 我们假设其仍然具有形式
+困难的得多的是规范场的动力学, 我们假设其仍然具有形式
 \begin{align}
-    \mathcal L_{\rm{YM}}=-\frac14F_{\mu\nu}^kF^{\mu\nu}_k, 
+    \mathcal L_{\rm{YM}}=-\frac14F_{\mu\nu}^cF^{\mu\nu}_c, 
 \end{align}
-其中$k$为$F$的内禀自由度指标, 之后我们会具体阐述这是什么意思. 而我们希望$\Tr(F_{\mu\nu}F^{\mu\nu})$在规范变换下不变, 也就是要求
+其中, 由于$A_\mu$是伴随表示, 所以$F_{\mu\nu}$也是伴随表示, 可以写为生成元的线性组合, 即$F_{\mu\nu}=F_{\mu\nu}^cE_c$. 而我们希望$\Tr(F_{\mu\nu}F^{\mu\nu})$在规范变换下不变, 也就是要求
 \begin{align}
     F_{\mu\nu}\to UF_{\mu\nu}U^\dagger.
 \end{align}
@@ -34,37 +66,333 @@
 \begin{align}
     F_{\mu\nu}=\partial_\mu A_\nu-\partial_\nu A_\mu,
 \end{align}
-我们计算发现
+我们计算发现变换后
 \begin{align}
     F_{\mu\nu}'=UF_{\mu\nu}U^\dagger+\cdots.
 \end{align}
-多出来了项, 这是我们不想要的. 然后就是杨振宁的伟大创造, 如果我们给$F_{\mu\nu}$引入
+这多出来了项, 我们不想要. 杨振宁注意到, 如果我们给$F_{\mu\nu}$引入
 \begin{align}
     F_{\mu\nu}=\partial_\mu A_\nu-\partial_\nu A_\mu-ig[A_\mu, A_\nu],
 \end{align}
-则$[A_\mu, A_\nu]$的变换(我们需要注意到$UU^\dagger=1$于是$\partial_\mu UU^\dagger+U\partial_\mu U^\dagger=0$, 利用此等式化简)恰好可以抵消后面全部我们不需要的项!
+则$[A_\mu, A_\nu]$的变换恰好可以抵消后面全部我们不需要的项!
 
-由于现在$A_\mu, F_{\mu\nu}$本身还是矩阵形式, 不好分析自由度也不好化简. 于是我们做如下处理: 假设我们的规范群是单连通的单群, 也就是所有的变换群元都可以被Lie代数生成元通过指数映射得到. 由于我们寻求的是基本表示(Fundemental Representation), 我们可以将$A_\mu, F_{\mu\nu}$都写为生成元$E_i$的实线性组合
+将其写为$F^c_{\mu\nu}$的表达式, 我们可以得到
 \begin{align}
-    A_\mu=A_\mu^i E_i, \quad F_{\mu\nu}=F_{\mu\nu}^i E_i,
+    F_{\mu\nu}^c=\partial_\mu A_\nu^c-\partial_\nu A_\mu^c+gf^c_{~~ab}A_\mu^a A_\nu^b.
 \end{align}
-其中生成元满足Lie代数对易关系
+最后我们可以化简得到Yang-Mills规范场的拉格朗日量
 \begin{align}
-    [E_i, E_j]=if^k_{~~ij}E_k,
-\end{align}
-其中$f^k_{~~ij}$称为结构常数. 特殊地, 对于$SU(2)$规范场, 结构常数
-\begin{align}
-    f^k_{~~ij}=\epsilon_{ijk}.
-\end{align}
-于是我们可以得到
-\begin{align}
-    F_{\mu\nu}^k=\partial_\mu A_\nu^k-\partial_\nu A_\mu^k+gf^k_{~~ij}A_\mu^i A_\nu^j.
-\end{align}
-
-最终我们可以化简得到Yang-Mills规范场的拉格朗日量
-\begin{align}
-    \mathcal L&=\bar\psi(i\slashed\partial-m)\psi-\frac14(\d A)^2\notag\\
-    &\;\;+g\bar\psi\gamma^\mu E_k\psi A_\mu^k-g f^k_{~~ij}A_\mu^iA_\nu^j\partial^\mu A^\nu_k-\frac{g^2}4 f^k_{~~ij}f_k^{~~lm} A^i_\mu A_\nu^jA^\mu_lA^\nu_m.
+    \mathcal L&=-\frac14(\partial_\mu A_\nu^c-\partial_\nu A_\mu^c)^2\notag\\
+    &+g\bar\psi\gamma^\mu E_c\psi A_\mu^c-g f^c_{~~ab}A_\mu^aA_\nu^b\partial^\mu A^\nu_c-\frac{g^2}4 f^c_{~~ab}f_c^{~~de} A^a_\mu A_\nu^bA^\mu_dA^\nu_e.
 \end{align}
 
 我们发现, 除了我们常见的旋量和规范场的相互作用顶点以外, 规范场具有自己和自己的自相互作用顶点. 
+
+\subsection{Faddev-Popov量子化}
+对于无穷小规范变换, 设$U=\exp{i\alpha}=\exp{i\alpha^cE_c}$, 我们不难得到, $A$的变换为
+\begin{align}
+    A_\mu\to A_\mu+\frac1gD_\mu\alpha,
+\end{align}
+可以发现, 这个和电磁场的变换几乎是一模一样的, 因此我们可以直接类似电磁场的Faddev-Popov量子化方法, 选取一个规范条件$f(A)=0$, 然后插入
+\begin{align}
+    \int\mathcal D\alpha\delta(f(\prescript{\alpha}{}{A}))\Delta(A)=1, 
+\end{align}
+其中
+\begin{align}
+    \Delta(A)=\det\left(\frac{\delta f(\prescript{\alpha}{}{A})}{\delta\alpha}\right),
+\end{align}
+并且我们依然可以证明$\Delta(\prescript{\alpha}{}{A})=\Delta(A)$:
+\begin{align}
+    \Delta(\prescript{\alpha}{}{A})^{-1}=\int\mathcal D\alpha'\delta(f(\prescript{\alpha'+\alpha}{}{A}))=\int\mathcal D(\alpha'+\alpha)\delta(f(\prescript{\alpha'+\alpha}{}{A}))=\Delta(A)^{-1}.
+\end{align}
+这里我们可能会质疑, 我们上面得出的$A\to A+\frac1gD\alpha$的变换是无穷小的, 但是对$\alpha$的路径积分是从$-\infty$到$+\infty$的, 依然套用无穷小变换的结果是否合理? 这里我们需要注意到, 因为我们有$\delta$函数来压制$\alpha$, 其实只有$\alpha=0$处对积分有贡献, 所以使用无穷小变换完全是合理的.
+
+于是我们可以得到
+\begin{align}
+    Z[J]=\int\mathcal D\alpha\int\mathcal DA\delta(f(A))\Delta(A)\exp{iS}
+\end{align}
+这里$S$在$A\to\prescript{\alpha}{}{A}$的变换下不变, 是因为我们要求$J^\mu$是守恒流: $D_\mu J^\mu=0$.
+
+然后我们具体的约束$f(A)$, 最直接的就是依然选择Lorentz规范
+\begin{align}
+    f(A)=\partial_\mu A^\mu-\omega, 
+\end{align}
+其中$\omega$也是一个伴随表示. 于是我们可以得到
+\begin{align}
+    \Delta(A)=\det\left(\partial_\mu D^\mu\right),
+\end{align}
+可以发现, 由于$D^\mu$是包含$A$的, 因此这个行列式是包括$A$的, 我们不能直接像之前对电磁场的处理一样, 丢掉这个因子$\Delta(A)$.
+
+之后类似地, 我们再引入一个对$\omega$的路径积分$\int\mathcal D\omega\exp{i\int\d^4x-\frac{\omega^2}{2\xi}}$, 从而得到
+\begin{align}
+    Z[J]=\int\mathcal DA\Delta(A)\exp{i\int\d^4x\left(-\frac14F_{\mu\nu}^kF^{\mu\nu}_k-\frac1{2\xi}(\partial_\mu A^\mu)^2+J^\mu A_\mu\right)}.
+\end{align}
+
+那么剩下的问题就是如何计算考虑这个$\Delta(A)$, 注意到, 反对易场的Grassmann路径积分正比于其行列式, 于是我们可以考虑引入一个带有群指标的反对易复标量场$c, \bar c$, 从而有
+\begin{align}
+    \det(\partial_\mu D^\mu)=\int\mathcal D\bar c\mathcal Dc\exp{i\int\d^4x\bar c (-\partial_\mu D^\mu) c}.
+\end{align}
+(这里我们忽略了常数项$i$以及$g$对$\Delta(A)$的贡献, 因为这个不影响我们最终配分函数的计算). 因为这个违反了自旋-统计定理, 标量场$c$是非物理的, 所以$c$被称为鬼场(Ghost Field).
+
+从而我们可以得到最终的配分函数
+\begin{align}
+    Z[J]&=\int\mathcal DA\mathcal D\bar c\mathcal Dc\exp{i\int\d^4x\left(-\frac14F_{\mu\nu}^cF^{\mu\nu}_c-\frac1{2\xi}(\partial_\mu A^\mu_c)^2+\bar c_c (-\Box) c^c+gf_{aab}\partial^\mu\bar c^c A_\mu^a c^b+J^\mu_c A_\mu^c\right)}.
+\end{align}
+
+也就是我们的有效拉格朗日量为
+\begin{align}
+    \mathcal L_{\rm{YM}}&=-\frac14F_{\mu\nu}^cF^{\mu\nu}_c-\frac1{2\xi}(\partial_\mu A^\mu_c)^2-\bar c_c \Box c^c\notag\\
+    &-g f^c_{~~ab}A_\mu^aA_\nu^b\partial^\mu A^\nu_c-\frac{g^2}4 f^c_{~~ab}f_c^{~~de} A^a_\mu A_\nu^bA^\mu_dA^\nu_e+gf_{cab}\partial^\mu\bar c^c A_\mu^a c^b.
+\end{align}
+
+于是我们可以得到Feynman规则, 首先是传播子:
+胶子(也就是规范场粒子)传播子为
+\begin{align}
+    \begin{tikzpicture}[baseline=(current bounding box.center)]
+        \begin{feynman}
+            \vertex (a) {\(\mu, a\)};
+            \vertex [right=2.5cm of a] (b) {\(\nu, b\)};
+            \diagram* {
+                (a) -- [gluon, momentum'=\(p\)] (b),
+            };
+        \end{feynman}
+    \end{tikzpicture}
+    = \frac{-i}{p^{2} + i\epsilon} \left[\eta^{\mu\nu} - (1-\xi) \frac{p^{\mu} p^{\nu}}{p^{2}} \right] \delta^{ab},
+\end{align}
+即
+\begin{align}
+    \braket{A^a_\mu(x)A^b_\nu(y)}=\int\frac{\d^4p}{(2\pi)^4}\frac{-i}{p^{2} + i\epsilon} \left[\eta^{\mu\nu} - (1-\xi) \frac{p^{\mu} p^{\nu}}{p^{2}} \right] \delta^{ab}e^{-ip(x-y)}.
+\end{align}
+鬼场传播子为
+\begin{align}
+    \begin{tikzpicture}[baseline=(current bounding box.center)]
+        \begin{feynman}
+            \vertex (a) {\(a\)};
+            \vertex [right=2.5cm of a] (b) {\(b\)};
+            \diagram* {
+                (b) -- [scalar arrow] (a),
+            };
+        \end{feynman}
+    \end{tikzpicture}
+    = \frac{i}{p^{2} + i\epsilon} \delta^{ab},
+\end{align}
+需要注意, 鬼场传播子存在$c$与$\bar c$的顺序的问题, 我们要求动量方向在与粒子流方向一致的情况下, 位形空间传播子
+\begin{align}
+    \braket{c^a(x)\bar c^b(y)}=\int\frac{\d^4p}{(2\pi)^4}\frac{i}{p^{2} + i\epsilon} \delta^{ab}e^{-ip(x-y)}.
+\end{align}
+然后我们考虑相互作用顶点. 只需要注意一点, 相互作用里的$\partial_\mu$也是类似\ref{SQED-feynman}节中标量QED中$\partial_\mu$的处理方式, 我们规定Feynman规则中顶点上的动量流向, 然后就有Feynman规则
+\begin{align}
+    \begin{tikzpicture}[baseline=(current bounding box.center)]
+        \begin{feynman}
+            \vertex (v);
+            \vertex [above=1.2cm of v] (a1) {\(\mu_1, a_1\)};
+            \vertex [below right=1.2cm of v] (a2) {\(\mu_2, a_2\)};
+            \vertex [below left=1.2cm of v] (a3) {\(\mu_3, a_3\)};
+            \diagram* {
+                (v) -- [gluon, momentum=\(k_{1}\)] (a1),
+                (v) -- [gluon, momentum=\(k_{2}\)] (a2),
+                (v) -- [gluon, momentum'=\(k_{3}\)] (a3),
+            };
+        \end{feynman}
+    \end{tikzpicture}
+    =& -gf_{a_1 a_2 a_3}\Big[ (k_1 - k_2)^{\mu_3} \eta^{\mu_1 \mu_2}\notag\\[-5ex]
+    &+(k_2 - k_3)^{\mu_1} \eta^{\mu_2 \mu_3} + (k_3 - k_1)^{\mu_2} \eta^{\mu_3 \mu_1} \Big],
+\end{align}
+\begin{align}
+    \begin{tikzpicture}[baseline=(current bounding box.center)]
+        \begin{feynman}
+            \vertex (v);
+            \vertex [above left=1.2cm of v] (a1) {\(\mu_1, a_1\)};
+            \vertex [above right=1.2cm of v] (a2) {\(\mu_2, a_2\)};
+            \vertex [below right=1.2cm of v] (a3) {\(\mu_3, a_3\)};
+            \vertex [below left=1.2cm of v] (a4) {\(\mu_4, a_4\)};
+            \diagram* {
+                (a1) -- [gluon] (v),
+                (a2) -- [gluon] (v),
+                (a3) -- [gluon] (v),
+                (a4) -- [gluon] (v),
+            };
+        \end{feynman}
+    \end{tikzpicture}
+    &= -ig^2 \Big[ f^{a_1 a_2}_{~~~~~~b} f^{b a_3 a_4} (\eta^{\mu_1 \mu_3} \eta^{\mu_2 \mu_4} - \eta^{\mu_2 \mu_3} \eta^{\mu_1 \mu_4})\notag \\[-5ex]
+    &\quad + f^{a_2 a_3}_{~~~~~~b} f^{b a_1 a_4} (\eta^{\mu_2 \mu_1} \eta^{\mu_3 \mu_4} - \eta^{\mu_3 \mu_1} \eta^{\mu_2 \mu_4})\notag \\
+    &\quad + f^{a_3 a_1}_{~~~~~~b} f^{b a_2 a_4} (\eta^{\mu_3 \mu_2} \eta^{\mu_1 \mu_4} - \eta^{\mu_1 \mu_2} \eta^{\mu_3 \mu_4}) \Big],
+\end{align}
+\begin{align}
+    \begin{tikzpicture}[baseline=(current bounding box.center)]
+        \begin{feynman}
+            \vertex (v);
+            \vertex [left=1.5cm of v] (b) {\(\mu, a_2\)};
+            \vertex [above right=1.2cm of v] (a1) {\(a_1\)};
+            \vertex [below right=1.2cm of v] (a3) {\(a_3\)};
+            \diagram* {
+                (a3) -- [scalar arrow] (v),
+                (v) -- [scalar arrow, momentum=\(k_{1}\)] (a1),
+                (v) -- [gluon] (b),
+            };
+        \end{feynman}
+    \end{tikzpicture}
+    = -gf^{a_1 a_2 a_3} k_1^{\mu_2}.
+\end{align}
+
+然后我们考虑与物质场的耦合, 首先是基本表示中的复标量场, 也就是一个$N$维的元素为复数的列向量, 其群作用指标为$\psi^I, \bar\psi_I$. 这对应于标准模型中的Higgs玻色子, 而Higgs玻色子本身还存在一个$\phi^4$作用顶点:
+\begin{align}
+    \mathcal L=-\frac14F^a_{\mu\nu}F^{\mu\nu}_a+(D_\mu\phi)^\dagger(D^\mu\phi)-m^2\phi^\dagger\phi-\frac\lambda4(\phi^\dagger\phi)^2.
+\end{align}
+于是我们有新的传播子和顶点
+\begin{align}
+    \begin{tikzpicture}[baseline=(current bounding box.center)]
+        \begin{feynman}
+            \vertex (a) {\(I\)};
+            \vertex [right=2.5cm of a] (b) {\(J\)};
+            \diagram* {
+                (b) -- [scalar arrow] (a),
+            };
+        \end{feynman}
+    \end{tikzpicture}
+    = \frac{i}{p^{2} + i\epsilon}\delta^{I}_{~~J},
+\end{align}
+\begin{align}
+    \begin{tikzpicture}[baseline=(current bounding box.center)]
+        \begin{feynman}
+            \vertex (a);
+            \vertex [above right=1.5cm of a] (b) {\(I\)}; % 出射标量 p'
+            \vertex [below right=1.5cm of a] (c) {\(J\)}; % 入射标量 p
+            \vertex [left=1.5cm of a] (d) {\(\mu, a\)}; % 光子
+            \diagram* {
+                % 注意箭头的方向：从 c 到 a，从 a 到 b
+                (c) -- [scalar arrow, momentum=\(p_1\)] (a),
+                (a) -- [scalar arrow, momentum'=\(p_2\)] (b),
+                (a) -- [gluon] (d),
+            };
+        \end{feynman}
+    \end{tikzpicture}
+    = -ig(p_1+p_2)^\mu(E^a)^I_{~~J}
+\end{align}
+\begin{align}
+    \begin{tikzpicture}[baseline=(current bounding box.center)]
+            \begin{feynman}
+                \vertex (a);
+                \vertex [above left=1.5cm of a] (b) {\(\mu, a\)};
+                \vertex [below left=1.5cm of a] (c) {\(\nu, b\)};
+                \vertex [above right=1.5cm of a] (d) {\(I\)};
+                \vertex [below right=1.5cm of a] (e) {\(J\)};
+                \diagram* {
+                    (b) -- [gluon] (a),
+                    (c) -- [gluon] (a),
+                    % 标量线箭头流向一致 (例如，从 e 到 a，从 a 到 d)
+                    (e) -- [scalar arrow] (a), 
+                    (a) -- [scalar arrow] (d),
+                };
+            \end{feynman}
+        \end{tikzpicture}
+        = ig^2 g^{\mu\nu} (E_aE_b+E_bE_a)^I_{~~J}
+\end{align}
+\begin{align}
+    \begin{tikzpicture}[baseline=(current bounding box.center)]
+            \begin{feynman}
+                \vertex (v);
+                \vertex [above left=of v] (j1) {\(J_{1}\)};
+                \vertex [below left=of v] (j2) {\(J_{2}\)};
+                \vertex [above right=of v] (i1) {\(I_{1}\)};
+                \vertex [below right=of v] (i2) {\(I_{2}\)};
+                \diagram* {
+                    (j1) -- [scalar arrow] (v),
+                    (j2) -- [scalar arrow] (v),
+                    (v) -- [scalar arrow] (i1),
+                    (v) -- [scalar arrow] (i2),
+                };
+            \end{feynman}
+        \end{tikzpicture}
+        = -\frac{i\lambda}{2} \left( \delta^{I_{1}}_{J_{1}} \delta^{I_{2}}_{J_{2}} + \delta^{I_{1}}_{J_{2}} \delta^{I_{2}}_{J_{1}} \right)
+\end{align}
+
+然后是基本表示中的Dirac旋量场, 也就是一个$N$维的元素为4分量Dirac旋量的列向量. 在标准模型中, 强相互作用的物质场就是这个, 即Quark, 而Quark三色就代表其有三个生成元, 也就是规范群为$SU(2)$,
+\begin{align}
+    \mathcal L=-\frac14F^a_{\mu\nu}F^{\mu\nu}_a+\bar\psi(i\slashed D-m)\psi.
+\end{align}
+可以得到Feynman规则
+\begin{align}
+    \begin{tikzpicture}[baseline=(current bounding box.center)]
+        \begin{feynman}
+            \vertex (a) {\(I\)};
+            \vertex [right=2.5cm of a] (b) {\(J\)};
+            \diagram* {
+                (b) -- [fermion] (a),
+            };
+        \end{feynman}
+    \end{tikzpicture}
+    = \frac{i}{\slashed p-m + i\epsilon}\delta^{I}_{~~J},
+\end{align}
+\begin{align}
+    \begin{tikzpicture}[baseline=(current bounding box.center)]
+        \begin{feynman}
+            \vertex (a);
+            \vertex [above right=1.5cm of a] (b) {\(I\)}; % 出射标量 p'
+            \vertex [below right=1.5cm of a] (c) {\(J\)}; % 入射标量 p
+            \vertex [left=1.5cm of a] (d) {\(\mu, a\)}; % 光子
+            \diagram* {
+                % 注意箭头的方向：从 c 到 a，从 a 到 b
+                (c) -- [fermion] (a),
+                (a) -- [fermion] (b),
+                (a) -- [gluon] (d),
+            };
+        \end{feynman}
+    \end{tikzpicture}
+    =ig\gamma^\mu(E^a)^I_{~~J}
+\end{align}
+
+接着考虑伴随表示, 因为Lie代数中的矢量空间都是实矢量空间, 所以伴随表示中场都是实的. 对于标量场来说, 也就是它的分量都是实的, 而对于旋量来说, 这很自然地要求实的Majorana旋量. 我们先从比较简单的实标量场入手, 显然其的维数就是Lie代数空间的维数, 也就有$\phi=\phi^aE_a$. 其拉格朗日量为
+\begin{align}
+    \mathcal L=-\frac14F^a_{\mu\nu}F^{\mu\nu}_a+\frac12 D_\mu\phi^a D^\mu\phi_a-\frac12 m^2 \phi^a\phi_a.
+\end{align}
+我们得到Feynman规则
+\begin{align}
+    \begin{tikzpicture}[baseline=(current bounding box.center)]
+        \begin{feynman}
+            \vertex (a) {\(a\)};
+            \vertex [right=2.5cm of a] (b) {\(b\)};
+            \diagram* {
+                (b) -- [scalar] (a),
+            };
+        \end{feynman}
+    \end{tikzpicture}
+    = \frac{i}{p^{2}-m^2+i\epsilon}\delta^{ab},
+\end{align}
+\begin{align}
+    \begin{tikzpicture}[baseline=(current bounding box.center)]
+        \begin{feynman}
+            \vertex (a);
+            \vertex [above right=1.5cm of a] (b) {\(a_1\)}; % 出射标量 p'
+            \vertex [below right=1.5cm of a] (c) {\(a_2\)}; % 入射标量 p
+            \vertex [left=1.5cm of a] (d) {\(\mu, a_3\)}; % 光子
+            \diagram* {
+                % 注意箭头的方向：从 c 到 a，从 a 到 b
+                (a) -- [scalar, momentum=\(p_2\)] (c),
+                (a) -- [scalar, momentum=\(p_1\)] (b),
+                (a) -- [gluon] (d),
+            };
+        \end{feynman}
+    \end{tikzpicture}
+    =gf_{a_1a_2a_3}(p_1-p_2)^\mu,
+\end{align}
+关于这个顶点读者可能有疑惑, 由于实标量场是没有粒子流方向的, 所以我们规定Feynman规则中动量流向都是流出顶点. 但这样读者可能有疑惑: $a_1, a_2$明明是平权的, 为什么会是一正一负, 那如果交换$1,2$岂不是会差负号? 回到通过Wick收缩推导Feynman规则的过程中, 我们不难发现, 这是$f_{a_1a_2a_3}$完全反称的结果, 如果交换$1, 2$, $f_{a_1a_2a_3}$中$a_1, a_2$也要交换, 所以也会贡献一个负号, 结果不变. 换句话说, 这里谁减谁是由$f$的下标中第一个群指标决定的, 谁的群指标在$f$下标中第一个出现就是谁去减另一个.
+\begin{align}
+    \begin{tikzpicture}[baseline=(current bounding box.center)]
+            \begin{feynman}
+                \vertex (a);
+                \vertex [above right=1.5cm of a] (b) {\(\mu, a_3\)};
+                \vertex [below right=1.5cm of a] (c) {\(\nu, a_4\)};
+                \vertex [above left=1.5cm of a] (d) {\(a_1\)};
+                \vertex [below left=1.5cm of a] (e) {\(a_2\)};
+                \diagram* {
+                    (b) -- [gluon] (a),
+                    (c) -- [gluon] (a),
+                    % 标量线箭头流向一致 (例如，从 e 到 a，从 a 到 d)
+                    (e) -- [scalar] (a), 
+                    (a) -- [scalar] (d),
+                };
+            \end{feynman}
+        \end{tikzpicture}
+        =ig^2g^{\mu\nu}(f_{ca_1a_3}f^{c}_{~~a_2a_4}+f_{ca_1a_4}f^{c}_{~~a_2a_3}).
+\end{align}

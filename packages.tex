@@ -93,7 +93,7 @@
 \renewcommand{\a}[1]{a_{\vec #1}}
 \renewcommand{\b}[1]{b_{\vec #1}}
 \newcommand{\om}[1]{\omega_{\vec #1}}
-\newcommand{\ad}[1]{a^\dagger_{\vec #1}}
+\newcommand{\ad}[1]{a^\dagger_{\vec{#1}}}
 \renewcommand{\d}{\mathrm d}
 \newcommand{\dx}{\mathrm dx}
 \newcommand{\dy}{\mathrm dy}
@@ -107,6 +107,7 @@
 \newcommand{\uvec}[1]{\mathbf{\hat{#1}}}
 \newcommand{\e}{\mathrm e}
 \newcommand{\tensor}[1]{\overleftrightarrow{\vec{#1}}}
+\newcommand{\brm}[1]{\boldsymbol{\mathrm{#1}}}
 \NewDocumentCommand{\ld}{m O{1}}{\frac{\mathrm d^3#1}{(2\pi)^3}\frac{#2}{2\omega_{\vec #1}}}
 \NewDocumentCommand{\ldsq}{m O{1}}{\frac{\mathrm d^3#1}{(2\pi)^3}\frac{#2}{\sqrt{2\omega_{\vec #1}}}}
 \NewDocumentCommand{\lips}{m O{1}}{\frac{\mathrm d^3#1}{(2\pi)^3}\frac{#2}{2\omega_{\vec #1}}}

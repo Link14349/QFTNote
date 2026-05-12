@@ -89,6 +89,19 @@
     &=\int\ddd p\om p\sum_\lambda\left(a^\dagger_{\lambda\vec p}a_{\lambda\vec p}+\frac12\mathcal V\right)
 \end{align}
 
+利用$A_\mu$的$\a p\a p^\dagger$展开, 我们还可以推导有质量矢量场的LSZ公式. 类似地, 根据引理
+\begin{align}
+    i\int\d^4x\exp{ipx}(\Box+m^2)A_\mu\epsilon_\lambda^{\mu*}=\sqrt{2\om p}(a_{\lambda\vec p}(+\infty)-a_{\lambda\vec p}(-\infty)).
+\end{align}
+则我们可以得到
+\begin{theorem}[LSZ公式(有质量矢量场)]\label{LSZformula}
+    \begin{align}
+        \braket{f, +\infty|i, -\infty}&=\int\d^4x_1 i\exp{-ip_1x_1}(\Box_1+m^2)\epsilon^{\mu_1}_{\lambda_1}\cdots\int\d^4x_n i\exp{ip_nx_n}(\Box_n+m^2)\epsilon^{\mu_n*}_{\lambda_n}\notag\\
+        &\;\;\;\;\braket{A_{\mu_1}\cdots A_{\mu_n}},
+    \end{align}
+    其中, 对入射态用$\int i\exp{-ip_1x_1}(\Box+m^2)\epsilon^\mu_\lambda$, 而对出射态用$\int i\exp{ip_1x_1}(\Box+m^2)\epsilon^{\mu*}_\lambda$.
+\end{theorem}
+
 % (感兴趣的可以见图\ref{fig:massiveEDQ}的手动具体计算过程)
 
 % \begin{figure}[htbp!]

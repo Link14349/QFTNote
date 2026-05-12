@@ -267,7 +267,7 @@
             };
         \end{feynman}
     \end{tikzpicture}
-    = -ig(p_1+p_2)^\mu(E^a)^I_{~~J}
+    = -ig(p_1+p_2)^\mu(E^a)^I_{~~J},
 \end{align}
 \begin{align}
     \begin{tikzpicture}[baseline=(current bounding box.center)]
@@ -286,7 +286,7 @@
                 };
             \end{feynman}
         \end{tikzpicture}
-        = ig^2 g^{\mu\nu} (E_aE_b+E_bE_a)^I_{~~J}
+        = ig^2 g^{\mu\nu} (E_aE_b+E_bE_a)^I_{~~J},
 \end{align}
 \begin{align}
     \begin{tikzpicture}[baseline=(current bounding box.center)]
@@ -304,7 +304,7 @@
                 };
             \end{feynman}
         \end{tikzpicture}
-        = -\frac{i\lambda}{2} \left( \delta^{I_{1}}_{J_{1}} \delta^{I_{2}}_{J_{2}} + \delta^{I_{1}}_{J_{2}} \delta^{I_{2}}_{J_{1}} \right)
+        = -\frac{i\lambda}{2} \left( \delta^{I_{1}}_{J_{1}} \delta^{I_{2}}_{J_{2}} + \delta^{I_{1}}_{J_{2}} \delta^{I_{2}}_{J_{1}} \right).
 \end{align}
 
 然后是基本表示中的Dirac旋量场, 也就是一个$N$维的元素为4分量Dirac旋量的列向量. 在标准模型中, 强相互作用的物质场就是这个, 即Quark, 而Quark三色就代表其有三个生成元, 也就是规范群为$SU(2)$,
@@ -339,7 +339,7 @@
             };
         \end{feynman}
     \end{tikzpicture}
-    =ig\gamma^\mu(E^a)^I_{~~J}
+    =ig\gamma^\mu(E^a)^I_{~~J}.
 \end{align}
 
 接着考虑伴随表示, 因为Lie代数中的矢量空间都是实矢量空间, 所以伴随表示中场都是实的. 对于标量场来说, 也就是它的分量都是实的, 而对于旋量来说, 这很自然地要求实的Majorana旋量. 我们先从比较简单的实标量场入手, 显然其的维数就是Lie代数空间的维数, 也就有$\phi=\phi^aE_a$. 其拉格朗日量为
@@ -395,4 +395,38 @@
             \end{feynman}
         \end{tikzpicture}
         =ig^2g^{\mu\nu}(f_{ca_1a_3}f^{c}_{~~a_2a_4}+f_{ca_1a_4}f^{c}_{~~a_2a_3}).
+\end{align}
+
+接着考虑伴随旋量表示, 也就是$\psi=\psi^aE_a$, 其中$\psi^a$为Majorana旋量. 其拉格朗日量为
+\begin{align}
+    \mathcal L=-\frac14F^a_{\mu\nu}F^{\mu\nu}_a+\bar\psi_a(i\slashed D-m)\psi^a.
+\end{align}
+\begin{align}
+    \begin{tikzpicture}[baseline=(current bounding box.center)]
+        \begin{feynman}
+            \vertex (a) {\(a\)};
+            \vertex [right=2.5cm of a] (b) {\(b\)};
+            \diagram* {
+                (b) -- [fermion] (a),
+            };
+        \end{feynman}
+    \end{tikzpicture}
+    = \frac{i}{\slashed p-m + i\epsilon}\delta^{ab},
+\end{align}
+\begin{align}
+    \begin{tikzpicture}[baseline=(current bounding box.center)]
+        \begin{feynman}
+            \vertex (a);
+            \vertex [above right=1.5cm of a] (b) {\(b\)}; % 出射标量 p'
+            \vertex [below right=1.5cm of a] (c) {\(c\)}; % 入射标量 p
+            \vertex [left=1.5cm of a] (d) {\(\mu, a\)}; % 光子
+            \diagram* {
+                % 注意箭头的方向：从 c 到 a，从 a 到 b
+                (c) -- [fermion] (a),
+                (a) -- [fermion] (b),
+                (a) -- [gluon] (d),
+            };
+        \end{feynman}
+    \end{tikzpicture}
+    =gf_{abc}\gamma^\mu.
 \end{align}

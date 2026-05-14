@@ -128,7 +128,7 @@
     Z[J]=\int\mathcal DA\Delta(A)\exp{i\int\d^4x\left(-\frac14F_{\mu\nu}^kF^{\mu\nu}_k-\frac1{2\xi}(\partial_\mu A^\mu)^2+J^\mu A_\mu\right)}.
 \end{align}
 
-那么剩下的问题就是如何计算考虑这个$\Delta(A)$, 注意到, 反对易场的Grassmann路径积分正比于其行列式, 于是我们可以考虑引入一个带有群指标的反对易复标量场$c, \bar c$, 从而有
+那么剩下的问题就是如何计算考虑这个$\Delta(A)$, 注意到, 反对易场的Grassmann路径积分正比于其行列式, 于是我们可以考虑引入一个带有群指标的反对易的伴随表示复标量场$c, \bar c$, 从而有
 \begin{align}
     \det(\partial_\mu D^\mu)=\int\mathcal D\bar c\mathcal Dc\exp{i\int\d^4x\bar c (-\partial_\mu D^\mu) c}.
 \end{align}
@@ -430,3 +430,259 @@
     \end{tikzpicture}
     =gf_{abc}\gamma^\mu.
 \end{align}
+
+\subsection{BRST对称性与量子化}
+在做规范固定后, 规范场理论的规范不变性就完全看不出来了, 还引入了非物理的鬼场, 这使得我们难以看清楚理论物理部分的逻辑. 而BRST对称性的想法就是将规范变换提升为一种对称性, 通过对称性变换将不同的规范固定联系起来, 并且给出可以消除非物理的鬼场的量子化途径.
+
+我们想要将规范不变性提升为规范对称性, 首先遇到的问题是如何将这个局域的标量场$\alpha^a$给变成一个可以用整体的全局量描述的部分. 注意到, $c^a$场就是一个伴随表示下的标量场, 因此我们可以利用这个现成的场乘以一个全局的Grassmann数$\epsilon$来得到$\alpha$, 
+\begin{align}
+    \alpha^a=g\epsilon c^a,
+\end{align}
+这里前面的系数$g$是为调整整体系数用的.
+
+于是我们可以首先得到BRST变换下$A_\mu$, 物质场$\psi$(假设是基本表示)的改变,
+\begin{align}
+    \delta A_\mu=\epsilon D_\mu c, \delta\psi=ig\epsilon c\psi.
+\end{align}
+提取出全局的Grassmann参数$\epsilon$, 我们定义BRST的无穷小变换
+\begin{align}
+    \delta_B A_\mu=D_\mu c, \delta_B\psi=ig c\psi.
+\end{align}
+
+考虑一个任意约束$\delta(f^a(A)-\omega^a)$, 在上一节的FP量子化中, 我们有
+\begin{align}
+    Z=\int\mathcal DA\Delta(A)\exp{i\int\d^4x\left(\mathcal L_{\mathrm{YM}}+\mathcal L_{\mathrm{matter}}-\frac1{2\xi}f^af_a\right)},
+\end{align}
+其中
+\begin{align}
+    \mathcal L_{\mathrm{YM}}=-\frac14F^{\mu\nu}_aF_{\mu\nu}^a, 
+\end{align}
+$\mathcal L_{\mathrm{matter}}$为与$A$耦合的物质场的拉氏量, 形式可采取上节中所提到的四种形式中的任意之一, 在此我们为了方便考虑, 选择讨论基本表示中的物质场, 但是结论对伴随表示中的物质场也是依然成立的. 并且
+\begin{align}
+    \Delta(A)=\det\left(\frac{\delta f^a}{\delta\alpha^b}\right)=\det\left(\pa{f^a}{A^b}\frac{D_\mu}{g}\right).
+\end{align}
+
+计算$\Delta(A)$我们还是一个鬼场$c, \bar c$, 于是(因为整体的常数因子$-g$我们并不关心, 所以可以直接丢掉)
+\begin{align}
+    \Delta(A)&=\int\mathcal D\bar c\mathcal Dc\exp{i\int\d^4x\bar c_a(-\pa{f^a}{A^b}D_\mu) c^b}\\
+    &=\int\mathcal D\bar c\mathcal Dc\exp{i\int\d^4x-\bar c\pa{f^a}{A^b}\delta_B A_\mu}\\
+    &=\int\mathcal D\bar c\mathcal Dc\exp{i\int\d^4x-\bar c\delta_B f},
+\end{align}
+于是
+\begin{align}
+    Z=\int\mathcal DA\mathcal D\bar c\mathcal Dc\exp{i\int\d^4x\left(\mathcal L_{\mathrm{YM}}+\mathcal L_{\mathrm{matter}}-\frac1{2\xi}f^af_a-\bar c\delta_B f\right)}.
+\end{align}
+$\frac1{2\xi}f^af_a$并不是很好处理, 如果我们再引入一个辅助的伴随表示标量场$B^a$, 利用配方法
+\begin{align}
+    \int\mathcal D B\exp{\frac\xi2 B^aB_a+B_af^a}=\exp{-\frac{f^af_a}{2\xi}},
+\end{align}
+则我们有
+\begin{align}
+    Z=\int\mathcal DA\mathcal DB\mathcal D\bar c\mathcal Dc\exp{i\int\d^4x\left(\mathcal L_{\mathrm{YM}}+\mathcal L_{\mathrm{matter}}+\frac\xi2 B^aB_a+B_af^a-\bar c\delta_B f\right)}.
+\end{align}
+即现在的拉氏量为
+\begin{align}
+    \mathcal L=\mathcal L_{\mathrm{YM}}+\mathcal L_{\mathrm{matter}}+\frac\xi2 B^aB_a+B_af^a-\bar c_a\delta_B f^a.
+\end{align}
+我们想要将拉氏量改写为
+\begin{align}
+    \mathcal L=\mathcal L_{\mathrm{YM}}+\mathcal L_{\mathrm{matter}}+\delta_B O
+\end{align}
+的形式, 待会我们会看到为什么需要这么改写. 通过瞪眼法不难发现, 如果我们引入
+\begin{align}
+    \delta_B\bar c=B, \delta_B B=0, 
+\end{align}
+则有
+\begin{align}
+    O=\bar c_a\left(\frac\xi2B^a+f^a\right).
+\end{align}
+
+考虑从规范变换提升到的BRST变换, $\mathcal L$的变化为
+\begin{align}
+    \delta\mathcal L=\epsilon\delta_B\mathcal L=\epsilon\delta_B\delta_BO,
+\end{align}
+其中$\delta_B\mathcal L_{\mathrm{YM}}+\delta_B\mathcal L_{\mathrm{matter}}=0$是因为它们本来就在规范变换下就是不变的. 所以我们如果想要BRST是对称性, 也就是$\delta\mathcal L=0$, 就需要
+\begin{align}
+    \delta_B\delta_BO=0.
+\end{align}
+计算
+\begin{align}
+    \delta_B\delta_BO&=\delta_B(\frac\xi2 B^aB_a+B_af^a-\bar c_a\delta_B f^a)\\
+    &=B_a\delta_B f^a-B_a\delta_B f^a+\bar c_a\delta_B\delta_B f^a\\
+    &=\bar c_a\delta_B\delta_B f^a=0.
+\end{align}
+而
+\begin{align}
+    \delta_B\delta_B f=\ppa{f}{A_\mu^a}{A_\nu^b}D_\mu c^aD_\mu c^b+\pa{f}{A_\mu^a}\delta_B(D_\mu c^a),
+\end{align}
+利用$c^a, c^b$的反交换性与$\ppa{f}{A_\mu^a}{A_\nu^b}$两个偏导的可交换性, 可知
+\begin{align}
+    \ppa{f}{A_\mu^a}{A_\nu^b}D_\mu c^aD_\mu c^b=\ppa{f}{A_\mu^a}{A_\nu^b}\frac12(D_\mu c^aD_\mu c^b+D_\nu c^bD_\mu c^a)=0,
+\end{align}
+于是
+\begin{align}
+    \delta_B\delta_B f&=\pa{f}{A_\mu^a}\delta_B(D_\mu c^a)=\pa{f}{A_\mu^a}\delta_B\left(\partial_\mu c^a-ig[A^\mu, c]^a\right)\\
+    &=\pa{f}{A_\mu^a}\left(D_\mu\delta_B c^a-ig[\delta_B A^\mu, c]^a\right)\\
+    &=\pa{f}{A_\mu^a}\left(D_\mu\delta_B c^a-ig[D_\mu c, c]^a\right)\\
+    &=\pa{f}{A_\mu^a}\left(D_\mu\delta_B c^a-\frac i2gD_\mu[c, c]^a\right),
+\end{align}
+我们发现, 如果让
+\begin{align}
+    \delta_B c=\frac i2g[c, c], 
+\end{align}
+即
+\begin{align}
+    \delta_B c^c=-\frac12g f^{c}_{ab}c^ac^b, 
+\end{align}
+则
+\begin{align}
+    \delta_B\delta_B f=0, 
+\end{align}
+从而
+\begin{align}
+    \delta_B\mathcal L=0.
+\end{align}
+这样我们就得到了所谓的BRST对称性.
+\begin{definition}[BRST变换]
+    做BRST变换$X\to X+\epsilon\delta_B X$, 其中$\epsilon$为全局Grassmann参数, $\delta_B$反交换, 并且
+    \begin{align}
+        & \delta_BA_\mu^a=D_\mu c^a,\notag\\
+        & \delta_B\psi^a=ig(c\psi)^a,\notag\\
+        & \delta_B c^c=-\frac12g f^{c}_{ab}c^ac^b,\notag\\
+        & \delta_B\bar c_a=B_a,\notag\\
+        & \delta_BB^a=0.
+    \end{align}
+\end{definition}
+\begin{theorem}
+    Yang-Mills理论具有BRST对称性:
+    \begin{align}
+        \mathcal L=\mathcal L_{\mathrm{YM}}+\mathcal L_{\mathrm{matter}}+\delta_BO,
+    \end{align}
+    其中
+    \begin{align}
+        O=\bar c_a\left(\frac\xi2B^a+f^a\right).
+    \end{align}
+\end{theorem}
+
+并且不难验证如下定理
+\begin{theorem}
+    对于任意的量$X$, 做两次BRST变换其结果总为$0$:
+    \begin{align}
+        \delta_B\delta_BX=0.
+    \end{align}
+\end{theorem}
+
+由此我们可以看到, 我们实现了显式地给出规范固定后的Yang-Mills理论以规范不变性: 不同的规范选取无非是选择了不同的$O$罢了, 而总的拉氏量在BRST变换中总是不变的. 
+
+可以看到BRST对称性具有上同调的结构: 合法的$\mathcal L$的$\delta_B$为$0$, 但不是某一函数的$\delta_B$.
+
+既然是对称性, 我们就可以寻找守恒荷
+\begin{definition}[BRST守恒荷]
+    守恒流
+    \begin{align}
+        j^\mu_B=\sum\pa{\mathcal L}{\partial_\mu\Phi}\delta_B\Phi, \Phi=A_\mu, B, c, \bar c, \psi,
+    \end{align}
+    守恒荷
+    \begin{align}
+        Q_B=\int\d^3x j^0_B.
+    \end{align}
+    利用定理\ref{conserved-charge-as-generator}的结论, 我们有(注意BRST守恒荷$Q_B$是anti-commute的)
+    \begin{align}
+        & i[Q_B, A_\mu]^a=D_\mu c^a,\notag\\
+        & i[Q_B, \psi]_{\pm}^a=ig(c\psi)^a,\notag\\
+        & i\{Q_B, c\}^c=-\frac12g f^{c}_{ab}c^ac^b,\notag\\
+        & i\{Q_B, \bar c\}_a=B_a,\notag\\
+        & i[Q_B, B]^a=0.\label{BRST-commutator}
+    \end{align}
+    其中对于Boson的物质场$\psi$$[]_{\pm}$取对易子, Fermion的物质场取反对易子.
+\end{definition}
+\begin{definition}[BRST exact]
+    对于态$\ket\psi$, 若存在$\ket\xi$, $\ket\psi=Q_B\ket\xi$, 则$\ket\xi$是BRST exact. 换句话说, BRST exact就是$Q_B$的像空间: $\img Q_B$.
+\end{definition}
+\begin{definition}[BRST closed]
+    对于态$\ket\psi$, 若$Q_B\ket\psi=0$.
+\end{definition}
+
+我们要求, 所有的物理态$\ket\psi$都应当是BRST closed但不是exact的. 不难看出所有的物理态所在的Hilbert空间$\mathcal H_{\rm{phy}}=\ker Q_B/\img Q_B$: 所有相差BRST exact的物理态都被认为是同一个物理态.
+
+然后我们可以利用BRST对称性验证$S$矩阵的幺正性, 确认这样我们确实可以实现物理态和非物理态的隔离. 首先我们需要解出哪些on-shell态是物理的. 我们首先解出没有动力学的辅助场$B$, 
+\begin{align}
+    B=-\frac{f}{\xi}.
+\end{align}
+然后为了方便考虑我们将$g$设为$0$, 从而变为纯自由场. 然后使用Lorentz规范$f^a=\partial_\mu A^{\mu a}$. 于是可以给场量展开
+\begin{align}
+    & A_\mu^a=\int\ldsq k\sum_i^4\left(\a p^{ia}\epsilon_i^\mu\exp{-ikx}+\a p^{i\dagger a}\epsilon_i^{\mu*}\exp{ikx}\right),\notag\\
+    & c^a=\int\ldsq k\left(\c k^a\exp{-ikx}+\c k^{\dagger a}\exp{ikx}\right),\notag\\
+    & \bar c^a=\int\ldsq k\left(\b k^a\exp{-ikx}+\b k^{\dagger a}\exp{ikx}\right),\notag\\
+    & \psi=\int\ldsq k\left(a_{\psi\vec k}\exp{-ikx}+a_{\psi\vec k}^\dagger\exp{ikx}\right).
+\end{align}
+其中, 因为这里我们还没有通过BRST上同调区分出物理态, 因此$A_\mu$的展开中四个极化方向都是存在的, $i=+, -, f, b$. 对于$k^\mu=(\omega, 0, 0, \omega)$, 
+\begin{align}
+    \epsilon_+^\mu=\frac1{\sqrt2}\begin{pmatrix}
+        0 \\
+        1\\
+        i\\
+        0
+    \end{pmatrix},
+    \epsilon_-^\mu=\frac1{\sqrt2}\begin{pmatrix}
+        0 \\
+        1\\
+        -i\\
+        0
+    \end{pmatrix},
+    \epsilon_f^\mu=\frac1{\sqrt2}\begin{pmatrix}
+        1 \\
+        0\\
+        0\\
+        1
+    \end{pmatrix},
+    \epsilon_b^\mu=\frac1{\sqrt2}\begin{pmatrix}
+        -1 \\
+        0\\
+        0\\
+        1
+    \end{pmatrix}.
+\end{align}
+然后代入式\eqref{BRST-commutator}, 我们有
+\begin{align}
+    & [Q_B, a_f(\vec k)]=-\omega c, [Q_B, a^\dagger_f]=\omega c^\dagger, [Q_B, a_{+, -, b}]=0,\notag\\
+    & \{Q_B, c(\vec k)\}=0,\notag\\
+    & \{Q_B, b(\vec k)\}=-\xi^{-1}\omega a_{b}(\vec k), \{Q_B, b^\dagger(\vec k)\}=\xi^{-1}\omega a_{b}^\dagger(\vec k),\notag\\
+    & [Q_B, a_{\psi\vec k}]_{\pm}=0.
+\end{align}
+
+因此
+\begin{align}
+    & Q_Bb^\dagger\ket0=\xi^{-1}\omega a_b^\dagger\ket0\neq0, \notag\\
+    & Q_Ba_f^\dagger\ket0=\omega c^\dagger\ket 0\neq0, \notag\\
+    & a^\dagger_b\ket0=\frac\xi\omega Q_Bb^\dagger\ket0, \notag\\
+    & c^\dagger\ket0=\frac1\omega Q_Ba^\dagger_f\ket0, \notag\\
+    & Q_Ba^\dagger_{\pm}\ket0=0,\notag\\
+    & Q_Ba^\dagger_{\psi}\ket0=0.
+\end{align}
+这告诉我们, $a^\dagger_f, b^\dagger$不在上同调内, $a^\dagger_b, c^\dagger$为BRST exact, 而只有$a^\dagger_{\pm}, a^\dagger_{\psi}$才是在上同调内的BRST closed. 所以只有Yang-Mills场的左右旋偏振以及物质场是物理的.
+
+对于不在上同调内的元素$\ket F$, 我们可以恰当地选取内积的度规, 使得其与上同调内的元素正交
+\begin{align}
+    \braket{F|\mathrm{PHYS}}=0,
+\end{align}
+而对于BRST exact的元素$\ket\psi$, 若$\ket\psi=Q_B\ket\xi$, 则
+\begin{align}
+    \braket{\psi|\mathrm{PHYS}}=\braket{\xi|Q_B|\mathrm{PHYS}}=0.
+\end{align}
+
+从而我们可以验证$S$矩阵的幺正性
+\begin{align}
+    \braket{\mathrm{PHYS}, i|S^\dagger S|\mathrm{PHYS}, j}&=\sum_F \braket{\mathrm{PHYS}, i|S^\dagger|F}\braket{F|S|\mathrm{PHYS}, j}\notag\\
+    &=\sum_{\mathrm{PHYS}, F}\braket{\mathrm{PHYS}, i|S^\dagger|\mathrm{PHYS}, F}\braket{\mathrm{PHYS}, F|S|\mathrm{PHYS}, j}\notag\\
+    &=\delta_{ij}.
+\end{align}
+
+利用BRST量子化的结果, 我们可以很自然地得到Yang-Mills场的LSZ公式,
+\begin{theorem}[LSZ公式(有质量矢量场)]\label{LSZformula}
+    \begin{align}
+        \braket{f, +\infty|i, -\infty}&=\int\d^4x_1 i\exp{-ip_1x_1}\Box_1\epsilon^{\mu_1}_{\lambda_1}\cdots\int\d^4x_n i\exp{ip_nx_n}\Box_n\epsilon^{\mu_n*}_{\lambda_n}\notag\\
+        &\;\;\;\;\braket{A_{\mu_1}\cdots A_{\mu_n}},
+    \end{align}
+    其中, 对入射态用$\int i\exp{-ip_1x_1}(\Box+m^2)\epsilon^\mu_\lambda$, 而对出射态用$\int i\exp{ip_1x_1}(\Box+m^2)\epsilon^{\mu*}_\lambda$.
+\end{theorem}

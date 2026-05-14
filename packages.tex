@@ -84,15 +84,17 @@
 \numberwithin{table}{section}
 \newcommand{\de}[2]{\frac{\mathrm d#1}{\mathrm d#2}}
 \newcommand{\pa}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\ppa}[3]{\frac{\partial^2 #1}{\partial #2\partial #3}}
 \renewcommand{\vec}[1]{\mathbf{#1}}
 \renewcommand{\rm}[1]{\mathrm{#1}}
 \renewcommand{\bf}[1]{\mathbf{#1}}
 \renewcommand{\exp}[1]{\mathrm e^{#1}}
 \newcommand{\ddd}[1]{\frac{\mathrm d^3#1}{(2\pi)^3}}
 \newcommand{\dddd}[1]{\frac{\mathrm d^4#1}{(2\pi)^4}}
-\renewcommand{\a}[1]{a_{\vec #1}}
-\renewcommand{\b}[1]{b_{\vec #1}}
-\newcommand{\om}[1]{\omega_{\vec #1}}
+\renewcommand{\a}[1]{a_{\vec {#1}}}
+\renewcommand{\b}[1]{b_{\vec {#1}}}
+\renewcommand{\c}[1]{c_{\vec {#1}}}
+\newcommand{\om}[1]{\omega_{\vec {#1}}}
 \newcommand{\ad}[1]{a^\dagger_{\vec{#1}}}
 \renewcommand{\d}{\mathrm d}
 \newcommand{\dx}{\mathrm dx}
@@ -104,6 +106,8 @@
 \newcommand{\dpi}[1]{(2\pi)^{#1}}
 \renewcommand{\vec}[1]{\mathbf{#1}}
 \newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\img}{\mathrm{img}}
+\renewcommand{\ker}{\mathrm{ker}}
 \newcommand{\uvec}[1]{\mathbf{\hat{#1}}}
 \newcommand{\e}{\mathrm e}
 \newcommand{\tensor}[1]{\overleftrightarrow{\vec{#1}}}

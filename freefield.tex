@@ -1313,3 +1313,82 @@ $$
     \braket{0|\mathcal T\psi_x\bar\psi_y|0}=-\braket{0|\mathcal T\bar\psi_y\psi_x|0}\neq\braket{0|\mathcal T\bar\psi_y\psi_x|0}
 \end{equation}
 , Wick收缩的内顺序(即两个场$\psi, \bar\psi$缩并时谁在前谁在后)是不可忽略的, 不难证明, 正确的缩并方法应该是在缩并内保持$\mathcal T$内的先后顺序.
+
+\subsection{对称性与守恒荷}
+考虑某一变换$X$(要求不只是保持$S$不变, 还进一步要求$\mathcal L$不变)
+\begin{align}
+    \psi_i\to\epsilon\delta_X\psi_i,
+\end{align}
+我们可以定义出守恒流
+\begin{align}
+    j^\mu_X=\sum_i\frac{\partial\mathcal L}{\partial(\partial_\mu\psi_i)}\delta_X\psi_i,
+\end{align}
+并且有守恒荷
+\begin{align}
+    Q_X&=\int\d^3x j^0_X(x)\\
+    &=\int\d^3x\sum_i\frac{\partial\mathcal L}{\partial(\partial_t\psi_i)}\delta_X\psi_i\notag\\
+    &=\int\d^3x\sum_i \pi_i(x)\delta_X\psi_i(x).
+\end{align}
+
+如果$\delta_X$是commute的, 则我们有如下推导:
+对于动量满足对易关系的场,
+\begin{align}
+    [\psi_i(x), \pi_j(y)]=i\delta_{ij}\delta^3(x-y),
+\end{align}
+我们有
+\begin{align}
+    i[Q_X, \psi_i]&=\int\d^3y\sum_j i[\pi_j(y)\delta_X\psi_j(y), \psi_i(x)]\\
+    &=\int\d^3y\sum_j i([\pi_j(y), \psi_i(x)]\delta_X\psi_j(y)+\pi_j(y)[\delta_X\psi_j(y), \psi_i(x)])
+\end{align}
+若对称性不包含时间上的变换, 则$\delta_X\psi$不含有场对时间的导数, 也就不含正则动量, 因此在等时条件下有
+\begin{align}
+    [\delta_X\psi_j(y), \psi_i(x)]=0, 
+\end{align}
+从而
+\begin{align}
+    i[Q_X, \psi_i]&=\int\d^3y\sum_j i([\pi_j(y), \psi_i(x)]\delta_X\psi_j(y))\\
+    &=\int\d^3y\sum_j i(-i\delta_{ij}\delta^3(x-y)\delta_X\psi_j(y))\\
+    &=\delta_X\psi_i(x).
+\end{align}
+对于动量满足反对易关系的场, 我们可以类似推导得到
+\begin{align}
+    i[Q_X, \psi_i]&=\int\d^3y\sum_j i(\{\pi_j(y), \psi_i(x)\}\delta_X\psi_j(y)-\pi_j(y)\{\delta_X\psi_j(y), \psi_i(x)\})\\
+    &=\int\d^3y\sum_j i(-i\delta_{ij}\delta^3(x-y)\delta_X\psi_j(y))\\
+    &=\delta_X\psi_i(x).
+\end{align}
+
+而对于anti-commute的$\delta_X$, 比如说BRST的, 则有细微的区别, 对于动量位形是对易子关系的场结论仍然不变
+\begin{align}
+    i[Q_X, \psi_i]=\delta_X\psi_i(x),
+\end{align}
+但是对于反对易的算子则有
+\begin{align}
+    i\{Q_X, \psi_i\}=\delta_X\psi_i(x).
+\end{align}
+值得注意, 这里$Q_X$是anti-commute的.
+
+于是我们有定理
+\begin{theorem}\label{conserved-charge-as-generator}
+    考虑一保持$\mathcal L$不变的对称性$X$, 场的无穷小变换为$\psi\to\psi+\epsilon\delta_X\psi$, 对于动量与位形为对易关系的算符, 若它满足在等时条件下, 
+    \begin{align}
+        [\delta_X\psi_j(y), \psi_i(x)]=0,
+    \end{align}
+    则
+    \begin{align}
+        i[Q_X, \psi_i]=\delta_X\psi_i(x);
+    \end{align}
+    而对于动量位形是反对易的算符, 若$\delta_X$是commute的, 仍然有
+    \begin{align}
+        i[Q_X, \psi_i]=\delta_X\psi_i(x),
+    \end{align}
+    但是对于anti-commute的$\delta_X$, 则
+    \begin{align}
+        i\{Q_X, \psi_i\}=\delta_X\psi_i(x).
+    \end{align}
+\end{theorem}
+
+这告诉我们对于有限大的变换, 我们可以用$Q_X$生成
+\begin{align}
+    \exp{iQ_X\epsilon}\psi\exp{-iQ_X\epsilon}=X\psi.
+\end{align}
+这验证了守恒荷确实是这个变换的对应生成元(需要注意, 对于anti-commute的$Q_X$, $\epsilon$也是anti-commute的, 比如BRST对称性就是如此).

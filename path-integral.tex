@@ -438,139 +438,93 @@
 
 可以发现, 在这里我们的具体展开与推导都和Dyson级数的推导方式完全一样. 但是, 比起Dyson级数, 路径积分还有其他方式所不具有的优点: 极大的泛用性与可扩展性, 这使得它的应用远不止局限于量子场论的关联函数计算中. 凡是具有类似场论的数学结构的对象, 都可以利用路径积分来处理, 即使是完全的经典场, 或者半经典场, 都可以利用路径积分进行计算. 我们认为, 路径积分是一种处理无穷自由度体系的一种通用工具. 在本节接下来的部分中, 我们会给出一些具体的例子, 说明路径积分的其他用处.
 
-\subsection{Schwinger-Dyson定理}
-通过路径积分可以得到Schwinger-Dyson定理, 这个定理同样可以推导Feynman规则(但是比较猎奇). 这是一个非微扰的定理.
-\begin{theorem}[Schwinger-Dyson定理]\label{SchwingerDysonTheorem}
-    \begin{equation}
-        (\Box_x+m^2)\braket{\phi_x\phi_1\cdots\phi_n}=\braket{\mathcal L_{\rm{int}}'(\phi_x)\phi_1\cdots\phi_n}-i\sum_j\delta_{xj}\braket{\phi_1\cdots\phi_{j-1}\phi_{j+1}\cdots\phi_n}
-    \end{equation}
+\subsection{Ward恒等式}
+我们知道经典情况下我们有EOM
+\begin{align}
+    \frac{\delta S}{\delta\phi}=\pa{\mathcal L}{\phi}-\partial_\mu\pa{\mathcal L}{(\partial_\mu\phi)}=0,
+\end{align}
+与守恒流
+\begin{align}
+    \partial_\mu j^\mu=0.
+\end{align}
+我们好奇这些这些定理在量子层面上能多大程度被保持?
+
+考虑配分函数
+\begin{align}
+    Z[J]=\int\mathcal D\phi\exp{iS+iJ\cdot\phi},
+\end{align}
+设$\delta\phi=\epsilon(x)$, 从而有$\mathcal D\delta\phi=0$, 则
+\begin{align}
+    0=\int\mathcal D\phi\exp{iS+iJ\cdot\phi}(\frac{\delta S}{\delta\phi}+J),
+\end{align}
+从而我们可以得到
+\begin{align}
+    \braket{\frac{\delta S}{\delta\phi}}=0.
+\end{align}
+在关联函数意义下EOM依然是被满足的. 如果我们再对$J$做变分可以得到, 乘以其他$\phi$后会存在接触项, 这被称为Schwinger-Dyson定理.
+\begin{theorem}[Schwinger-Dyson定理]
+    \begin{align}
+        \braket{\frac{\delta S}{\delta\phi}(x)\phi(x_1)\cdots}=i\sum_i\delta^4(x-x_i)\braket{\phi(x_1)\cdots\phi(x_{i-1})\phi(x_{i+1})\cdots}.
+    \end{align}
 \end{theorem}
+通过Schwinger-Dyson定理也可以做微扰展开, 得到Feynman规则. 但是这做法非常猎奇, 且难以看出微扰展开的结构. 具体细节见附录\ref{schwinger-dyson-perturbative-expansion}.
 
-\begin{proof}
-    积分测度在场变换$\phi\to\phi+\epsilon(x)$下不变:
-    \begin{align}
-        \mathcal D\phi=\mathcal D(\phi+\epsilon), 
-    \end{align}
-    于是我们可以得到
-    \begin{align}
-        Z[J]=\int\mathcal D\phi\exp{iS}=\int\mathcal D(\phi-\epsilon)\exp{iS(\phi)}.
-    \end{align}
-
-    然后换元, 将$\phi-\epsilon$换为新的场$\phi$, 我们有
-    \begin{align}
-        Z[J]&=\int\mathcal D\phi\exp{i\int\d^4x(-\frac12\phi(\Box+m^2)\phi+\mathcal L_{\rm{int}}(\phi)+J\phi)}\notag\\
-        &=\int\mathcal D\phi\exp{i\int\d^4x(-\frac12(\phi+\epsilon)(\Box+m^2)(\phi+\epsilon)+\mathcal L_{\rm{int}}(\phi+\epsilon)+J(\phi+\epsilon))}.
-    \end{align}
-    
-    这告诉我们变换前后的$\delta Z=0$, 设$\epsilon$是小量, 展开到一阶, 于是有
-    \begin{align}
-        0=\delta Z[J]=\int\mathcal D\phi i\int\d^4x\epsilon(x)(-(\Box+m^2)\phi+\mathcal L_{\rm{int}}'+J)\exp{iS}.
-    \end{align}
-    又由于$\epsilon$是任意的, 我们将$i\int\d^4x\epsilon(x)$提取到路径积分外, 若要令结果对任意的$\epsilon(x)$都为零, 只能要求路径积分的结果为$0$, 即
-    \begin{align}
-        \int\mathcal D\phi(-(\Box+m^2)\phi+\mathcal L_{\rm{int}}'+J)\exp{iS}=0.
-    \end{align}
-    将这个结果求$J=0$处对$J$的n阶变分, 我们有
-    \begin{align}
-        (\Box_x+m^2)\braket{\phi_x\phi_1\cdots\phi_n}=\braket{\mathcal L_{\rm{int}}'(\phi_x)\phi_1\cdots\phi_n}-i\sum_j\delta_{xj}\braket{\phi_1\cdots\phi_{j-1}\phi_{j+1}\cdots\phi_n}.\notag
-    \end{align}
-\end{proof}
-
-然后我们展示通过这个定理, 考虑$\phi^3$理论, 以计算$\braket{\phi_1\phi_2}$为例, 导出位置空间的Feynman规则.
+考虑对称性变换
 \begin{align}
-    \braket{\phi_1\phi_2}&=\int\d^4x\delta_{1x}\braket{\phi_x\phi_2}=\int\d^4xi(\Box_x+m^2)D_{1x}\braket{\phi_x\phi_2}\\
-    &=\int\d^4xiD_{1x}(\Box_x+m^2)\braket{\phi_x\phi_2}\\
-    &=\int\d^4x\frac{ig}2 D_{1x}\braket{\phi_x^2\phi_2}-i\delta_{x2}\cdot iD_{1x}\\
-    &=D_{12}+\frac{ig}2\int\d^4xD_{1x}\braket{\phi_x^2\phi_2}
+    & x^\mu\to x'^\mu=x^\mu+\epsilon\xi^\mu,\notag\\
+    & \phi(x)\to \phi'(x')=\phi(x)+\epsilon\mathcal F[\phi],
+\end{align}
+若仍然有$\mathcal D\delta\phi=0$(这是一个假设, 若不满足, 则是anormaly), 其中$\delta\phi=\epsilon\Delta\phi=\epsilon\mathcal F[\phi]-\epsilon\xi^\nu\partial_\nu\phi$. 那么我们可以得到
+\begin{align}
+    0=\int\mathcal D\phi\exp{iS+iJ\cdots\phi}\int\d^4x\epsilon(\frac{\delta S}{\delta\epsilon}+J\Delta\phi),
+\end{align}
+其中
+\begin{align}
+    \frac{\delta S}{\delta\epsilon}=-\partial_\mu j^\mu,
+\end{align}
+这是用到了式\eqref{noether-trick}中的结果. 因为$\epsilon$是任意的, 故当我们将$\int\d^4x\epsilon$提到路径积分外后, 我们需要令里面的路径积分结果为$0$
+\begin{align}
+    0=\int\mathcal D\phi\exp{iS+iJ\cdots\phi}(-\partial_\mu j^\mu+J\Delta\phi).
+\end{align}
+从而我们可以得到
+\begin{align}
+    \braket{\partial_\mu j^\mu}=0.
+\end{align}
+在没有anormaly的情况下, 关联函数意义下的流守恒依然是被满足的. 如果我们再对$J$做变分可以得到, 乘以其他$\phi$后会存在接触项, 这被称为Ward恒等式.
+\begin{theorem}[Ward恒等式]
+    \begin{align}
+        \braket{\partial_\mu j^\mu(x)\cdots}=-i\sum_i\delta^4(x-x_i)\braket{\Delta\phi\cdots}.
+    \end{align}
+\end{theorem}
+注意, 这里的$j^\mu$与使用Noether's trick得到的式\eqref{general-sym-current}差一个负号.
+
+利用Ward恒等式, 我们考虑计算
+\begin{align}
+    \braket{Q\cdots}&=\int\d^3x\braket{j^0\cdots},
+\end{align}
+如果考虑对易子, 则$\int\d^3x$可化为一个封闭曲面积分
+\begin{align}
+    \braket{[Q, \cdots]}&=\int\d S_\mu\braket{j^\mu\cdots}\\
+    &=\int\d^4x \partial_\mu\braket{j^\mu\cdots}\\
+    &=-i\sum_i\braket{\Delta\phi\cdots}.
+\end{align}
+于是有
+\begin{align}
+    i[Q, \phi(x)]=\Delta\phi(x).
 \end{align}
 
-而依葫芦画瓢我们有
-\begin{align}
-    \braket{\phi_x^2\phi_2}&=\int\d^4 iD_{y2}(\Box_y+m^2)\braket{\phi_x^2\phi_y}\\
-    &=\frac{ig}2\int\d^4y D_{2y}\braket{\phi_x^2\phi_y^2}-2i\int\d^4y \delta_{xy}iD_{y2}\braket{\phi_x}\\
-    &=\frac{ig}2\int\d^4y D_{2y}\braket{\phi_x^2\phi_y^2}+2D_{x2}\braket{\phi_x}
-\end{align}
-
-梅开三度
-\begin{align}
-    \braket{\phi_x}&=\int\d^4y iD_{yx}(\Box_y+m^2)\braket{\phi_y}\\
-    &=\frac{ig}2\int\d^4y D_{yx}\braket{\phi_y^2}
-\end{align}
-
-于是最后整理得
-\begin{equation}
-    \braket{\phi_1\phi_2}=D_{12}-\left(\frac g2\right)^2\int \d^4x\d^4y(2D_{1x}D_{xy}D_{xy}D_{y2}+D_{1x}D_{xx}D_{yy}D_{y2}+2D_{1x}D_{xy}D_{yy}D_{x2})\label{2pt-correlation-expansion-schwinger-dyson}
-\end{equation}
-
-我们可以用Feynman图来表示这些二阶贡献, 并且类似地写下$\phi^3$理论在位形空间的Feynman规则.
-\begin{figure}[htbp!]
-    \begin{tikzpicture}
-        \draw (-0.5,0) -- (1,0) ;
-        \draw (2,0) -- (3.5,0);
-        \filldraw[black] (1,0) circle (1pt) node[below] {$x$} ;
-        \filldraw[black] (-0.5,0) circle (1pt)node[below] {$x_1$} ;
-        \filldraw[black] (2,0) circle (1pt) node[below] {$y$} ;
-        \filldraw[black] (3.5,0) circle (1pt)node[below] {$x_2$}  ;
-        \draw (1,0)..controls(0.4,1.2)and(1.6,1.2)..(1,0);
-        \draw (2,0)..controls(1.4,1.2)and(2.6,1.2)..(2,0);
-        \draw (4.2,0)--(4.5,0);
-        \draw (4.35,0.15)--(4.35,-0.15);
-        \draw (5.2,0)--(6.7,0);
-        \draw (7.7,0)--(9.2,0);
-        \filldraw[black] (6.7,0) circle (1pt);% node[below] {$x$} ;
-        \filldraw[black] (6.5,0)  node[below] {$x$} ;
-        \filldraw[black] (5.2,0) circle (1pt)node[below] {$x_1$} ;
-        \filldraw[black] (7.7,0) circle (1pt);
-        \filldraw[black] (7.9,0) node[below] {$y$} ;
-        \filldraw[black] (9.2,0) circle (1pt)node[below] {$x_2$}  ;
-        \draw (6.7,0) arc (180:0:0.5 and 0.5);
-        \draw (6.7,0) arc (180:360:0.5 and 0.5);
-        \draw (9.9,0)--(10.2,0);
-        \draw(10.05,0.15)--(10.05,-0.15);
-        \draw (10.9,0)--(12.4,0);
-        \draw (12.4,0)--(12.4,1);
-        \filldraw[black] (12.4,0) circle (1pt) node[below] {$x$} ;
-        \filldraw[black] (10.9,0) circle (1pt) node[below] {$x_1$} ;
-        \filldraw[black] (12.4,1) circle (1pt) node[left] {$y$} ;
-        \filldraw[black] (13.9,0) circle (1pt)node[below] {$x_2$}  ;
-        \draw (12.4,0)--(13.9,0);
-        \draw (12.4,1)..controls(13.6,1.6)and(13.6,0.4)..(12.4,1);
-    \end{tikzpicture}
-\end{figure}
-
-至此为止, 三种处理相互作用体系的微扰方法: Dyson级数, 路径积分以及Schwinger-Dyson定理我们都介绍完毕了. 从最终的结果上看, 它们都殊途同归, 得到了完全一致的结果.
+需要注意, 以上得到的等式都是非微扰的, 因此泛用性极强.
 
 \subsection{Ward-Takahashi恒等式}
-我们考虑Noether定理在量子场论中的推广. 我们知道复标量场在$U(1)$变换下是不变的, 类似Schwinger-Dyson定理的推导, 我们假设$\alpha(x)$是局域的, 积分测度在$U(1)$变换下不变
-\begin{align}
-    \mathcal D\psi=\mathcal D(\exp{i\alpha}\psi),
-\end{align}
-然后将$\exp{i\alpha}\psi$替换为新的积分变量$\psi$, 结果应当是不变的. 但是假设$\alpha$是无穷小量, 将$S$中的变化展开到一阶, 我们发现多出正比于$\partial_\mu\alpha$的项. 具体来说, 就是
-\begin{align}
-    &\;\;\int\mathcal D\psi\mathcal D\psi^*\exp{i\int\d^4x(\partial_\mu\psi^*\partial^\mu\psi-\psi^*m^2\psi+J^*\psi+J\psi^*)}\\
-    &=\int\mathcal D\psi\mathcal D\psi^*\exp{i\int\d^4x(\partial_\mu\psi^*\partial^\mu\psi-\psi^*m^2\psi+J^*\psi+J\psi^*+\partial_\mu\alpha J^\mu+i\alpha J^*\psi-i\alpha J\psi^*)}
-\end{align}
-所以根据$\delta Z=0$我们有
-\begin{align}
-    \int\d^4x\alpha(x)\int\mathcal D\phi(-\partial_\mu J^\mu+iJ^*\psi-iJ\psi^*)\exp{iS}=0.
-\end{align}
-由于$\alpha(x)$是任意的, 只能是这个路径积分为$0$
-\begin{align}
-    \int\mathcal D\phi(-\partial_\mu J^\mu+iJ^*\psi-iJ\psi^*)\exp{iS}=0.
-\end{align}
-对$J$求二阶变分, 然后代入$J=0$, 我们得到
-\begin{align}
-    \partial_\mu\braket{J^\mu(x)\psi(x_1)\bar\psi(x_2)}=i\delta(x-x_1)\braket{\psi(x_1)\bar\psi(x_2)}-i\delta(x-x_2)\braket{\psi(x_1)\bar\psi(x_2)}.
-\end{align}
-如果求$n$阶变分, 这个等式可以推广为
+我们知道复标量场有$U(1)$对称性. 我们将上节的Ward恒等式应用于此, 即可得到Ward-Takahashi恒等式. 
 \begin{theorem}[Ward-Takahashi恒等式]
     \begin{align}
-        \partial_\mu\braket{J^\mu(x)\psi(x_1)\bar\psi(x_2)\cdots\psi(x_n)}=\sum_j iQ_j\delta(x-x_j)\braket{\psi(x_1)\bar\psi(x_2)\cdots\psi(x_n)},
+        \partial_\mu\braket{j^\mu(x)\psi(x_1)\bar\psi(x_2)\cdots\psi(x_n)}=\sum_j iQ_j\delta(x-x_j)\braket{\psi(x_1)\bar\psi(x_2)\cdots\psi(x_n)},
     \end{align}
 \end{theorem}
-其中对于$\psi$, $Q_j=1$, 对于$\psi^*$, $Q_j=-1$.
+其中对于$\psi$, $Q_j=1$, 对于$\psi^*$, $Q_j=-1$. 
 
-将此式做傅里叶变换到动量空间, 记$\braket{J^\mu(x)\psi(x_1)\bar\psi(x_2)\cdots\psi(x_n)}$的傅里叶变换为$\mathcal M^\mu(p, q_1,q_2\cdots q_n)$, $\braket{\psi(x_1)\bar\psi(x_2)\cdots\psi(x_n)}$的傅里叶变换为$M_0(q_1,q_2\cdots q_n)$, 则我们有动量空间的表达式
+将此式做傅里叶变换到动量空间, 记$\braket{j^\mu(x)\psi(x_1)\bar\psi(x_2)\cdots\psi(x_n)}$的傅里叶变换为$\mathcal M^\mu(p, q_1,q_2\cdots q_n)$, $\braket{\psi(x_1)\bar\psi(x_2)\cdots\psi(x_n)}$的傅里叶变换为$M_0(q_1,q_2\cdots q_n)$, 则我们有动量空间的表达式
 \begin{theorem}[Ward-Takahashi恒等式(动量空间)]
     \begin{align}
         p_\mu\mathcal M^\mu(p, q_1,q_2\cdots q_n)=\sum_j Q_j M_0(q_1, q_2\cdots q_j+p \cdots q_n).
@@ -578,13 +532,13 @@
 \end{theorem}
 需要注意, 我们这里并没有约定出入射方向, 统一都认为是乘以$\int\d^4x\exp{-ipx}$, 如果要和LSZ适配, 对于出射的粒子需要将动量符号进行反转(从$+p$变成$-p$).
 
-这个结果即Ward-Takahashi恒等式. 考虑连通图, 将其分解为若干部分, 若在总振幅中出现若干$p_\mu M^\mu$的项, 由于Ward-Takahashi等式可以将其切割出不联通的子部分, 这部分贡献会变成不连通图, 因此在LSZ后, 代入黄金规则的时候不贡献可观测量. 于是我们得到结论, 对于on-shell连通图中的一部分, 有
-\begin{theorem}[Ward恒等式]\label{ward-identity}
+这个结果也称为Ward-Takahashi恒等式. 考虑连通图, 将其分解为若干部分, 若在总振幅中出现若干$p_\mu M^\mu$的项, 由于Ward-Takahashi等式可以将其切割出不联通的子部分, 这部分贡献会变成不连通图, 因此在LSZ后, 代入黄金规则的时候不贡献可观测量. 于是我们得到结论, 对于on-shell连通图中的一部分, 有
+\begin{theorem}[Ward恒等式]\label{ward-identity-qed}
     \begin{align}
         p_\mu M^\mu=0.
     \end{align}
 \end{theorem}
-这个结果称为Ward恒等式.
+这个结果称为Ward恒等式(很遗憾, 这里名称很混乱, 不要和前文的更一般的Ward恒等式搞混了= =).
 
 \subsection{真空零点能的路径积分计算}\label{vac-energy-path-integral}
 我们考虑真空演化

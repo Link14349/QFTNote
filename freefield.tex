@@ -168,7 +168,7 @@
     \end{equation}
     于是, 由Noether定理可得守恒流
     \begin{equation}
-        j^\mu = i(\psi\partial^\mu\psi^* - \psi^*\partial^\mu\psi)
+        j^\mu = i(\psi\partial^\mu\psi^* - \psi^*\partial^\mu\psi)\label{complex-scalar-u1-current}
     \end{equation}
     我们可以代入验证其守恒:
     \begin{equation}
@@ -289,6 +289,84 @@
 
     然后我们尝试推导能动张量. (似乎有点不太对, 等我再思考酝酿下)
 \end{example}
+
+上面的讨论有一个问题是, 我们如何确定$J^\mu$的形式, 有些时候它可能并不是一个很好确定的东西. 所以下面我们给出Noether第二定理, 或者说Noether's Trick, 它可以一般性的确定任意对称性的守恒流.
+
+考虑一个任意的变换
+\begin{align}
+    & x^\mu\to x'^\mu=x^\mu+\epsilon\xi^\mu,\notag\\
+    & \phi(x)\to \phi'(x')=\phi(x)+\mathcal F[\phi],\label{arbitary-field-trans}
+\end{align}
+我们计算变换后的作用量
+\begin{align}
+    S[\phi']=\int\d^4x'\mathcal L[\phi'(x'), \partial_\mu'\phi'(x')].
+\end{align}
+这里我们采用了被动的变换观点: 时空点位置不变, 只变坐标与场.
+
+如果这是一种对称性变换, 则$S$在这个变换下不变$S[\phi]=S[\phi']$. 这里我们使用所谓的Noether's Trick, 也就是将全局的参数$\epsilon$提升为局域的参数$\epsilon(x)$, 则$S[\phi']$一定会改变, 并且正比于$\epsilon$的项一定为$0$, 于是最低阶的也一定是正比$\partial_\mu\epsilon$的, 我们设
+\begin{align}
+    S[\phi']=S[\phi]-\int\d^4x j^\mu\partial_\mu\epsilon(x).
+\end{align}
+我们要求在$x\to\infty$时, $\epsilon(x)\to0$, 则分部积分有
+\begin{align}
+    S[\phi']=S[\phi]+\int\d^4x\epsilon(x)\partial_\mu j^\mu.\label{noether-trick}
+\end{align}
+
+然后我们考虑满足EOM的场配置, 因为对于满足EOM的场, 对其做任意的无穷小变换$\delta\phi$, 都有$\delta S=0$, 而$\delta\phi=\mathcal F[\phi]-\epsilon\xi^\mu\partial_\mu\phi$本身就是一个无穷小的场改变. 于是对于\textbf{满足EOM}的场, 同样有
+\begin{align}
+    S[\phi']=S[\phi],
+\end{align}
+于是
+\begin{align}
+    \int\d^4x\epsilon(x)\partial_\mu j^\mu[\phi^{EOM}]=0, 
+\end{align}
+又因为$\epsilon(x)$是完全任意的, 所以
+\begin{align}
+    \partial_\mu j^\mu[\phi^{EOM}]=0.
+\end{align}
+于是这样我们就得到了守恒流.
+
+对于如式\eqref{arbitary-field-trans}那样的场变换, 我们可以直接给出具体计算
+\begin{align}
+    \partial'_\mu\phi'(x')&=(\partial_\mu-\partial_\mu(\epsilon\xi^\nu)\partial_\nu)\phi'(x')\\
+    &=(\partial_\mu-\partial_\mu(\epsilon\xi^\nu)\partial_\nu)(\phi(x)+\mathcal F[\phi])\\
+    &=\partial_\mu\phi+\partial_\mu\left(\epsilon\mathcal F\phi\right)-\partial_\mu(\epsilon\xi^\nu)\partial_\nu\phi,
+\end{align}
+从而我们有
+\begin{align}
+    & \delta\phi'(x)=\mathcal F[\phi]-\epsilon\xi^\mu\partial_\mu\phi,\\
+    & \delta\partial_\mu\phi(x)=\partial_\mu\left(\epsilon\mathcal F\phi\right)-\partial_\mu(\epsilon\xi^\nu)\partial_\nu\phi.
+\end{align}
+于是
+\begin{align}
+    \delta S&=\int\d^4x'\mathcal L(\phi'(x'), \partial'\phi'(x'))-\int\d^4x\mathcal L(\phi(x), \partial\phi(x))\\
+    &=\int\d^4x\left[\left(\left|\pa{x^\mu}{x'^\nu}\right|-1\right)\mathcal L+\pa{\mathcal L}{\phi}\delta\phi+\pa{\mathcal L}{(\partial_\mu\phi)}\delta\partial_\mu\phi\right].
+\end{align}
+注意其中第一项为
+\begin{align}
+    \left|\pa{x^\mu}{x'^\nu}\right|-1=\partial_\mu(\epsilon\xi^\mu), 
+\end{align}
+代表测度本身的改变. 只提取出正比$\partial_\mu\epsilon$的项, 我们得到
+\begin{align}
+    \delta S=-\int\d^4x\partial_\mu\epsilon\left[-\xi^\mu\mathcal L+\Pi^\mu\left(\xi^\nu\partial_\nu\phi-\mathcal F[\phi]\right)\right].
+\end{align}
+于是我们可以得到守恒流
+\begin{align}
+    j^\mu=-\xi^\mu\mathcal L+\Pi^\mu\left(\xi^\nu\partial_\nu\phi-\mathcal F[\phi]\right),
+\end{align}
+其中
+\begin{align}
+    \Pi^\mu=\pa{\mathcal L}{(\partial_\mu\phi)}.
+\end{align}
+利用能动张量定义
+\begin{align}
+    T_{\mu\nu}=\Pi_\mu\partial_\nu\phi-g_{\mu\nu}\mathcal L, 
+\end{align}
+我们有
+\begin{align}
+    j_\mu=\xi^\nu T_{\mu\nu}-\Pi_\mu\mathcal F[\phi].\label{general-sym-current}
+\end{align}
+
 \subsection{哈密顿量}
 \begin{definition}[共轭动量]
     共轭动量

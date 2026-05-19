@@ -19,6 +19,8 @@
 \def\input@path{{./texmf/}}
 \makeatother
 \usepackage{tikz-feynman}
+\usetikzlibrary{shapes,arrows.meta,positioning,decorations.pathmorphing}
+\usepackage{pgfplots} % 可选，但旧 TL 常需要
 \tikzfeynmanset{compat=1.1.0} % 推荐设置兼容性版本
 
 % 定义通用的样式设置，减少重复代码
@@ -65,6 +67,30 @@
         yshift=2mm, % 垂直微调
     }
 }
+\tikzset{
+    counterterm/.style={
+        circle,              % 形状为圆
+        draw=black,          % 黑色边框
+        fill=white,          % 白色填充（用于遮挡后面的交叉线）
+        thick,               % 加粗线条（可根据喜好改为 semithick 或 thin）
+        inner sep=0pt,       % 内边距清零
+        minimum size=7pt,    % 圆圈的大小
+        path picture={       % 在圆圈内部画一个精准的叉 ⊗
+            \draw [thick] (path picture bounding box.south west) -- (path picture bounding box.north east);
+            \draw [thick] (path picture bounding box.north west) -- (path picture bounding box.south east);
+        }
+    }
+}
+\tikzset{
+    dir arrow/.style={
+        decoration={
+            markings,
+            mark=at position #1 with {\arrow[scale=1.2]{Stealth}}
+        },
+        postaction={decorate}
+    },
+    dir arrow/.default=0.55 % 默认箭头在正中间
+}
 
 \usetikzlibrary{calc}
 \usetikzlibrary{arrows.meta}
@@ -89,6 +115,7 @@
 \renewcommand{\rm}[1]{\mathrm{#1}}
 \renewcommand{\bf}[1]{\mathbf{#1}}
 \renewcommand{\exp}[1]{\mathrm e^{#1}}
+\newcommand{\nd}[2]{\frac{\mathrm d^{#1}#2}{(2\pi)^{#1}}}
 \newcommand{\ddd}[1]{\frac{\mathrm d^3#1}{(2\pi)^3}}
 \newcommand{\dddd}[1]{\frac{\mathrm d^4#1}{(2\pi)^4}}
 \renewcommand{\a}[1]{a_{\vec {#1}}}

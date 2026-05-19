@@ -702,7 +702,21 @@
 \end{align}
 
 \subsubsection{利用维数调控计算圈图}
-动量截断非常物理也非常直接, 在处理$\phi^4$场论的时候非常好用, 但是涉及到规范场则会显得有些力不从心: 一个强行的动量截断显然破坏了Lorentz对称性与规范对称性. 一个优雅的解决方案是使用维数调控: 假设我们并不是在$d=4$维考虑量子场论, 而是在$d=4-2\epsilon$考虑, 这样计算出的结果在$2\epsilon$非整数的时候是收敛的, 而在$\epsilon=0$处有一个极点, 也就是将无穷大的发散都体现在$\frac1\epsilon$中. 维数调控的物理意义相对不那么清晰, 但是在计算上会更加方便简单.
+动量截断非常物理也非常直接, 在处理$\phi^4$场论的时候非常好用, 但是涉及到规范场则会显得有些力不从心: 一个强行的动量截断显然破坏了Lorentz对称性与规范对称性. 一个优雅的解决方案是使用维数调控: 假设我们并不是在$d=4$维考虑量子场论, 而是在$d=4-2\epsilon$考虑, 这样计算出的结果在$2\epsilon$非整数的时候是收敛的, 而在$\epsilon=0$处有一个极点, 也就是将无穷大的发散都体现在$\frac1\epsilon$中. 
+
+读者可能会疑惑, 维度调控的引入到底是为什么, 它的物理意义是什么. 笔者认为, 这其实只是引入了一种特殊的核函数来进行动量截断. 考虑一般的动量截断, 我们可以写为
+\begin{align}
+    \int^{+\infty}\dddd p\to\int^{+\infty}\dddd p K(p, \Lambda),
+\end{align}
+在上一节的动量截断中, 我们是直接将核$K$设为了
+\begin{align}
+    K(p, \Lambda)=\Theta(1-p/\Lambda).
+\end{align}
+但是我们当然也可以选取其他的核函数, 只要它在$x\to\infty$时收敛速度足够快即可. 而维数调控就是无非就是选取了一个特殊的核函数, 其特殊之处就在于不是以某一个物理的截断动量$\Lambda$为核, 而是以一个表示维度的无量纲$\epsilon$为参数, 
+\begin{align}
+    K_D(p, \epsilon)=\frac{\Gamma(2)}{\Gamma(2-\epsilon)}\pi^{-\epsilon}\mu^{2\epsilon}p^{-2\epsilon}.
+\end{align}
+其中$\mu$是一任意的动量量纲的常数, 是用来控制量纲使得核函数无量纲的.
 
 我们用维数调控再次计算上节的结果.
 \begin{align}
@@ -714,7 +728,7 @@
     }}&=-\frac i2\lambda\int\nd 4 p\frac i{p^2-m^2+i\epsilon}\notag\\
     &=-\frac{i\lambda}2\mu^{2\epsilon}\int\nd d p\frac i{p^2-m^2+i\epsilon}
 \end{align}
-这里新引入了一个动量量纲的中间因子$\mu$, 是因为$\d^4 p$变成了$\d^{4-2\epsilon}p$, 缺少了$2\epsilon$次的动量量纲, 我们需要手动补上一个有动量量纲的常数$\mu$来保持量纲.
+这里新引入了一个动量量纲的中间因子$\mu$就是核函数中的那个任意常数$\mu$.
 
 \begin{align}
     \vcenter{\hbox{
@@ -770,6 +784,8 @@
     M(s, t, u)&=-\lambda-\frac{\lambda^2}{16\pi^2}\left[(A(s)+A(u)+A(t)-2)\right].
 \end{align}
 这也从侧面印证了维数调控的正确性.
+
+\subsubsection{MS与$\overline{MS}$ Scheme}
 
 \subsubsection{什么是不可重整化?}
 对于$\Delta_i\geq0$, 积分产生无穷大的根源是我们没有正确地匹配物理量与观测结果: 只要我们正确地将实验观测量与物理量进行匹配, 即可得到具有预测能力的物理理论. 但是对于$\Delta_i<0$的理论, 情况就糟糕很多了: 我们有无穷多个振幅(子图)是发散的, 这意味着我们需要引入无穷多个counterterm, 并与无穷多个实验测量结果进行拼配: 这使得我们的理论完全失去了预言能力. 读者可能会疑惑, 我们不是总共就这么几个参数吗, 为什么需要引入无穷多个counterterm. 这里我们做进一步的讨论, 考虑一个$\phi^6$理论

@@ -513,7 +513,7 @@
 \subsubsection{利用动量截断计算圈图}
 上面的介绍可能略带抽象, 因此我们给出具体的计算例子来解释如何正确地匹配Counterterm实现物理量的重匹配.
 
-我们计算到一阶圈图, 传播子修正为
+我们计算到一阶圈图, 传播子修正(注意圈图有对称因子$2$)为
 \begin{align}
     \vcenter{\hbox{
         \begin{tikzpicture}[line width=1pt, scale=0.7, baseline=-0.1cm]
@@ -528,7 +528,7 @@
             \draw (-0.14,-0.14) -- (0.14,0.14);
             \draw (-0.14,0.14) -- (0.14,-0.14);
         \end{tikzpicture}
-    }}&=-i\lambda\int\dddd p\frac i{p^2-m^2+i\epsilon}+i(p^2\delta_Z-\delta_m).
+    }}&=-\frac i2\lambda\int\dddd p\frac i{p^2-m^2+i\epsilon}+i(p^2\delta_Z-\delta_m).
 \end{align}
 考虑第一项积分, 我们很想将其分解为径向积分$\d p$与角向积分$\d\Omega$, 但是这里$p$是在双曲空间中, 而不是欧式空间中的, 这给我们做如上分解造成了困难, 因此我们需要先设法将积分转化为欧式空间中的积分. 这可以通过Wick rotation实现. 将此积分视为关于$\d p^0$的复变积分, 我们考虑如下围道.
 \begin{figure}[htbp]
@@ -588,22 +588,22 @@
 \end{align}
 从而
 \begin{align}
-    -i\lambda\int\dddd p\frac i{p^2-m^2+i\epsilon}=-i\lambda\int i\dddd{p_E}\frac{i}{-p_E^2-m^2+i\epsilon}.
+    -\frac i2\lambda\int\dddd p\frac i{p^2-m^2+i\epsilon}=-\frac i2\lambda\int i\dddd{p_E}\frac{i}{-p_E^2-m^2+i\epsilon}.
 \end{align}
 由此可见, 我们成功将双曲空间中的积分化为了欧式空间上的积分.
 
 利用$n$维球面角公式, 我们不难计算得到
 \begin{align}
-    -i\lambda\int i\dddd{p_E}\frac{i}{-p_E^2-m^2+i\epsilon}&=-\frac{i\lambda}{16\pi^2}\int_0^{+\infty}\frac{2p_E^3\d p_E}{p_E^2+m^2},
+    -\frac i2\lambda\int i\dddd{p_E}\frac{i}{-p_E^2-m^2+i\epsilon}&=-\frac{i\lambda}{32\pi^2}\int_0^{+\infty}\frac{2p_E^3\d p_E}{p_E^2+m^2},
 \end{align}
 我们引入动量截断$\Lambda$, 将积分上限变为$\Lambda$, 则可计算得到
 \begin{align}
-    -i\lambda\int i\dddd{p_E}\frac{i}{-p_E^2-m^2+i\epsilon}&=-\frac{i\lambda}{16\pi^2}\left[\Lambda^2-\ln\left(1+\frac{\Lambda^2}{m^2}\right)\right].
+    -\frac i2\lambda\int i\dddd{p_E}\frac{i}{-p_E^2-m^2+i\epsilon}&=-\frac{i\lambda}{32\pi^2}\left[\Lambda^2-\ln\left(1+\frac{\Lambda^2}{m^2}\right)\right].
 \end{align}
 
 于是可以得到传播子一阶修正
 \begin{align}
-    M^2(p^2)=\frac\lambda{16\pi^2}\left[\Lambda^2-\ln\left(1+\Lambda^2/m^2\right)\right]-p^2\delta_Z+\delta_m.
+    M^2(p^2)=\frac\lambda{32\pi^2}\left[\Lambda^2-\ln\left(1+\Lambda^2/m^2\right)\right]-p^2\delta_Z+\delta_m.
 \end{align}
 利用On-Shell Scheme的物理量匹配条件, 
 \begin{align}
@@ -612,7 +612,7 @@
 \end{align}
 我们解得
 \begin{align}
-    \delta_Z=0, \delta_m=-\frac\lambda{16\pi^2}\left[\Lambda^2-\ln\left(1+\Lambda^2/m^2\right)\right].
+    \delta_Z=0, \delta_m=-\frac\lambda{32\pi^2}\left[\Lambda^2-\ln\left(1+\Lambda^2/m^2\right)\right].
 \end{align}
 于是无穷大被完全抵消, 得到
 \begin{align}
@@ -639,7 +639,7 @@
         \draw[->, thick] (-2.4, 0.1) -- (-1.5, 0.1);
     \end{tikzpicture}
     % --- 中间的等号 ---
-    &=\frac{(-i\lambda)^2}{2} \int \frac{d^4k}{(2\pi)^4} \frac{i}{k^2 - m^2 + i\epsilon} \frac{i}{(p-k)^2 - m^2 + i\epsilon}.
+    &=\frac{(-i\lambda)^2}{2} \int\dddd p \frac{i}{k^2 - m^2 + i\epsilon} \frac{i}{(p-k)^2 - m^2 + i\epsilon}.
 \end{align}
 需要注意, 这里有顶点内置换产生的对称因子$2$. 利用附录定理\ref{feynman-trick}中的Feynman's Trick可以得到
 \begin{align}
@@ -647,12 +647,12 @@
 \end{align}
 然后配方, 并换元$k-px\to k$, 可得
 \begin{align}
-    &=\frac{\lambda^2}2\int\int_0^1\dx\dddd k\frac1{\left[(k-px)^2+p^2x(1-x)-m^2+i\epsilon\right]^2}\notag\\
-    &=\frac{\lambda^2}2\int\int_0^1\dx\dddd k\frac1{\left[k^2+p^2x(1-x)-m^2+i\epsilon\right]^2}, 
+    &=\frac{\lambda^2}2\int_0^1\dx\int\dddd k\frac1{\left[(k-px)^2+p^2x(1-x)-m^2+i\epsilon\right]^2}\notag\\
+    &=\frac{\lambda^2}2\int_0^1\dx\int\dddd k\frac1{\left[k^2+p^2x(1-x)-m^2+i\epsilon\right]^2}, 
 \end{align}
 做Wick rotation可以得到
 \begin{align}
-    &=\frac{i\lambda^2}2\int\int_0^1\dx\dddd{k_E}\frac1{\left[-k^2+p^2x(1-x)-m^2+i\epsilon\right]^2}
+    &=\frac{i\lambda^2}2\int_0^1\dx\int\dddd{k_E}\frac1{\left[-k_E^2+p^2x(1-x)-m^2+i\epsilon\right]^2}
 \end{align}
 设$\Delta(s=p^2)=m^2-sx(1-x)-i\epsilon$, 并先后积掉角向与径向, 可以得到
 \begin{align}
@@ -682,7 +682,7 @@
 可以发现, 现在无穷大就已经全部被吸收掉了, 取$\Lambda\to\infty$仍然可以保证关联函数是有限的. 于是我们直接计算$\Lambda\to\infty$后的极限, 得到
 \begin{align}
     iM&=-i\lambda-\frac{i\lambda^2}{32\pi^2}\sum_{c=s,t,u}\int_0^1\dx\ln\frac{\Delta(c)}{\Delta_0(c)}\notag\\
-    &=-i\lambda-\frac{i\lambda^2}{32\pi^2}\int_0^1\dx\ln\frac{m^2-cx(1-x)-i\epsilon}{m^2-c_0x(1-x)-i\epsilon}.
+    &=-i\lambda-\frac{i\lambda^2}{32\pi^2}\sum_{c=s,t,u}\int_0^1\dx\ln\frac{m^2-cx(1-x)-i\epsilon}{m^2-c_0x(1-x)-i\epsilon}.
 \end{align}
 利用分部积分, 经过艰苦卓绝的爆算我们可以得到
 \begin{align}
@@ -701,7 +701,75 @@
     M(s, t, u)&=-\lambda-\frac{\lambda^2}{16\pi^2}\left[(A(s)+A(u)+A(t)-2)\right].
 \end{align}
 
-\subsubsection{利用维数计算圈图}
+\subsubsection{利用维数调控计算圈图}
+动量截断非常物理也非常直接, 在处理$\phi^4$场论的时候非常好用, 但是涉及到规范场则会显得有些力不从心: 一个强行的动量截断显然破坏了Lorentz对称性与规范对称性. 一个优雅的解决方案是使用维数调控: 假设我们并不是在$d=4$维考虑量子场论, 而是在$d=4-2\epsilon$考虑, 这样计算出的结果在$2\epsilon$非整数的时候是收敛的, 而在$\epsilon=0$处有一个极点, 也就是将无穷大的发散都体现在$\frac1\epsilon$中. 维数调控的物理意义相对不那么清晰, 但是在计算上会更加方便简单.
+
+我们用维数调控再次计算上节的结果.
+\begin{align}
+    \vcenter{\hbox{
+        \begin{tikzpicture}[line width=1pt, scale=0.7, baseline=-0.1cm]
+            \draw (-1,0) -- (1,0);
+            \draw (0,0.4) circle (0.4);
+        \end{tikzpicture}
+    }}&=-\frac i2\lambda\int\nd 4 p\frac i{p^2-m^2+i\epsilon}\notag\\
+    &=-\frac{i\lambda}2\mu^{2\epsilon}\int\nd d p\frac i{p^2-m^2+i\epsilon}
+\end{align}
+这里新引入了一个动量量纲的中间因子$\mu$, 是因为$\d^4 p$变成了$\d^{4-2\epsilon}p$, 缺少了$2\epsilon$次的动量量纲, 我们需要手动补上一个有动量量纲的常数$\mu$来保持量纲.
+
+\begin{align}
+    \vcenter{\hbox{
+        \begin{tikzpicture}[line width=1pt, scale=0.7, baseline=-0.1cm]
+            \draw (-1,0) -- (1,0);
+            \draw (0,0.4) circle (0.4);
+        \end{tikzpicture}
+    }}&=-\frac{i\lambda}{2}\frac{\mu^{2\epsilon}}{(4\pi)^{d/2}}\frac{\Gamma(1-\frac d2)}{(m^2)^{1-d/2}}.
+\end{align}
+
+利用On-Shell Scheme的条件可以得到
+\begin{align}
+    \delta_Z=0, \delta_m=-\frac{\lambda}{2}\frac{\mu^{2\epsilon}}{(4\pi)^{d/2}}\frac{\Gamma(1-\frac d2)}{(m^2)^{1-d/2}}.
+\end{align}
+同样有
+\begin{align}
+    M^2(p^2)=0.
+\end{align}
+
+然后计算四点关联函数
+\begin{align}
+    % --- 左侧：TikZ 绘制的费曼图 ---
+    \begin{tikzpicture}[baseline=(current bounding box.center), scale=1.2]
+        % 定义顶点
+        \coordinate (v1) at (-0.8,0);
+        \coordinate (v2) at (0.8,0);
+        % 外线（输入和输出）
+        \draw[thick] (-1.5, 0.7) -- (v1) node[pos=0, left] {$p_1$};
+        \draw[thick] (-1.5,-0.7) -- (v1) node[pos=0, left] {$p_2$};
+        \draw[thick] (v2) -- (1.5, 0.7) node[pos=1, right] {$p_3$};
+        \draw[thick] (v2) -- (1.5,-0.7) node[pos=1, right] {$p_4$};
+        % 圈线（Loop）
+        \draw[thick] (v1) to[out=45,in=135] node[inner sep=0.5pt, label=above:$\xrightarrow{\quad k \quad}$] {} (v2);
+        \draw[thick] (v1) to[out=-45,in=-135] node[inner sep=0.5pt, label=below:$\xrightarrow{\;\; p-k \;\;}$] {} (v2);
+        % 总动量箭头
+        \node at (-2.2, 0.1) [below] {$p = p_1 + p_2$};
+        \draw[->, thick] (-2.4, 0.1) -- (-1.5, 0.1);
+    \end{tikzpicture}
+    % --- 中间的等号 ---
+    &=\frac{(-i\lambda)^2}{2}\int\mu^{2\epsilon}\nd dp \frac{i}{k^2 - m^2 + i\epsilon} \frac{i}{(p-k)^2 - m^2 + i\epsilon}.
+\end{align}
+利用Feynman's Trick与附录\ref{dim-reg-loop-refer}, 可以得到
+\begin{align}
+    &=\frac{i\lambda^2}{2}\mu^{2\epsilon}\int_0^1\dx\frac{\Gamma(\epsilon)}{(4\pi)^{d/2}}\frac1{\Delta^\epsilon}\\
+    &=\frac{i\lambda^2}{32\pi^2}\int_0^1\dx\left(\frac1\epsilon-\gamma+\ln4\pi-\ln\frac{m^2-p^2x(1-x)-i\epsilon}{\mu^2}\right).
+\end{align}
+后面的计算是类似的, 解出
+\begin{align}
+    \delta_\lambda=\sum_{c=s, t, u}\frac{\lambda^2}{32\pi^2}\int_0^1\dx\left(\frac1\epsilon-\gamma+\ln4\pi-\ln\frac{m^2-c_0x(1-x)-i\epsilon}{\mu^2}\right),
+\end{align}
+即可得到同样的散射振幅
+\begin{align}
+    M(s, t, u)&=-\lambda-\frac{\lambda^2}{16\pi^2}\left[(A(s)+A(u)+A(t)-2)\right].
+\end{align}
+这也从侧面印证了维数调控的正确性.
 
 \subsubsection{什么是不可重整化?}
 对于$\Delta_i\geq0$, 积分产生无穷大的根源是我们没有正确地匹配物理量与观测结果: 只要我们正确地将实验观测量与物理量进行匹配, 即可得到具有预测能力的物理理论. 但是对于$\Delta_i<0$的理论, 情况就糟糕很多了: 我们有无穷多个振幅(子图)是发散的, 这意味着我们需要引入无穷多个counterterm, 并与无穷多个实验测量结果进行拼配: 这使得我们的理论完全失去了预言能力. 读者可能会疑惑, 我们不是总共就这么几个参数吗, 为什么需要引入无穷多个counterterm. 这里我们做进一步的讨论, 考虑一个$\phi^6$理论

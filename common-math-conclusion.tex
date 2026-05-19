@@ -115,7 +115,7 @@
         &=\int_0^1(1-t')^{x-1}t'^{y-1}\d t'
     \end{align}
 \end{proof}
-\begin{theorem}
+\begin{theorem}\label{B-gamma}
     \begin{equation}
         B(x,y)=\frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}
     \end{equation}
@@ -320,12 +320,13 @@
     \frac1{AB}=\int_0^1\dx\frac1{\left[xA+(1-x)B\right]^2}.
 \end{align}
 
-\subsection{维数调控圈图计算的参考公式}
+\subsection{维数调控圈图计算的参考公式}\label{dim-reg-loop-refer}
+利用定理\ref{beta-equiv}与定理\ref{B-gamma}不难得到
 \begin{align}
-    \int \nd{d}{\ell} \frac{1}{(\ell^2 - \Delta)^n} &= \frac{(-1)^n i}{(4\pi)^{d/2}} \frac{\Gamma(n-\frac{d}{2})}{\Gamma(n)} \left(\frac{1}{\Delta}\right)^{n-\frac{d}{2}} \tag{A.44} \\[1ex]
-    \int \nd{d}{\ell} \frac{\ell^2}{(\ell^2 - \Delta)^n} &= \frac{(-1)^{n-1} i}{(4\pi)^{d/2}} \frac{d}{2} \frac{\Gamma(n-\frac{d}{2}-1)}{\Gamma(n)} \left(\frac{1}{\Delta}\right)^{n-\frac{d}{2}-1} \tag{A.45} \\[1ex]
-    \int \nd{d}{\ell} \frac{\ell^\mu \ell^\nu}{(\ell^2 - \Delta)^n} &= \frac{(-1)^{n-1} i}{(4\pi)^{d/2}} \frac{g^{\mu\nu}}{2} \frac{\Gamma(n-\frac{d}{2}-1)}{\Gamma(n)} \left(\frac{1}{\Delta}\right)^{n-\frac{d}{2}-1} \tag{A.46} \\[1ex]
-    \int \nd{d}{\ell} \frac{(\ell^2)^2}{(\ell^2 - \Delta)^n} &= \frac{(-1)^n i}{(4\pi)^{d/2}} \frac{d(d+2)}{4} \frac{\Gamma(n-\frac{d}{2}-2)}{\Gamma(n)} \left(\frac{1}{\Delta}\right)^{n-\frac{d}{2}-2} \tag{A.47} \\[1ex]
-    \int \nd{d}{\ell} \frac{\ell^\mu \ell^\nu \ell^\rho \ell^\sigma}{(\ell^2 - \Delta)^n} &= \frac{(-1)^n i}{(4\pi)^{d/2}} \frac{\Gamma(n-\frac{d}{2}-2)}{\Gamma(n)} \left(\frac{1}{\Delta}\right)^{n-\frac{d}{2}-2} \nonumber \\
-    & \quad \times \frac{1}{4} (g^{\mu\nu}g^{\rho\sigma} + g^{\mu\rho}g^{\nu\sigma} + g^{\mu\sigma}g^{\nu\rho}) \tag{A.48}
+    \int \nd{d}{\ell} \frac{1}{(\ell^2 - \Delta)^n} &= \frac{(-1)^n i}{(4\pi)^{d/2}} \frac{\Gamma(n-\frac{d}{2})}{\Gamma(n)} \left(\frac{1}{\Delta}\right)^{n-\frac{d}{2}}, \\
+    \int \nd{d}{\ell} \frac{\ell^2}{(\ell^2 - \Delta)^n} &= \frac{(-1)^{n-1} i}{(4\pi)^{d/2}} \frac{d}{2} \frac{\Gamma(n-\frac{d}{2}-1)}{\Gamma(n)} \left(\frac{1}{\Delta}\right)^{n-\frac{d}{2}-1}, \\
+    \int \nd{d}{\ell} \frac{\ell^\mu \ell^\nu}{(\ell^2 - \Delta)^n} &= \frac{(-1)^{n-1} i}{(4\pi)^{d/2}} \frac{g^{\mu\nu}}{2} \frac{\Gamma(n-\frac{d}{2}-1)}{\Gamma(n)} \left(\frac{1}{\Delta}\right)^{n-\frac{d}{2}-1}, \\
+    \int \nd{d}{\ell} \frac{(\ell^2)^2}{(\ell^2 - \Delta)^n} &= \frac{(-1)^n i}{(4\pi)^{d/2}} \frac{d(d+2)}{4} \frac{\Gamma(n-\frac{d}{2}-2)}{\Gamma(n)} \left(\frac{1}{\Delta}\right)^{n-\frac{d}{2}-2}, \\
+    \int \nd{d}{\ell} \frac{\ell^\mu \ell^\nu \ell^\rho \ell^\sigma}{(\ell^2 - \Delta)^n} &= \frac{(-1)^n i}{(4\pi)^{d/2}} \frac{\Gamma(n-\frac{d}{2}-2)}{\Gamma(n)} \left(\frac{1}{\Delta}\right)^{n-\frac{d}{2}-2} \notag \\
+    & \quad \times \frac{1}{4} (g^{\mu\nu}g^{\rho\sigma} + g^{\mu\rho}g^{\nu\sigma} + g^{\mu\sigma}g^{\nu\rho}).
 \end{align}

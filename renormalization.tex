@@ -158,16 +158,16 @@
 \begin{align}
     \mathcal L=\frac12(\partial\phi_r)^2-\frac12 m^2\phi_r^2-\frac\lambda{4!}\phi_r^4+\frac12\delta_Z(\partial\phi_r)^2-\frac12\delta_m\phi^2-\frac{\delta_\lambda}{4!}\phi_r^4.
 \end{align}
-其中后面的项被称为Counterterm. 通过恰当地选取Counterterm的值, 我们可以吸收掉计算中的无穷大, 并与实验结果正确地相匹配.
+其中后面的项被称为反项. 通过恰当地选取反项的值, 我们可以吸收掉计算中的无穷大, 并与实验结果正确地相匹配.
 
-当然, 与真实物理量的匹配并不只这一种方式, 我们后面会看到, 还有其他将物理量与模型相匹配的方式, 不同的匹配方式都是一种Scheme.
-\begin{definition}[Scheme]
-    Scheme就是指将实验观测的物理量与物理模型匹配的方式.
+当然, 与真实物理量的匹配并不只这一种方式, 我们后面会看到, 还有其他将物理量与模型相匹配的方式, 不同的匹配方式都是一种方案.
+\begin{definition}[方案(Scheme)]
+    方案就是指将实验观测的物理量与物理模型匹配的方式.
 \end{definition}
-我们的微扰计算结果是强烈依赖于Scheme的, 理论上来说, 只有我们考虑无穷阶的微扰, 才能使得计算结果与Scheme无关(但是这是做不到的).
+我们的微扰计算结果是强烈依赖于方案的, 理论上来说, 只有我们考虑无穷阶的微扰, 才能使得计算结果与方案无关(但是这是做不到的).
 
-\begin{definition}[On-Shell Scheme]
-    我们要求, 在on-shell scheme中, 按如下方式匹配counterterm:
+\begin{definition}[on-shell方案]
+    我们要求, 在on-shell scheme中, 按如下方式匹配反项:
     \begin{itemize}
         \item 模型计算的关联函数极点(这里是指将关联函数视为$f(z), z=p^2$这样一个复变函数)为实验测量的质量$m^2$
         \item 模型计算的关联函数极点处留数为$i$
@@ -242,11 +242,11 @@
 \end{align}
 
 \subsubsection{物理量的匹配}
-我们以$\phi^4$理论与On-Shell Scheme为例, 介绍重整化的一般方法. 首先我们引入Counterterm, 得到
+我们以$\phi^4$理论与on-shell方案为例, 介绍重整化的一般方法. 首先我们引入反项(Counterterm), 得到
 \begin{align}
     \mathcal L&=\frac12(\partial\phi_r)^2-\frac12 m^2\phi_r^2-\frac\lambda{4!}\phi_r^4+\frac12\delta_Z(\partial\phi_r)^2-\frac12\delta_m\phi^2-\frac{\delta_\lambda}{4!}\phi_r^4,
 \end{align}
-其中我们认为Counterterm都是微扰项, 并利用分部积分$\frac12\delta_Z(\partial\phi_r)^2=-\frac12\delta_Z\phi_r\Box\phi_r$, 可以得到Counterterm的顶点
+其中我们认为反项都是微扰项, 并利用分部积分$\frac12\delta_Z(\partial\phi_r)^2=-\frac12\delta_Z\phi_r\Box\phi_r$, 可以得到反项的顶点
 % 这里不用tikz-feynman是实在没招了，不是渲染不出crossed dot就是编译不过...
 \begin{align}
     \begin{tikzpicture}[baseline=-0.5ex]
@@ -329,7 +329,7 @@
     }}
     % 加号与省略号
     + \cdots + \notag \\[1.5ex]
-    % 第四项：反项顶点 (Counterterm)
+    % 第四项：反项顶点 (反项)
     &\vcenter{\hbox{
         \begin{tikzpicture}[line width=1pt, scale=0.7, baseline=-0.1cm]
             \draw (-1,0) -- (1,0);
@@ -492,7 +492,7 @@
     \end{tikzpicture}.
 \end{align}
 
-根据如上计算结果可以进行物理量的匹配. 在On-Shell Scheme中, 极点位置为$m^2$要求
+根据如上计算结果可以进行物理量的匹配. 在on-shell方案中, 极点位置为$m^2$要求
 \begin{align}
     M^2(p^2)\Big|_{p^2=m^2}=0,
 \end{align}
@@ -508,10 +508,34 @@
 \begin{align}
     iM(4m^2, 0)=-i\lambda.
 \end{align}
-这样我们就得到了三个方程, 而我们也恰有三个Counterterm$\delta_Z, \delta_m, \delta_\lambda$, 从而可以完全确定这三个Counterterm, 将发散的物理量都吸收到这三者中, 实现物理量的正确匹配.
+这样我们就得到了三个方程, 而我们也恰有三个反项$\delta_Z, \delta_m, \delta_\lambda$, 从而可以完全确定这三个反项, 将发散的物理量都吸收到这三者中, 实现物理量的正确匹配.
 
 \subsubsection{利用动量截断计算圈图}
-上面的介绍可能略带抽象, 因此我们给出具体的计算例子来解释如何正确地匹配Counterterm实现物理量的重匹配.
+动量截断的物理意义是非常显然的: 我们的理论是低能的有效理论, 积分并不能想当然地直接推到无穷大, 我们需要引入动量截断, 控制积分收敛. 类比于Casimir效应的计算, 我们可以将高动量部分的压低抽象为引入一个带截断动量参数$\Lambda$的核函数, 从而将积分测度改为
+\begin{align}
+    \int\dddd p\to\int\dddd pK(p, \Lambda).
+\end{align}
+当然, 用来控制收敛性的核函数应当满足一定的条件, 来保证结果收敛并且物理, 总的来说有这么几个要求.
+\begin{definition}[圈图积分的核函数]
+    函数$K(p, \Lambda)$满足, 
+    \begin{itemize}
+        \item $\Lambda\to\infty$, $K(p, \Lambda)=1$,
+        \item $K(p, \Lambda)$使圈图积分绝对收敛,
+        \item 在IR区$p\to0$, 不引入人为的发散.
+    \end{itemize}
+\end{definition}
+其中第二条要求可以推出
+\begin{align}
+    \lim_{p\to\infty}K(p, \Lambda)=0.
+\end{align}
+
+我们可以证明不同的核函数选取都不影响我们最终得到的物理结果.
+
+上面的介绍可能略带抽象, 因此我们给出具体的计算例子来解释如何正确地匹配反项实现物理量的重匹配. 一般来说, 为了方便, 我们会直接取核函数
+\begin{align}
+    K(p, \Lambda)=\Theta(1-p/\Lambda).
+\end{align}
+这是一个硬截断, 将动量积分上限强行变为$\Lambda$.
 
 我们计算到一阶圈图, 传播子修正(注意圈图有对称因子$2$)为
 \begin{align}
@@ -605,7 +629,7 @@
 \begin{align}
     M^2(p^2)=\frac\lambda{32\pi^2}\left[\Lambda^2-\ln\left(1+\Lambda^2/m^2\right)\right]-p^2\delta_Z+\delta_m.
 \end{align}
-利用On-Shell Scheme的物理量匹配条件, 
+利用on-shell方案的物理量匹配条件, 
 \begin{align}
     &M^2(p^2)\Big|_{p^2=m^2}=0,\notag\\
     &\de{}{(p^2)}M^2(p^2)\Big|_{p^2=m^2}=0.\notag
@@ -670,7 +694,7 @@
     \end{tikzpicture}=-i\lambda+\sum_{c=s,t,u}\frac{i\lambda^2}{32\pi^2}\int_0^1\dx\left[\ln\frac{\Delta(c)+\Lambda^2}{\Delta}-\frac{\Lambda^2}{\Lambda^2+\Delta(c)}\right]-i\delta_\lambda.
 \end{align}
 
-利用$iM(s=4m^2, t=u=0)=-i\lambda$, 设$\Delta_0(c)=m^2-c_0x(1-x)-i\epsilon$, 其中$c=s, t, u$, 而$s_0=4m^2, t_0=u_0=0$, 我们可以解得Counterterm
+利用$iM(s=4m^2, t=u=0)=-i\lambda$, 设$\Delta_0(c)=m^2-c_0x(1-x)-i\epsilon$, 其中$c=s, t, u$, 而$s_0=4m^2, t_0=u_0=0$, 我们可以解得反项
 \begin{align}
     \delta_\lambda=\frac{\lambda^2}{32\pi^2}\sum_{c=s,t,u}\int_0^1\dx\left[\ln\frac{\Delta_0(c)+\Lambda^2}{\Delta_0(c)}-\frac{\Lambda^2}{\Lambda^2+\Delta_0(c)}\right],
 \end{align}
@@ -686,7 +710,7 @@
 \end{align}
 利用分部积分, 经过艰苦卓绝的爆算我们可以得到
 \begin{align}
-    \int_0^1\dx\ln\left(m^2-cx(1-x)-i\epsilon\right)&=-2+2\sqrt{\frac{4m^2}{c}-1-i\epsilon}\arctan\frac1{\sqrt{\frac{4m^2}{c}-1-i\epsilon}},
+    \int_0^1\dx\ln\left(m^2-cx(1-x)-i\epsilon\right)&=\ln m^2-2+2\sqrt{\frac{4m^2}{c}-1-i\epsilon}\arctan\frac1{\sqrt{\frac{4m^2}{c}-1-i\epsilon}},
 \end{align}
 设辅助函数
 \begin{align}
@@ -702,21 +726,15 @@
 \end{align}
 
 \subsubsection{利用维数调控计算圈图}
-动量截断非常物理也非常直接, 在处理$\phi^4$场论的时候非常好用, 但是涉及到规范场则会显得有些力不从心: 一个强行的动量截断显然破坏了Lorentz对称性与规范对称性. 一个优雅的解决方案是使用维数调控: 假设我们并不是在$d=4$维考虑量子场论, 而是在$d=4-2\epsilon$考虑, 这样计算出的结果在$2\epsilon$非整数的时候是收敛的, 而在$\epsilon=0$处有一个极点, 也就是将无穷大的发散都体现在$\frac1\epsilon$中. 
+动量截断非常物理也非常直接, 在处理$\phi^4$场论的时候非常好用, 但是涉及到规范场则会显得有些力不从心: 一个强行的动量截断显然破坏了Lorentz对称性与规范对称性. 一个优雅的解决方案是使用维数调控: 假设我们并不是在$d=4$维考虑量子场论, 而是在$d=4-2\epsilon$考虑.
 
-读者可能会疑惑, 维度调控的引入到底是为什么, 它的物理意义是什么. 笔者认为, 这其实只是引入了一种特殊的核函数来进行动量截断. 考虑一般的动量截断, 我们可以写为
-\begin{align}
-    \int^{+\infty}\dddd p\to\int^{+\infty}\dddd p K(p, \Lambda),
-\end{align}
-在上一节的动量截断中, 我们是直接将核$K$设为了
-\begin{align}
-    K(p, \Lambda)=\Theta(1-p/\Lambda).
-\end{align}
-但是我们当然也可以选取其他的核函数, 只要它在$x\to\infty$时收敛速度足够快即可. 而维数调控就是无非就是选取了一个特殊的核函数, 其特殊之处就在于不是以某一个物理的截断动量$\Lambda$为核, 而是以一个表示维度的无量纲$\epsilon$为参数, 
+读者可能会疑惑, 维度调控的引入到底是为什么, 它的物理意义是什么. 笔者认为, 这其实只是引入了一种特殊的核函数来进行动量截断, 但其特殊之处就在于不是以某一个物理的截断动量$\Lambda$为核的参数, 而是以一个表示维度的无量纲$\epsilon$(一般地来说可以为复)为参数, 
 \begin{align}
     K_D(p, \epsilon)=\frac{\Gamma(2)}{\Gamma(2-\epsilon)}\pi^{-\epsilon}\mu^{2\epsilon}p^{-2\epsilon}.
 \end{align}
-其中$\mu$是一任意的动量量纲的常数, 是用来控制量纲使得核函数无量纲的.
+其中$\mu$是一任意的动量量纲的常数, 是用来控制量纲使得核函数无量纲的. 而前面奇怪的$\Gamma$与$\pi$组成的系数只是为了凑$4-2\epsilon$维的球面角.
+
+这样的好处在于, 无论是多少次的发散积分, 只要我们$\epsilon$取的实部足够大, 都可以得到一个收敛的积分. 得到结果后, 再利用复平面上的解析延拓, 我们可以让这个积分结果在复平面上除孤立极点外都收敛, 从而成功推到$\epsilon\to0$的区域. 后面的计算告诉我们, 可以预料在$\epsilon=0$处是一个一阶极点, 也就是所有的发散都被吸收到了$\frac1\epsilon$中.
 
 我们用维数调控再次计算上节的结果.
 \begin{align}
@@ -725,21 +743,13 @@
             \draw (-1,0) -- (1,0);
             \draw (0,0.4) circle (0.4);
         \end{tikzpicture}
-    }}&=-\frac i2\lambda\int\nd 4 p\frac i{p^2-m^2+i\epsilon}\notag\\
-    &=-\frac{i\lambda}2\mu^{2\epsilon}\int\nd d p\frac i{p^2-m^2+i\epsilon}
+    }}&=-\frac{i\lambda}2\mu^{2\epsilon}\int\nd d p\frac i{p^2-m^2+i\epsilon}\\
+    &=-\frac{i\lambda}{2}\frac{\mu^{2\epsilon}}{(4\pi)^{d/2}}\frac{\Gamma(1-\frac d2)}{(m^2)^{1-d/2}}\\
+    &=\frac{i\lambda m^2}{32\pi^2}\left(\frac1\epsilon-\gamma+1+\ln(4\pi)-\ln\frac{m^2}{\mu^2}\right).
 \end{align}
-这里新引入了一个动量量纲的中间因子$\mu$就是核函数中的那个任意常数$\mu$.
+不难注意到, 确实如我们所预料的, 所有的无穷大量都体现在$\frac1\epsilon$中.
 
-\begin{align}
-    \vcenter{\hbox{
-        \begin{tikzpicture}[line width=1pt, scale=0.7, baseline=-0.1cm]
-            \draw (-1,0) -- (1,0);
-            \draw (0,0.4) circle (0.4);
-        \end{tikzpicture}
-    }}&=-\frac{i\lambda}{2}\frac{\mu^{2\epsilon}}{(4\pi)^{d/2}}\frac{\Gamma(1-\frac d2)}{(m^2)^{1-d/2}}.
-\end{align}
-
-利用On-Shell Scheme的条件可以得到
+利用on-shell方案的条件可以得到
 \begin{align}
     \delta_Z=0, \delta_m=-\frac{\lambda}{2}\frac{\mu^{2\epsilon}}{(4\pi)^{d/2}}\frac{\Gamma(1-\frac d2)}{(m^2)^{1-d/2}}.
 \end{align}
@@ -785,18 +795,109 @@
 \end{align}
 这也从侧面印证了维数调控的正确性.
 
-\subsubsection{MS与$\overline{MS}$ Scheme}
+\subsubsection{MS、$\overline{MS}$方案与重整化群流}
+on-shell方案很清楚也很物理, 但是缺点在于随着圈数提高, 满足它的on-shell条件会越来越麻烦; 其次, 有些时候它计算出来的结果在特殊情况下会有奇异性. 比如上一节计算出来的$\phi^4$一阶修正中, 取$m\to0$就会导致奇异性, 这就是红外发散. 为了能够正确处理无质量粒子, 并且简化计算, 我们实际更常用的是MS或者$\overline{MS}$方案. 所谓的MS其实是Minimal Substraction的缩写. 
+
+继续以$\phi^4$理论为例, 在维数调控中, 我们计算出结果
+\begin{align}
+    \vcenter{\hbox{
+        \begin{tikzpicture}[line width=1pt, scale=0.7, baseline=-0.1cm]
+            \draw (-1,0) -- (1,0);
+            \draw (0,0.4) circle (0.4);
+        \end{tikzpicture}
+    }}&=\frac{i\lambda m^2}{32\pi^2}\left(\frac1\epsilon-\gamma+1+\ln4\pi-\ln\frac{m^2}{\mu^2}\right),\notag
+\end{align}
+\begin{align}
+    % --- 左侧：TikZ 绘制的费曼图 ---
+    \begin{tikzpicture}[baseline=(current bounding box.center), scale=1.2]
+        % 定义顶点
+        \coordinate (v1) at (-0.8,0);
+        \coordinate (v2) at (0.8,0);
+        % 外线（输入和输出）
+        \draw[thick] (-1.5, 0.7) -- (v1) node[pos=0, left] {$p_1$};
+        \draw[thick] (-1.5,-0.7) -- (v1) node[pos=0, left] {$p_2$};
+        \draw[thick] (v2) -- (1.5, 0.7) node[pos=1, right] {$p_3$};
+        \draw[thick] (v2) -- (1.5,-0.7) node[pos=1, right] {$p_4$};
+        % 圈线（Loop）
+        \draw[thick] (v1) to[out=45,in=135] node[inner sep=0.5pt, label=above:$\xrightarrow{\quad k \quad}$] {} (v2);
+        \draw[thick] (v1) to[out=-45,in=-135] node[inner sep=0.5pt, label=below:$\xrightarrow{\;\; p-k \;\;}$] {} (v2);
+    \end{tikzpicture}
+    &=\frac{i\lambda^2}{32\pi^2}\int_0^1\dx\left(\frac1\epsilon-\gamma+\ln4\pi-\ln\frac{m^2-p^2x(1-x)-i\epsilon}{\mu^2}\right).\notag
+\end{align}
+然后即可给出这两种方案的定义.
+\begin{definition}[MS方案]
+    MS方案就是指通过维度调控计算圈图, 反项仅抵消极点$\frac1\epsilon$.
+\end{definition}
+更方便的选择则是把$\frac1\epsilon$后面的无关常数$\gamma, \ln4\pi$等也一起吸收到反项中, 这被称为$\overline{MS}$方案.
+\begin{definition}[$\overline{MS}$方案]
+    $\overline{MS}$方案就是指通过维度调控计算圈图, 反项抵消极点$\frac1\epsilon$与无关系数$\gamma, \ln4\pi$等.
+\end{definition}
+
+我们一般直接使用$\overline{MS}$方案. 也就是
+\begin{align}
+    & \delta_Z=0,\notag\\
+    & \delta_m=\frac{\lambda m^2}{32\pi^2}\left(\frac1\epsilon-\gamma+\ln4\pi\right),\\
+    & \delta_\lambda=\frac{3\lambda^2}{32\pi^2}\left(\frac1\epsilon-\gamma+\ln4\pi\right).
+\end{align}
+这里只需要注意因为$\delta_\lambda$需要一次性扣掉$s, t, u$三个通道的发散, 因此前面多了一个因子$3$. 于是可得
+\begin{align}
+    & M^2(p^2)=\frac{\lambda m^2}{32\pi^2}\left(\ln\frac{m^2}{\mu^2}-1\right),\\
+    & iM=-i\lambda-\frac{i\lambda^2}{32\pi^2}\sum_{c=s,t,u}\int_0^1\dx\ln\frac{m^2-cx(1-x)-i\epsilon}{\mu^2}.
+\end{align}
+
+需要注意, 与on-shell方案, 现在加入反项后的Lagrangian里面的参数$m, \lambda$也已经不代表真实的物理量了. 设真实的物理质量为$m_P$, 则
+\begin{align}
+    m_p^2=m^2+M^2(p^2)=m^2+\frac{\lambda m^2}{32\pi^2}\left(\ln\frac{m^2}{\mu^2}-1\right).
+\end{align}
+散射振幅为
+\begin{align}
+    M(s, t, u)=-\lambda-\frac{\lambda^2}{16\pi^2}\left[A(s)+A(t)+A(u)-3+\frac32\ln\frac{m^2}{\mu^2}\right].
+\end{align}
+
+这里存在一个诡异的问题: 为什么计算出来的物理量会依赖于一个纯粹人为引入的参数$\mu$, 这个计算结果是否可信? 原因在此, 我们还没有制定$m$, $\lambda$具体的值: 不同于on-shell方案, 我们并没有给它们指定与任何物理实际参数相关. 只要$m, \lambda$是关于$\mu$的函数, 将非物理的依赖$\mu$完全吸收到$m, \lambda$内部即可. 要求$m, \lambda$关于$\mu$的方程, 可以利用物理态与$\mu$无关的性质:
+\begin{align}
+    \de{}{\mu}m_P=0, \de{}{\mu}M=0.
+\end{align}
+从第一个方程可得
+\begin{align}
+    0=\de{m^2}{\mu}\left(1+\frac\lambda{32\pi^2}\ln\frac{m^2}{\mu^2}\right)-\frac{\lambda m^2}{16\pi^2}\frac1\mu+\frac{m^2}{32\pi^2}\left(\ln\frac{m^2}{\mu^2}-1\right)\de\lambda\mu.
+\end{align}
+然后注意到, 我们的微扰论精度只到一阶精度, $\mu\de{m^2}\mu\sim\lambda$, $\mu\de\lambda\mu\sim\lambda^2$, 因此我们可以将所有高于预计一阶的项都忽略, 从而得到
+\begin{align}
+    \mu\de{m^2}\mu=\frac{\lambda m^2}{16\pi^2}.\label{phi4-1loop-rg-m}
+\end{align}
+类似地有
+\begin{align}
+    \mu\de\lambda\mu=\frac{3\lambda^2}{16\pi^2}.\label{phi4-1loop-rg-lambda}
+\end{align}
+如上两个方程\eqref{phi4-1loop-rg-m}, \eqref{phi4-1loop-rg-lambda}就是重整化群方程(RG Equation).
+
+不过一般来说我们更希望重整化群方程中的$m, \lambda$是无量纲化的, 因此不妨设
+\begin{align}
+    \widetilde m^2=\frac{m^2}{\mu^2},
+\end{align}
+从而有
+\begin{align}
+    & \mu\de{\widetilde m^2}\mu=\frac{\lambda\widetilde m^2}{16\pi^2}-2\widetilde m^2,\\
+    & \mu\de\lambda\mu=\frac{3\lambda^2}{16\pi^2}.\notag
+\end{align}
+根据重整化群方程, 我们可以画出参数空间$\widetilde m^2, \lambda$中, 两参数随能标$\mu$增大的流向, 也就是重整化群流, 如图\ref{phi4-1loop-rgf}.
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[page=1,width=0.4\textwidth]{phi4-1loop-rgf.pdf}
+    \caption{$\phi^4$重整化群流}\label{phi4-1loop-rgf}
+\end{figure}
 
 \subsubsection{什么是不可重整化?}
-对于$\Delta_i\geq0$, 积分产生无穷大的根源是我们没有正确地匹配物理量与观测结果: 只要我们正确地将实验观测量与物理量进行匹配, 即可得到具有预测能力的物理理论. 但是对于$\Delta_i<0$的理论, 情况就糟糕很多了: 我们有无穷多个振幅(子图)是发散的, 这意味着我们需要引入无穷多个counterterm, 并与无穷多个实验测量结果进行拼配: 这使得我们的理论完全失去了预言能力. 读者可能会疑惑, 我们不是总共就这么几个参数吗, 为什么需要引入无穷多个counterterm. 这里我们做进一步的讨论, 考虑一个$\phi^6$理论
+对于$\Delta_i\geq0$, 积分产生无穷大的根源是我们没有正确地匹配物理量与观测结果: 只要我们正确地将实验观测量与物理量进行匹配, 即可得到具有预测能力的物理理论. 但是对于$\Delta_i<0$的理论, 情况就糟糕很多了: 我们有无穷多个振幅(子图)是发散的, 这意味着我们需要引入无穷多个反项, 并与无穷多个实验测量结果进行拼配: 这使得我们的理论完全失去了预言能力. 读者可能会疑惑, 我们不是总共就这么几个参数吗, 为什么需要引入无穷多个反项. 这里我们做进一步的讨论, 考虑一个$\phi^6$理论
 \begin{align}
     \mathcal L=\frac12(\partial\phi)^2-\frac12m^2\phi^2-\frac\lambda{6!}\phi^6,
 \end{align}
-我们不难首先得到Counterterm
+我们不难首先得到反项
 \begin{align}
     \mathcal L=\frac12(\partial\phi_r)^2-\frac12 m^2\phi_r^2-\frac\lambda{6!}\phi_r^6+\frac12\delta_Z(\partial\phi_r)^2-\frac12\delta_m\phi^2-\frac{\delta_\lambda}{6!}\phi_r^6,
 \end{align}
-这看起来没啥问题, 如果使用on-shell scheme, 我们只需要继续让$\delta_Z, \delta_m, \delta_\lambda$与实验观测结果匹配即可. 但是问题在于, 随着我们考虑更多顶点, 会出现我们原有Counterterm无法消除的无穷大, 这需要我们凭空在Lagrangian里面引入新的Counterterm来抵消无穷大, 最终引入无穷多个Counterterm以至于理论完全失去预言能力.
+这看起来没啥问题, 如果使用on-shell方案, 我们只需要继续让$\delta_Z, \delta_m, \delta_\lambda$与实验观测结果匹配即可. 但是问题在于, 随着我们考虑更多顶点, 会出现我们原有反项无法消除的无穷大, 这需要我们凭空在Lagrangian里面引入新的反项来抵消无穷大, 最终引入无穷多个反项以至于理论完全失去预言能力.
 
 从现代观点来看, 我们认为不可重整化理论只是更高能理论的一个低能有效场论. 我们由于实验技术限制, 只能在低能尺度$E$($E\ll M$, 其中$M$为某个特征能标, $\lambda_6\propto\frac1{M^2}$). 做实验时，那些高能的未知动力学(比如复杂的弦振动、或者未知的重粒子交换)在我们看来，就被凝聚/积掉(Integrated out)成了低能Lagrangian里的非线性接触项(即$\phi^6, \phi^8\dots$, 并且这些非线性项是被我们高能理论极大的能标$M$给强烈压制的). 此时, $\lambda_6$的物理大小其实是由高能理论决定的, 它天然地正比于$\frac{1}{M^2}$. 而作为一个低能有效理论, 我们本来就不应该把动量积到无穷大, 而是在动量到$M$附近就停止了, 这就是动量截断的物理意义. 
 

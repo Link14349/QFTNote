@@ -23,7 +23,18 @@
 \usetikzlibrary{shapes,arrows.meta,positioning,decorations.pathmorphing}
 \usepackage{pgfplots} % 可选，但旧 TL 常需要
 \tikzfeynmanset{compat=1.1.0} % 推荐设置兼容性版本
+% 1. 必须加载路径变形库
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{patterns, decorations.pathmorphing, decorations.markings}
 
+% 2. 必须定义 photon 样式
+\tikzset{
+    photon/.style={
+        decorate, 
+        decoration={snake, amplitude=1.5pt, segment length=5pt}
+    },
+    arrowleft/.style={postaction={decorate, decoration={markings, mark=at position 0.52 with {\arrow{<}}}}}
+}
 % 定义通用的样式设置，减少重复代码
 \tikzfeynmanset{
     my_diagram/.style={

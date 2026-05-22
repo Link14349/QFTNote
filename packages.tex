@@ -33,7 +33,9 @@
         decorate, 
         decoration={snake, amplitude=1.5pt, segment length=5pt}
     },
-    arrowleft/.style={postaction={decorate, decoration={markings, mark=at position 0.52 with {\arrow{<}}}}}
+    arrowleft/.style={postaction={decorate, decoration={markings, mark=at position 0.52 with {\arrow{<}}}}},
+    arrowright/.style={postaction={decorate, decoration={markings, mark=at position 0.55 with {\arrow{>}}}}},
+    arrowloop/.style={postaction={decorate, decoration={markings, mark=at position 0.25 with {\arrow{>}}, mark=at position 0.75 with {\arrow{>}}}}}
 }
 % 定义通用的样式设置，减少重复代码
 \tikzfeynmanset{

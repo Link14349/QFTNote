@@ -125,11 +125,11 @@
 \end{proof}
 利用这个定理, 对于无穷小微分同胚变换, 我们有
 \begin{align}
-    \delta\mathcal L=-\xi^\mu\partial_\mu\mathcal L
+    \delta\mathcal L=-\xi^\mu\partial_\mu\mathcal L,
 \end{align}
 对于Killing矢量场$\partial_\mu\xi^\mu=0$, 于是
 \begin{align}
-    \delta\mathcal L=\partial_\mu(-\xi^\mu\partial_\mu\mathcal L)
+    \delta\mathcal L=\partial_\mu(-\xi^\mu\partial_\mu\mathcal L),
 \end{align}
 从而可以得到
 \begin{align}
@@ -295,7 +295,7 @@
 考虑一个任意的变换
 \begin{align}
     & x^\mu\to x'^\mu=x^\mu+\epsilon\xi^\mu,\notag\\
-    & \phi(x)\to \phi'(x')=\phi(x)+\mathcal F[\phi],\label{arbitary-field-trans}
+    & \phi(x)\to \phi'(x')=\phi(x)+\mathcal F[\phi],\label{arbitary-field-trans},
 \end{align}
 我们计算变换后的作用量
 \begin{align}
@@ -309,7 +309,7 @@
 \end{align}
 我们要求在$x\to\infty$时, $\epsilon(x)\to0$, 则分部积分有
 \begin{align}
-    S[\phi']=S[\phi]+\int\d^4x\epsilon(x)\partial_\mu j^\mu.\label{noether-trick}
+    S[\phi']=S[\phi]+\int\d^4x\epsilon(x)\partial_\mu j^\mu.\label{noether-trick},
 \end{align}
 
 然后我们考虑满足EOM的场配置, 因为对于满足EOM的场, 对其做任意的无穷小变换$\delta\phi$, 都有$\delta S=0$, 而$\delta\phi=\mathcal F[\phi]-\epsilon\xi^\mu\partial_\mu\phi$本身就是一个无穷小的场改变. 于是对于\textbf{满足EOM}的场, 同样有
@@ -376,11 +376,11 @@
 \end{definition}
 做Legendre变换, 有Hamiltonian:
 \begin{equation}
-    H(\phi, \Pi, \nabla\phi) = \int \mathrm d^3x \, \Pi\dot\phi-L=\int \mathrm d^3x \, (\Pi\dot\phi-\mathcal L)
+    H(\phi, \Pi, \nabla\phi) = \int \mathrm d^3x \, \Pi\dot\phi-L=\int \mathrm d^3x \, (\Pi\dot\phi-\mathcal L),
 \end{equation}
 定义Hamiltonian密度:
 \begin{equation}
-    \mathcal H(\phi, \Pi, \nabla\phi) = \Pi\dot\phi - \mathcal L
+    \mathcal H(\phi, \Pi, \nabla\phi) = \Pi\dot\phi - \mathcal L,
 \end{equation}
 定义Poisson括号$\{, \}: \mathcal F\times\mathcal F\to\mathbb{R}$:
 \begin{equation}
@@ -524,13 +524,13 @@ $\mathcal V$为系统的总体积.
 
 于是Hamiltonian可以被对角化:
 \begin{equation}
-    H=\int\frac{\mathrm d^3p}{(2\pi)^3}\omega_{\vec p}(a^\dagger_{\vec p} a_{\vec p}+\frac12\mathcal V)
+    H=\int\frac{\mathrm d^3p}{(2\pi)^3}\omega_{\vec p}(a^\dagger_{\vec p} a_{\vec p}+\frac12\mathcal V),
 \end{equation}
 
 Fourier逆变换可以得到:
 \begin{align}
     &\phi(\vec x)=\int\frac{\mathrm d^3p}{(2\pi)^3}\frac1{\sqrt{2\omega_{\vec p}}}(a^\dagger_{\vec p}\mathrm e^{-i\vec p\cdot\vec x}+a_{\vec p}\mathrm e^{i\vec p\cdot\vec x})\\
-    &\pi(\vec x)=\int\frac{\mathrm d^3p}{(2\pi)^3} i\sqrt{\frac{\omega_{\vec p}}{2}}(a^\dagger_{\vec p} e^{-i\vec p\cdot\vec x}-a_{\vec p} e^{i\vec p\cdot\vec x})
+    &\pi(\vec x)=\int\frac{\mathrm d^3p}{(2\pi)^3} i\sqrt{\frac{\omega_{\vec p}}{2}}(a^\dagger_{\vec p} e^{-i\vec p\cdot\vec x}-a_{\vec p} e^{i\vec p\cdot\vec x}),
 \end{align}
 
 最后利用时间演化算符得到场方程:
@@ -545,12 +545,12 @@ Fourier逆变换可以得到:
 
 我们可以计算所谓的真空零点能密度:
 \begin{equation}
-    \frac{\bra0 H\ket0}{\mathcal V}=\int\frac{\mathrm d^3p}{(2\pi)^3}\frac{\omega_{\vec p}}{2}=\int\frac{\mathrm d^3p}{(2\pi)^3}\frac{\sqrt{p^2+m^2}}{2}=+\infty
+    \frac{\bra0 H\ket0}{\mathcal V}=\int\frac{\mathrm d^3p}{(2\pi)^3}\frac{\omega_{\vec p}}{2}=\int\frac{\mathrm d^3p}{(2\pi)^3}\frac{\sqrt{p^2+m^2}}{2}=+\infty,
 \end{equation}
 
 我们还可以定义动量算子:
 \begin{equation}
-    P^i=\int\mathrm\partial^0\phi\partial^i\pi\mathrm d^3x=-\int\phi_t\phi_i\mathrm d^3x
+    P^i=\int\mathrm\partial^0\phi\partial^i\pi\mathrm d^3x=-\int\phi_t\phi_i\mathrm d^3x,
 \end{equation}
 即:
 \begin{align}
@@ -558,7 +558,7 @@ Fourier逆变换可以得到:
     &=-\int\mathrm d^3x\int\ldsq{p}[i\omega_{\vec p}](a^\dagger_{\vec p} e^{ipx}-a_{\vec p} e^{-ipx})\\
     &\quad\int\ldsq{q}[i\vec q](-a^\dagger_{\vec q}\exp{iqx}+a_{\vec q}\exp{-iqx})\\
     &=\int\ld{p}[\vec p\omega_{\vec p}](a^\dagger_{\vec p} a_{\vec p}+a_{\vec p}a^\dagger_{\vec p})\\
-    &=\int\ddd p\vec p a^\dagger_{\vec p} a_{\vec p}
+    &=\int\ddd p\vec p a^\dagger_{\vec p} a_{\vec p},
 \end{align}
 
 这里需要补充一点:
@@ -607,10 +607,10 @@ Fourier逆变换可以得到:
 \end{definition}
 我们不难验证:
 \begin{equation}
-    \braket{\vec p|\vec q}=2\omega_{\vec p}(2\pi)^3\delta^3(\vec p-\vec q)
+    \braket{\vec p|\vec q}=2\omega_{\vec p}(2\pi)^3\delta^3(\vec p-\vec q),
 \end{equation}
 \begin{equation}
-    \braket{\vec p'\vec q'|\vec p\vec q}=4\omega_{\vec p}\omega_{\vec q}(2\pi)^6\left(\delta^3(\vec p-\vec p')\delta^3(\vec q-\vec q')+\delta^3(\vec p'-\vec q)\delta^3(\vec q'-\vec p)\right)
+    \braket{\vec p'\vec q'|\vec p\vec q}=4\omega_{\vec p}\omega_{\vec q}(2\pi)^6\left(\delta^3(\vec p-\vec p')\delta^3(\vec q-\vec q')+\delta^3(\vec p'-\vec q)\delta^3(\vec q'-\vec p)\right),
 \end{equation}
 \begin{equation}
     \vec P\ket{\vec p}=\vec p\ket{\vec p}
@@ -629,25 +629,25 @@ Fourier逆变换可以得到:
 \end{definition}
 我们可以发现:
 \begin{equation}
-    \ket{\vec x}=\psi^\dagger(x)\ket0=\int\ld{p}\exp{ipx}\ket{\vec p}
+    \ket{\vec x}=\psi^\dagger(x)\ket0=\int\ld{p}\exp{ipx}\ket{\vec p},
 \end{equation}
 \begin{equation}
-    \braket{\vec p|\vec x}=\exp{ipx}
+    \braket{\vec p|\vec x}=\exp{ipx},
 \end{equation}
 
 可以发现与我们在QM里学的一致.
 
 \subsection{自由复标量场量子化}
 \begin{equation}
-    \mathcal L=\partial_\mu\psi^*\partial^\mu\psi-m^2\psi^*\psi
+    \mathcal L=\partial_\mu\psi^*\partial^\mu\psi-m^2\psi^*\psi,
 \end{equation}
 其中$\psi=\phi_1+i\phi_2$
 
 \begin{align}
-    \pi^\mu=\partial^\mu\psi^*
+    \pi^\mu=\partial^\mu\psi^*,
 \end{align}
 \begin{align}
-    \pi=\pi^0=\partial^0\psi^*=\partial_0\psi^*
+    \pi=\pi^0=\partial^0\psi^*=\partial_0\psi^*,
 \end{align}
 
 正则变换:
@@ -655,39 +655,39 @@ Fourier逆变换可以得到:
     \begin{cases}
         &\Psi_{\vec k}=\frac1{\dpi3}\int\d^3x\psi_{\vec x}\exp{-i\vec k\cdot\vec x}\\
         &\Pi_{\vec k}=\int\d^3x\pi_{\vec x}\exp{i\vec k\cdot\vec x}
-    \end{cases}
+    \end{cases},
 \end{align}
 
 于是得到:
 \begin{equation}
-    H=\int\d^3k\left(\frac1{\dpi3}\Pi^\dagger_{-\vec k}\Pi_{\vec k}+\dpi3\om p^2\Psi_{-\vec k}^\dagger\Psi_\vec k\right)
+    H=\int\d^3k\left(\frac1{\dpi3}\Pi^\dagger_{-\vec k}\Pi_{\vec k}+\dpi3\om p^2\Psi_{-\vec k}^\dagger\Psi_\vec k\right),
 \end{equation}
 
 添加正则量子化条件:
 \begin{equation}
-    [\psi_{\vec x}, \pi_{\vec y}]=i\delta^3(\vec x-\vec y), \quad [\psi_\vec x, \psi_\vec y]=[\pi_\vec x, \pi_\vec y]=0
+    [\psi_{\vec x}, \pi_{\vec y}]=i\delta^3(\vec x-\vec y), \quad [\psi_\vec x, \psi_\vec y]=[\pi_\vec x, \pi_\vec y]=0,
 \end{equation}
 
 于是我们得到:
 \begin{align}
-    [\Psi_\vec p, \Pi_\vec q]=[\Psi^\dagger_\vec p, \Pi^\dagger_\vec q]=i\delta^3(\vec p-\vec q), \quad [\Psi_\vec p, \Psi_\vec q]=[\Pi_\vec p, \Pi_\vec q]=0
+    [\Psi_\vec p, \Pi_\vec q]=[\Psi^\dagger_\vec p, \Pi^\dagger_\vec q]=i\delta^3(\vec p-\vec q), \quad [\Psi_\vec p, \Psi_\vec q]=[\Pi_\vec p, \Pi_\vec q]=0,
 \end{align}
 
 设
 \begin{align}
     &\a p=\dpi3\sqrt{\frac{\om p}2}(\Psi_\vec p+\frac i{\dpi3\om p}\Pi^\dagger_{-\vec p})=\frac1{\sqrt{2\om p}}\int\d^3x\exp{ipx}(\om p\psi+i\pi^\dagger)\\
-    &\b p=\dpi3\sqrt{\frac{\om p}2}(\Psi_{-\vec p}^\dagger+\frac i{\dpi3\om p}\Pi_{\vec p})=\frac1{\sqrt{2\om p}}\int\d^3x\exp{-ipx}(\om p\psi^\dagger+i\pi)
+    &\b p=\dpi3\sqrt{\frac{\om p}2}(\Psi_{-\vec p}^\dagger+\frac i{\dpi3\om p}\Pi_{\vec p})=\frac1{\sqrt{2\om p}}\int\d^3x\exp{-ipx}(\om p\psi^\dagger+i\pi),
 \end{align}
 
 我们有:
 \begin{align}
     [\a p, \a q^\dagger]&=\dpi3\delta^3(\vec p-\vec q), \quad [\a p, \a q]=[\a p^\dagger, \a q^\dagger]=0\\
-    [\b p, \b q^\dagger]&=\dpi3\delta^3(\vec p-\vec q), \quad [\b p, \b q]=[\b p^\dagger, \b q^\dagger]=0
+    [\b p, \b q^\dagger]&=\dpi3\delta^3(\vec p-\vec q), \quad [\b p, \b q]=[\b p^\dagger, \b q^\dagger]=0,
 \end{align}
 
 然后可以对角化Hamiltonian
 \begin{equation}
-    H=\int\ddd p\om p\left(\a p^\dagger\a p+\b p^\dagger\b p+\mathcal V\right)
+    H=\int\ddd p\om p\left(\a p^\dagger\a p+\b p^\dagger\b p+\mathcal V\right),
 \end{equation}
 
 
@@ -701,18 +701,18 @@ Fourier逆变换可以得到:
 
 例\ref{csU1}指出复标量场的$U(1)$对称性导致有守恒荷$Q$
 \begin{equation}
-    Q\equiv\int d^3x J_N^0=\int d^3xi\left[(\partial^0\psi^\dagger)\psi-(\partial^0\psi)\psi^\dagger\right]
+    Q\equiv\int d^3x J_N^0=\int d^3xi\left[(\partial^0\psi^\dagger)\psi-(\partial^0\psi)\psi^\dagger\right],
 \end{equation}
 
 经过计算我们可以得到:
 \begin{equation}
-    Q_N=\int\ddd p\left(\b p^\dagger\b p-\a p^\dagger\a p\right)
+    Q_N=\int\ddd p\left(\b p^\dagger\b p-\a p^\dagger\a p\right),
 \end{equation}
 
 并且有对易关系
 \begin{align}\label{complex-scalar-Q-commutation-relations}
     &[Q_N, \psi_x]=\psi_x\\
-    &[Q_N, \psi_x^\dagger]=-\psi_x^\dagger
+    &[Q_N, \psi_x^\dagger]=-\psi_x^\dagger,
 \end{align}
 
 \kaishu 讨论: 复标量场是双自由度的, 因此它有两个产生湮灭算子$a, b$. $a, b$分别代表正粒子和反粒子的运动模式. 而从其的$U(1)$对称性导出的守恒量中可以得出结论, 正粒子与反粒子数目之差为常数.\songti
@@ -730,11 +730,11 @@ $$
 \end{align}
 进过演化后一个态到另一个态的概率振幅为
 \begin{align}
-    \braket{Y|X}=\braket{\Omega|\phi(y)\cdots\phi(x)|\Omega}
+    \braket{Y|X}=\braket{\Omega|\phi(y)\cdots\phi(x)|\Omega},
 \end{align}
 某个可观测量测量的平均值为
 \begin{align}
-    \braket{O}=\braket{X|O|X}=\braket{\Omega|\cdots\phi(x)O\phi(x)\cdots|\Omega}
+    \braket{O}=\braket{X|O|X}=\braket{\Omega|\cdots\phi(x)O\phi(x)\cdots|\Omega},
 \end{align}
 可以看到, 这就是一个关联函数的形式. 在此基础之上, 因为, 微分散射截面、衰变率甚至能流分布等物理量本质上就是通过这两个表达式来表达, 因此也可以通过关联函数算出来.
 
@@ -775,26 +775,26 @@ $$
 我们分类讨论类时、类空间隔的关联函数$D(x-y)$:\\
 类时: 我们不妨假设$x^0>y^0$, 那么我们可以做Lorentz变换, 使得$\vec x'=\vec y'=0$. 设$t={x'}^0-{y'}^0$, 则:
 \begin{equation}
-    D(x-y)=\int\ld p\exp{-i\omega_{\vec p}t'}=\int_m^{+\infty}\sqrt{\omega^2-m^2}\exp{-i\omega t'}\frac{\d\omega}{\dpi2}
+    D(x-y)=\int\ld p\exp{-i\omega_{\vec p}t'}=\int_m^{+\infty}\sqrt{\omega^2-m^2}\exp{-i\omega t'}\frac{\d\omega}{\dpi2},
 \end{equation}
 对于$t'\rightarrow+\infty$
 \begin{equation}
-    D(x-y)\sim\exp{-imt'}
+    D(x-y)\sim\exp{-imt'},
 \end{equation}
 类空: 我们可以做Lorentz变换, 使得$x^0=y^0=0$, 并设$\vec r=\vec x-\vec y$, 则:
 \begin{align}
     D(x-y)&=\int\ld p\exp{i\vec p\cdot(\vec x-\vec y)}\\
     &=\int_0^{+\infty}\frac{2\pi p^2\d p}{\dpi3}\frac1{2\omega_{\vec p}}\int_0^\pi\exp{ipr\cos\theta}\sin\theta\d\theta\\
     &=\int_0^{+\infty}\frac{-i}{2\dpi2}\frac{\exp{ipr}-\exp{-ipr}}r\frac{p\d p}{\sqrt{p^2+m^2}}\\
-    &=-\frac i{2\dpi2r}\int_{-\infty}^{+\infty}\frac{p}{\sqrt{p^2+m^2}}\exp{ipr}\d p
+    &=-\frac i{2\dpi2r}\int_{-\infty}^{+\infty}\frac{p}{\sqrt{p^2+m^2}}\exp{ipr}\d p,
 \end{align}
 注意到, $p=\pm im$是被积分函数的两个支点, 于是将积分路径改为图\ref{fig:q2Dspace}中沿着上半部分支割线的路径. 然后可得:
 \begin{equation}
-    D(x-y)=\frac1{\dpi2 r}\int_m^{+\infty}\frac{\omega\exp{-\omega r}}{\sqrt{\omega^2-m^2}}\d\omega
+    D(x-y)=\frac1{\dpi2 r}\int_m^{+\infty}\frac{\omega\exp{-\omega r}}{\sqrt{\omega^2-m^2}}\d\omega,
 \end{equation}
 对于$r\rightarrow+\infty$
 \begin{equation}
-    D(x-y)\sim\exp{-mr}
+    D(x-y)\sim\exp{-mr},
 \end{equation}
 我们发现, 即使是类空间隔, $D(x-y)$仍不为0, 这说明$\phi(x), \phi(y)$在空间中存在重叠(overlap). 
 \begin{figure}
@@ -830,13 +830,13 @@ $$
 
 因此我们考虑$\phi(x), \phi(y)$的对易子:
 \begin{equation}
-    [\phi(x), \phi(y)]=\braket{0|[\phi(x), \phi(y)]|0}=D(x-y)-D(y-x)
+    [\phi(x), \phi(y)]=\braket{0|[\phi(x), \phi(y)]|0}=D(x-y)-D(y-x),
 \end{equation}
 
 再次尝试对类时类空间隔分类讨论:\\
 类空: 首先将换参考系, 使得$x$, $y$在同一三维空间中, 然后利用Parity算符$\mathcal P$, 显然可以使得$D(x-y)\rightarrow D(y-x)$, 而$\mathcal P$操作不会改变结果, 于是我们有:
 \begin{equation}
-    [\phi(x), \phi(y)]=0
+    [\phi(x), \phi(y)]=0,
 \end{equation}
 类时: 由于$[\phi(x), \phi(y)]$不在$\mathcal T$中保持不变, 因此我们无法如类空般做到交换$x$, $y$, 因此我们不能得到$[\phi(x), \phi(y)]=0$.
 
@@ -846,11 +846,11 @@ $$
 \begin{align}
     [\phi(x), \phi(y)]&=D(x-y)-D(y-x)\\
     &=\int\ld p(\exp{-ip(x-y)}-\exp{ip(x-y)})\\
-    &=\int\ddd p(\frac1{2\omega_p}\exp{-ip(x-y)}+\frac1{-2\omega_p}\exp{ip(x-y)})
+    &=\int\ddd p(\frac1{2\omega_p}\exp{-ip(x-y)}+\frac1{-2\omega_p}\exp{ip(x-y)}),
 \end{align}
 注意到对第二项做$\vec p\rightarrow-\vec p$换元结果不变, 于是:
 \begin{align}
-    [\phi(x), \phi(y)]&=\int\ddd p\exp{i\vec p\cdot(\vec x-\vec y)}\left(\frac{\exp{-i\omega_p(x^0-y^0)}}{2\omega_p}+\frac{\exp{i\omega_p(x^0-y^0)}}{-2\omega_p}\right)
+    [\phi(x), \phi(y)]&=\int\ddd p\exp{i\vec p\cdot(\vec x-\vec y)}\left(\frac{\exp{-i\omega_p(x^0-y^0)}}{2\omega_p}+\frac{\exp{i\omega_p(x^0-y^0)}}{-2\omega_p}\right),
 \end{align}
 
 观察这个形式, 令我们想到留数定理, 这两项就是留数的相加, 我们可以将其化为:
@@ -927,7 +927,7 @@ $$
 
 于是我们发现
 \begin{equation}
-    D_R(x-y)=\Theta(x^0-y^0)[\phi(x), \phi(y)]
+    D_R(x-y)=\Theta(x^0-y^0)[\phi(x), \phi(y)],
 \end{equation}
 这令人想起电动力学中我们学过的推迟势, 故而得名.
 
@@ -939,7 +939,7 @@ $$
 \end{theorem}
 我们可以发现:
 \begin{equation}
-    D_A(x-y)=-\Theta(y^0-x^0)[\phi(x), \phi(y)]
+    D_A(x-y)=-\Theta(y^0-x^0)[\phi(x), \phi(y)],
 \end{equation}
 
 这正与电动力学中所谓的提前势相对应.
@@ -1177,12 +1177,12 @@ $$
 \begin{align}
     D_F(x-y)&=\Theta(x^0-y^0)D(x-y)+\Theta(y^0-x^0)D(y-x)\\
     &=\Theta(x^0-y^0)\braket{0|\phi(x)\phi(y)|0}+\Theta(y^0-x^0)\braket{0|\phi(y)\phi(x)|0}\\
-    &=\braket{0|\mathcal T\phi(x)\phi(y)|0}
+    &=\braket{0|\mathcal T\phi(x)\phi(y)|0},
 \end{align}
 \begin{align}
     \widetilde D_F(x-y)&=-\Theta(x^0-y^0)D(x-y)-\Theta(y^0-x^0)D(y-x)\\
     &=-\Theta(x^0-y^0)\braket{0|\phi(x)\phi(y)|0}-\Theta(y^0-x^0)\braket{0|\phi(y)\phi(x)|0}\\
-    &=-\braket{0|\mathcal T\phi(x)\phi(y)|0}
+    &=-\braket{0|\mathcal T\phi(x)\phi(y)|0},
 \end{align}
 其中$\mathcal T$为时间顺序算符
 \begin{definition}[时间顺序算符$\mathcal T$]
@@ -1193,49 +1193,49 @@ $$
 
 在量子场论中我们只使用Feynman传播子, 这个原因在后面我们有关Dyson级数以及路径积分的讨论中可以清楚地看到. 为了能让我们对于Feynman传播子的讨论对于接下来的工作更有推广借鉴意义, 在此我们给出另一种从关联函数定义
 \begin{equation}
-    D_F(x, y)=\braket{0|\mathcal T\phi_x\phi_y|0}=\Theta(t_x-t_y)\braket{0|\phi_x\phi_y|0}+\Theta(t_y-t_x)\braket{0|\phi_y\phi_x|0}
+    D_F(x, y)=\braket{0|\mathcal T\phi_x\phi_y|0}=\Theta(t_x-t_y)\braket{0|\phi_x\phi_y|0}+\Theta(t_y-t_x)\braket{0|\phi_y\phi_x|0},
 \end{equation}
 出发来得到Feynman传播子的方式, 这个方法在接下来的推导中更为有用. 
 
 根据式\eqref{Theta-definition}我们有
 \begin{equation}
-    D_F(x, y)=\int\frac{i\d\omega}{2\pi}\frac{\exp{-i\omega(t_x-t_y)}}{\omega+i\epsilon}\int\ld p[\exp{-ip(x-y)}]+\int\frac{i\d\omega}{2\pi}\frac{\exp{i\omega(t_x-t_y)}}{\omega+i\epsilon}\int\ld p[\exp{ip(x-y)}]\label{scalar-feynman-propagator-naively}
+    D_F(x, y)=\int\frac{i\d\omega}{2\pi}\frac{\exp{-i\omega(t_x-t_y)}}{\omega+i\epsilon}\int\ld p[\exp{-ip(x-y)}]+\int\frac{i\d\omega}{2\pi}\frac{\exp{i\omega(t_x-t_y)}}{\omega+i\epsilon}\int\ld p[\exp{ip(x-y)}]\label{scalar-feynman-propagator-naively},
 \end{equation}
 (注意, 这里$p(x-y)=\omega(t_x-t_y)-\vec p\cdot(\vec x-\vec y)$). 我们设
 \begin{equation}
-    p'^\mu=(\omega, \vec p)^T
+    p'^\mu=(\omega, \vec p)^T,
 \end{equation}
-, 则有
+则有
 \begin{equation}
-    D_F(x, y)=\int i\dddd p'\frac{\exp{-ip'(x-y)-i\om p(t_x-t_y)}}{(p'^0+i\epsilon)2\om p}+\int i\dddd p'\frac{\exp{ip'(x-y)+i\om p(t_x-t_y)}}{(p'^0+i\epsilon)2\om p}
+    D_F(x, y)=\int i\dddd p'\frac{\exp{-ip'(x-y)-i\om p(t_x-t_y)}}{(p'^0+i\epsilon)2\om p}+\int i\dddd p'\frac{\exp{ip'(x-y)+i\om p(t_x-t_y)}}{(p'^0+i\epsilon)2\om p},
 \end{equation}
 (注意, 这里$p(x-y)=p^0(t_x-t_y)-\vec p\cdot(\vec x-\vec y)$, 其中$p^0=\omega$, 因此这里$p(x-y)$与式\eqref{scalar-feynman-propagator-naively}的含义是不同的). 再做换元将$\om p$吸收到$p$中
 \begin{equation}
-    p^0=p'^0+\om p=p'^0+\sqrt{\vec p'^2+m^2}
+    p^0=p'^0+\om p=p'^0+\sqrt{\vec p'^2+m^2},
 \end{equation}
 这个换元的Jacobi行列式
 \begin{equation}
-    |\frac{\partial p'}{\partial p}|=1
+    |\frac{\partial p'}{\partial p}|=1,
 \end{equation}
-, 得到
+得到
 \begin{equation}
-    D_F(x, y)=\int i\dddd p\left(\frac{\exp{-ip(x-y)}}{(p^0-\om p+i\epsilon)2\om p}+\frac{\exp{ip(x-y)}}{(p^0-\om p+i\epsilon)2\om p}\right)
+    D_F(x, y)=\int i\dddd p\left(\frac{\exp{-ip(x-y)}}{(p^0-\om p+i\epsilon)2\om p}+\frac{\exp{ip(x-y)}}{(p^0-\om p+i\epsilon)2\om p}\right).
 \end{equation}
-. 再对第二项做换元, 将$\exp{-ip(x-y)}$提到括号外
+再对第二项做换元, 将$\exp{-ip(x-y)}$提到括号外
 \begin{equation}
-    p\to -p
+    p\to -p,
 \end{equation}
-, 我们有
+我们有
 \begin{align}
     D_F(x, y)&=\int i\dddd p\frac{\exp{-ip(x-y)}}{2\om p}\left(\frac{1}{p^0-\om p+i\epsilon}+\frac{1}{-p^0-\om p+i\epsilon}\right)\\
     &=\int i\dddd p\exp{-ip(x-y)}\frac1{(p'^0-\om p+i\epsilon)(p'^0+\om p-i\epsilon)}\\
-    &=\int i\dddd p\exp{-ip(x-y)}\frac1{(p'^0)^2-\om p^2+2i\om p\epsilon+\epsilon^2}
+    &=\int i\dddd p\exp{-ip(x-y)}\frac1{(p'^0)^2-\om p^2+2i\om p\epsilon+\epsilon^2},
 \end{align}
 忽略掉$\epsilon$的二阶项, 并且将$\om p$吸收进$\epsilon$, 利用$\om p^2=\vec p^2+m^2$, 我们有
 \begin{align}
-    D_F(x, y)&=\int\dddd p\frac i{p^2-m^2+i\epsilon}\exp{-ip(x-y)}
+    D_F(x, y)&=\int\dddd p\frac i{p^2-m^2+i\epsilon}\exp{-ip(x-y)}.
 \end{align}
-. 这就是实标量场的Feynman传播子.
+这就是实标量场的Feynman传播子.
 
 \subsubsection{复标量场}
 我们还是首先计算
@@ -1245,17 +1245,17 @@ $$
     &=\int\ld p[\exp{-ip(x-y)}]\\
     \braket{0|\psi_y^\dagger\psi_x|0}&=\bra0\int\ldsq q\left(\a q\exp{-iqy}+\b p^\dagger\exp{iqy}\right)\notag\\
     &\;\int\ldsq p\left(\a p^\dagger\exp{ipx}+\b p\exp{-ipx}\right)\ket0\\
-    &=\int\ld p[\exp{ip(x-y)}]
+    &=\int\ld p[\exp{ip(x-y)}],
 \end{align}
 
 类似地, 我们可以将$\Theta$展开为Fourier积分, 从而给出复标量场的Feynman传播子
 \begin{align}
-    \braket{0|\mathcal T\psi_x\psi_y^\dagger|0}=\int\dddd p\frac i{p^2-m^2+i\epsilon}\exp{-ip(x-y)}
+    \braket{0|\mathcal T\psi_x\psi_y^\dagger|0}=\int\dddd p\frac i{p^2-m^2+i\epsilon}\exp{-ip(x-y)},
 \end{align}
 
 读者可能会疑问, $\psi_x\psi_y, \psi_x^\dagger\psi_y^\dagger$是否也有传播子? 事实上它们的传播子为$0$, 也就是不传播.
 \begin{align}
-    \braket{\psi_x\psi_y}=\braket{\psi_x^\dagger\psi_y^\dagger}=0
+    \braket{\psi_x\psi_y}=\braket{\psi_x^\dagger\psi_y^\dagger}=0,
 \end{align}
 
 这是因为根据$Q\ket0=0$, 即真空态电中性, 我们有
@@ -1263,11 +1263,11 @@ $$
     \braket{0|\mathcal T\psi_x\psi_y|0}&=\braket{0|\mathcal T\psi_x\psi_y|0}+\braket{0|Q_N\mathcal T\psi_x\psi_y|0}\\
     &=\braket{0|\mathcal T\psi_x\psi_y|0}+\braket{0|\mathcal T\psi_xQ_N\psi_y|0}+\braket{0|\mathcal T\psi_x\psi_y|0}\\
     &=2\braket{0|\mathcal T\psi_x\psi_y|0}+\braket{0|\mathcal T\psi_x\psi_yQ_N|0}+\braket{0|\mathcal T\psi_x\psi_y|0}\\
-    &=3\braket{0|\mathcal T\psi_x\psi_y|0}
+    &=3\braket{0|\mathcal T\psi_x\psi_y|0},
 \end{align}
 (需要注意, 因为$Q_N$不含时, 所以可以自由进出$\mathcal T$, 然后利用式\eqref{complex-scalar-Q-commutation-relations}中给出的$Q_N$与$\psi_x$的对易关系). 因此
 \begin{align}
-    \braket{0|\mathcal T\psi_x\psi_y|0}=0
+    \braket{0|\mathcal T\psi_x\psi_y|0}=0,
 \end{align}
 同理可得
 \begin{align}
@@ -1388,9 +1388,9 @@ $$
 
 对于旋量, Wick定理同样满足, 但是在这时因为
 \begin{equation}
-    \braket{0|\mathcal T\psi_x\bar\psi_y|0}=-\braket{0|\mathcal T\bar\psi_y\psi_x|0}\neq\braket{0|\mathcal T\bar\psi_y\psi_x|0}
+    \braket{0|\mathcal T\psi_x\bar\psi_y|0}=-\braket{0|\mathcal T\bar\psi_y\psi_x|0}\neq\braket{0|\mathcal T\bar\psi_y\psi_x|0},
 \end{equation}
-, Wick收缩的内顺序(即两个场$\psi, \bar\psi$缩并时谁在前谁在后)是不可忽略的, 不难证明, 正确的缩并方法应该是在缩并内保持$\mathcal T$内的先后顺序.
+Wick收缩的内顺序(即两个场$\psi, \bar\psi$缩并时谁在前谁在后)是不可忽略的, 不难证明, 正确的缩并方法应该是在缩并内保持$\mathcal T$内的先后顺序.
 
 \subsection{对称性与守恒荷}
 考虑某一变换$X$(要求不只是保持$S$不变, 还进一步要求$\mathcal L$不变)
@@ -1416,7 +1416,7 @@ $$
 我们有
 \begin{align}
     i[Q_X, \psi_i]&=\int\d^3y\sum_j i[\pi_j(y)\delta_X\psi_j(y), \psi_i(x)]\\
-    &=\int\d^3y\sum_j i([\pi_j(y), \psi_i(x)]\delta_X\psi_j(y)+\pi_j(y)[\delta_X\psi_j(y), \psi_i(x)])
+    &=\int\d^3y\sum_j i([\pi_j(y), \psi_i(x)]\delta_X\psi_j(y)+\pi_j(y)[\delta_X\psi_j(y), \psi_i(x)]),
 \end{align}
 若对称性不包含时间上的变换, 则$\delta_X\psi$不含有场对时间的导数, 也就不含正则动量, 因此在等时条件下有
 \begin{align}

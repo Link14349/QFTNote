@@ -13,43 +13,43 @@
 
 我们将这个积分过程进行拆分, 分为$N+1$个部分, 有
 \begin{equation}
-    \braket{x_f, t_f|x_i, t_i}=\bra{x_f}\exp{-i\Delta tH(t_n)}\exp{-i\Delta tH(t_{n-1})}\cdots\exp{-i\Delta tH(t_1)}\exp{-i\Delta tH(t_i)}\ket{x_i}
+    \braket{x_f, t_f|x_i, t_i}=\bra{x_f}\exp{-i\Delta tH(t_n)}\exp{-i\Delta tH(t_{n-1})}\cdots\exp{-i\Delta tH(t_1)}\exp{-i\Delta tH(t_i)}\ket{x_i},
 \end{equation}
 然后插入恒等算符
 \begin{equation}
-    \int\dx\ket{x}\bra{x}=1
+    \int\dx\ket{x}\bra{x}=1,
 \end{equation}
 得到
 \begin{align}
     \braket{x_f, t_f|x_i, t_i}&=\int\dx_n\dx_{n-1}\cdots\dx_1\bra{x_f}\exp{-i\Delta tH(t_n)}\ket{x_n}\notag\\
-    &\;\bra{x_n}\exp{-i\Delta tH(t_{n-1})}\ket{x_{n-1}}\bra{x_{n-1}}\cdots\exp{-i\Delta tH(t_1)}\ket{x_{1}}\bra{x_{1}}\exp{-i\Delta tH(t_i)}\ket{x_i}
+    &\;\bra{x_n}\exp{-i\Delta tH(t_{n-1})}\ket{x_{n-1}}\bra{x_{n-1}}\cdots\exp{-i\Delta tH(t_1)}\ket{x_{1}}\bra{x_{1}}\exp{-i\Delta tH(t_i)}\ket{x_i},
 \end{align}
 
 然后尝试计算
 \begin{align}
-    \bra{x_{j+1}}\exp{-i\Delta tH(t_j)}\ket{x_j}&=\int\frac{\d p}{2\pi}\braket{x_{j+1}|p}\bra p\exp{-i\Delta t(\frac{{\hat p}^2}{2m}+V(\hat x, t_j))}\ket{x_j}
+    \bra{x_{j+1}}\exp{-i\Delta tH(t_j)}\ket{x_j}&=\int\frac{\d p}{2\pi}\braket{x_{j+1}|p}\bra p\exp{-i\Delta t(\frac{{\hat p}^2}{2m}+V(\hat x, t_j))}\ket{x_j},
 \end{align}
 因为$\Delta t\approx0$, 
 \begin{equation}
-    \exp{-i\Delta t(\frac{{\hat p}^2}{2m}+V(\hat x, t_j))}\approx1-i\Delta t(\frac{{\hat p}^2}{2m}+V(\hat x, t))
+    \exp{-i\Delta t(\frac{{\hat p}^2}{2m}+V(\hat x, t_j))}\approx1-i\Delta t(\frac{{\hat p}^2}{2m}+V(\hat x, t)),
 \end{equation}
 所以
 \begin{align}
     \bra p\exp{-i\Delta t(\frac{{\hat p}^2}{2m}+V(\hat x, t_j))}\ket{x_j}&\approx \bra p(1-i\Delta t(\frac{{\hat p}^2}{2m}+V(\hat x, t)))\ket{x_j}\\
     &=\bra p(1-i\Delta t(\frac{p^2}{2m}+V(x_j, t_j)))\ket{x_j}\\
-    &\approx\bra p\exp{-i\Delta t(\frac{p^2}{2m}+V(x_j, t_j))}\ket{x_j}
+    &\approx\bra p\exp{-i\Delta t(\frac{p^2}{2m}+V(x_j, t_j))}\ket{x_j},
 \end{align}
 再代入
 \begin{equation}
-    \braket{x|p}=\exp{ipx}
+    \braket{x|p}=\exp{ipx},
 \end{equation}
 于是
 \begin{align}
-    \bra{x_{j+1}}\exp{-i\Delta tH(t_j)}\ket{x_j}&=\int\frac{\d p}{2\pi}\exp{-i\frac{p^2}{2m}\Delta t+ip(x_{j+1}-x_j)\Delta t}\exp{-iV(x_j,t_j)\Delta t}\\
+    \bra{x_{j+1}}\exp{-i\Delta tH(t_j)}\ket{x_j}&=\int\frac{\d p}{2\pi}\exp{-i\frac{p^2}{2m}\Delta t+ip(x_{j+1}-x_j)\Delta t}\exp{-iV(x_j,t_j)\Delta t}\\,
 \end{align}
 再根据Gaussian积分公式
 \begin{equation}
-    \int_{-\infty}^{+\infty}\dx\exp{-Ax^2+Bx}=\sqrt{\frac\pi A}\exp{\frac{B^2}{4A}}
+    \int_{-\infty}^{+\infty}\dx\exp{-Ax^2+Bx}=\sqrt{\frac\pi A}\exp{\frac{B^2}{4A}},
 \end{equation}
 我们得到最终结果
 \begin{align}
@@ -81,7 +81,7 @@
 
 设拉氏量
 \begin{equation}
-    L=\int\d^3x\left(\frac12(\partial_t\phi)^2-V(\phi)\right)
+    L=\int\d^3x\left(\frac12(\partial_t\phi)^2-V(\phi)\right),
 \end{equation}
 做Legdren变换于是可以得到Hamiltonian
 \begin{equation}
@@ -90,37 +90,37 @@
 
 然后我们对真空振幅进行完全类似的操作, 可以得到
 \begin{equation}
-    \braket{\Omega, t_f|\Omega, t_i}=\bra\Omega\exp{-i\Delta tH(t_n)}\exp{-i\Delta tH(t_{n-1})}\cdots\exp{-i\Delta tH(t_1)}\exp{-i\Delta tH(t_i)}\ket\Omega
+    \braket{\Omega, t_f|\Omega, t_i}=\bra\Omega\exp{-i\Delta tH(t_n)}\exp{-i\Delta tH(t_{n-1})}\cdots\exp{-i\Delta tH(t_1)}\exp{-i\Delta tH(t_i)}\ket\Omega,
 \end{equation}
 插入积分, 但是需要注意, 这里我们是直接对一个时间切片$t_j$下的场$\phi(\vec x, t_j)$空间分布的枚举, 这个枚举本身就是一个路径积分$\int\mathcal D\phi_j$, 所以我们有
 \begin{align}
     \braket{\Omega, t_f|\Omega, t_i}&=N\int\mathcal D\phi_n\mathcal D\phi_{n-1}\cdots\mathcal D\phi_1\bra\Omega\exp{-i\Delta tH(t_n)}\ket{\phi_n}\notag\\
-    &\;\bra{\phi_n}\exp{-i\Delta tH(t_{n-1})}\ket{\phi_{n-1}}\cdots\bra{\phi_1}\exp{-i\Delta tH(t_i)}\ket\Omega
+    &\;\bra{\phi_n}\exp{-i\Delta tH(t_{n-1})}\ket{\phi_{n-1}}\cdots\bra{\phi_1}\exp{-i\Delta tH(t_i)}\ket\Omega,
 \end{align}
 其中$N$为一个归一化系数.
 
 完全类似地, 我们考虑计算$\braket{\phi_{j+1}|\exp{-i\Delta tH(t_j)}|\phi_j}$的结果, 继续插入一个单位算子
 \begin{equation}
-    N\int\mathcal D\pi_j\ket{\pi_j}\bra{\pi_j}=1
+    N\int\mathcal D\pi_j\ket{\pi_j}\bra{\pi_j}=1,
 \end{equation}
 于是
 \begin{equation}
-    \braket{\phi_{j+1}|\exp{-i\Delta tH(t_j)}|\phi_j}=\int\mathcal D\pi_j\braket{\phi_{j+1}|\pi_j}\bra{\pi_j}\exp{-i\Delta tH(t_j)}\ket{\phi_j}
+    \braket{\phi_{j+1}|\exp{-i\Delta tH(t_j)}|\phi_j}=\int\mathcal D\pi_j\braket{\phi_{j+1}|\pi_j}\bra{\pi_j}\exp{-i\Delta tH(t_j)}\ket{\phi_j},
 \end{equation}
 这还是一个Gaussian积分, 我们可以计算得到
 \begin{equation}
-    \int\mathcal D\pi_j\braket{\phi_{j+1}|\pi_j}\bra{\pi_j}\exp{-i\Delta tH(t_j)}\ket{\phi_j}=N\exp{i\Delta t\left\{\int\d^3x\left(\frac{(\phi_{j+1}(x)-\phi_j(x))}{2\Delta t^2}-V(\phi_j)\right)\right\}}
+    \int\mathcal D\pi_j\braket{\phi_{j+1}|\pi_j}\bra{\pi_j}\exp{-i\Delta tH(t_j)}\ket{\phi_j}=N\exp{i\Delta t\left\{\int\d^3x\left(\frac{(\phi_{j+1}(x)-\phi_j(x))}{2\Delta t^2}-V(\phi_j)\right)\right\}},
 \end{equation}
 其中$N$还是某一归一化系数.
 
 于是我们可以得到完全类似QM中的路径积分表达式
 \begin{equation}
-    \braket{\Omega, t_f|\Omega, t_i}=N\int\mathcal D\phi\exp{iS[\phi]}
+    \braket{\Omega, t_f|\Omega, t_i}=N\int\mathcal D\phi\exp{iS[\phi]},
 \end{equation}
 
 然后我们考虑这个式子的含义
 \begin{equation}
-    N\int\mathcal D\phi\exp{iS[\phi]}\phi(\vec x_j, t_j)
+    N\int\mathcal D\phi\exp{iS[\phi]}\phi(\vec x_j, t_j),
 \end{equation}
 其中$\vec x_j, t_j$为某一个时空点.
 
@@ -128,11 +128,11 @@
 \begin{align}
     N\int\mathcal D\phi\exp{iS[\phi]}\phi(\vec x_j, t_j)&=N\int\mathcal D\phi_n\mathcal D\phi_{n-1}\cdots\mathcal D\phi_1\notag\\
     &\;\bra\Omega\exp{-i\Delta tH(t_n)}\ket{\phi_n}\bra{\phi_n}\exp{-i\Delta tH(t_{n-1})}\ket{\phi_{n-1}}\notag\\
-    &\;\cdots\textcolor{red}{\bra{\phi_{j+1}}\exp{-i\Delta tH(t_{j})}\phi_j(\vec x_j, t_j)\ket{\phi_{j}}}\cdots\bra{\phi_1}\exp{-i\Delta tH(t_i)}\ket\Omega
+    &\;\cdots\textcolor{red}{\bra{\phi_{j+1}}\exp{-i\Delta tH(t_{j})}\phi_j(\vec x_j, t_j)\ket{\phi_{j}}}\cdots\bra{\phi_1}\exp{-i\Delta tH(t_i)}\ket\Omega,
 \end{align}
 而这个等于
 \begin{equation}
-    \bra{\phi_{j+1}}\exp{-i\Delta tH(t_{j})}\phi(\vec x_j)\ket{\phi_{j}}
+    \bra{\phi_{j+1}}\exp{-i\Delta tH(t_{j})}\phi(\vec x_j)\ket{\phi_{j}},
 \end{equation}
 还原到整体的表达式中即
 \begin{align}
@@ -142,92 +142,92 @@
     &=\bra\Omega\exp{-i\Delta tH(t_n)}\cdots\exp{-i\Delta tH(t_{j})}\phi(\vec x_j)\exp{-i\Delta tH(t_{j-1})}\cdots\exp{-i\Delta tH(t_i)}\ket\Omega\\
     &=\bra\Omega\exp{-i(t_f-t_j)H}\phi(\vec x_j)\exp{-i(t_j-t_i)H}\ket\Omega\\
     &=\bra\Omega\exp{-it_fH}\left(\exp{it_jH}\phi(\vec x_j)\exp{-it_jH}\right)\exp{it_iH}\ket\Omega\\
-    &=\braket{\Omega, t_f|\phi(x_j)|\Omega, t_i}
+    &=\braket{\Omega, t_f|\phi(x_j)|\Omega, t_i},
 \end{align}
 
 如果是插入两个$\phi$, 即
 \begin{equation}
-    N\int\mathcal D\phi\exp{iS[\phi]}\phi(\vec x_i, t_i)\phi(\vec x_j, t_j)
+    N\int\mathcal D\phi\exp{iS[\phi]}\phi(\vec x_i, t_i)\phi(\vec x_j, t_j).
 \end{equation}
-. 与前面同理, 我们可以预料也就是在我们上面的式子中以先后顺序插入$\phi(\vec x_i), \phi(\vec x_j)$, 这样转换到最后算子的表达式中, 应当有结果
+与前面同理, 我们可以预料也就是在我们上面的式子中以先后顺序插入$\phi(\vec x_i), \phi(\vec x_j)$, 这样转换到最后算子的表达式中, 应当有结果
 \begin{equation}
-    N\int\mathcal D\phi\exp{iS[\phi]}\phi(\vec x_i, t_i)\phi(\vec x_j, t_j)=\braket{\Omega, t_f|\mathcal T\{\phi(x_i)\phi(x_j)\}|\Omega, t_i}
+    N\int\mathcal D\phi\exp{iS[\phi]}\phi(\vec x_i, t_i)\phi(\vec x_j, t_j)=\braket{\Omega, t_f|\mathcal T\{\phi(x_i)\phi(x_j)\}|\Omega, t_i},
 \end{equation}
 
 而考虑归一化系数, 因为我们需要
 \begin{equation}
-    N\int\mathcal D\phi\exp{iS[\phi]}=\braket{\Omega, t_f|\Omega, t_i}=1
+    N\int\mathcal D\phi\exp{iS[\phi]}=\braket{\Omega, t_f|\Omega, t_i}=1,
 \end{equation}
 所以
 \begin{equation}
-    N=\frac1{\int\mathcal D\phi\exp{iS[\phi]}}
+    N=\frac1{\int\mathcal D\phi\exp{iS[\phi]}},
 \end{equation}
 
 于是, 我们可以得到结论
 \begin{equation}
-    \braket{\Omega, t_f|\mathcal T\{\phi(x_1)\phi(x_2)\cdots\phi(x_n)\}|\Omega, t_i}=\frac{\int\mathcal D\phi\exp{iS[\phi]}\phi(x_1)\phi(x_2)\cdots\phi(x_n)}{\int\mathcal D\phi\exp{iS[\phi]}}
+    \braket{\Omega, t_f|\mathcal T\{\phi(x_1)\phi(x_2)\cdots\phi(x_n)\}|\Omega, t_i}=\frac{\int\mathcal D\phi\exp{iS[\phi]}\phi(x_1)\phi(x_2)\cdots\phi(x_n)}{\int\mathcal D\phi\exp{iS[\phi]}},
 \end{equation}
 或者记为简写形式
 \begin{equation}
-    \braket{\phi_1\phi_2\cdots\phi_n}=\frac{\int\mathcal D\phi\exp{iS[\phi]}\phi_1\phi_2\cdots\phi_n}{\int\mathcal D\phi\exp{iS[\phi]}}
+    \braket{\phi_1\phi_2\cdots\phi_n}=\frac{\int\mathcal D\phi\exp{iS[\phi]}\phi_1\phi_2\cdots\phi_n}{\int\mathcal D\phi\exp{iS[\phi]}},
 \end{equation}
 这个式子与我们通过Dyson级数得到的式\eqref{corrleation-dyson-series}非常相似, 待会我们将会看到, 它们的具体展开形式是完全一样的.
 
 所以现在我们知道通过计算路径积分, 可以直接得到真空期望. 但是留这给我们一个问题:
 \begin{equation}
-    \int\mathcal D\phi\exp{iS[\phi]}\phi_1\phi_2\cdots\phi_n=?
+    \int\mathcal D\phi\exp{iS[\phi]}\phi_1\phi_2\cdots\phi_n=?,
 \end{equation}
 
 我们可以从统计物理中获取灵感. 这个路径积分的式子与统计物理中计算物理量期望的形式极像:
 \begin{equation}
-    \braket{Q}=\frac{\int\d Q\exp{-\beta H}Q}{\int\d Q\exp{-\beta H}}
+    \braket{Q}=\frac{\int\d Q\exp{-\beta H}Q}{\int\d Q\exp{-\beta H}},
 \end{equation}
 在统计物理中我们可以引入配分函数
 \begin{equation}
-    Z=\int\d Q\exp{-\beta H'}
+    Z=\int\d Q\exp{-\beta H'},
 \end{equation}
 其中
 \begin{equation}
-    H'=H+JQ
+    H'=H+JQ,
 \end{equation}
 于是可以写为
 \begin{equation}
-    \braket{Q}=-\frac1Z\frac{\partial Z}{\partial J}\bigg|_{J=0}
+    \braket{Q}=-\frac1Z\frac{\partial Z}{\partial J}\bigg|_{J=0},
 \end{equation}
 
 那么类似地, 我们也给我们的路径积分引入配分函数
 \begin{equation}
-    Z[J]=\int\mathcal D\phi\exp{iS[\phi]+i\int\d^4xJ(x)\phi(x)}
+    Z[J]=\int\mathcal D\phi\exp{iS[\phi]+i\int\d^4xJ(x)\phi(x)},
 \end{equation}
 其中$J$为一个外加的源项, $Z$是关于$J$的泛函. 那么我们同样可以写出
 \begin{equation}
-    \braket{\phi_1\phi_2\cdots\phi_n}=\frac{(-i)^n}{Z[0]}\frac{\delta^n Z[J]}{\delta J(x_1)\delta J(x_2)\cdots\delta J(x_n)}\bigg|_{J=0}
+    \braket{\phi_1\phi_2\cdots\phi_n}=\frac{(-i)^n}{Z[0]}\frac{\delta^n Z[J]}{\delta J(x_1)\delta J(x_2)\cdots\delta J(x_n)}\bigg|_{J=0},
 \end{equation}
 
 那么剩下的问题就是如何计算配分函数. 一般来说, 配分函数并不能解析计算, 我们需要引入微扰展开. 但是对于自由场, 我们是可以将其解析算出的.
 
 比如考虑实自由场
 \begin{equation}
-    \mathcal L=\frac12(\partial_\mu\phi)(\partial^\mu\phi)-\frac12m^2\phi^2=-\frac12\phi(\Box+m^2)\phi-\frac12m^2\phi^2
+    \mathcal L=\frac12(\partial_\mu\phi)(\partial^\mu\phi)-\frac12m^2\phi^2=-\frac12\phi(\Box+m^2)\phi-\frac12m^2\phi^2,
 \end{equation}
 
 我们定义内积
 \begin{equation}
-    \braket{f, g}:=\int\d^4x f(x)g(x)
+    \braket{f, g}:=\int\d^4x f(x)g(x).
 \end{equation}
-.
+
 定义算子
 \begin{equation}
-    K:=(\Box+m^2)
+    K:=(\Box+m^2).
 \end{equation}
-. 不难发现它在我们定义的内积以及边界条件($\vec x\to\infty, \phi\to\infty, t\to\pm\infty, \partial_t\phi\to0$)下, 是自伴随的
+不难发现它在我们定义的内积以及边界条件($\vec x\to\infty, \phi\to\infty, t\to\pm\infty, \partial_t\phi\to0$)下, 是自伴随的
 \begin{equation}
-    \braket{f, Kg}=\braket{Kf, g}
+    \braket{f, Kg}=\braket{Kf, g},
 \end{equation}
 
 那么$\rm{exp}$中的指数就可以写为
 \begin{equation}
-    S[\phi]+\int\d^4xJ(x)\phi(x)=-\frac12\braket{\phi, K\phi}+\braket{J, \phi}
+    S[\phi]+\int\d^4xJ(x)\phi(x)=-\frac12\braket{\phi, K\phi}+\braket{J, \phi},
 \end{equation}
 
 考虑配平方
@@ -235,94 +235,94 @@
     \braket{\phi-K^{-1}J, K(\phi-K^{-1}J)}&=\braket{\phi-K^{-1}J, K\phi-J}\\
     &=\braket{\phi, K\phi}+\braket{K^{-1}J, J}-\braket{K^{-1}J, K\phi}-\braket{\phi, J}\\
     &=\braket{\phi, K\phi}+\braket{K^{-1}J, J}-\braket{KK^{-1}J, \phi}-\braket{\phi, J}\\
-    &=\braket{\phi, K\phi}-2\braket{\phi, J}+\braket{K^{-1}J, J}
+    &=\braket{\phi, K\phi}-2\braket{\phi, J}+\braket{K^{-1}J, J},
 \end{align}
 于是我们发现
 \begin{equation}
-    S[\phi]+\int\d^4xJ(x)\phi(x)=-\frac12\braket{\phi-K^{-1}J, K(\phi-K^{-1}J)}+\frac12\braket{K^{-1}J, J}
+    S[\phi]+\int\d^4xJ(x)\phi(x)=-\frac12\braket{\phi-K^{-1}J, K(\phi-K^{-1}J)}+\frac12\braket{K^{-1}J, J},
 \end{equation}
 
 于是我们可以将配分函数写为
 \begin{align}
     Z[J]&=\int\mathcal D\phi\exp{i\left(-\frac12\braket{\phi-K^{-1}J, K(\phi-K^{-1}J)}+\frac12\braket{K^{-1}J, J}\right)}\\
-    &=\exp{\frac i2\braket{K^{-1}J, J}}\int\mathcal D\phi\exp{i\left(-\frac12\braket{\phi-K^{-1}J, K(\phi-K^{-1}J)}\right)}
+    &=\exp{\frac i2\braket{K^{-1}J, J}}\int\mathcal D\phi\exp{i\left(-\frac12\braket{\phi-K^{-1}J, K(\phi-K^{-1}J)}\right)},
 \end{align}
 做积分换元
 \begin{equation}
-    \phi\to\phi+K^{-1}J
+    \phi\to\phi+K^{-1}J,
 \end{equation}
 则有
 \begin{align}
     Z[J]&=\exp{\frac i2\braket{K^{-1}J, J}}\int\mathcal D\phi\exp{i\left(-\frac12\braket{\phi, K\phi}\right)}\\
-    &=Z[0]\exp{\frac i2\braket{K^{-1}J, J}}
+    &=Z[0]\exp{\frac i2\braket{K^{-1}J, J}},
 \end{align}
 
 而根据
 \begin{equation}
-    (\Box+m^2)D_F(x-y)=-i\delta^4(x-y)
+    (\Box+m^2)D_F(x-y)=-i\delta^4(x-y),
 \end{equation}
 得
 \begin{equation}
-    (K^{-1}J)(x)=\int\d^4y iD_F(x-y)J(y)
+    (K^{-1}J)(x)=\int\d^4y iD_F(x-y)J(y),
 \end{equation}
 所以
 \begin{align}
-    Z[J]&=Z[0]\exp{-\frac12\int\d^4x\d^4y J(x)D_F(x-y)J(y)}
+    Z[J]&=Z[0]\exp{-\frac12\int\d^4x\d^4y J(x)D_F(x-y)J(y)},
 \end{align}
 
 由于配分函数是无所谓前面的常数系数的, 所以最终我们可以有结论
 \begin{equation}
-    Z[J]=\exp{-\frac12\int\d^4x\d^4y J(x)D_F(x-y)J(y)}
+    Z[J]=\exp{-\frac12\int\d^4x\d^4y J(x)D_F(x-y)J(y)},
 \end{equation}
 
 我们可以验证对$Z[J]$取变分确实有我们预期的结果
 \begin{equation}
-    \braket{\phi_1\phi_2}=(-i)^2\frac1{Z[0]}\frac{\delta^2 Z[J]}{\delta J(x_1)\delta J(x_2)}\bigg|_{J=0}=D_F(x_1-x_2)
+    \braket{\phi_1\phi_2}=(-i)^2\frac1{Z[0]}\frac{\delta^2 Z[J]}{\delta J(x_1)\delta J(x_2)}\bigg|_{J=0}=D_F(x_1-x_2),
 \end{equation}
 
 为了与接下来的相互作用理论做区分, 我们记自由场的配分函数$Z[J]$为$Z_0[J]$. 
 
 然后我们继续考虑$\phi^3$理论, 即相互作用拉氏量
 \begin{equation}
-    \mathcal L=-\frac12\phi(\Box+m^2)\phi+\frac{g}3!\phi^3
+    \mathcal L=-\frac12\phi(\Box+m^2)\phi+\frac{g}3!\phi^3,
 \end{equation}
 我们可以写出配分函数
 \begin{align}
     Z[J]&=\int\mathcal D\phi \exp{i\int d^4x[-\frac12\phi(\Box+m^2)\phi+J\phi+\frac g{3!}\phi^3]}\\
-    &=\int\mathcal D\phi \exp{i\int d^4x[-\frac12\phi(\Box+m^2)\phi+J\phi]}\exp{\frac{ig}{3!}\int d^4x\phi^3}
+    &=\int\mathcal D\phi \exp{i\int d^4x[-\frac12\phi(\Box+m^2)\phi+J\phi]}\exp{\frac{ig}{3!}\int d^4x\phi^3},
 \end{align}
-, 然后发现这个配分函数不能解析求解. 但是若$g\ll1$, 相互作用项可以做微扰展开, 即
+然后发现这个配分函数不能解析求解. 但是若$g\ll1$, 相互作用项可以做微扰展开, 即
 \begin{equation}
-    \exp{\frac{ig}{3!}\int d^4x\phi^3}\approx1+\frac{ig}{3!}\int\d^4x\phi^3(x)+\left(\frac{ig}{3!}\right)^2\int\d^4x\d^4y\phi^3(x)\phi^3(y)+\cdots
+    \exp{\frac{ig}{3!}\int d^4x\phi^3}\approx1+\frac{ig}{3!}\int\d^4x\phi^3(x)+\left(\frac{ig}{3!}\right)^2\int\d^4x\d^4y\phi^3(x)\phi^3(y)+\cdots,
 \end{equation}
 于是可以微扰地计算配分函数
 \begin{align}
     Z[J]&\approx\int\mathcal D\phi \exp{i\int d^4x[-\frac12\phi(\Box+m^2)\phi+J\phi]}\left(1+{\frac{ig}{3!}}^{}\int\d^4x\phi^3(x)\right.\notag\\
-    &\left.\;+\left(\frac{ig}{3!}\right)^2\int\d^4x\d^4y\phi^3(x)\phi^3(y)+\cdots\right)
+    &\left.\;+\left(\frac{ig}{3!}\right)^2\int\d^4x\d^4y\phi^3(x)\phi^3(y)+\cdots\right).
 \end{align}
-. 可以发现, 微扰的相互作用配分函数就是自由配分函数以及对自由配分函数的配分的和, 即
+可以发现, 微扰的相互作用配分函数就是自由配分函数以及对自由配分函数的配分的和, 即
 \begin{equation}
-    Z[J]\approx Z_0[J]+\frac{ig}{3!}(-i)\int\d^4x\frac{\delta^3 Z_0}{\delta J(x)^3}+\left(\frac{ig}{3!}\right)^2(-i)^2\int\d^4x\d^4y\frac{\delta^6 Z_0}{\delta J(x)^3 \delta J(y)^3}+\cdots
+    Z[J]\approx Z_0[J]+\frac{ig}{3!}(-i)\int\d^4x\frac{\delta^3 Z_0}{\delta J(x)^3}+\left(\frac{ig}{3!}\right)^2(-i)^2\int\d^4x\d^4y\frac{\delta^6 Z_0}{\delta J(x)^3 \delta J(y)^3}+\cdots.
 \end{equation}
-.
+
 
 于是我们可以计算$n$点关联函数
 \begin{align}
     \braket{\phi_1\phi_2\cdots\phi_n}&=\frac{(-i)^n}{Z[J]}\frac{\delta^n Z[J]}{\delta J(x_1)\delta J(x_2)\cdots\delta J(x_n)}\bigg|_{J=0}\\
     &=\frac{Z_0}{Z}\frac{(-i)^n}{Z[J]}\frac{\delta^n Z_0[J]}{\delta J(x_1)\delta J(x_2)\cdots\delta J(x_n)}\bigg|_{J=0}\\
     &=\frac{Z_0}{Z}\left[\braket{\phi_1\phi_2\cdots\phi_n}_0+\frac{ig}{3!}\int\d^4x\braket{\phi_x^3\phi_1\phi_2\cdots\phi_n}_0\right.\notag\\
-    &\;\left.+\left(\frac{ig}{3!}\right)^2\int\d^4x\d^4y\braket{\phi_x^3\phi_y^3\phi_1\phi_2\cdots\phi_n}_0+\cdots\right]
+    &\;\left.+\left(\frac{ig}{3!}\right)^2\int\d^4x\d^4y\braket{\phi_x^3\phi_y^3\phi_1\phi_2\cdots\phi_n}_0+\cdots\right],
 \end{align}
 其中$\braket{\cdots}_0$表示在自由场理论下的真空期望值
 \begin{equation}
-    \braket{\phi_1\phi_2\cdots\phi_n}_0:=\braket{0|\mathcal T\{\phi_1\phi_2\cdots\phi_n\}|0}
+    \braket{\phi_1\phi_2\cdots\phi_n}_0:=\braket{0|\mathcal T\{\phi_1\phi_2\cdots\phi_n\}|0}.
 \end{equation}
-. 我们发现, 对于相互作用理论的微扰展开, $n$点关联函数即自由理论的关联函数以及其更高阶关联函数的积分的和.
+我们发现, 对于相互作用理论的微扰展开, $n$点关联函数即自由理论的关联函数以及其更高阶关联函数的积分的和.
 
 剩下的任务就是计算
 \begin{align}
     \frac{Z}{Z_0}&=1+\frac{ig}{3!}\left(\frac{-i}{Z_0}\right)\int\d^4x\frac{\delta^3 Z_0}{\delta J(x)^3}+\left(\frac{ig}{3!}\right)^2\left(\frac{(-i)^2}{Z_0}\right)\int\d^4x\d^4y\frac{\delta^6 Z_0}{\delta J(x)^3 \delta J(y)^3}+\cdots\\
-    &=\braket{0|0}_0+\frac{ig}{3!}\int\d^4x\braket{\phi_x^3}_0+\left(\frac{ig}{3!}\right)^2\int\d^4x\d^4y\braket{\phi_x^3\phi_y^3}_0+\cdots
+    &=\braket{0|0}_0+\frac{ig}{3!}\int\d^4x\braket{\phi_x^3}_0+\left(\frac{ig}{3!}\right)^2\int\d^4x\d^4y\braket{\phi_x^3\phi_y^3}_0+\cdots,
 \end{align}
 
 我们可以用Feynman图来表示这些项, 于是有:
@@ -347,9 +347,9 @@
         a -- [half left] b,
         a -- [half right] b,
     };
-    + \cdots
+    + \cdots,
 \end{align}
-, 从而将多点关联函数写为(在这里我们以两点关联函数为例)
+从而将多点关联函数写为(在这里我们以两点关联函数为例)
 \begin{align}
     \langle \phi_1 \phi_2 \rangle = \frac{
         % --- 分子 (Numerator) ---
@@ -433,7 +433,7 @@
             a -- b,
             a -- [loop, min distance=0.6cm, out=135, in=-135] a,
         };
-        +\cdots
+        +\cdots,
 \end{align}
 
 可以发现, 在这里我们的具体展开与推导都和Dyson级数的推导方式完全一样. 但是, 比起Dyson级数, 路径积分还有其他方式所不具有的优点: 极大的泛用性与可扩展性, 这使得它的应用远不止局限于量子场论的关联函数计算中. 凡是具有类似场论的数学结构的对象, 都可以利用路径积分来处理, 即使是完全的经典场, 或者半经典场, 都可以利用路径积分进行计算. 我们认为, 路径积分是一种处理无穷自由度体系的一种通用工具. 在本节接下来的部分中, 我们会给出一些具体的例子, 说明路径积分的其他用处.
@@ -543,11 +543,11 @@
 \subsection{真空零点能的路径积分计算}\label{vac-energy-path-integral}
 我们考虑真空演化
 \begin{align}
-    \braket{0, t=-\infty|0, t=+\infty}=\braket{0|\exp{-iHt}|0}=\braket{0|\exp{-iE_0T}|0}
+    \braket{0, t=-\infty|0, t=+\infty}=\braket{0|\exp{-iHt}|0}=\braket{0|\exp{-iE_0T}|0},
 \end{align}
 其中$E_0$为真空零点能, $T=\int_{-\infty}^{\infty}\d t$. 这告诉我们, 我们其实可以利用
 \begin{align}
-    \braket{0, -\infty|0, +\infty}=\int\mathcal D\phi\exp{iS}=Z[0]
+    \braket{0, -\infty|0, +\infty}=\int\mathcal D\phi\exp{iS}=Z[0],
 \end{align}
 来计算真空零点能.
 
@@ -573,7 +573,7 @@
 \begin{align}
     \Tr\ln(\Box+m^2)&=VT\cdot\int\dddd p\ln(-p^2+m^2-i\epsilon)\\
     &=VT\cdot\int\ddd p\int\frac{\d\omega}{2\pi}\ln(-\omega^2+\om{p}^2-i\epsilon)\\
-    &=VT\cdot\int\ddd p\pa{}{\alpha}\int\frac{\d\omega}{2\pi}\frac{-1}{(-\omega^2+\om{p}^2-i\epsilon)^\alpha}
+    &=VT\cdot\int\ddd p\pa{}{\alpha}\int\frac{\d\omega}{2\pi}\frac{-1}{(-\omega^2+\om{p}^2-i\epsilon)^\alpha},
 \end{align}
 利用Mathematica进行艰苦卓绝的计算, 我们得到
 \begin{align}
@@ -599,7 +599,7 @@
 
 我们考虑有两个经典点粒子$m_1, m_2$相互作用, 以标量场为介导, 我们有作用量
 \begin{align}
-    S=\int -m_1\d\tau_1+\int-m_2\d\tau_2+\int\d^4x(\frac12(\partial\phi)^2-\frac12 m^2\phi^2+J\phi)
+    S=\int -m_1\d\tau_1+\int-m_2\d\tau_2+\int\d^4x(\frac12(\partial\phi)^2-\frac12 m^2\phi^2+J\phi),
 \end{align}
 其中$J$为点粒子产生的源
 \begin{align}
@@ -607,7 +607,7 @@
 \end{align}
 我们的目标是通过路径积分将标量场$\phi$部分抹去, 只剩下一个经典的有效作用量, 
 \begin{align}
-    \exp{iS_{\rm{eff}}}=\int\mathcal D\phi\exp{iS}
+    \exp{iS_{\rm{eff}}}=\int\mathcal D\phi\exp{iS},
 \end{align}
 然后我们期待$S_{\rm{eff}}$具有如下形式:
 \begin{align}
@@ -626,7 +626,7 @@
 直接展开, 只考虑相互作用项$S_{\rm{mutual}}$, 设$\vec y_1-\vec y_2=\vec r$, 我们有
 \begin{align}
     S_{\rm{mutual}}&=i g_1g_2\int\d t_1\int\d t_2 D_F(y_1-y_2)\\
-    &=i g_1g_2\int\d t_1\int\d t_2\int\dddd p\frac i{p^2-m^2+i\epsilon}\exp{-i(\omega(t_1-t_2)-\vec p\cdot\vec r)}
+    &=i g_1g_2\int\d t_1\int\d t_2\int\dddd p\frac i{p^2-m^2+i\epsilon}\exp{-i(\omega(t_1-t_2)-\vec p\cdot\vec r)},
 \end{align}
 首先对$t_1$积分, 得到一个$\delta(\omega)$, 消掉一个$\d p$, 我们有
 \begin{align}

@@ -26,25 +26,6 @@ $$Z_1 = 1 - \frac{e^2}{16\pi^2}\left(\frac{1}{\epsilon} - \gamma + \ln 4\pi\righ
 
 ---
 
-## 2. QED Lagrangian 中裸耦合与重整化耦合的约定
-
-**文件**: `renormalization.tex` 第 1089 行
-
-**当前内容**（已修正场量记号）:
-```latex
-\mathcal L=-\frac14F_r^2+\bar\psi_r(i\slashed\partial-m)\psi_r-e\bar\psi_r\slashed A_r\psi_r
--\frac14\delta_A F_r^2+\delta_\psi\bar\psi_r(i\slashed\partial)\psi_r-\delta_m\bar\psi_r\psi_r
--\delta_e\bar\psi_r\slashed A_r\psi_r.
-```
-
-**问题**: 这里 e 未加下标 r，暗示是裸耦合常数。但重整化 Lagrangian 通常使用物理耦合 e_r，然后通过 Z_e 关联裸耦合。需确认：
-- e 是裸耦合还是物理耦合？
-- δ_e 的设定（是否包含 e 的重整化）是否与 δ_A, δ_ψ, δ_m 的变化自洽？
-
-**建议对照**: Peskin & Schroeder Ch. 10 中 QED 重整化的标准约定。
-
----
-
 ## 3. φ³ 理论三点函数积分的符号
 
 **文件**: `renormalization.tex` 第 1078-1079 行
@@ -72,15 +53,6 @@ $$Z_1 = 1 - \frac{e^2}{16\pi^2}\left(\frac{1}{\epsilon} - \gamma + \ln 4\pi\righ
 
 ---
 
-## 5. Wick 旋转围道图中的极点位置标注
-
-**文件**: `renormalization.tex` 第 571-574 行
-
-**问题**: Wick 旋转围道图中标注的极点为 `-m + iε/2` 和 `m - iε/2`。对于传播子 `i/(p² - m² + iε)`，p⁰ 复平面上的极点位置应为：
-$$p^0 = \pm\sqrt{|\vec{p}|^2 + m^2 - i\epsilon} \approx \pm(E_{\vec{p}} - i\epsilon')$$
-
-图中标注的 `-m + iε/2` 和 `m - iε/2` 是 m 而非 E_p 的近似（忽略了动量），可能在 p=0 特例下成立，但需在正文中说明这是示意性的。
-
 ---
 
 ## 核查优先级
@@ -88,7 +60,40 @@ $$p^0 = \pm\sqrt{|\vec{p}|^2 + m^2 - i\epsilon} \approx \pm(E_{\vec{p}} - i\epsi
 | 优先级 | 编号 | 影响范围 |
 |-------|------|---------|
 | 高 | 1. δ_e 系数 | 直接影响反常磁矩等物理预测 |
-| 高 | 2. 裸/重整化耦合约定 | 影响整个 QED 重整化方案的自洽性 |
+| ✅ | ~~2. 裸/重整化耦合约定~~ | 已修复，e → e_r |
 | 中 | 3. φ³ 三点函数 | 仅影响 φ³ 理论部分 |
 | 中 | 4. 真空极化系数 | 影响光子传播子的修正 |
-| 低 | 5. Wick 旋转图 | 仅示意性，不影响结果 |
+| ✅ | ~~5. Wick 旋转图~~ | 已修复，m→E_p |
+| 中 | 6. 有质量矢量场正则动量 | gaugetheory.tex Π^{0i} 符号 |
+| 低 | 7. Schwinger-Dyson 展开组合因子 | schwinger-dyson-expansion.tex 对称因子 |
+| ✅ | ~~8. Yang-Mills 术语大小写~~ | 已修复 |
+
+---
+
+## 6. 有质量矢量场的正则动量 Π^{0i} 符号
+
+**文件**: `gaugetheory.tex` 第 26-34 行
+
+**当前内容**:
+```latex
+\Pi^{\mu\nu}=\pa{\mathcal L}{(\partial_\mu A_\nu)}=-F^{\mu\nu}
+```
+然后第 34 行：`$\Pi^{0i}=E^i$`
+
+**问题**: 若 `Π^{μν} = -F^{μν}`，且 `F^{0i} = ∂^0 A^i - ∂^i A^0`，则 `Π^{0i} = -F^{0i}`。在 (-+++) 度规下，电场 E^i 通常定义为 `E^i = F^{i0}`，与 `F^{0i}` 可能差一个符号。需确认 `Π^{0i}=E^i` 在所选度规约定下是否自洽。
+
+**建议对照**: 与 Proca 方程的矢量场量子化标准推导对照（如 Peskin Ch. 7 或 Schwartz Ch. 8）。
+
+---
+
+## 7. Schwinger-Dyson 展开的组合因子
+
+**文件**: `schwinger-dyson-expansion.tex` 第 31 行
+
+**当前内容**:
+```latex
+\braket{\phi_1\phi_2}=D_{12}-\left(\frac g2\right)^2\int \d^4x\d^4y
+(2D_{1x}D_{xy}D_{xy}D_{y2}+D_{1x}D_{xx}D_{yy}D_{y2}+2D_{1x}D_{xy}D_{yy}D_{x2})
+```
+
+**问题**: 三项的系数分别为 2, 1, 2，对应三个二阶 Feynman 图（蝌蚪-蝌蚪串联、8字形、日落图）的组合因子。建议核实这些因子与 φ³ 理论的 Feynman 规则（顶点因子 g/2，对称因子）一致。

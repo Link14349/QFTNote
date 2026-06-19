@@ -109,7 +109,7 @@
 \end{equation}
 这还是一个Gaussian积分, 我们可以计算得到
 \begin{equation}
-    \int\mathcal D\pi_j\braket{\phi_{j+1}|\pi_j}\bra{\pi_j}\exp{-i\Delta tH(t_j)}\ket{\phi_j}=N\exp{i\Delta t\left\{\int\d^3x\left(\frac{(\phi_{j+1}(x)-\phi_j(x))}{2\Delta t^2}-V(\phi_j)\right)\right\}},
+    \int\mathcal D\pi_j\braket{\phi_{j+1}|\pi_j}\bra{\pi_j}\exp{-i\Delta tH(t_j)}\ket{\phi_j}=N\exp{i\Delta t\left\{\int\d^3x\left(\frac{(\phi_{j+1}(x)-\phi_j(x))^2}{2\Delta t^2}-V(\phi_j)\right)\right\}},
 \end{equation}
 其中$N$还是某一归一化系数.
 
@@ -284,7 +284,7 @@
 
 然后我们继续考虑$\phi^3$理论, 即相互作用拉氏量
 \begin{equation}
-    \mathcal L=-\frac12\phi(\Box+m^2)\phi+\frac{g}3!\phi^3,
+    \mathcal L=-\frac12\phi(\Box+m^2)\phi+\frac{g}{3!}\phi^3,
 \end{equation}
 我们可以写出配分函数
 \begin{align}
@@ -301,9 +301,10 @@
     &\left.\;+\left(\frac{ig}{3!}\right)^2\int\d^4x\d^4y\phi^3(x)\phi^3(y)+\cdots\right).
 \end{align}
 可以发现, 微扰的相互作用配分函数就是自由配分函数以及对自由配分函数的配分的和, 即
-\begin{equation}
-    Z[J]\approx Z_0[J]+\frac{ig}{3!}(-i)\int\d^4x\frac{\delta^3 Z_0}{\delta J(x)^3}+\left(\frac{ig}{3!}\right)^2(-i)^2\int\d^4x\d^4y\frac{\delta^6 Z_0}{\delta J(x)^3 \delta J(y)^3}+\cdots.
-\end{equation}
+\begin{align}
+    Z[J]\approx Z_0[J]&+\frac{ig}{3!}(-i)\int\d^4x\frac{\delta^3 Z_0}{\delta J(x)^3}\notag\\
+    &+\left(\frac{ig}{3!}\right)^2(-i)^2\int\d^4x\d^4y\frac{\delta^6 Z_0}{\delta J(x)^3 \delta J(y)^3}+\cdots.
+\end{align}
 
 
 于是我们可以计算$n$点关联函数
@@ -321,7 +322,8 @@
 
 剩下的任务就是计算
 \begin{align}
-    \frac{Z}{Z_0}&=1+\frac{ig}{3!}\left(\frac{-i}{Z_0}\right)\int\d^4x\frac{\delta^3 Z_0}{\delta J(x)^3}+\left(\frac{ig}{3!}\right)^2\left(\frac{(-i)^2}{Z_0}\right)\int\d^4x\d^4y\frac{\delta^6 Z_0}{\delta J(x)^3 \delta J(y)^3}+\cdots\\
+    \frac{Z}{Z_0}&=1+\frac{ig}{3!}\left(\frac{-i}{Z_0}\right)\int\d^4x\frac{\delta^3 Z_0}{\delta J(x)^3}\notag\\
+    &\quad+\left(\frac{ig}{3!}\right)^2\left(\frac{(-i)^2}{Z_0}\right)\int\d^4x\d^4y\frac{\delta^6 Z_0}{\delta J(x)^3 \delta J(y)^3}+\cdots\\
     &=\braket{0|0}_0+\frac{ig}{3!}\int\d^4x\braket{\phi_x^3}_0+\left(\frac{ig}{3!}\right)^2\int\d^4x\d^4y\braket{\phi_x^3\phi_y^3}_0+\cdots,
 \end{align}
 
@@ -593,7 +595,7 @@
 \subsubsection{从量子场到经典场相互作用}\label{pi-yukawa}
 考虑Pi介子的相互作用, 它是核力的传播粒子, 它有经典的Yukawa势
 \begin{align}
-    U(r)=-\frac{g_1 g_2\exp{-mr}}{4\pi r^2}.
+    U(r)=-\frac{g_1 g_2\exp{-mr}}{4\pi r}.
 \end{align}
 这个经典势可以通过路径积分计算有效Lagrangian得到. 我们知道Pi介子自旋为$0$, 并且不带电荷, 因此可以用实标量场来描述.
 

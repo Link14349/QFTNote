@@ -550,7 +550,7 @@ Fourier逆变换可以得到:
 
 我们还可以定义动量算子:
 \begin{equation}
-    P^i=\int\mathrm\partial^0\phi\partial^i\pi\mathrm d^3x=-\int\phi_t\phi_i\mathrm d^3x,
+    P^i=\int\partial^0\phi\,\partial^i\phi\,\mathrm d^3x=-\int\phi_t\phi_i\mathrm d^3x,
 \end{equation}
 即:
 \begin{align}
@@ -1198,9 +1198,10 @@ $$
 出发来得到Feynman传播子的方式, 这个方法在接下来的推导中更为有用. 
 
 根据式\eqref{Theta-definition}我们有
-\begin{equation}
-    D_F(x, y)=\int\frac{i\d\omega}{2\pi}\frac{\exp{-i\omega(t_x-t_y)}}{\omega+i\epsilon}\int\ld p[\exp{-ip(x-y)}]+\int\frac{i\d\omega}{2\pi}\frac{\exp{i\omega(t_x-t_y)}}{\omega+i\epsilon}\int\ld p[\exp{ip(x-y)}]\label{scalar-feynman-propagator-naively},
-\end{equation}
+\begin{align}
+    D_F(x, y)=&\int\frac{i\d\omega}{2\pi}\frac{\exp{-i\omega(t_x-t_y)}}{\omega+i\epsilon}\int\ld p[\exp{-ip(x-y)}]\notag\\
+    &+\int\frac{i\d\omega}{2\pi}\frac{\exp{i\omega(t_x-t_y)}}{\omega+i\epsilon}\int\ld p[\exp{ip(x-y)}]\label{scalar-feynman-propagator-naively},
+\end{align}
 (注意, 这里$p(x-y)=\omega(t_x-t_y)-\vec p\cdot(\vec x-\vec y)$). 我们设
 \begin{equation}
     p'^\mu=(\omega, \vec p)^T,

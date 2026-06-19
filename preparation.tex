@@ -204,9 +204,10 @@ Lorentz群生成元
     \end{equation}
 \end{theorem}
 \begin{theorem}
-    \begin{equation}
-        \int_a^b f(x) \delta(g(x)) \mathrm dx = \sum_{i\in \{i~|~g(x_i)=0, x_i\in[a, b]\}}\frac{f(x_i)}{|g'(x_i)|}= \sum_{i\in \{i~|~g(x_i)=0\}}\frac{f(x_i)}{|g'(x_i)|}\Theta(b-x)\Theta(x-a)
-    \end{equation}
+    \begin{align}
+        \int_a^b f(x) \delta(g(x)) \mathrm dx &= \sum_{i\in \{i~|~g(x_i)=0, x_i\in[a, b]\}}\frac{f(x_i)}{|g'(x_i)|}\notag\\
+        &= \sum_{i\in \{i~|~g(x_i)=0\}}\frac{f(x_i)}{|g'(x_i)|}\Theta(b-x)\Theta(x-a)
+    \end{align}
 \end{theorem}
 
 \subsection{变分}
@@ -385,9 +386,10 @@ Lorentz群生成元
     \end{equation}
 \end{theorem}
 \begin{proof}
-    \begin{equation}
-        (f, Ag)=\eta(f)(Ag)=(A^*\circ\eta(f))(g)=\eta[(\eta^{-1}A^*\circ\eta)(f)](g)=\eta[(A^\dagger)(f)](g)=(A^\dagger f, g)
-    \end{equation}
+    \begin{align}
+        (f, Ag)&=\eta(f)(Ag)=(A^*\circ\eta(f))(g)\notag\\
+        &=\eta[(\eta^{-1}A^*\circ\eta)(f)](g)=\eta[(A^\dagger)(f)](g)=(A^\dagger f, g)
+    \end{align}
     \begin{equation}
         (f, (A^\dagger)^\dagger g)=((A^\dagger)^\dagger g, f)^*=(g, A^\dagger f)^*=(A^\dagger f, g)=(f, Ag)
     \end{equation}
@@ -631,7 +633,7 @@ Lorentz群生成元
     H=\omega\left(a^\dagger a+\frac12\right).
 \end{align}
 
-设$N=a^\dagger a$, $N$是幺正算符, $N^\dagger=N$, 我们有
+设$N=a^\dagger a$, $N$是厄米算符, $N^\dagger=N$, 我们有
 \begin{align}
     [N, a]=-a, \quad [N, a^\dagger]=a^\dagger.
 \end{align}
@@ -688,7 +690,7 @@ Lorentz群生成元
 \end{align}
 于是可以解得波函数是Gaussian分布
 \begin{align}
-    \braket{x|\alpha}=\left(\frac{m\omega}\pi\right)^{\frac14}\exp{-\frac12m\omega(x-\sqrt{\frac 2{m\omega}}\alpha)},
+    \braket{x|\alpha}=\left(\frac{m\omega}\pi\right)^{\frac14}\exp{-\frac12m\omega(x-\sqrt{\frac 2{m\omega}}\alpha)^2},
 \end{align}
 
 考虑连续态的时间演化, 
@@ -720,7 +722,7 @@ Lorentz群生成元
 
 设Lorentz变换为
 \begin{align}
-    x'^\mu=\lambda&\mu_{~~\nu}x^\nu,
+    x'^\mu=\Lambda^\mu_{~~\nu}x^\nu,
 \end{align}
 根据定义可知Lorentz变换为一种保内积的变换:
 \begin{equation}
@@ -804,7 +806,7 @@ Lorentz群生成元
     具有协变性的矢量称为Lorentz矢量.
 \end{definition}
 \begin{definition}[Lorentz张量]
-    具有协变性的张量称为Lorentz矢量.
+    具有协变性的张量称为Lorentz张量.
 \end{definition}
 
 \subsection{狭义相对论动力学技巧}

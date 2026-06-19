@@ -1,0 +1,40 @@
+\section{Dirac方程到Schr\"odinger方程的非相对论极限}\label{dirac-to-schrodinger}
+我们使用Dirac表象的$\gamma^\mu$矩阵. 与电磁场耦合的Dirac方程为
+\begin{align}
+    i(\slashed\partial+ieA_\mu)\phi-m\phi=0.
+\end{align}
+在Dirac表象下, 注意到$\gamma^0=\begin{pmatrix}
+    \mathds1 & 0\\
+    0 & -\mathds1
+\end{pmatrix}$, 因此旋量的前后两项分别为$\exp{-imt}$和$\exp{+imt}$旋转的部分, 符合$\exp{-imt}$的旋转代表是正粒子. 而我们要考虑的正是正粒子, 因此我们不妨直接将$\exp{-imt}$的正粒子旋转提取出来, 得到
+\begin{align}
+    \phi=\exp{-imt}\begin{pmatrix}
+        & \psi \\
+        & \xi
+    \end{pmatrix},
+\end{align}
+其中$\psi, \xi$都是缓变的. 展开可以得到方程组
+\begin{align}
+    & i(\partial_t+ieV)\psi+\vec\sigma\cdot(-i\nabla-e\vec A)\xi=0,\\
+    & i(\partial_t+ieV)\xi+\vec\sigma\cdot(-i\nabla-e\vec A)\psi+2m\xi=0.
+\end{align}
+
+因为$\xi$是缓变的, 因此$\partial_t$的量级都远不及$2m$, 因此我们有
+\begin{align}
+    \xi=-\frac{\vec\sigma\cdot(-i\nabla-e\vec A)\psi}{2m}.
+\end{align}
+代入即得
+\begin{align}
+    i\partial_t\psi=\frac{\left[\vec\sigma\cdot(-i\nabla-e\vec A)\right]^2}{2m}\psi+eV\psi.
+\end{align}
+
+利用$\sigma^i\sigma^j=\delta^{ij}+i\epsilon_{k}^{~~ij}\sigma^k$, 可以得到(需要注意$A_i=-(\vec A)^i$).
+\begin{align}
+    \left[\vec\sigma\cdot(-i\nabla-e\vec A)\right]^2=\sigma^i\sigma^j(-i\nabla+eA)_i(-i\nabla+eA)_j=-\nabla^2-e\vec\sigma\cdot\vec B.
+\end{align}
+从而得到
+\begin{align}
+    i\partial_t\psi=-\frac{\nabla^2}{2m}\psi-\frac{e\sigma}{2m}\cdot\vec B\psi+eV\psi.
+\end{align}
+
+由此可见, 自旋与磁场的耦合是Dirac方程退化到非相对论情况的自然结果.

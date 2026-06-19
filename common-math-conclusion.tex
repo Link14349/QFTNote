@@ -11,7 +11,7 @@
 \end{theorem}
 \begin{theorem}
     \begin{align}
-        \int\d^nx\exp{-\frac12x^TAx+x^T J}=\sqrt{\frac{\dpi n}{\det A}}\exp{\frac12 J^T AJ}
+        \int\d^nx\exp{-\frac12x^TAx+x^T J}=\sqrt{\frac{\dpi n}{\det A}}\exp{\frac12 J^T A^{-1}J}
     \end{align}
 \end{theorem}
 \subsection{$\Gamma$函数}
@@ -312,10 +312,16 @@
 \subsection{Feynman积分技巧}
 \begin{theorem}[Feynman积分公式]\label{feynman-trick}
     \begin{align}
-        \frac1{A_1A_2\cdots A_n}=\int_0^1\dx_1\dx_2\cdots\dx_n\delta\left(\sum x_i-1\right)\frac1{\left[A_1x_1+A_2x_2+\cdots A_nx_n\right]^n}.
+        \frac1{A_1A_2\cdots A_n}&=(n-1)!\int_0^1\dx_1\dx_2\cdots\dx_n\,\delta\left(\sum x_i-1\right)\notag\\
+        &\quad\times\frac1{\left[A_1x_1+A_2x_2+\cdots A_nx_n\right]^n}.
+    \end{align}
+    更一般地, 对于带幂次$\alpha_i$的情况, 有
+    \begin{align}
+        \frac1{A_1^{\alpha_1}A_2^{\alpha_2}\cdots A_n^{\alpha_n}}&=\frac{\Gamma\left(\sum_i\alpha_i\right)}{\Gamma(\alpha_1)\Gamma(\alpha_2)\cdots\Gamma(\alpha_n)}\int_0^1\dx_1\dx_2\cdots\dx_n\,\delta\left(\sum_i x_i-1\right)\notag\\
+        &\quad\times\frac{\prod_i x_i^{\alpha_i-1}}{\left[\sum_i x_iA_i\right]^{\sum_i\alpha_i}}.
     \end{align}
 \end{theorem}
-更常用的是$n=2$的情况
+更常用的是$n=2$的情况($(n-1)!=1$)
 \begin{align}
     \frac1{AB}=\int_0^1\dx\frac1{\left[xA+(1-x)B\right]^2}.
 \end{align}

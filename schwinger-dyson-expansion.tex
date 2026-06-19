@@ -1,3 +1,5 @@
+\section{利用Schwinger-Dyson定理微扰展开}\label{schwinger-dyson-perturbative-expansion}
+
 这里给出使用Schwinger-Dyson定理微扰展开的方法的展示, 我们不讨论具体的细节与一般性的推广. 因此我们只考虑有相互作用的实标量场, 我们有
 \begin{theorem}[特化的Schwinger-Dyson定理]
     \begin{equation}
@@ -27,9 +29,10 @@
 \end{align}
 
 于是最后整理得
-\begin{equation}
-    \braket{\phi_1\phi_2}=D_{12}-\left(\frac g2\right)^2\int \d^4x\d^4y(2D_{1x}D_{xy}D_{xy}D_{y2}+D_{1x}D_{xx}D_{yy}D_{y2}+2D_{1x}D_{xy}D_{yy}D_{x2})\label{2pt-correlation-expansion-schwinger-dyson}
-\end{equation}
+\begin{align}
+    \braket{\phi_1\phi_2}=D_{12}-\left(\frac g2\right)^2\int \d^4x\d^4y\big(&2D_{1x}D_{xy}D_{xy}D_{y2}+D_{1x}D_{xx}D_{yy}D_{y2}\notag\\
+    &+2D_{1x}D_{xy}D_{yy}D_{x2}\big)\label{2pt-correlation-expansion-schwinger-dyson}
+\end{align}
 
 我们可以用Feynman图来表示这些二阶贡献, 并写下$\phi^3$理论在位形空间的Feynman规则.
 \begin{figure}[htbp!]

@@ -331,3 +331,47 @@ $$J^\nu=i(\psi\partial^\nu\psi^*-\psi^*\partial^\nu\psi)+2e\psi\psi^*A^\nu,$$
 |---|---|---|---|
 | 6 | 有质量矢量场 Π^{0i}=E^i | gaugetheory.tex:34 | **p.100** |
 | 7 | Schwinger-Dyson 组合因子 2,1,2 | schwinger-dyson-expansion.tex:33 | **p.226** |
+
+明白，我不动文件,只给你参考步骤和关键检查点。我把整个 QED 顶点的 $A^\mu$ 推导 + on-shell 提取重新认真走了一遍——结论是 $A^\mu$ 的三项结构是对的,而且代入 on-shell 后能精确得到 $a_e=\alpha/2\pi$。你"感觉做错"很可能是踩了我下面标红的两个坑。下面是供你对照的完整步骤。
+
+1. 分子 $\mathcal N^\mu$(未代 on-shell)
+移位 $\ell=l-(x_1p+x_2k)$ 后,丢掉奇次 $\ell$,有限部分分子
+$$\mathcal N^\mu=\gamma^\alpha(\slashed K+m)\gamma^\mu(\slashed P+m)\gamma_\alpha,\quad \slashed P=(1-x_1)\slashed p-x_2\slashed k,\ \slashed K=(1-x_2)\slashed k-x_1\slashed p.$$
+逐项用 $\gamma^\alpha\gamma^\rho\gamma^\mu\gamma^\sigma\gamma_\alpha=-2\gamma^\sigma\gamma^\mu\gamma^\rho$、$\gamma^\alpha\gamma^\rho\gamma^\mu\gamma_\alpha=4g^{\rho\mu}$、$\gamma^\alpha\gamma^\mu\gamma_\alpha=-2\gamma^\mu$:
+$$\boxed{\mathcal N^\mu=-2\slashed P\gamma^\mu\slashed K-2m^2\gamma^\mu+4m\big[(1-2x_1)p+(1-2x_2)k\big]^\mu}$$
+（第三项来自 $K^\mu+P^\mu=(1-2x_1)p^\mu+(1-2x_2)k^\mu$。）这就是笔记里的 $A^\mu$ 结构,正确。
+
+🔴坑 1（前因子）:发散部分系数是 $\frac1{8\pi^2}$,有限部分是 $\frac1{16\pi^2}$,二者天然差 2。若你用"单一前因子 $\frac1{8\pi^2}$"的写法,则 $A^\mu=\tfrac12\mathcal N^\mu$（系数 $-1,-m^2,2m$）;若保留 $A^\mu=\mathcal N^\mu$,前因子必须配 $\frac1{16\pi^2}$。两者等价。代 on-shell 时这个 ½ 必须跟对。
+
+2. 代 on-shell:把 $\bar u(k)\mathcal N^\mu u(p)$ 约化
+用 $\slashed p u=mu,\ \bar u\slashed k=m\bar u$,以及 $\slashed p\gamma^\mu=2p^\mu-\gamma^\mu\slashed p$、$\gamma^\mu\slashed k=2k^\mu-\slashed k\gamma^\mu$,把它写到基 ${\bar u\gamma^\mu u,\ p^\mu\bar uu,\ k^\mu\bar uu}$。几个分块结果(可当检查点):
+$$\bar u\,\slashed p\gamma^\mu\slashed k\,u=2m(p+k)^\mu\bar uu-(2p\!\cdot\!k+m^2)\bar u\gamma^\mu u,$$
+$$\bar u\,\slashed p\gamma^\mu\slashed p\,u=2mp^\mu\bar uu-m^2\bar u\gamma^\mu u,\quad \bar u\,\slashed k\gamma^\mu\slashed k\,u=2mk^\mu\bar uu-m^2\bar u\gamma^\mu u,\quad \bar u\,\slashed k\gamma^\mu\slashed p\,u=m^2\bar u\gamma^\mu u.$$
+
+合起来写成 $\bar u\mathcal N^\mu u=C_\gamma,\bar u\gamma^\mu u+C_p,p^\mu\bar uu+C_k,k^\mu\bar uu$,磁矩只看 $p^\mu,k^\mu$ 项,关键是它们的和:
+$$\boxed{C_p+C_k=4m\,(x_1+x_2)(1-x_1-x_2)}$$
+（$C_p=4m[-(1-x_1)(1-x_1-x_2)+(1-2x_1)]$,$C_k$ 同理 $x_1\leftrightarrow x_2$;相加用 $s=x_1+x_2$ 化简即得。）
+
+🔴坑 2（$q=0$ 的基冗余）:在 $q=k-p\to0$（即 $p=k$）时,Gordon 给出 $m\bar u\gamma^\mu u=p^\mu\bar uu$,所以基 ${\gamma^\mu,p^\mu,k^\mu}$ 不独立。中间式子按不同顺序约化会得到"看似不同"的系数(比如 $\bar u\slashed p\gamma^\mu\slashed p u$ 两种算法差 $2m^2\bar u\gamma^\mu u$ vs $2mp^\mu\bar uu$),其实用这条关系一并就相等。很多人就是在这里以为"算错了"。最稳的做法是先保持 $q\neq0$ 做完约化,最后才令 $q\to0$。
+
+3. Gordon 分解 + 提取 $F_2$
+用 $q=k-p$ 的 Gordon 恒等式
+$$\bar u(k)(p+k)^\mu u(p)=\bar u(k)\big[2m\gamma^\mu-i\sigma^{\mu\nu}q_\nu\big]u(p).$$
+$p^\mu,k^\mu$ 项里 $\tfrac12(C_p+C_k)(p+k)^\mu$ 贡献磁矩,$\tfrac12(C_k-C_p)q^\mu$ 项由 Ward $q_\mu\Gamma^\mu=0$ 抹掉(只进 $F_1$/被抵消,不进 $F_2$)。于是 $\bar u\mathcal N^\mu u$ 的 $i\sigma^{\mu\nu}q_\nu$ 系数 $=-\tfrac12(C_p+C_k)=-2m,s(1-s)$。
+
+再代 $A^\mu=\tfrac12\mathcal N^\mu$、前因子 $\frac{ie^3}{8\pi^2}$,以及 $q=0$ 时的分母
+$$\boxed{\Delta\big|_{q=0}=m^2(x_1+x_2)^2}$$
+磁矩项为
+$$\delta\Gamma^\mu\supset\frac{ie^3}{8\pi^2}\!\int\!dx_1dx_2\,\frac{-m\,s(1-s)}{m^2s^2}\,\bar u\,i\sigma^{\mu\nu}q_\nu u=-\frac{ie^3}{8\pi^2m}\Big(\!\int\!\frac{1-s}{s}\,dx_1dx_2\Big)\frac12\cdots$$
+
+单纯形积分(令 $s=x_1+x_2$,面积元 $\int!!\int_\triangle f(s)=\int_0^1 s,f(s),ds$):
+$$\int_\triangle\frac{1-s}{s}\,dx_1dx_2=\int_0^1 s\cdot\frac{1-s}{s}\,ds=\int_0^1(1-s)\,ds=\frac12.$$
+
+对照 $\delta\Gamma^\mu=-ie,\dfrac{i\sigma^{\mu\nu}q_\nu}{2m}F_2(0),\bar u(\cdots)u$,解得
+$$F_2(0)=\frac{e^2}{8\pi^2}=\frac{\alpha}{2\pi}.\qquad\checkmark$$
+
+小结
+$\mathcal N^\mu$（即 $A^\mu$ 的三项）正确;代 on-shell 后精确给出 Schwinger 的 $a_e=\alpha/2\pi$,所以这个计算是对的。
+你"看着像做错"最可能是:(坑1) $A^\mu=\tfrac12\mathcal N^\mu$ 与前因子 $\tfrac1{8\pi^2}$ 的那个 ½ 没配对(用成 $\mathcal N^\mu\times\tfrac1{8\pi^2}$ 会得到 $\alpha/\pi$,翻倍);或 (坑2) 在 $q=0$ 直接约化,被 $m\bar u\gamma^\mu u=p^\mu\bar uu$ 的冗余搞出"对不上"的中间式。
+自查建议:(a) 保持 $q\neq0$ 到最后;(b) 中途核对 $C_p+C_k=4m s(1-s)$ 和 $\Delta|_{q=0}=m^2s^2$ 这两个 checkpoint;(c) 顺手验证 $q^\mu$ 系数 $\tfrac12(C_k-C_p)=-2m(x_2-x_1)(1+s)$ 在对称化后落入 Ward 抵消,不进 $F_2$。
+如果你按这个走完发现某个 checkpoint 对不上,把你那一步贴给我,我帮你定位——但文件我不碰,等你自己写。

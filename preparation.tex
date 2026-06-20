@@ -356,7 +356,10 @@ Lorentz群生成元
 \end{theorem}
 \begin{proof}
     \begin{equation}
-        (A+B)^*(\nu)(f)=\nu(A(f)+\nu(B(f)))=\nu(Af)+\nu(Bf)=A^*(\nu)(f)+B^*(\nu)(f)
+        \begin{aligned}
+            (A+B)^*(\nu)(f)&=\nu(A(f))+\nu(B(f))=\nu(Af)+\nu(Bf)\\
+            &=A^*(\nu)(f)+B^*(\nu)(f)
+        \end{aligned}
     \end{equation}
 \end{proof}
 
@@ -517,7 +520,10 @@ Lorentz群生成元
 \end{definition}
 如何理解这个定义? 为什么在这里我们需要引入一次共轭? 这是为了让$S^*$作用到$\nu$上后的结果$S^*\nu$仍然是一个线性映射而不是反线性映射: 对偶矢量的定义就是线性映射, 而不是反线性映射. 即
 \begin{equation}
-    S^*(\nu)(cf)=\nu(Scf)^*=(\nu(c^*Sf))^*=(c^*\nu(Sf))^*=c(\nu(Sf))^*=cS^*(\nu)(f),
+    \begin{aligned}
+        S^*(\nu)(cf)&=\nu(Scf)^*=(\nu(c^*Sf))^*\\
+        &=(c^*\nu(Sf))^*=c(\nu(Sf))^*=cS^*(\nu)(f),
+    \end{aligned}
 \end{equation}
 
 然后我们可以定义反线性算符的伴随$S^\dagger$
@@ -708,6 +714,109 @@ Lorentz群生成元
     &\braket{p(t)}=\sqrt{2m\omega}|\alpha|\sin(\rm{Arg}\alpha-\omega t).
 \end{align}
 
+\subsection{单粒子散射}
+本节介绍在量子力学框架内, 处理单粒子短程势场散射问题. 考虑单粒子静态Schr\"odinger方程,
+\begin{align}
+    (-\frac{\nabla^2}{2m}+V(\vec r))\psi(\vec r)=E\psi(\vec r).
+\end{align}
+我们设入射粒子是能量为$E=\frac{k^2}{2m}$的单色波$\exp{ikz}$, 也就是零级量$\psi_0=\exp{ikz}$. 我们可以通过Green函数做微扰求解这个定态Schr\"odinger方程. 我们将方程化为, 
+\begin{align}
+    (\frac{\nabla^2}{2m}+E)\psi=\epsilon V\psi,
+\end{align}
+其中$\epsilon$是一个小的微扰参量, 我们在最后会取$\epsilon\to1$. 考虑Green函数
+\begin{align}
+    (\frac{\nabla^2}{2m}+E)G(\vec x-\vec x')=\delta^3(\vec x-\vec x'),
+\end{align}
+不难得到
+\begin{align}
+    G(\vec x-\vec x')=2m\int\ddd p\frac{\exp{i\vec p\cdot(\vec x-\vec x')}}{k^2-p^2}=-\frac m{2\pi}\frac{\exp{ik|\vec x-\vec x'|}}{|\vec x-\vec x'|},
+\end{align}
+这是一个球面波. 然后不难得到定态波函数关于$\epsilon$的级数展开, 
+\begin{align}
+    \psi=\psi_0+\epsilon G*(V\psi_0)+\epsilon^2 G*[VG*(V\psi_0)]+\cdots.
+\end{align}
+其中, $*$表示卷积,
+\begin{align}
+    (G*V\psi)(\vec x)\equiv\int\d^3x'G(\vec x-\vec x')V(\vec x')\psi(\vec x').
+\end{align}
+我们还可以做多极展开, 因为我们最后计算散射截面, 只关心$|\vec x|\to\infty$处的粒子流, 因此展开到一阶就完全足够了.
+\begin{align}
+    G*V\psi_0(x)&=-\int\d^3x'\frac m{2\pi}\frac{\exp{ik|\vec x-\vec x'|}}{|\vec x-\vec x'|}V(\vec x')\psi_0(\vec x')\notag\\
+    &\approx-\frac{m\exp{ik|\vec x|}}{2\pi|\vec x|}\int\d^3x'\exp{-ik\frac{\vec x'\cdot\vec x}{|\vec x|}}V(\vec x')\psi_0(\vec x').
+\end{align}
+于是
+\begin{align}
+    \psi(r)\approx\exp{ikz}-\frac{m\exp{ikr}}{2\pi r}\int\d^3x'\exp{-ik\frac{\vec x'\cdot\vec x}{|\vec x|}}V(\vec x')\psi_0(\vec x').
+\end{align}
+我们一般记
+\begin{align}
+    \psi(r)\approx\exp{ikz}+f(\theta,\varphi)\frac{\exp{ikr}}{r},
+\end{align}
+这里$f(\theta, \varphi)$被称为散射振幅, 这样计算散射的方式被称为Born近似. 在一阶近似下, 设$\vec q=k\frac{\vec x}{|\vec x|}$, 则不难发现这其实是个傅里叶变换
+\begin{align}
+    f(\vec q)=-\frac{m}{2\pi}\int\d^3x'\exp{-i\vec q\cdot\vec x'}V(\vec x')\psi_0(\vec x').
+\end{align}
+如果在动量空间中计算, 设$\tilde V, \tilde{\psi_0}$分别是$V, \psi_0$的傅里叶变换, 我们就直接有
+\begin{align}
+    f(\vec q)=-\frac{m}{2\pi}\int\ddd p\tilde{V}(\vec q-\vec p)\tilde{\psi_0}(\vec p)=-\frac{m}{2\pi}\tilde{V}(\vec q-k\uvec z).
+\end{align}
+或者直接写成内积的形式, 因为$\braket{p|q}=2\om p\dpi3\delta^3(\vec p-\vec q)$, 在非相对论条件下$\om p\approx m$, 于是
+\begin{align}
+    f(\vec q)=-\frac1{4\pi}\braket{q|V|p}\label{born-amplitude-V}.
+\end{align}
+
+然后我们考虑计算散射截面, 我们首先需要得到流到无穷远处的粒子流, 于是计算
+\begin{align}
+    \vec j=\frac1m\rm{Im}\left(\psi^*\nabla\psi\right), 
+\end{align}
+我们只考虑$j_r$, 并保留到$\frac 1{r^2}$项, 得到
+\begin{align}
+    j_r=\frac km\rm{Re}\left(\cos\theta+\frac{|f|^2}{r^2}+f\frac{\exp{ikr(1-\cos\theta)}}{r}+f^*\cos\theta\frac{\exp{-ikr(1-\cos\theta)}}{r}\right).
+\end{align}
+因为我们考虑的是$r\to\infty$的极限, 后两项干涉项$ikr\cos\theta$的相位将随角度迅速变化, 剧烈振荡, 在有限大小的探测器中会表现为强烈的干涉相消(除了$\theta=0$的情况, 这就是光学定律的由来), 只剩下
+\begin{align}
+    j_r=\frac km\left(\cos\theta+\frac{|f|^2}{r^2}\right).
+\end{align}
+显然第一项是入射粒子流的贡献, 第二项才是出射粒子流, 也就是
+\begin{align}
+    \vec j_{\rm{in}}=\frac km\uvec z, j_{r\rm{sc}}=\frac km\frac{|f|^2}{r^2}.
+\end{align}
+利用散射截面的定义
+\begin{align}
+    j_{\rm{in}}\d\sigma=j_{r\rm{sc}} r^2\d\Omega,
+\end{align}
+我们得到
+\begin{align}
+    \frac{\d\sigma}{\d\Omega}=|f(\theta, \varphi)|^2.
+\end{align}
+可见, 散射截面正比与散射振幅. 在一阶Born近似的情况下, 我们发现: 测量微分散射截面其实就是在测量势场的傅里叶变换谱.
+
+然后我们可以讨论刚刚被我们略去的干涉项的物理贡献, 这就是光学定理. 光学定理的出发点其实很简单: 总共只有一个粒子在散射, 进入的粒子与出去的粒子流应当守恒. 既然粒子从直线运动$\exp{ikx}$变成了向各个方向散射, 那么为了保持总的粒子数还是不变的, 那么原本方向上的粒子流应当变暗. 更数学地说, 我们有粒子流守恒条件
+\begin{align}
+    \int_S\d\vec A\cdot\vec j=0.
+\end{align}
+这里$S$取$R\to\infty$的大球面. $\vec j_{\rm{in}}$的通量显然为$0$, 而利用总散射截面的定义可以得到散射项$\vec j_{\rm{sc}}$的通量
+\begin{align}
+    \int_S\d\vec A\cdot\vec j_{\rm{sc}}=\frac km\sigma_{\rm{total}}\neq0.
+\end{align}
+这告诉我们在计算微分散射截面时略去的两个干涉项一定对积分是有贡献的. 直接写出球面积分, 并先计算$\theta$向的积分, 利用$\d(1-\cos\theta)=\sin\theta\d\theta$, 设$u=1-\cos\theta$, 分部积分有
+\begin{align}
+    \int_S\d\vec A\cdot\vec j_{\rm{inf}}&=\frac im\int\d\varphi\rm{Re}\int \left(-if(u,\varphi)\d\exp{ikRu}+if^*(1-u)\d\exp{-ikRu}\right)\notag\\
+    &=\frac{i}m\int\d\varphi\rm{Re}\Big(-f(u,\varphi)\exp{ikRu}\Big|_0^2+\int_0^2\exp{ikRu}\de fu\notag\\
+    &\qquad+f^*(u,\varphi)\exp{-ikRu}-\int_0^2\exp{-ikRu}\de{}u\left((1-u)f\right)\Big).
+\end{align}
+因为当$R\to\infty$时$\exp{ikRu}$随$u$变化剧烈振荡, 因此第二项的积分结果应当干涉相消为$0$. 而第一项的当$u=2$时, 也随着$R$增大剧烈振荡, 对于一个有限大尺度的观测, 结果也应当为$0$, 于是就只剩下$u=0$也就是$\theta=0$处的贡献
+\begin{align}
+    \int_S\d\vec A\cdot\vec j_{\rm{inf}}&=-\frac{4\pi}m\rm{Im}f(\theta=0),
+\end{align}
+于是最终我们得到光学定理.
+\begin{theorem}[光学定理]
+    \begin{align}
+        \sigma_{\rm{total}}=\frac{4\pi}k f(\theta=0).
+    \end{align}
+\end{theorem}
+由此可见, 干涉项只会在$\theta=0$处有贡献, 用于干涉抵消原来的入射粒子流.
+
 \newpage
 \section{狭义相对论简述}
 \subsection{Minkovski时空与Lorentz变换\label{sr-lorentz}}
@@ -819,7 +928,11 @@ Lorentz群生成元
 \begin{definition}[Mandelstam变量]
     对于以$m_1, p_1$, $m_2, p_2$的粒子入射, 以$m_3, p_3$ $m_4, p_4$的粒子出射的动力学系统
     \begin{equation}
-        s=(p_1+p_2)^2=(p_3+p_4)^2, \quad t=(p_1-p_3)^2=(p_2-p_4)^2, \quad u=(p_1-p_4)^2=(p_2-p_3)^2
+        \begin{aligned}
+            s&=(p_1+p_2)^2=(p_3+p_4)^2, \\
+            t&=(p_1-p_3)^2=(p_2-p_4)^2, \\
+            u&=(p_1-p_4)^2=(p_2-p_3)^2
+        \end{aligned}
     \end{equation}
 \end{definition}
 \begin{theorem}[s+t+u守恒]
@@ -841,7 +954,8 @@ Lorentz群生成元
 
     计算可得:
     \begin{align}
-        s+t+u&=E_1^2+E_2^2+E_3^2+E_4^2-2\vec p^2-2\vec k^2+2E_1^2+2E_1E_2-2E_1E_3-2E_1E_4\\
+        s+t+u&=E_1^2+E_2^2+E_3^2+E_4^2-2\vec p^2-2\vec k^2\notag\\
+        &\quad+2E_1^2+2E_1E_2-2E_1E_3-2E_1E_4\\
         &=m_1^2+m_2^2+m_3^2+m_4^2+2E_1(E_1+E_2-E_3-E_4)\\
         &=m_1^2+m_2^2+m_3^2+m_4^2
     \end{align}

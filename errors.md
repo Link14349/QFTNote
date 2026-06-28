@@ -103,11 +103,11 @@ $$D_{12}-(g/2)^2\!\int(D_{1x}D_{xx}D_{yy}D_{y2}+2D_{1x}D_{xy}^2D_{y2}+2D_{1x}D_{
 | ✅ | ~~6. 有质量矢量场 Π^{0i}~~ | 复核正确，可删 |
 | ✅ | ~~7. Schwinger-Dyson 组合因子~~ | 复核正确，可删 |
 | ✅ | ~~8. Yang-Mills 术语大小写~~ | 已修复 |
-| 中 | 9. 光子传播子 D_{μν} 符号 | gaugetheory.tex |
-| 中 | 10. 标量QED Noether 流 A^ν 项 | gaugetheory.tex |
+| ✅ | ~~9. 光子传播子 D_{μν} 符号~~ | 已修复（+→−） |
+| ✅ | ~~10. 标量QED Noether 流 A^ν 项~~ | 已修复（→+2eψψ*A^ν） |
 | 低 | 11. ξ 规范固定项缺平方 | gaugetheory.tex（排版/公式） |
 | 低 | 12. pion 散射截面分母 | gaugetheory.tex |
-| 低 | 13. 杂项小笔误 | freefield.tex 等 |
+| ✅ | ~~13. 杂项小笔误~~ | 已修复（freefield P^i 等） |
 
 ---
 
@@ -121,18 +121,15 @@ $$D_{12}-(g/2)^2\!\int(D_{1x}D_{xx}D_{yy}D_{y2}+2D_{1x}D_{xy}^2D_{y2}+2D_{1x}D_{
 
 ---
 
-## 10. 标量 QED 的 Noether 流 A^ν 项
+## 10. 标量 QED 的 Noether 流 A^ν 项（✅ 已修复）
 
 **文件**: `gaugetheory.tex` 第 429 行
 
-**当前内容**:
-```latex
-J^\nu=i(\psi\partial^\nu\psi^*-\psi^*\partial^\nu\psi-2e\psi\psi^*A^\nu)
-```
+**问题**: 直接用 Noether 公式 j^ν=(D^νψ)*(iψ)+(D^νψ)(-iψ*) 算得
+$$J^\nu=i(\psi\partial^\nu\psi^*-\psi^*\partial^\nu\psi)+2e\psi\psi^*A^\nu=i\big(\psi(D^\nu\psi)^*-\psi^*(D^\nu\psi)\big),$$
+即 A^ν 项应为 **+2eψψ*A^ν（在 i(...) 之外，实系数、正号）**。原第 429 行写成 `i(…-2eψψ*A^ν)`，把 A^ν 项放在 i(...) 内且为 -2e，展开是 -2ieψψ*A^ν，符号与因子 i 都不对。
 
-**问题**: 直接用 Noether 公式 j^μ=(D^μψ)*(iψ)+(D^μψ)(-iψ*) 算得
-$$J^\nu=i(\psi\partial^\nu\psi^*-\psi^*\partial^\nu\psi)+2e\psi\psi^*A^\nu,$$
-即 A^ν 项应为 **+2eψψ*A^ν（在 i(...) 之外，实系数）**。第 429 行把它写在 i(...) 内、且为 -2e，展开后得 -2ieψψ*A^ν，与正确结果（+2e）的系数和因子 i 都不符。注意第 417/423 行的 J^ν=ie(…-2ieψψ*A^ν) 反而与正确的 Noether 流相差一个整体因子 e（即电流 = e×Noether），是自洽的；只有第 429 行有误。请核对。
+**✅ 修复**: 第 429 行 `i(ψ∂ψ*-ψ*∂ψ-2eψψ*A^ν)` → `i(ψ∂ψ*-ψ*∂ψ)+2eψψ*A^ν`。第 417/423 行（Maxwell 源，= e×Noether 流）本就自洽，未动。
 
 ---
 
@@ -156,7 +153,7 @@ $$J^\nu=i(\psi\partial^\nu\psi^*-\psi^*\partial^\nu\psi)+2e\psi\psi^*A^\nu,$$
 
 ---
 
-## 13. 杂项小笔误（freefield.tex）
+## 13. 杂项小笔误（freefield.tex）（✅ 已修复）
 
 **文件**: `freefield.tex` 第 553 行
 
@@ -164,7 +161,7 @@ $$J^\nu=i(\psi\partial^\nu\psi^*-\psi^*\partial^\nu\psi)+2e\psi\psi^*A^\nu,$$
 
 ---
 
-## 14. Yang-Mills：夸克规范群写错（概念性错误）
+## 14. Yang-Mills：夸克规范群写错（✅ 已修复 SU(2)→SU(3)）
 
 **文件**: `yang-mills.tex` 第 310 行
 
@@ -178,7 +175,7 @@ $$J^\nu=i(\psi\partial^\nu\psi^*-\psi^*\partial^\nu\psi)+2e\psi\psi^*A^\nu,$$
 
 ---
 
-## 15. Yang-Mills：鬼场项结构常数下标 & 索引笔误
+## 15. Yang-Mills：鬼场项结构常数下标 & 索引笔误（✅ 已修复）
 
 **文件**: `yang-mills.tex` 第 139、516 行
 
@@ -188,7 +185,7 @@ $$J^\nu=i(\psi\partial^\nu\psi^*-\psi^*\partial^\nu\psi)+2e\psi\psi^*A^\nu,$$
 
 ---
 
-## 16. 路径积分：若干公式笔误
+## 16. 路径积分：若干公式笔误（✅ 已修复）
 
 **文件**: `path-integral.tex` 第 112、287、596 行
 
@@ -199,7 +196,7 @@ $$J^\nu=i(\psi\partial^\nu\psi^*-\psi^*\partial^\nu\psi)+2e\psi\psi^*A^\nu,$$
 
 ---
 
-## 17. 相互作用：真空图展开测度笔误
+## 17. 相互作用：真空图展开测度笔误（✅ 已修复）
 
 **文件**: `interaction.tex` 第 119-120 行
 
@@ -216,7 +213,7 @@ $$J^\nu=i(\psi\partial^\nu\psi^*-\psi^*\partial^\nu\psi)+2e\psi\psi^*A^\nu,$$
 
 ---
 
-## 19. 预备知识：术语 / 公式笔误
+## 19. 预备知识：术语 / 公式笔误（✅ 已修复）
 
 **文件**: `preparation.tex` 第 634、691、723、807 行
 
@@ -290,88 +287,46 @@ $$J^\nu=i(\psi\partial^\nu\psi^*-\psi^*\partial^\nu\psi)+2e\psi\psi^*A^\nu,$$
 
 ---
 
-## PDF 页码对照（重建后刷新，229 页版；行号按 grep 内容定位）
+## PDF 页码对照（基于最新一次完整重建 xelatex→biber→xelatex×2；PDF 顺序页）
 
 **✅ 已修复**
 
 | 编号 | 问题 | 文件:行 | PDF 页 |
 |---|---|---|---|
-| 1 | QED 顶点 δ_e/前因子/A^μ | renormalization.tex:1577 | **p.211** |
-| 3 | φ³ 三点函数系数 32→16π² | renormalization.tex:1084 | **p.205** |
-| 9 | 光子传播子 p_μp_ν 符号 +→− | gaugetheory.tex:328 | **p.109** |
-| 13 | P^i 笔误 ∂ⁱπ→∂ⁱφ | freefield.tex:553 | **p.41** |
-| 14 | 夸克规范群 SU(2)→SU(3) | yang-mills.tex:310 | **p.173** |
-| 15 | 鬼场 f_{aab}→f_{cab}；δ_Bδ_Bf 索引 | yang-mills.tex:139 | **p.171** |
-| 16 | 路径积分缺平方/`\frac{g}{3!}`/U(r) 分母 | path-integral.tex (112/287/598) | **p.86/90/97** |
-| 17 | 真空图测度 d³x→d⁴x | interaction.tex:119 | **p.65** |
-| 19 | 幺正→厄米/相干态平方/Λ/张量 | preparation.tex:636 等 | **p.22–26** |
-| 21 | [σ,σ] 漏因子 2（含 δψ ½） | spinor.tex:508 | **p.126** |
-| 22d | Møller (s-2m)²→(s-2m²)² | spinor.tex:1951 | **p.161** |
-| 23a | Feynman 参数化 (n-1)! + 一般式 | common-math-conclusion.tex:315 | **p.223** |
-| 23b | 带源 Gaussian A→A⁻¹ | common-math-conclusion.tex:14 | **p.217** |
+| 1 | QED 顶点 δ_e/前因子/A^μ（=½𝒩^μ） | renormalization.tex:1583 | **p.218** |
+| 3 | φ³ 三点函数系数 32→16π² | renormalization.tex:1084 | **p.211** |
+| 9 | 光子传播子 p_μp_ν 符号 +→− | gaugetheory.tex:328 | **p.112** |
+| 10 | 标量QED Noether 流 → +2eψψ*A^ν | gaugetheory.tex:429 | **p.115** |
+| 13 | P^i 笔误 ∂ⁱπ→∂ⁱφ | freefield.tex:553 | **p.44** |
+| 14 | 夸克规范群 SU(2)→SU(3) | yang-mills.tex:310 | **p.179** |
+| 15 | 鬼场 f_{aab}→f_{cab}；δ_Bδ_Bf 索引 | yang-mills.tex:139/516 | **p.177** |
+| 16 | 路径积分缺平方/`\frac{g}{3!}`/U(r) 分母 | path-integral.tex:112/287/596 | **p.89 等** |
+| 17 | 真空图测度 d³x→d⁴x | interaction.tex:119 | **p.68** |
+| 19 | 幺正→厄米/相干态平方/Λ/张量 | preparation.tex:642 等 | **p.22–26** |
+| 21 | [σ,σ] 漏因子 2（含 δψ ½） | spinor.tex:508/515/539 | **p.129** |
+| 22d | Møller (s-2m)²→(s-2m²)² | spinor.tex:2017 | **p.166** |
+| 23a | Feynman 参数化 (n-1)! + 一般式 | common-math-conclusion.tex:315 | **p.230** |
+| 23b | 带源 Gaussian A→A⁻¹ | common-math-conclusion.tex:14 | **p.224** |
 
 **⬜ 待处理**
 
 | 编号 | 问题 | 文件:行 | PDF 页 |
 |---|---|---|---|
-| 4 | "Π(0)=0" 表述 vs MS̄ | renormalization.tex:1312 | **p.208** |
-| 10 | 标量QED Noether 流 A^ν 项 | gaugetheory.tex:429 | **p.112** |
-| 11 | ξ 规范固定项缺平方 | gaugetheory.tex:306/310/343 | **p.108** |
-| 12 | pion t 通道动量 & 截面分母 | gaugetheory.tex:585 | **p.114** |
-| 18 | 标量QED EoM 漏 -ie(∂·A)ψ | gaugetheory.tex:416 | **p.111** |
-| 20 | Weyl/Dirac 笔误 ψ_R 重复等 | spinor.tex:393 | **p.124** |
-| 22a | Bhabha 截面疑差因子 2 | spinor.tex:1883 | **p.160** |
-| 22b | Compton \|M\|² 量纲项 -2u | spinor.tex:2027 | **p.162** |
-| 22c | Klein-Nishina 漏项/因子 | spinor.tex:2064 | **p.163** |
-| 23c | Stirling `nn^n`；Γ 证明 u→v | common-math-conclusion.tex:55 | **p.218** |
+| 4 | "Π(0)=0" 表述 vs MS̄ | renormalization.tex:1302 | **p.214** |
+| 11 | ξ 规范固定项缺平方 | gaugetheory.tex:306/310/343 | **p.111** |
+| 12 | pion t 通道动量 & 截面分母 | gaugetheory.tex:577/585 | **p.117** |
+| 18 | 标量QED EoM 漏 -ie(∂·A)ψ | gaugetheory.tex:416 | **p.114** |
+| 20 | Weyl/Dirac 笔误 ψ_R 重复等 | spinor.tex:337/341/349/393 | **p.127** |
+| 22a | Bhabha 截面疑差因子 2 | spinor.tex:1950 | **p.165** |
+| 22b | Compton \|M\|² 量纲项 -2u | spinor.tex:2093 | **p.167** |
+| 22c | Klein-Nishina 漏项/因子 | spinor.tex:2130 | **p.168** |
+| 23c | Stirling `nn^n`；Γ 证明 u→v | common-math-conclusion.tex:55/126/131 | **p.225** |
 
 **✅ 复核为正确（可删）**
 
 | 编号 | 内容 | 文件:行 | PDF 页 |
 |---|---|---|---|
-| 6 | 有质量矢量场 Π^{0i}=E^i | gaugetheory.tex:34 | **p.100** |
-| 7 | Schwinger-Dyson 组合因子 2,1,2 | schwinger-dyson-expansion.tex:33 | **p.226** |
+| 6 | 有质量矢量场 Π^{0i}=E^i | gaugetheory.tex:34 | **p.103** |
+| 7 | Schwinger-Dyson 组合因子 2,1,2 | schwinger-dyson-expansion.tex:33 | **p.233** |
 
-明白，我不动文件,只给你参考步骤和关键检查点。我把整个 QED 顶点的 $A^\mu$ 推导 + on-shell 提取重新认真走了一遍——结论是 $A^\mu$ 的三项结构是对的,而且代入 on-shell 后能精确得到 $a_e=\alpha/2\pi$。你"感觉做错"很可能是踩了我下面标红的两个坑。下面是供你对照的完整步骤。
-
-1. 分子 $\mathcal N^\mu$(未代 on-shell)
-移位 $\ell=l-(x_1p+x_2k)$ 后,丢掉奇次 $\ell$,有限部分分子
-$$\mathcal N^\mu=\gamma^\alpha(\slashed K+m)\gamma^\mu(\slashed P+m)\gamma_\alpha,\quad \slashed P=(1-x_1)\slashed p-x_2\slashed k,\ \slashed K=(1-x_2)\slashed k-x_1\slashed p.$$
-逐项用 $\gamma^\alpha\gamma^\rho\gamma^\mu\gamma^\sigma\gamma_\alpha=-2\gamma^\sigma\gamma^\mu\gamma^\rho$、$\gamma^\alpha\gamma^\rho\gamma^\mu\gamma_\alpha=4g^{\rho\mu}$、$\gamma^\alpha\gamma^\mu\gamma_\alpha=-2\gamma^\mu$:
-$$\boxed{\mathcal N^\mu=-2\slashed P\gamma^\mu\slashed K-2m^2\gamma^\mu+4m\big[(1-2x_1)p+(1-2x_2)k\big]^\mu}$$
-（第三项来自 $K^\mu+P^\mu=(1-2x_1)p^\mu+(1-2x_2)k^\mu$。）这就是笔记里的 $A^\mu$ 结构,正确。
-
-🔴坑 1（前因子）:发散部分系数是 $\frac1{8\pi^2}$,有限部分是 $\frac1{16\pi^2}$,二者天然差 2。若你用"单一前因子 $\frac1{8\pi^2}$"的写法,则 $A^\mu=\tfrac12\mathcal N^\mu$（系数 $-1,-m^2,2m$）;若保留 $A^\mu=\mathcal N^\mu$,前因子必须配 $\frac1{16\pi^2}$。两者等价。代 on-shell 时这个 ½ 必须跟对。
-
-2. 代 on-shell:把 $\bar u(k)\mathcal N^\mu u(p)$ 约化
-用 $\slashed p u=mu,\ \bar u\slashed k=m\bar u$,以及 $\slashed p\gamma^\mu=2p^\mu-\gamma^\mu\slashed p$、$\gamma^\mu\slashed k=2k^\mu-\slashed k\gamma^\mu$,把它写到基 ${\bar u\gamma^\mu u,\ p^\mu\bar uu,\ k^\mu\bar uu}$。几个分块结果(可当检查点):
-$$\bar u\,\slashed p\gamma^\mu\slashed k\,u=2m(p+k)^\mu\bar uu-(2p\!\cdot\!k+m^2)\bar u\gamma^\mu u,$$
-$$\bar u\,\slashed p\gamma^\mu\slashed p\,u=2mp^\mu\bar uu-m^2\bar u\gamma^\mu u,\quad \bar u\,\slashed k\gamma^\mu\slashed k\,u=2mk^\mu\bar uu-m^2\bar u\gamma^\mu u,\quad \bar u\,\slashed k\gamma^\mu\slashed p\,u=m^2\bar u\gamma^\mu u.$$
-
-合起来写成 $\bar u\mathcal N^\mu u=C_\gamma,\bar u\gamma^\mu u+C_p,p^\mu\bar uu+C_k,k^\mu\bar uu$,磁矩只看 $p^\mu,k^\mu$ 项,关键是它们的和:
-$$\boxed{C_p+C_k=4m\,(x_1+x_2)(1-x_1-x_2)}$$
-（$C_p=4m[-(1-x_1)(1-x_1-x_2)+(1-2x_1)]$,$C_k$ 同理 $x_1\leftrightarrow x_2$;相加用 $s=x_1+x_2$ 化简即得。）
-
-🔴坑 2（$q=0$ 的基冗余）:在 $q=k-p\to0$（即 $p=k$）时,Gordon 给出 $m\bar u\gamma^\mu u=p^\mu\bar uu$,所以基 ${\gamma^\mu,p^\mu,k^\mu}$ 不独立。中间式子按不同顺序约化会得到"看似不同"的系数(比如 $\bar u\slashed p\gamma^\mu\slashed p u$ 两种算法差 $2m^2\bar u\gamma^\mu u$ vs $2mp^\mu\bar uu$),其实用这条关系一并就相等。很多人就是在这里以为"算错了"。最稳的做法是先保持 $q\neq0$ 做完约化,最后才令 $q\to0$。
-
-3. Gordon 分解 + 提取 $F_2$
-用 $q=k-p$ 的 Gordon 恒等式
-$$\bar u(k)(p+k)^\mu u(p)=\bar u(k)\big[2m\gamma^\mu-i\sigma^{\mu\nu}q_\nu\big]u(p).$$
-$p^\mu,k^\mu$ 项里 $\tfrac12(C_p+C_k)(p+k)^\mu$ 贡献磁矩,$\tfrac12(C_k-C_p)q^\mu$ 项由 Ward $q_\mu\Gamma^\mu=0$ 抹掉(只进 $F_1$/被抵消,不进 $F_2$)。于是 $\bar u\mathcal N^\mu u$ 的 $i\sigma^{\mu\nu}q_\nu$ 系数 $=-\tfrac12(C_p+C_k)=-2m,s(1-s)$。
-
-再代 $A^\mu=\tfrac12\mathcal N^\mu$、前因子 $\frac{ie^3}{8\pi^2}$,以及 $q=0$ 时的分母
-$$\boxed{\Delta\big|_{q=0}=m^2(x_1+x_2)^2}$$
-磁矩项为
-$$\delta\Gamma^\mu\supset\frac{ie^3}{8\pi^2}\!\int\!dx_1dx_2\,\frac{-m\,s(1-s)}{m^2s^2}\,\bar u\,i\sigma^{\mu\nu}q_\nu u=-\frac{ie^3}{8\pi^2m}\Big(\!\int\!\frac{1-s}{s}\,dx_1dx_2\Big)\frac12\cdots$$
-
-单纯形积分(令 $s=x_1+x_2$,面积元 $\int!!\int_\triangle f(s)=\int_0^1 s,f(s),ds$):
-$$\int_\triangle\frac{1-s}{s}\,dx_1dx_2=\int_0^1 s\cdot\frac{1-s}{s}\,ds=\int_0^1(1-s)\,ds=\frac12.$$
-
-对照 $\delta\Gamma^\mu=-ie,\dfrac{i\sigma^{\mu\nu}q_\nu}{2m}F_2(0),\bar u(\cdots)u$,解得
-$$F_2(0)=\frac{e^2}{8\pi^2}=\frac{\alpha}{2\pi}.\qquad\checkmark$$
-
-小结
-$\mathcal N^\mu$（即 $A^\mu$ 的三项）正确;代 on-shell 后精确给出 Schwinger 的 $a_e=\alpha/2\pi$,所以这个计算是对的。
-你"看着像做错"最可能是:(坑1) $A^\mu=\tfrac12\mathcal N^\mu$ 与前因子 $\tfrac1{8\pi^2}$ 的那个 ½ 没配对(用成 $\mathcal N^\mu\times\tfrac1{8\pi^2}$ 会得到 $\alpha/\pi$,翻倍);或 (坑2) 在 $q=0$ 直接约化,被 $m\bar u\gamma^\mu u=p^\mu\bar uu$ 的冗余搞出"对不上"的中间式。
-自查建议:(a) 保持 $q\neq0$ 到最后;(b) 中途核对 $C_p+C_k=4m s(1-s)$ 和 $\Delta|_{q=0}=m^2s^2$ 这两个 checkpoint;(c) 顺手验证 $q^\mu$ 系数 $\tfrac12(C_k-C_p)=-2m(x_2-x_1)(1+s)$ 在对称化后落入 Ward 抵消,不进 $F_2$。
-如果你按这个走完发现某个 checkpoint 对不上,把你那一步贴给我,我帮你定位——但文件我不碰,等你自己写。
+（注：反常磁矩 a_e=α/2π 的完整 Gordon 分解推导我已单独放在 `test.tex`，未并入正文。）

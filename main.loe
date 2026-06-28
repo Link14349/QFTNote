@@ -1,0 +1,164 @@
+\contentsline {definition}{\ifthmt@listswap 定义~2.1\else \numberline {2.1}定义\fi \thmtformatoptarg {泛函}}{12}{definition.1}%
+\contentsline {definition}{\ifthmt@listswap 定义~2.2\else \numberline {2.2}定义\fi \thmtformatoptarg {$\delta $函数}}{12}{definition.2}%
+\contentsline {theorem}{\ifthmt@listswap 定理~2.1\else \numberline {2.1}定理\fi }{12}{theorem.1}%
+\contentsline {theorem}{\ifthmt@listswap 定理~2.2\else \numberline {2.2}定理\fi }{12}{theorem.2}%
+\contentsline {definition}{\ifthmt@listswap 定义~2.3\else \numberline {2.3}定义\fi \thmtformatoptarg {变分}}{13}{definition.3}%
+\contentsline {definition}{\ifthmt@listswap 定义~3.1\else \numberline {3.1}定义\fi \thmtformatoptarg {内积空间}}{14}{definition.1}%
+\contentsline {definition}{\ifthmt@listswap 定义~3.2\else \numberline {3.2}定义\fi \thmtformatoptarg {元素距离}}{14}{definition.2}%
+\contentsline {definition}{\ifthmt@listswap 定义~3.3\else \numberline {3.3}定义\fi \thmtformatoptarg {矢量序列极限}}{14}{definition.3}%
+\contentsline {definition}{\ifthmt@listswap 定义~3.4\else \numberline {3.4}定义\fi \thmtformatoptarg {柯西序列}}{14}{definition.4}%
+\contentsline {definition}{\ifthmt@listswap 定义~3.5\else \numberline {3.5}定义\fi \thmtformatoptarg {完备性}}{15}{definition.5}%
+\contentsline {definition}{\ifthmt@listswap 定义~3.6\else \numberline {3.6}定义\fi \thmtformatoptarg {Hilbert空间}}{15}{definition.6}%
+\contentsline {definition}{\ifthmt@listswap 定义~3.7\else \numberline {3.7}定义\fi \thmtformatoptarg {对偶空间}}{15}{definition.7}%
+\contentsline {definition}{\ifthmt@listswap 定义~3.8\else \numberline {3.8}定义\fi \thmtformatoptarg {$\mathscr H\to \mathscr H^*$的反线性同构映射}}{15}{definition.8}%
+\contentsline {definition}{\ifthmt@listswap 定义~3.9\else \numberline {3.9}定义\fi \thmtformatoptarg {线性算符}}{15}{definition.9}%
+\contentsline {definition}{\ifthmt@listswap 定义~3.10\else \numberline {3.10}定义\fi \thmtformatoptarg {线性算符的乘法}}{15}{definition.10}%
+\contentsline {definition}{\ifthmt@listswap 定义~3.11\else \numberline {3.11}定义\fi \thmtformatoptarg {对偶线性算符}}{16}{definition.11}%
+\contentsline {theorem}{\ifthmt@listswap 定理~3.1\else \numberline {3.1}定理\fi }{16}{theorem.1}%
+\contentsline {definition}{\ifthmt@listswap 定义~3.12\else \numberline {3.12}定义\fi }{16}{definition.12}%
+\contentsline {theorem}{\ifthmt@listswap 定理~3.2\else \numberline {3.2}定理\fi \thmtformatoptarg {伴随算符的性质}}{16}{theorem.2}%
+\contentsline {definition}{\ifthmt@listswap 定义~3.13\else \numberline {3.13}定义\fi \thmtformatoptarg {左右矢}}{17}{definition.13}%
+\contentsline {definition}{\ifthmt@listswap 定义~3.14\else \numberline {3.14}定义\fi \thmtformatoptarg {Dirac记号中的算符}}{17}{definition.14}%
+\contentsline {definition}{\ifthmt@listswap 定义~3.15\else \numberline {3.15}定义\fi }{17}{definition.15}%
+\contentsline {definition}{\ifthmt@listswap 定义~3.16\else \numberline {3.16}定义\fi \thmtformatoptarg {算符的逆}}{17}{definition.16}%
+\contentsline {definition}{\ifthmt@listswap 定义~3.17\else \numberline {3.17}定义\fi \thmtformatoptarg {幺正算符}}{18}{definition.17}%
+\contentsline {definition}{\ifthmt@listswap 定义~3.18\else \numberline {3.18}定义\fi \thmtformatoptarg {反线性算符}}{18}{definition.18}%
+\contentsline {definition}{\ifthmt@listswap 定义~3.19\else \numberline {3.19}定义\fi \thmtformatoptarg {(反)线性算符的乘法}}{18}{definition.19}%
+\contentsline {theorem}{\ifthmt@listswap 定理~3.3\else \numberline {3.3}定理\fi \thmtformatoptarg {复合算符的(反)线性性}}{18}{theorem.3}%
+\contentsline {definition}{\ifthmt@listswap 定义~3.20\else \numberline {3.20}定义\fi \thmtformatoptarg {对偶线性算符}}{19}{definition.20}%
+\contentsline {definition}{\ifthmt@listswap 定义~3.21\else \numberline {3.21}定义\fi \thmtformatoptarg {伴随算符}}{20}{definition.21}%
+\contentsline {theorem}{\ifthmt@listswap 定理~3.4\else \numberline {3.4}定理\fi \thmtformatoptarg {反线性算符的伴随算符的性质}}{20}{theorem.4}%
+\contentsline {theorem}{\ifthmt@listswap 定理~3.5\else \numberline {3.5}定理\fi \thmtformatoptarg {反线性算符的复合}}{20}{theorem.5}%
+\contentsline {definition}{\ifthmt@listswap 定义~3.22\else \numberline {3.22}定义\fi \thmtformatoptarg {反线性幺正算符}}{21}{definition.22}%
+\contentsline {definition}{\ifthmt@listswap 定义~3.23\else \numberline {3.23}定义\fi \thmtformatoptarg {时间演化算子}}{21}{definition.23}%
+\contentsline {theorem}{\ifthmt@listswap 定理~3.6\else \numberline {3.6}定理\fi \thmtformatoptarg {Schrödinger方程}}{21}{theorem.6}%
+\contentsline {definition}{\ifthmt@listswap 定义~3.24\else \numberline {3.24}定义\fi \thmtformatoptarg {连续态(Coherent State)}}{22}{definition.24}%
+\contentsline {theorem}{\ifthmt@listswap 定理~3.7\else \numberline {3.7}定理\fi }{23}{theorem.7}%
+\contentsline {theorem}{\ifthmt@listswap 定理~3.8\else \numberline {3.8}定理\fi \thmtformatoptarg {光学定理}}{27}{theorem.8}%
+\contentsline {definition}{\ifthmt@listswap 定义~4.1\else \numberline {4.1}定义\fi \thmtformatoptarg {Lorentz变换}}{28}{definition.1}%
+\contentsline {theorem}{\ifthmt@listswap 定理~4.1\else \numberline {4.1}定理\fi \thmtformatoptarg {Lorentz变换的性质}}{28}{theorem.1}%
+\contentsline {theorem}{\ifthmt@listswap 定理~4.2\else \numberline {4.2}定理\fi \thmtformatoptarg {Lorentz变换的逆矩阵}}{28}{theorem.2}%
+\contentsline {definition}{\ifthmt@listswap 定义~4.2\else \numberline {4.2}定义\fi \thmtformatoptarg {$\delta \omega ^\mu _{~~\nu }$}}{29}{definition.2}%
+\contentsline {theorem}{\ifthmt@listswap 定理~4.3\else \numberline {4.3}定理\fi \thmtformatoptarg {$\delta \omega _{\mu \nu }$的性质}}{29}{theorem.3}%
+\contentsline {definition}{\ifthmt@listswap 定义~4.3\else \numberline {4.3}定义\fi \thmtformatoptarg {Lorentz标量}}{29}{definition.3}%
+\contentsline {theorem}{\ifthmt@listswap 定理~4.4\else \numberline {4.4}定理\fi }{29}{theorem.4}%
+\contentsline {definition}{\ifthmt@listswap 定义~4.4\else \numberline {4.4}定义\fi \thmtformatoptarg {Lorentz矢量}}{30}{definition.4}%
+\contentsline {definition}{\ifthmt@listswap 定义~4.5\else \numberline {4.5}定义\fi \thmtformatoptarg {Lorentz张量}}{30}{definition.5}%
+\contentsline {definition}{\ifthmt@listswap 定义~4.6\else \numberline {4.6}定义\fi \thmtformatoptarg {Mandelstam变量}}{30}{definition.6}%
+\contentsline {theorem}{\ifthmt@listswap 定理~4.5\else \numberline {4.5}定理\fi \thmtformatoptarg {s+t+u守恒}}{30}{theorem.5}%
+\contentsline {theorem}{\ifthmt@listswap 定理~4.6\else \numberline {4.6}定理\fi \thmtformatoptarg {质心系中$m_1$的能量}}{31}{theorem.6}%
+\contentsline {theorem}{\ifthmt@listswap 定理~4.7\else \numberline {4.7}定理\fi \thmtformatoptarg {实验室系($m_2$静止)中$m_1$的能量}}{31}{theorem.7}%
+\contentsline {theorem}{\ifthmt@listswap 定理~4.8\else \numberline {4.8}定理\fi \thmtformatoptarg {质心系总能量}}{31}{theorem.8}%
+\contentsline {definition}{\ifthmt@listswap 定义~5.1\else \numberline {5.1}定义\fi \thmtformatoptarg {拉氏量\&拉氏量密度}}{32}{definition.1}%
+\contentsline {definition}{\ifthmt@listswap 定义~5.2\else \numberline {5.2}定义\fi \thmtformatoptarg {作用量}}{32}{definition.2}%
+\contentsline {theorem}{\ifthmt@listswap 定理~5.1\else \numberline {5.1}定理\fi \thmtformatoptarg {标量的Euler-Lagrange方程}}{32}{theorem.1}%
+\contentsline {theorem}{\ifthmt@listswap 定理~5.2\else \numberline {5.2}定理\fi \thmtformatoptarg {矢量场的Euler-Lagrange方程}}{33}{theorem.2}%
+\contentsline {definition}{\ifthmt@listswap 定义~5.3\else \numberline {5.3}定义\fi \thmtformatoptarg {连续对称性}}{33}{definition.3}%
+\contentsline {theorem}{\ifthmt@listswap 定理~5.3\else \numberline {5.3}定理\fi \thmtformatoptarg {Noether定理}}{34}{theorem.3}%
+\contentsline {theorem}{\ifthmt@listswap 定理~5.4\else \numberline {5.4}定理\fi }{34}{theorem.4}%
+\contentsline {definition}{\ifthmt@listswap 定义~5.4\else \numberline {5.4}定义\fi \thmtformatoptarg {共轭动量}}{40}{definition.4}%
+\contentsline {theorem}{\ifthmt@listswap 定理~5.5\else \numberline {5.5}定理\fi \thmtformatoptarg {哈密顿正则方程}}{41}{theorem.5}%
+\contentsline {theorem}{\ifthmt@listswap 定理~6.1\else \numberline {6.1}定理\fi \thmtformatoptarg {Lorentz不变的体元}}{45}{theorem.1}%
+\contentsline {definition}{\ifthmt@listswap 定义~6.1\else \numberline {6.1}定义\fi \thmtformatoptarg {真空态}}{45}{definition.1}%
+\contentsline {definition}{\ifthmt@listswap 定义~6.2\else \numberline {6.2}定义\fi \thmtformatoptarg {Fock空间}}{45}{definition.2}%
+\contentsline {definition}{\ifthmt@listswap 定义~6.3\else \numberline {6.3}定义\fi \thmtformatoptarg {动量本征态}}{46}{definition.3}%
+\contentsline {definition}{\ifthmt@listswap 定义~6.4\else \numberline {6.4}定义\fi \thmtformatoptarg {位置本征态}}{46}{definition.4}%
+\contentsline {definition}{\ifthmt@listswap 定义~6.5\else \numberline {6.5}定义\fi \thmtformatoptarg {关联函数$D(x-y)$\blx@tocontentsinit {0}\cite {peskinCausality}}}{50}{definition.5}%
+\contentsline {theorem}{\ifthmt@listswap 定理~6.2\else \numberline {6.2}定理\fi }{50}{theorem.2}%
+\contentsline {theorem}{\ifthmt@listswap 定理~6.3\else \numberline {6.3}定理\fi \thmtformatoptarg {推迟关联函数$D_R(x-y)$}}{53}{theorem.3}%
+\contentsline {theorem}{\ifthmt@listswap 定理~6.4\else \numberline {6.4}定理\fi \thmtformatoptarg {提前关联函数$D_A(x-y)$}}{54}{theorem.4}%
+\contentsline {theorem}{\ifthmt@listswap 定理~6.5\else \numberline {6.5}定理\fi \thmtformatoptarg {Feynman传播子$D_F(x-y)$}}{54}{theorem.5}%
+\contentsline {theorem}{\ifthmt@listswap 定理~6.6\else \numberline {6.6}定理\fi \thmtformatoptarg {共轭Feynman传播子$\setbox \z@ \hbox {\mathsurround \z@ $\textstyle D$}\mathaccent "0365{D}_F(x-y)$}}{55}{theorem.6}%
+\contentsline {definition}{\ifthmt@listswap 定义~6.6\else \numberline {6.6}定义\fi \thmtformatoptarg {时间顺序算符$\mathcal T$}}{55}{definition.6}%
+\contentsline {theorem}{\ifthmt@listswap 定理~6.7\else \numberline {6.7}定理\fi \thmtformatoptarg {关联函数的性质}}{58}{theorem.7}%
+\contentsline {definition}{\ifthmt@listswap 定义~6.7\else \numberline {6.7}定义\fi \thmtformatoptarg {$\mathcal N$算符}}{59}{definition.7}%
+\contentsline {definition}{\ifthmt@listswap 定义~6.8\else \numberline {6.8}定义\fi \thmtformatoptarg {Wick收缩(Wick contract)}}{59}{definition.8}%
+\contentsline {theorem}{\ifthmt@listswap 定理~6.8\else \numberline {6.8}定理\fi \thmtformatoptarg {Wick定理}}{60}{theorem.8}%
+\contentsline {theorem}{\ifthmt@listswap 定理~6.11\else \numberline {6.11}定理\fi }{63}{theorem.11}%
+\contentsline {theorem}{\ifthmt@listswap 定理~7.1\else \numberline {7.1}定理\fi \thmtformatoptarg {Dyson级数}}{66}{theorem.1}%
+\contentsline {definition}{\ifthmt@listswap 定义~7.1\else \numberline {7.1}定义\fi \thmtformatoptarg {图的拓扑结构}}{72}{definition.1}%
+\contentsline {definition}{\ifthmt@listswap 定义~8.1\else \numberline {8.1}定义\fi \thmtformatoptarg {S算符}}{74}{definition.1}%
+\contentsline {definition}{\ifthmt@listswap 定义~8.2\else \numberline {8.2}定义\fi \thmtformatoptarg {渐近自由态(Asymptotic State)}}{74}{definition.2}%
+\contentsline {definition}{\ifthmt@listswap 定义~8.3\else \numberline {8.3}定义\fi \thmtformatoptarg {散射振幅$\mathcal M$}}{75}{definition.3}%
+\contentsline {definition}{\ifthmt@listswap 定义~8.4\else \numberline {8.4}定义\fi \thmtformatoptarg {散射截面$\sigma $}}{75}{definition.4}%
+\contentsline {definition}{\ifthmt@listswap 定义~8.5\else \numberline {8.5}定义\fi }{75}{definition.5}%
+\contentsline {theorem}{\ifthmt@listswap 定理~8.1\else \numberline {8.1}定理\fi }{75}{theorem.1}%
+\contentsline {theorem}{\ifthmt@listswap 定理~8.2\else \numberline {8.2}定理\fi \thmtformatoptarg {散射截面的Feynman黄金规则}}{76}{theorem.2}%
+\contentsline {definition}{\ifthmt@listswap 定义~8.6\else \numberline {8.6}定义\fi \thmtformatoptarg {衰变率$\Gamma $}}{77}{definition.6}%
+\contentsline {theorem}{\ifthmt@listswap 定理~8.3\else \numberline {8.3}定理\fi \thmtformatoptarg {衰变率的Feynman黄金规则}}{77}{theorem.3}%
+\contentsline {theorem}{\ifthmt@listswap 定理~8.4\else \numberline {8.4}定理\fi \thmtformatoptarg {LSZ公式(实标量场)}}{78}{theorem.4}%
+\contentsline {theorem}{\ifthmt@listswap 定理~8.7\else \numberline {8.7}定理\fi \thmtformatoptarg {LSZ公式(复标量场)}}{82}{theorem.7}%
+\contentsline {theorem}{\ifthmt@listswap 定理~9.1\else \numberline {9.1}定理\fi \thmtformatoptarg {Schwinger-Dyson定理}}{96}{theorem.1}%
+\contentsline {theorem}{\ifthmt@listswap 定理~9.2\else \numberline {9.2}定理\fi \thmtformatoptarg {Ward恒等式}}{97}{theorem.2}%
+\contentsline {theorem}{\ifthmt@listswap 定理~9.3\else \numberline {9.3}定理\fi \thmtformatoptarg {Ward-Takahashi恒等式}}{98}{theorem.3}%
+\contentsline {theorem}{\ifthmt@listswap 定理~9.4\else \numberline {9.4}定理\fi \thmtformatoptarg {Ward-Takahashi恒等式(动量空间)}}{98}{theorem.4}%
+\contentsline {theorem}{\ifthmt@listswap 定理~9.5\else \numberline {9.5}定理\fi \thmtformatoptarg {Ward恒等式}}{99}{theorem.5}%
+\contentsline {theorem}{\ifthmt@listswap 定理~10.1\else \numberline {10.1}定理\fi \thmtformatoptarg {LSZ公式(有质量矢量场)}}{105}{theorem.1}%
+\contentsline {definition}{\ifthmt@listswap 定义~12.1\else \numberline {12.1}定义\fi \thmtformatoptarg {无穷小Lorentz群变换的表示$U(\Lambda )$}}{118}{definition.1}%
+\contentsline {theorem}{\ifthmt@listswap 定理~12.1\else \numberline {12.1}定理\fi \thmtformatoptarg {结合律}}{118}{theorem.1}%
+\contentsline {theorem}{\ifthmt@listswap 定理~12.2\else \numberline {12.2}定理\fi }{118}{theorem.2}%
+\contentsline {theorem}{\ifthmt@listswap 定理~12.3\else \numberline {12.3}定理\fi \thmtformatoptarg {$M^{\mu \nu }$的对易子}}{119}{theorem.3}%
+\contentsline {definition}{\ifthmt@listswap 定义~12.2\else \numberline {12.2}定义\fi \thmtformatoptarg {Lorentz群生成元}}{120}{definition.2}%
+\contentsline {theorem}{\ifthmt@listswap 定理~12.4\else \numberline {12.4}定理\fi \thmtformatoptarg {Lorentz群生成元的对易关系}}{120}{theorem.4}%
+\contentsline {definition}{\ifthmt@listswap 定义~12.3\else \numberline {12.3}定义\fi \thmtformatoptarg {手征表象}}{128}{definition.3}%
+\contentsline {definition}{\ifthmt@listswap 定义~12.4\else \numberline {12.4}定义\fi \thmtformatoptarg {Dirac表象}}{128}{definition.4}%
+\contentsline {definition}{\ifthmt@listswap 定义~12.5\else \numberline {12.5}定义\fi \thmtformatoptarg {Dirac旋量生成元}}{130}{definition.5}%
+\contentsline {definition}{\ifthmt@listswap 定义~12.6\else \numberline {12.6}定义\fi \thmtformatoptarg {Clifford代数}}{130}{definition.6}%
+\contentsline {theorem}{\ifthmt@listswap 定理~12.5\else \numberline {12.5}定理\fi }{132}{theorem.5}%
+\contentsline {theorem}{\ifthmt@listswap 定理~12.6\else \numberline {12.6}定理\fi }{132}{theorem.6}%
+\contentsline {theorem}{\ifthmt@listswap 定理~12.7\else \numberline {12.7}定理\fi }{132}{theorem.7}%
+\contentsline {theorem}{\ifthmt@listswap 定理~12.8\else \numberline {12.8}定理\fi }{133}{theorem.8}%
+\contentsline {definition}{\ifthmt@listswap 定义~12.7\else \numberline {12.7}定义\fi \thmtformatoptarg {Slash}}{133}{definition.7}%
+\contentsline {theorem}{\ifthmt@listswap 定理~12.9\else \numberline {12.9}定理\fi \thmtformatoptarg {$\gamma $乘积迹定理}}{134}{theorem.9}%
+\contentsline {theorem}{\ifthmt@listswap 定理~12.10\else \numberline {12.10}定理\fi }{134}{theorem.10}%
+\contentsline {theorem}{\ifthmt@listswap 定理~12.11\else \numberline {12.11}定理\fi \thmtformatoptarg {$\gamma $缩并定理}}{134}{theorem.11}%
+\contentsline {theorem}{\ifthmt@listswap 定理~12.12\else \numberline {12.12}定理\fi }{135}{theorem.12}%
+\contentsline {theorem}{\ifthmt@listswap 定理~12.13\else \numberline {12.13}定理\fi }{135}{theorem.13}%
+\contentsline {theorem}{\ifthmt@listswap 定理~12.14\else \numberline {12.14}定理\fi }{136}{theorem.14}%
+\contentsline {definition}{\ifthmt@listswap 定义~12.8\else \numberline {12.8}定义\fi \thmtformatoptarg {螺旋度}}{137}{definition.8}%
+\contentsline {theorem}{\ifthmt@listswap 定理~12.15\else \numberline {12.15}定理\fi }{139}{theorem.15}%
+\contentsline {theorem}{\ifthmt@listswap 定理~12.16\else \numberline {12.16}定理\fi }{139}{theorem.16}%
+\contentsline {theorem}{\ifthmt@listswap 定理~12.17\else \numberline {12.17}定理\fi \thmtformatoptarg {Gordon恒等式}}{140}{theorem.17}%
+\contentsline {theorem}{\ifthmt@listswap 定理~12.18\else \numberline {12.18}定理\fi }{140}{theorem.18}%
+\contentsline {definition}{\ifthmt@listswap 定义~12.9\else \numberline {12.9}定义\fi \thmtformatoptarg {代数}}{145}{definition.9}%
+\contentsline {definition}{\ifthmt@listswap 定义~12.10\else \numberline {12.10}定义\fi \thmtformatoptarg {Grassmann代数}}{145}{definition.10}%
+\contentsline {definition}{\ifthmt@listswap 定义~12.11\else \numberline {12.11}定义\fi \thmtformatoptarg {Grassmann函数的导数}}{146}{definition.11}%
+\contentsline {definition}{\ifthmt@listswap 定义~12.12\else \numberline {12.12}定义\fi \thmtformatoptarg {Grassmann函数的积分}}{147}{definition.12}%
+\contentsline {definition}{\ifthmt@listswap 定义~16.1\else \numberline {16.1}定义\fi \thmtformatoptarg {BRST变换}}{185}{definition.1}%
+\contentsline {theorem}{\ifthmt@listswap 定理~16.1\else \numberline {16.1}定理\fi }{185}{theorem.1}%
+\contentsline {theorem}{\ifthmt@listswap 定理~16.2\else \numberline {16.2}定理\fi }{185}{theorem.2}%
+\contentsline {definition}{\ifthmt@listswap 定义~16.2\else \numberline {16.2}定义\fi \thmtformatoptarg {BRST守恒荷}}{186}{definition.2}%
+\contentsline {definition}{\ifthmt@listswap 定义~16.3\else \numberline {16.3}定义\fi \thmtformatoptarg {BRST exact}}{186}{definition.3}%
+\contentsline {definition}{\ifthmt@listswap 定义~16.4\else \numberline {16.4}定义\fi \thmtformatoptarg {BRST closed}}{186}{definition.4}%
+\contentsline {theorem}{\ifthmt@listswap 定理~16.3\else \numberline {16.3}定理\fi \thmtformatoptarg {LSZ公式(规范场)}}{188}{theorem.3}%
+\contentsline {definition}{\ifthmt@listswap 定义~17.1\else \numberline {17.1}定义\fi \thmtformatoptarg {方案(Scheme)}}{194}{definition.1}%
+\contentsline {definition}{\ifthmt@listswap 定义~17.2\else \numberline {17.2}定义\fi \thmtformatoptarg {on-shell方案}}{194}{definition.2}%
+\contentsline {definition}{\ifthmt@listswap 定义~17.3\else \numberline {17.3}定义\fi \thmtformatoptarg {圈图积分的核函数}}{199}{definition.3}%
+\contentsline {definition}{\ifthmt@listswap 定义~17.4\else \numberline {17.4}定义\fi \thmtformatoptarg {MS方案}}{206}{definition.4}%
+\contentsline {definition}{\ifthmt@listswap 定义~17.5\else \numberline {17.5}定义\fi \thmtformatoptarg {$\overline {MS}$方案}}{207}{definition.5}%
+\contentsline {theorem}{\ifthmt@listswap 定理~19.1\else \numberline {19.1}定理\fi \thmtformatoptarg {Callan-Symanzik方程}}{220}{theorem.1}%
+\contentsline {definition}{\ifthmt@listswap 定义~19.1\else \numberline {19.1}定义\fi \thmtformatoptarg {不动点}}{221}{definition.1}%
+\contentsline {theorem}{\ifthmt@listswap 定理~B.1\else \numberline {B.1}定理\fi }{224}{theorem.1}%
+\contentsline {theorem}{\ifthmt@listswap 定理~B.2\else \numberline {B.2}定理\fi }{224}{theorem.2}%
+\contentsline {theorem}{\ifthmt@listswap 定理~B.3\else \numberline {B.3}定理\fi }{224}{theorem.3}%
+\contentsline {definition}{\ifthmt@listswap 定义~B.1\else \numberline {B.1}定义\fi \thmtformatoptarg {$\Gamma $函数}}{224}{definition.1}%
+\contentsline {theorem}{\ifthmt@listswap 定理~B.4\else \numberline {B.4}定理\fi \thmtformatoptarg {$\Gamma $函数递推关系}}{224}{theorem.4}%
+\contentsline {theorem}{\ifthmt@listswap 定理~B.5\else \numberline {B.5}定理\fi }{224}{theorem.5}%
+\contentsline {theorem}{\ifthmt@listswap 定理~B.6\else \numberline {B.6}定理\fi }{225}{theorem.6}%
+\contentsline {definition}{\ifthmt@listswap 定义~B.2\else \numberline {B.2}定义\fi }{225}{definition.2}%
+\contentsline {theorem}{\ifthmt@listswap 定理~B.7\else \numberline {B.7}定理\fi }{225}{theorem.7}%
+\contentsline {definition}{\ifthmt@listswap 定义~B.3\else \numberline {B.3}定义\fi \thmtformatoptarg {Euler-Mascheroni常数}}{225}{definition.3}%
+\contentsline {theorem}{\ifthmt@listswap 定理~B.8\else \numberline {B.8}定理\fi }{225}{theorem.8}%
+\contentsline {definition}{\ifthmt@listswap 定义~B.4\else \numberline {B.4}定义\fi }{226}{definition.4}%
+\contentsline {theorem}{\ifthmt@listswap 定理~B.9\else \numberline {B.9}定理\fi }{226}{theorem.9}%
+\contentsline {theorem}{\ifthmt@listswap 定理~B.10\else \numberline {B.10}定理\fi }{226}{theorem.10}%
+\contentsline {theorem}{\ifthmt@listswap 定理~B.11\else \numberline {B.11}定理\fi }{227}{theorem.11}%
+\contentsline {theorem}{\ifthmt@listswap 定理~B.12\else \numberline {B.12}定理\fi }{227}{theorem.12}%
+\contentsline {theorem}{\ifthmt@listswap 定理~B.13\else \numberline {B.13}定理\fi }{227}{theorem.13}%
+\contentsline {theorem}{\ifthmt@listswap 定理~B.14\else \numberline {B.14}定理\fi }{227}{theorem.14}%
+\contentsline {theorem}{\ifthmt@listswap 定理~B.15\else \numberline {B.15}定理\fi \thmtformatoptarg {余元公式}}{227}{theorem.15}%
+\contentsline {definition}{\ifthmt@listswap 定义~B.5\else \numberline {B.5}定义\fi \thmtformatoptarg {n维超球}}{229}{definition.5}%
+\contentsline {theorem}{\ifthmt@listswap 定理~B.16\else \numberline {B.16}定理\fi \thmtformatoptarg {$n$维超球面角}}{229}{theorem.16}%
+\contentsline {theorem}{\ifthmt@listswap 定理~B.17\else \numberline {B.17}定理\fi \thmtformatoptarg {n维超球体积}}{230}{theorem.17}%
+\contentsline {theorem}{\ifthmt@listswap 定理~B.18\else \numberline {B.18}定理\fi \thmtformatoptarg {Feynman积分公式}}{230}{theorem.18}%
+\contentsline {theorem}{\ifthmt@listswap 定理~C.1\else \numberline {C.1}定理\fi \thmtformatoptarg {特化的Schwinger-Dyson定理}}{232}{theorem.1}%

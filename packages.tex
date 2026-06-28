@@ -120,6 +120,20 @@
     coltitle=black
 }
 
+\usepackage{thmtools}
+
+\makeatletter
+% 取消 elegantnote 预定义的环境与计数器，改用 thmtools 重新声明（以便被 \listoftheorems 统计）
+\let\theorem\relax     \let\endtheorem\relax
+\let\definition\relax  \let\enddefinition\relax
+\csundef{c@theorem}\csundef{c@definition}
+\makeatother
+
+\declaretheorem[name=定理,style=plain,numberwithin=section]{theorem}
+\declaretheorem[name=定义,style=definition,numberwithin=section]{definition}
+
+\renewcommand{\listtheoremname}{定理与定义索引}   % 索引标题
+
 \numberwithin{equation}{subsection}
 \numberwithin{figure}{section}
 \numberwithin{table}{section}

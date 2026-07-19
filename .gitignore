@@ -2,4 +2,12 @@
 *.bbl
 .vscode/
 .git/
-
+*.log
+*.bcf
+*.log
+*.out
+*.aux
+*.run.xml
+*.blg
+*.toc
+*.synctex(busy)

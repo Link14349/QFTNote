@@ -303,11 +303,11 @@
 \end{align}
 然后先对$\omega$积分我们即可将$\delta$消掉, 并丢掉与$A$无关的$\Delta(A)=|\Box|$, 得到
 \begin{align}
-    Z[J]=\int\mathcal DA\exp{i\int\d^4x(-\frac14 F^2-\frac{(\partial_\mu A^\mu)}{2\xi}+J\cdot A)}.
+    Z[J]=\int\mathcal DA\exp{i\int\d^4x(-\frac14 F^2-\frac{(\partial_\mu A^\mu)^2}{2\xi}+J\cdot A)}.
 \end{align}
 从而得到规范固定后的Lagrangian
 \begin{align}
-    \mathcal L_{GF}=-\frac14 F^2-\frac{(\partial_\mu A^\mu)}{2\xi}+J\cdot A=\frac12 A^\mu(g_{\mu\nu}\partial^2-(1-\frac1\xi)\partial_\mu\partial_\nu)A^\nu+J_\mu A^\mu.
+    \mathcal L_{GF}=-\frac14 F^2-\frac{(\partial_\mu A^\mu)^2}{2\xi}+J\cdot A=\frac12 A^\mu(g_{\mu\nu}\partial^2-(1-\frac1\xi)\partial_\mu\partial_\nu)A^\nu+J_\mu A^\mu.
 \end{align}
 
 我们设
@@ -340,7 +340,7 @@
 
 需要备注, 对于经典电动力学, 我们也是可以使用$\xi$规范固定下来的
 \begin{align}
-    \mathcal L_{GF}=-\frac14 F^2-\frac{(\partial_\mu A^\mu)}{2\xi}+J\cdot A\notag,
+    \mathcal L_{GF}=-\frac14 F^2-\frac{(\partial_\mu A^\mu)^2}{2\xi}+J\cdot A\notag,
 \end{align}
 进行计算.
 
@@ -413,7 +413,7 @@
 我们可以写出EoM
 \begin{align}
     \begin{cases}
-        &(\partial^2+m^2)\psi=-2ieA_\mu\partial^\mu\psi+e^2\psi A_\mu A^\mu\\
+        &(\partial^2+m^2)\psi=-2ieA_\mu\partial^\mu\psi-ie(\partial_\mu A^\mu)\psi+e^2\psi A_\mu A^\mu\\
         &\partial_\mu F^{\mu\nu}=ie(\psi\partial^\nu\psi^*-\psi^*\partial^\nu\psi-2ie\psi\psi^*A^\nu)
     \end{cases},
 \end{align}
@@ -574,7 +574,7 @@ $$
                     (iantipion) -- [scalar arrow] (b),
                 };
             \end{feynman}
-        \end{tikzpicture}&=-(-ie)^2(p+k)^\mu(p'+k')^\nu\frac{-ig_\mu\nu}{(p-k')^2}=ie^2\frac{u-s}{t}
+        \end{tikzpicture}&=-(-ie)^2(p+k)^\mu(p'+k')^\nu\frac{-ig_\mu\nu}{(p-k)^2}=ie^2\frac{u-s}{t}
     \end{align}
     于是有总振幅
     \begin{equation}
@@ -582,6 +582,6 @@ $$
     \end{equation}
     从而计算得到质心系中的散射截面
     \begin{equation}
-        \left(\frac{\d\sigma}{\d\Omega}\right)_{CM}=\frac{e^4}{64\pi^2E_{CM}|\vec p_i|}\left(\frac{u-t}s+\frac{u-s}t\right)^2
+        \left(\frac{\d\sigma}{\d\Omega}\right)_{CM}=\frac{e^4}{64\pi^2E_{CM}^2}\left(\frac{u-t}s+\frac{u-s}t\right)^2
     \end{equation}
 \end{example}

@@ -11,7 +11,7 @@
     \partial_\mu F^{\mu\nu}+m^2 A^\nu=0,
 \end{equation}
 
-将$\partial_\nu$作用到EoM, 并且因为$F^{\mu\nu}$反称, $\partial_\mu\partial_\nu F^{\mu\nu}=0$, 我们得到:
+将$\partial_\nu$作用到EoM, 并且因为$F^{\mu\nu}$反对称, $\partial_\mu\partial_\nu F^{\mu\nu}=0$, 我们得到:
 \begin{equation}
     m^2\partial_\nu A^\nu=0,
 \end{equation}
@@ -94,7 +94,7 @@
     i\int\d^4x\exp{ipx}(\Box+m^2)A_\mu\epsilon_\lambda^{\mu*}=\sqrt{2\om p}(a_{\lambda\vec p}(+\infty)-a_{\lambda\vec p}(-\infty)).
 \end{align}
 则我们可以得到
-\begin{theorem}[LSZ公式(有质量矢量场)]\label{LSZformula}
+\begin{theorem}[LSZ公式(有质量矢量场)]\label{LSZformula-massive-vector}
     \begin{align}
         \braket{f, +\infty|i, -\infty}&=\int\d^4x_1 i\exp{-ip_1x_1}(\Box_1+m^2)\epsilon^{\mu_1}_{\lambda_1}\cdots\int\d^4x_n i\exp{ip_nx_n}(\Box_n+m^2)\epsilon^{\mu_n*}_{\lambda_n}\notag\\
         &\;\;\;\;\braket{A_{\mu_1}\cdots A_{\mu_n}},
@@ -131,7 +131,7 @@
 \end{equation}
 
 \subsection{无质量的规范矢量场: 电磁场(Massless)}
-为了得到电磁场的二次量子化结果, 自然的想法就是对电磁场取$m\rightarrow0$的结果. 然而这会面临一个问题: 电磁场的$A^\mu$具有规范不变性, 即$A^\mu\rightarrow A^\mu+\partial^\mu\Lambda$不改变其物理意义, 进过规范变换$\partial_\mu A^\mu$也不一定为0. 这使得我们对电磁场的描述存在冗余自由度, 这的一个直接结果就是电磁场只有两个极化方向而不是重电磁场的三个. 
+为了得到电磁场的二次量子化结果, 自然的想法就是对电磁场取$m\rightarrow0$的结果. 然而这会面临一个问题: 电磁场的$A^\mu$具有规范不变性, 即$A^\mu\rightarrow A^\mu+\partial^\mu\Lambda$不改变其物理意义, 经过规范变换$\partial_\mu A^\mu$也不一定为0. 这使得我们对电磁场的描述存在冗余自由度, 这的一个直接结果就是电磁场只有两个极化方向而不是重电磁场的三个.
 
 \subsubsection{Lorentz规范}
 于是, 为了能够正确得处理自由度, 消除冗余, 我们引入Lorenz规范:

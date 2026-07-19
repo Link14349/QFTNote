@@ -526,18 +526,18 @@
 \end{theorem}
 其中对于$\psi$, $Q_j=1$, 对于$\psi^*$, $Q_j=-1$. 
 
-将此式做傅里叶变换到动量空间, 记$\braket{j^\mu(x)\psi(x_1)\bar\psi(x_2)\cdots\psi(x_n)}$的傅里叶变换为$\mathcal M^\mu(p, q_1,q_2\cdots q_n)$, $\braket{\psi(x_1)\bar\psi(x_2)\cdots\psi(x_n)}$的傅里叶变换为$M_0(q_1,q_2\cdots q_n)$, 则我们有动量空间的表达式
+将此式做傅里叶变换到动量空间, 记$\braket{j^\mu(x)\psi(x_1)\bar\psi(x_2)\cdots\psi(x_n)}$的傅里叶变换为$\mathcal M^\mu(p, q_1,q_2\cdots q_n)$, $\braket{\psi(x_1)\bar\psi(x_2)\cdots\psi(x_n)}$的傅里叶变换为$\mathcal M_0(q_1,q_2\cdots q_n)$, 则我们有动量空间的表达式
 \begin{theorem}[Ward-Takahashi恒等式(动量空间)]
     \begin{align}
-        p_\mu\mathcal M^\mu(p, q_1,q_2\cdots q_n)=\sum_j Q_j M_0(q_1, q_2\cdots q_j+p \cdots q_n).
+        p_\mu\mathcal M^\mu(p, q_1,q_2\cdots q_n)=\sum_j Q_j \mathcal M_0(q_1, q_2\cdots q_j+p \cdots q_n).
     \end{align}
 \end{theorem}
 需要注意, 我们这里并没有约定出入射方向, 统一都认为是乘以$\int\d^4x\exp{-ipx}$, 如果要和LSZ适配, 对于出射的粒子需要将动量符号进行反转(从$+p$变成$-p$).
 
-这个结果也称为Ward-Takahashi恒等式. 考虑连通图, 将其分解为若干部分, 若在总振幅中出现若干$p_\mu M^\mu$的项, 由于Ward-Takahashi等式可以将其切割出不联通的子部分, 这部分贡献会变成不连通图, 因此在LSZ后, 代入黄金规则的时候不贡献可观测量. 于是我们得到结论, 对于on-shell连通图中的一部分, 有
+这个结果也称为Ward-Takahashi恒等式. 考虑连通图, 将其分解为若干部分, 若在总振幅中出现若干$p_\mu \mathcal M^\mu$的项, 由于Ward-Takahashi等式可以将其切割出不联通的子部分, 这部分贡献会变成不连通图, 因此在LSZ后, 代入黄金规则的时候不贡献可观测量. 于是我们得到结论, 对于on-shell连通图中的一部分, 有
 \begin{theorem}[Ward恒等式]\label{ward-identity-qed}
     \begin{align}
-        p_\mu M^\mu=0.
+        p_\mu \mathcal M^\mu=0.
     \end{align}
 \end{theorem}
 这个结果称为Ward恒等式(很遗憾, 这里名称很混乱, 不要和前文的更一般的Ward恒等式搞混了= =).

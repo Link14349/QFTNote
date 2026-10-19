@@ -1,6 +1,45 @@
 # 待核查问题清单
 
-本文件只保留尚未核实或尚未处理的问题，并按优先级排列。用户核实后自行删除对应条目。下文 PDF 页码均指编译后 `main.pdf` 在阅读器中显示的、从 1 开始的物理页码。
+本文件只保留尚未核实或尚未处理的问题，并按优先级排列。用户核实后自行删除对应条目。下文旧条目的 PDF 页码是 Noether 小节重整前记录的物理页码；2026-09-18 重整使后续章节分页变化，应优先按文件位置与公式内容定位。
+
+## 需要人工复核表达的
+
+本栏记录新增或改写后需要本人确认的说明性文字，不表示已判定存在数学错误。核实后由本人删除对应条目；其余待核查问题仍按下方优先级维护。
+
+### 待复核：经典场论 Noether 定理部分的整体重写
+
+**文件位置**：`freefield.tex` 第 73--699 行，标签 `sec:classical-noether`，即“经典场论”中的整个“Noether定理”小节。
+
+**当前内容**：根据 `symmetry.md` 重写并扩充了这一节，保留本笔记的 $(+---)$ 约定，依次讨论变分对称性与拉回、第一定理、内禀及平移／Lorentz 对称性的例子、Weyl／共形对称性、第二定理，以及 Noether's Trick；补充了与后文 Ward 恒等式的流符号衔接。
+
+**需要人工复核的表达**：本次涉及整节结构、说明文字和推导的改写，虽已做一致性检查，仍需本人确认其准确性、适用范围及是否符合自己的理解。
+
+- [ ] 运动方程对称性、离壳变分对称性、微分同胚协变性与固定背景对称性的区分是否清楚；拉回及背景结构的说明是否容易误读。
+- [ ] 第一定理中离壳恒等式与在壳守恒的关系、背景度规变化的附加条件，以及 $(+---)$ 下 Hilbert 能动张量的定义和符号是否表达充分。
+- [ ] 复标量 $U(1)$、标量平移／Lorentz、Maxwell 和 Dirac 平移例子的组织与详略是否合适；正则张量、Hilbert 张量、改进项及自旋部分的区别是否讲清。
+- [ ] Weyl 迹恒等式、曲率耦合标量及改进张量、共形等距与补偿 Weyl 变换、共形流的推导是否自然；“先变分再取平直极限”和局部适用范围的提醒是否足够。
+- [ ] 第二定理及 Einstein／Maxwell／标量 QED 三例，是否清楚体现无需使用运动方程的恒等关系；形式伴随不取复共轭的约定是否明确。
+- [ ] Noether's Trick 与第二定理的区别、局域化参数导数项的保留，以及 $j$、$\widetilde j$ 与后文 Ward 恒等式的整体符号衔接是否清晰；整节术语和表述是否符合笔记风格。
+
+**建议对照的参考来源**：本次重写所据的 [symmetry.md](/Users/link/Documents/zhihu/symmetry.md)；本笔记 `preparation.tex` 的符号约定、复标量守恒荷及 `path-integral.tex` 的 Ward 恒等式；David Tong《Quantum Field Theory》§1.3；Avery 与 Schwab《Noether's Second Theorem and Ward Identities for Gauge Symmetries》§2。
+
+### 待复核：Schwinger–Dyson 中路径积分导数、编时导数与接触项的区分
+
+**文件位置**：`path-integral.tex` 第 533--567 行，标签 `sd-time-ordering-contact`、`sd-time-derivative-contact`；以及 `schwinger-dyson-expansion.tex` 第 10 行的附录提醒。
+
+**PDF 位置**：2026-10-19 编译版本正文第 109--110 页、附录第 246 页；后续分页变化时以源文件标签为准。
+
+**当前内容**：根据所提供的两张截图新增说明，区分路径积分平均与算符期望，列出编时关联函数求导时的等时对易子接触项；进一步介绍 $\mathcal T^*$ 与普通 $\mathcal T$ 的区别，并以实标量场的一阶、二阶时间导数解释 Schwinger–Dyson 方程中的 $-i\delta^4(x-y)$ 项。
+
+**需要人工复核的表达**：
+
+- [ ] 路径积分中的导数插入等于对关联函数求导的表述，以及“同一正则化下的分布意义”的限定是否充分、清楚。
+- [ ] “先对未求导的场编时，再求导”对 $\mathcal T^*$ 的说明是否准确，是否需要进一步限定插入类型及接触点处的定义。
+- [ ] “不能直接当作普通编时乘积内的算符运动方程并令其为零”是否清楚区分了路径积分插入与算符运动方程，避免误读为算符运动方程失效。
+- [ ] 玻色算符、虚时间及费米交换符号的适用范围说明是否合适；实标量场例子中“标准动能项、无导数相互作用”的前提是否足够醒目。
+- [ ] 附录对导数位置与接触项来源的提醒是否与正文及原有记号一致，整段详略是否符合笔记风格。
+
+**建议对照的参考来源**：本次提供的截图（式 (2.37) 及紧接的编时求导公式）；本笔记的时间顺序算符定义及 Feynman 传播子方程；[Tom Magorsch 的 Schwinger–Dyson 推导](https://notes.tommago.com/notes/Schwinger-Dyson-equations/)（用于对照实标量场等时对易子及接触项）。
 
 ## 高优先级
 
@@ -107,6 +146,30 @@ $$
 **建议对照**：本文件第 1915、2017、2077 行附近；Peskin & Schroeder §5.1 的 spin sums/averages。
 
 ## 中优先级
+
+### 13. Ward--Takahashi 接触项的相位因子与复标量记号需核查
+
+**文件位置**：`path-integral.tex` 第 556--562、581--592 行；对照 `freefield.tex` 中标签 `complex-scalar-u1-current` 的相位变换。
+
+**当前内容**：一般 Ward 恒等式的接触项系数为 $-i\Delta\phi$，但随后对复标量 $U(1)$ 的特例写为 $iQ_j$，并在关联函数内使用 $\bar\psi$，文字却称其为 $\psi^*$。
+
+**为何可疑**：沿用前文 $\Delta\psi=i\psi$、$\Delta\psi^*=-i\psi^*$，直接代入一般式给出的因子为 $-i(iQ_j)=Q_j$，与特例中的 $iQ_j$ 不同。还需确认复标量的 $\bar\psi$ 是否确指 $\psi^*$。后续动量空间表达式也应一起检查傅里叶变换与 $i$ 的约定。本次未修改路径积分章节。
+
+**建议对照**：本文件紧邻的一般 Ward 恒等式及 $i[Q,\phi]=\Delta\phi$；[Avery 与 Schwab，§3.2--3.3](https://arxiv.org/html/1510.07038#S3.SS2) 的路径积分 Ward 推导（对照时保留本书自己的作用量与流的符号约定）。
+
+### 12. Noether 小节之前的矢量场 Euler--Lagrange 分部积分需核查
+
+**文件位置**：`freefield.tex` 第 45--60 行，经典场论“矢量场的 Euler--Lagrange 方程”的证明；本次仅重写其后的 Noether 小节，未改动此处。
+
+**当前内容**：定义 $\Pi^{\mu\nu}=\partial\mathcal L/\partial F_{\mu\nu}$，随后将变分的边界项写为
+$$
+2\partial_{[\mu}(\Pi^{\mu\nu}\delta A_{\nu]}),
+$$
+并在体项中使用 $(\partial_{[\mu}\Pi^{\mu\nu})\delta A_\nu$。
+
+**为何可疑**：此处反对称化括号跨越了重复的哑指标，第二个表达式还只有左方括号，不能清楚表示合法的指标反对称化。应从 $\Pi^{\mu\nu}(\partial_\mu\delta A_\nu-\partial_\nu\delta A_\mu)$ 对照分部积分，检查边界项与 $\Pi^{[\mu\nu]}$ 的位置及二倍因子；需与后面的方程 $B^\mu-2\partial_\nu\Pi^{[\nu\mu]}=0$ 保持一致。
+
+**建议对照**：本节的 $F_{\mu\nu}=\partial_\mu A_\nu-\partial_\nu A_\mu$ 定义；新 Noether 小节的自由 Maxwell 例子；[David Tong《Quantum Field Theory》§1.1、§1.3](https://www.damtp.cam.ac.uk/user/tong/qft/qfthtml/S1.html) 的 Euler--Lagrange 与变分分部积分方法。
 
 ### 8. $\Pi(0)=0$ 的表述与 $\overline{\mathrm{MS}}$ 方案不一致
 

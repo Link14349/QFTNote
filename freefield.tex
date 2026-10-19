@@ -71,301 +71,631 @@
     即Maxwell方程.
 \end{example}
 \subsection{Noether定理}
-\songti 在这里我们考虑连续对称性.
-\begin{definition}[连续对称性]
-    连续对称性是指在某个参数$\alpha$下，场的变换
-    \begin{equation}
-        \phi(x) \to \phi'(x) = \phi(x) + \alpha \Delta\phi(x)
-    \end{equation}
-    其中, $\Delta$为某一算符. 若系统具有该变换的对称性, 则运动方程应该不变, 即:
-    \begin{equation}
-        \mathcal L \to \mathcal L+\alpha\partial_{\mu} J^\mu.
-    \end{equation}
-\end{definition}
-\theorem[Noether定理]
-对于存在某对称性的系统, 存在守恒流
-\begin{equation}
-    j^\mu=\Pi^\mu\Delta\phi - J^\mu.
-\end{equation}
-\begin{proof}
-    \begin{subequations}
-        \begin{align}
-            \delta\mathcal L 
-            &= \alpha\frac{\partial\mathcal L}{\partial\phi}\Delta\phi + \alpha\frac{\partial\mathcal L}{\partial\phi_\mu}\partial_\mu\Delta\phi\\
-            &= \alpha\left(\frac{\partial\mathcal L}{\partial\phi} - \alpha\partial_\mu\frac{\partial\mathcal L}{\partial\phi_\mu}\right)\Delta\phi + \partial_\mu\left(\frac{\partial\mathcal L}{\partial\phi_\mu}\Delta\phi\right)\\
-            &= \alpha\partial_\mu\left(\Pi^\mu\Delta\phi\right)
-        \end{align}
-    \end{subequations}
-    又因为系统存在对称性:
-    \begin{equation}
-        \delta\mathcal L = \alpha\partial_\mu J^\mu
-    \end{equation}
-    因此:
-    \begin{equation}
-        \partial_\mu(\Pi^\mu\Delta\phi-J^\mu)=\partial_\mu j^\mu = 0
-    \end{equation}
-\end{proof}
-
+\label{sec:classical-noether}
 \songti
-这里比较令人难以理解的其实是$J^\mu$, 这看着像是一个任意的, 我们不知道的量, 那我们又该如何确定Noether流呢? 其实是$J^\mu$是具有一个确定形式的. 对于内禀自由度的变换来说, 我们可以明确验证$\delta L=0$, 因此$J^\mu=0$; 而对于时空变换自由度来说, $J^\mu$是可以通过变换的Killing矢量场$\xi^\mu$完全确定的, 并且$J^\mu=-\xi^\mu\mathcal L$, 接下来我们将给出定理来具体介绍.
+本节按照从变分对称性到守恒流、再到规范恒等式的顺序，整理经典场论中的Noether定理。基本思路来自笔记\cite{LinkSymmetry2026}，但沿用本书的$(+---)$度规和标量场正动能约定。特别要区分三个概念：运动方程的对称性、作用量的变分对称性，以及一般协变性。第一Noether定理与第二Noether定理都从\textbf{离壳的变分对称性}出发；两者的区别在于变换参数是否为任意的局域函数。
 
-\begin{theorem}
-    考虑流形$M$上的一个微分同胚$\psi: M\to M$, 对于其诱导的推出$\psi_*$、拉回映射$\psi^*$, 有
+\subsubsection{对称性、拉回与变分}
+若一个变换将运动方程的解映射为另一个解，就称它是运动方程的对称性。Noether定理使用一个更强的充分条件：变换后的作用量与原作用量至多相差一个边界项，而且这一关系对任意场配置成立，不必预先使用运动方程。满足这一条件的变换称为\textbf{变分对称性}。因此，不能仅由“变换保持运动方程”就直接套用下面的守恒流公式。
+
+为使时空变换和体积测度的变化都能被明确追踪，先在定向的$d$维时空$(M,g)$上讨论。仍用$\mathcal L$表示本书原有的标量拉氏量，以粗体$\boldsymbol{\mathcal L}$表示相应的顶次微分形式：
+\begin{equation}
+    \boldsymbol{\mathcal L}=\mathcal L\,\epsilon,
+    \qquad S=\int_M\boldsymbol{\mathcal L},
+    \qquad \epsilon=\sqrt{|\det g|}\,\d^dx.
+\end{equation}
+在四维平直时空的惯性坐标中，这就还原为$S=\int\d^4x\,\mathcal L$。下文的希腊指标在一般$d$维讨论中取$0,\ldots,d-1$，$i$只在$\phi^i$等记号中用作场的种类指标；无穷小参数记为$s$，与体积形式$\epsilon$区分。
+
+考虑连续变换$\psi_s:(M,g,\phi^i)\to(M_s,g'_s,\phi'_s{}^i)$，且$\psi_0$为恒等映射。先将变换后的量拉回原流形，再比较它们：
+\begin{align}
+    \widehat g_s&=\psi_s^*g'_s,
+    &\widehat\phi_s^i&=\psi_s^*\phi'_s{}^i,\\
+    \Delta g^{\mu\nu}&=\left.\frac{\d\widehat g_s^{\mu\nu}}{\d s}\right|_{s=0},
+    &\Delta\phi^i&=\left.\frac{\d\widehat\phi_s^i}{\d s}\right|_{s=0}.
+\end{align}
+这里$\widehat g_s^{\mu\nu}$是拉回度规的逆，$\Delta$表示一阶变化的系数。使用正向拉回时，标量的纯时空变换给出$\Delta\phi=\mathscr L_\xi\phi=\xi^\mu\nabla_\mu\phi$。
+
+如果拉氏量由度规、场及其协变导数等几何量构成，并且所有背景结构都一同变换，则有微分同胚协变性
+\begin{equation}
+    \psi^*\boldsymbol{\mathcal L}[g',\phi']
+    =\boldsymbol{\mathcal L}[\psi^*g',\psi^*\phi'].
+\end{equation}
+对于保定向的$\psi$，体积形式也满足$\psi^*\epsilon[g']=\epsilon[\psi^*g']$。这不是任意坐标表达式都自动具有的性质；显式指定的外场、坐标依赖或方向也必须纳入背景结构。更不能由一般协变性推出任意微分同胚都是\emph{固定背景}上的物理对称性：还要检查拉回后的背景是否仍为原背景。
+
+本节采用的无穷小变分对称性条件是
+\begin{equation}
+    \boxed{\Delta\boldsymbol{\mathcal L}
+    =\d(\iota_K\epsilon)
+    =(\nabla_\mu K^\mu)\epsilon.}
+    \label{eq:noether-variational-symmetry}
+\end{equation}
+其中$\iota_K$表示向量$K$对形式的内缩；也可将$\iota_K\epsilon$写作一形式$K_\mu\d x^\mu$的Hodge对偶。式\eqref{eq:noether-variational-symmetry}须\textbf{离壳成立}。在紧支撑变分或适当的边界条件下，这个全微分不改变体内的运动方程。以下均采用这种边界条件，不讨论大变换或非平凡边界荷。
+
+\subsubsection{第一Noether定理：从离壳恒等式到在壳守恒}
+先考虑不含曲率或度规导数的一阶标量场理论，
+\begin{equation}
+    \mathcal L=\mathcal L(g^{\mu\nu},\phi^i,\nabla_\mu\phi^i),
+    \qquad \Pi_i^\mu:=\frac{\partial\mathcal L}{\partial(\nabla_\mu\phi^i)}.
+\end{equation}
+由于$\phi^i$是标量，$\Delta(\nabla_\mu\phi^i)=\nabla_\mu\Delta\phi^i$。逆度规变分引起的体积形式变化为
+\begin{equation}
+    \Delta\epsilon=-\frac12g_{\mu\nu}\Delta g^{\mu\nu}\epsilon.
+\end{equation}
+因此，变分时既要改变$\mathcal L$，也要改变$\epsilon$：
+\begin{align}
+    \Delta\boldsymbol{\mathcal L}
+    =\bigg[&\frac{\partial\mathcal L}{\partial\phi^i}\Delta\phi^i
+    +\Pi_i^\mu\nabla_\mu\Delta\phi^i\notag\\
+    &+\left(\frac{\partial\mathcal L}{\partial g^{\mu\nu}}
+    -\frac12g_{\mu\nu}\mathcal L\right)\Delta g^{\mu\nu}\bigg]\epsilon.
+\end{align}
+按体积形式定义Euler--Lagrange导数$E_i$，并采用与本书正能量约定一致的Hilbert能动张量：
+\begin{align}
+    \delta_\phi S&=\int_M E_i\,\delta\phi^i\epsilon
+    \quad\text{（紧支撑变分）},\\
+    E_i:=\frac{\delta S}{\delta\phi^i}
+    &=\frac{\partial\mathcal L}{\partial\phi^i}-\nabla_\mu\Pi_i^\mu,\\
+    \delta_g S&=\frac12\int_M T_{\mu\nu}\,\delta g^{\mu\nu}\epsilon,
+    \qquad T_{\mu\nu}=2\frac{\partial\mathcal L}{\partial g^{\mu\nu}}-g_{\mu\nu}\mathcal L.
+    \label{eq:noether-hilbert-t}
+\end{align}
+最后一个代数表达式限于当前不含度规导数的理论；泛函变分定义则更一般。这里对\emph{逆度规}变分前的系数为正号，使用其他度规或能动张量定义的文献时应成套比较约定。
+
+对场变分的导数项使用乘法法则，得到基本变分恒等式
+\begin{equation}
+    \boxed{\Delta\boldsymbol{\mathcal L}
+    =\left[E_i\Delta\phi^i
+    +\nabla_\mu(\Pi_i^\mu\Delta\phi^i)
+    +\frac12T_{\mu\nu}\Delta g^{\mu\nu}\right]\epsilon.}
+    \label{eq:noether-variation}
+\end{equation}
+与式\eqref{eq:noether-variational-symmetry}比较，定义流
+\begin{equation}
+    \boxed{j^\mu=\Pi_i^\mu\Delta\phi^i-K^\mu,}
+    \label{eq:noether-current}
+\end{equation}
+便得到\textbf{离壳恒等式}
+\begin{equation}
+    \boxed{\nabla_\mu j^\mu
+    =-E_i\Delta\phi^i-\frac12T_{\mu\nu}\Delta g^{\mu\nu}.}
+    \label{eq:noether-offshell}
+\end{equation}
+
+\begin{theorem}[第一Noether定理]
+    若一参数连续变换在固定背景上满足离壳变分对称性条件，亦即$\Delta g^{\mu\nu}=0$且式\eqref{eq:noether-variational-symmetry}成立，则式\eqref{eq:noether-current}定义的流在物质场满足运动方程$E_i=0$时守恒：
+    \begin{equation}
+        \nabla_\mu j^\mu=0.
+    \end{equation}
+    若背景度规也变化，则还须使$T_{\mu\nu}\Delta g^{\mu\nu}=0$，才能由物质场在壳推出同一守恒律。
+\end{theorem}
+这里“离壳”描述对称性条件与变分恒等式，“在壳”描述使用运动方程后的守恒结论。如果度规也是动力学变量，应将它的Euler--Lagrange项包括在完整理论中，不能只令物质场满足运动方程。
+
+在四维平直时空中，若空间无穷远处没有流量，则守恒流给出守恒荷
+\begin{equation}
+    Q=\int\d^3x\,j^0,
+    \qquad \frac{\d Q}{\d t}=-\oint_{\infty}\vec j\cdot\d\vec S=0.
+\end{equation}
+流本身并不唯一。在平直时空中，加入$\partial_\nu B^{[\nu\mu]}$不改变其散度；在相应的边界通量消失时，也不改变守恒荷。这类改进项在能动张量和共形对称性中会再次出现。
+
+\subsubsection{内禀对称性与时空对称性的例子}
+\begin{example}[复标量场的$U(1)$对称性]\label{csU1}
+    沿用本书的复标量场记号$\psi$，考虑
+    \begin{equation}
+        \mathcal L=\partial^\mu\psi^*\partial_\mu\psi-m^2\psi^*\psi.
+    \end{equation}
+    整体相位旋转为$\psi\to\e^{is}\psi$、$\psi^*\to\e^{-is}\psi^*$，其中$s$是常数。动能项和质量项中的相位分别抵消，且度规不变，故可取$K^\mu=0$。将$\psi,\psi^*$视为独立变分变量，有
+    \begin{equation}
+        \Delta\psi=i\psi,\quad\Delta\psi^*=-i\psi^*,
+        \qquad\Pi_\psi^\mu=\partial^\mu\psi^*,\quad
+        \Pi_{\psi^*}^\mu=\partial^\mu\psi.
+    \end{equation}
+    代入第一定理，得到
+    \begin{equation}
+        \boxed{j^\mu=i(\psi\partial^\mu\psi^*-
+        \psi^*\partial^\mu\psi).}
+        \label{complex-scalar-u1-current}
+    \end{equation}
+    直接求散度并代入$(\Box+m^2)\psi=0$及其共轭式，可验证
+    \begin{equation}
+        \partial_\mu j^\mu
+        =i(\psi\Box\psi^*-\psi^*\Box\psi)=0.
+    \end{equation}
+    质量项换成仅依赖$\psi^*\psi$的势能时，相位对称性与流的表达式仍然成立。
+\end{example}
+
+时空变换中的$K^\mu$也可以直接求出。对保持背景度规的Killing向量$\xi$，由协变性和Cartan公式，
+\begin{align}
+    \Delta\boldsymbol{\mathcal L}
+    &=\mathscr L_\xi\boldsymbol{\mathcal L}
+    =\d(\iota_\xi\boldsymbol{\mathcal L})
+    +\iota_\xi\d\boldsymbol{\mathcal L}
+    =\d(\iota_\xi\boldsymbol{\mathcal L}),\\
+    K^\mu&=\xi^\mu\mathcal L.
+    \label{eq:noether-spacetime-k}
+\end{align}
+这里$\d\boldsymbol{\mathcal L}=0$是因为它已是顶次形式。Killing条件使$\Delta g^{\mu\nu}=0$，从而这确实是固定背景上的变分对称性。对于严格保持拉氏量的内禀变换可以取$K=0$，但一般的内禀变分对称性也可能有非零边界项，仍应实际检查。
+
+\begin{example}[标量场的时空平移对称性]\label{ex:ct_scalar_translation}
+    在平直时空取常向量$\xi^\mu$，并采用正向拉回
+    \begin{equation}
+        \widehat\phi_s(x)=\phi(x+s\xi),
+        \qquad\Delta\phi=\xi^\nu\partial_\nu\phi.
+    \end{equation}
+    若$\mathcal L=\frac12\partial_\mu\phi\partial^\mu\phi-V(\phi)$，则$\Pi^\mu=\partial^\mu\phi$。因此
     \begin{align}
-        \mathcal L(\psi^*\phi, \psi^*(\partial_a\phi))=\psi^*\mathcal L(\phi, \partial_a\phi).
+        j^\mu&=\Pi^\mu\xi^\nu\partial_\nu\phi-\xi^\mu\mathcal L
+        =T^{\mu\nu}\xi_\nu,\\
+        T_{\mu\nu}&=\partial_\mu\phi\partial_\nu\phi-g_{\mu\nu}\mathcal L.
     \end{align}
+    这个例子中正则能动张量与Hilbert能动张量一致。四个独立平移分别给出
+    \begin{equation}
+        \partial_\mu T^{\mu\nu}=0,
+        \qquad P^\nu=\int\d^3x\,T^{0\nu}.
+    \end{equation}
+    也可以直接验证$\partial_\mu T^{\mu\nu}=(\Box\phi+V'(\phi))\partial^\nu\phi=0$。其中$P^0$是能量，$P^i$是动量。曲时空中若只有某个Killing向量，直接得到的是对应的$T^{\mu\nu}\xi_\nu$守恒流，不能把它理解为存在四个全局平移。
+\end{example}
+
+\begin{example}[旋转与Lorentz变换]
+    对标量场，固定两个不同的指标$\rho,\sigma$，取
+    \begin{equation}
+        \xi^\mu=x^\rho\eta^{\mu\sigma}-x^\sigma\eta^{\mu\rho}
+        \qquad\text{（$\rho,\sigma$固定，不求和）}.
+    \end{equation}
+    这也是Killing向量，因此
+    \begin{equation}
+        M^{\mu\,\rho\sigma}=T^{\mu\nu}\xi_\nu
+        =x^\rho T^{\mu\sigma}-x^\sigma T^{\mu\rho}.
+    \end{equation}
+    利用$T^{\mu\nu}$的对称性和在壳守恒性，
+    \begin{equation}
+        \partial_\mu M^{\mu\,\rho\sigma}
+        =T^{\rho\sigma}-T^{\sigma\rho}
+        +x^\rho\partial_\mu T^{\mu\sigma}
+        -x^\sigma\partial_\mu T^{\mu\rho}=0.
+    \end{equation}
+    两个指标均为空间方向时，这是角动量流；其中一个为时间方向时，得到boost对应的流。对于具有自旋的场，使用正则能动张量构造Lorentz流还须包括场的自旋部分。
+\end{example}
+\begin{example}[自由电磁场的时空平移对称性]
+    在平直时空中取
+    \begin{align}
+        \mathcal L=-\frac14F_{\mu\nu}F^{\mu\nu},
+        \qquad F_{\mu\nu}=\partial_\mu A_\nu-\partial_\nu A_\mu.
+    \end{align}
+    对常平移向量$\xi^\nu$, 场的变分为$\Delta A_\rho=\xi^\nu\partial_\nu A_\rho$, 且$K^\mu=\xi^\mu\mathcal L$. 将$A_\rho$的各分量视为场变量, 有
+    \begin{align}
+        \Pi^{\mu\rho}:=\frac{\partial\mathcal L}{\partial(\partial_\mu A_\rho)}=-F^{\mu\rho},
+        \qquad j^\mu=\xi^\nu T^\mu{}_{\nu,\mathrm{can}},
+    \end{align}
+    其中正则能动张量为
+    \begin{align}
+        T^\mu{}_{\nu,\mathrm{can}}
+        =-F^{\mu\rho}\partial_\nu A_\rho-\delta^\mu{}_{\nu}\mathcal L.
+    \end{align}
+    这个表达式一般不对称，也不是规范不变量。使用自由场方程$\partial_\rho F^{\rho\mu}=0$，添加改进项后可得到对称且规范不变的Hilbert能动张量：
+    \begin{align}
+        T^{\mu\nu}
+        &=-F^{\mu\rho}F^\nu{}_{\rho}
+          +\frac14\eta^{\mu\nu}F_{\rho\sigma}F^{\rho\sigma},\\
+        T^{\mu\nu}-T_{\mathrm{can}}^{\mu\nu}
+        &=F^{\mu\rho}\partial_\rho A^\nu
+          \overset{\mathrm{EOM}}{=}\partial_\rho(F^{\mu\rho}A^\nu).
+    \end{align}
+    改进项中$F^{\mu\rho}A^\nu$对$\mu,\rho$反对称, 所以其双重散度恒为零. 两个张量均在壳守恒, 且在相应表面项消失时给出相同的总能量和动量. 特别地,
+    \begin{align}
+        T^{00}=\frac12(\boldsymbol E^2+\boldsymbol B^2).
+    \end{align}
+    这里还应区分Lie导数与一般的分量微分: 对微分形式, Cartan公式$\mathscr L_\xi=\mathrm d\iota_\xi+\iota_\xi\mathrm d$给出
+    \begin{align}
+        [\mathscr L_\xi,\mathrm d]=0,
+        \qquad \mathscr L_\xi F=\mathrm d(\mathscr L_\xi A).
+    \end{align}
+\end{example}
+
+\begin{example}[Dirac场的时空平移对称性]
+    先考虑平直时空中的常平移. 此时不需要引入旋量在一般微分同胚下的变换, 只需取
+    \begin{align}
+        \mathcal L=\bar\psi(i\gamma^\mu\partial_\mu-m)\psi,
+        \qquad \Delta\psi=\xi^\nu\partial_\nu\psi,
+        \qquad \Delta\bar\psi=\xi^\nu\partial_\nu\bar\psi.
+    \end{align}
+    将$\psi$与$\bar\psi$作为独立的变分变量, 并保持旋量乘积的书写次序. 对此拉氏量, 含场变分导数的边界项为$i\bar\psi\gamma^\mu\Delta\psi$, 而$K^\mu=\xi^\mu\mathcal L$, 因此
+    \begin{align}
+        j^\mu=\xi^\nu T^\mu{}_{\nu,\mathrm{can}},
+        \qquad
+        T^\mu{}_{\nu,\mathrm{can}}
+        =i\bar\psi\gamma^\mu\partial_\nu\psi
+        -\delta^\mu{}_{\nu}\mathcal L.
+    \end{align}
+    利用Dirac方程及其共轭方程, 可得$\partial_\mu T^\mu{}_{\nu,\mathrm{can}}=0$. 正则张量一般不对称; 对Lorentz变换, 还需计入旋量本身的变换以及相应的自旋流. 若要从几何变分得到对称的Hilbert能动张量, 应引入标架和自旋联络, 不能直接套用前面一阶标量场的度规变分公式.
+\end{example}
+\subsubsection{Weyl对称性、共形变换与改进能动张量}
+共形变换允许度规改变一个局域尺度。这里先讨论Weyl对称性怎样约束能动张量的迹，再构造固定背景上的共形对称性。
+
+\paragraph{Weyl变换与迹恒等式。}
+Weyl变换保持流形上的点不变，改变背景度规及场的局域尺度：
+\begin{equation}
+    g_{\mu\nu}\to\Omega^2g_{\mu\nu},
+    \qquad\phi^i\to\Omega^{-w_i}\phi^i,
+    \qquad\Omega(x)>0.
+\end{equation}
+这里$w_i$是场的Weyl权重。设$\Omega=\e^{s\sigma(x)}$，取一阶变化，
+\begin{equation}
+    \delta_\sigma g^{\mu\nu}=-2\sigma g^{\mu\nu},
+    \qquad\delta_\sigma\phi^i=-w_i\sigma\phi^i.
+\end{equation}
+对完整作用量作变分并分部积分，使用式\eqref{eq:noether-hilbert-t}的泛函定义，
+\begin{align}
+    \delta S&=\int_M\left[E_i\delta\phi^i
+    +\frac12T_{\mu\nu}\delta g^{\mu\nu}\right]\epsilon
+    +\text{边界项},\\
+    \delta_\sigma S&=-\int_M\sigma
+    \left(T^\mu{}_{\mu}+\sum_iw_i\phi^iE_i\right)\epsilon
+    +\text{边界项}.
+\end{align}
+这个变分公式允许曲率耦合，此时$T_{\mu\nu}$包含对曲率变分产生的项。若理论具有Weyl对称性，且$\sigma(x)$紧支撑于时空内部，则边界项没有贡献，$\delta_\sigma S=0$对任意$\sigma(x)$离壳成立。因此
+\begin{equation}
+    \boxed{T^\mu{}_{\mu}=-\sum_iw_i\phi^iE_i.}
+    \label{eq:noether-weyl-identity}
+\end{equation}
+最后才令物质场满足$E_i=0$，得到在壳无迹条件$T^\mu{}_{\mu}=0$。它也解释了式\eqref{eq:noether-offshell}中的度规项何时消失：若$\Delta g^{\mu\nu}=-2\sigma g^{\mu\nu}$，则该项正比于迹。Weyl对称性给出的是一种充分机制，不应把它当作所有可能情形的唯一解释。
+
+\begin{example}[共形耦合的实标量场]
+    在$d>2$维中取
+    \begin{equation}
+        w=\frac{d-2}{2},\qquad
+        \xi_c=\frac{d-2}{4(d-1)},\qquad
+        \mathcal L=\frac12\nabla_\mu\phi\nabla^\mu\phi
+        +\frac12\xi_cR\phi^2.
+    \end{equation}
+    本节的曲率约定为$[\nabla_\mu,\nabla_\nu]v^\rho
+    =R^\rho{}_{\sigma\mu\nu}v^\sigma$、$R_{\mu\nu}=R^\rho{}_{\mu\rho\nu}$。相应的Weyl变化满足
+    \begin{equation}
+        \delta_\sigma R=-2\sigma R-2(d-1)\Box\sigma,
+        \qquad\Box=\nabla_\mu\nabla^\mu.
+    \end{equation}
+    结合$\delta_\sigma\epsilon=d\sigma\epsilon$与$\delta_\sigma\phi=-w\sigma\phi$，可得
+    \begin{equation}
+        \delta_\sigma\boldsymbol{\mathcal L}
+        =-\frac{w}{2}\nabla_\mu(\phi^2\nabla^\mu\sigma)\epsilon.
+    \end{equation}
+    因而紧支撑的Weyl变换确实保持作用量不变。场方程与完整Hilbert张量为
+    \begin{align}
+        E_\phi&=-\Box\phi+\xi_cR\phi,\\
+        T_{\mu\nu}&=\nabla_\mu\phi\nabla_\nu\phi
+        -\frac12g_{\mu\nu}(\nabla\phi)^2\notag\\
+        &\quad+\xi_c\left[G_{\mu\nu}\phi^2
+        +(g_{\mu\nu}\Box-\nabla_\mu\nabla_\nu)\phi^2\right],
+    \end{align}
+    其中$G_{\mu\nu}=R_{\mu\nu}-\frac12g_{\mu\nu}R$。
+    \textbf{先对完整作用量作度规变分，再取平直极限}，得到
+    \begin{equation}
+        T_{\mu\nu}^{\mathrm{imp}}
+        =\partial_\mu\phi\partial_\nu\phi
+        -\frac12\eta_{\mu\nu}(\partial\phi)^2
+        +\xi_c(\eta_{\mu\nu}\Box-\partial_\mu\partial_\nu)\phi^2.
+        \label{eq:noether-improved-scalar-t}
+    \end{equation}
+    最后一项称为改进项；它的散度恒为零。利用
+    $\Box\phi^2=2(\partial\phi)^2+2\phi\Box\phi$，可检查
+    \begin{equation}
+        (T^{\mathrm{imp}})^\mu{}_{\mu}
+        =\frac{d-2}{2}\phi\Box\phi=-w\phi E_\phi,
+    \end{equation}
+    在壳时为零。若一开始就令$R=0$再作度规变分，会遗漏这一改进项。
+\end{example}
+
+\paragraph{共形等距与固定背景上的场变换。}
+在给定的$(M,g)$上，共形等距变换是满足
+\begin{equation}
+    \psi^*g=\Omega^2g
+\end{equation}
+的微分同胚。与Weyl变换不同，这里的$\Omega$由$\psi$及$g$决定，不能任意指定。对一参数族取
+\begin{equation}
+    x'^\mu=x^\mu+s\xi^\mu(x)+O(s^2),
+    \qquad\Omega=1+s\sigma(x)+O(s^2),
+\end{equation}
+便得到共形Killing方程
+\begin{equation}
+    \boxed{\nabla_\mu\xi_\nu+\nabla_\nu\xi_\mu
+    =2\sigma g_{\mu\nu},
+    \qquad\sigma=\frac1d\nabla_\mu\xi^\mu.}
+    \label{eq:noether-conformal-killing}
+\end{equation}
+当$\sigma=0$时退化为Killing方程。
+
+若理论同时微分同胚协变并具有上述Weyl对称性，先作正向拉回，再作因子为$\Omega^{-1}$的Weyl变换，就把背景恢复为原来的$g$。对标量场，组合变换为
+\begin{equation}
+    \widehat\phi^i=\Omega^{w_i}\psi^*\phi^i,
+    \qquad\Delta_\xi\phi^i
+    =\xi^\mu\nabla_\mu\phi^i+w_i\sigma\phi^i.
+    \label{eq:noether-fixed-conformal}
+\end{equation}
+权重项的正号来自用于恢复背景的逆Weyl因子。这是在\emph{固定背景}上作用于场的共形对称性。这里的Weyl完备化是构造共形对称性的一条充分途径，不据此断言任意共形理论都必须具有同样的曲背景延拓。
+
+\paragraph{伸缩、特殊共形变换及其流。}
+在$d\geq3$的平直时空中，除平移与Lorentz变换外，考虑下面两类局部生成元。伸缩变换满足
+\begin{equation}
+    x'^\mu=\lambda x^\mu,\quad\Omega=\lambda,\quad\lambda>0,
+    \qquad\xi_D^\mu=x^\mu,\quad\sigma_D=1,
+\end{equation}
+其中无穷小形式取$\lambda=\e^s$。特殊共形变换可写为
+\begin{equation}
+    x'^\mu=\frac{x^\mu-b^\mu x^2}{q_b(x)},
+    \quad q_b(x)=1-2b\cdot x+b^2x^2,
+    \quad\Omega_b=\frac1{|q_b(x)|}.
+\end{equation}
+这里$x^2=\eta_{\mu\nu}x^\mu x^\nu$，其余内积同理。该式在$q_b\ne0$的区域有定义，可由反演、平移和再次反演构造。令$b\to sb$，在恒等变换附近展开得
+\begin{equation}
+    \xi_b^\mu=2(b\cdot x)x^\mu-b^\mu x^2,
+    \qquad\sigma_b=2b\cdot x.
+\end{equation}
+这两个向量场都满足式\eqref{eq:noether-conformal-killing}。有限特殊共形变换一般不在整个闵可夫斯基时空上处处有定义；二维的局部共形变换则另有更丰富的结构。
+
+对上述理论，完整Hilbert张量在壳满足
+\begin{equation}
+    T^{\mu\nu}=T^{\nu\mu},\qquad
+    \nabla_\mu T^{\mu\nu}=0,\qquad T^\mu{}_{\mu}=0.
+\end{equation}
+守恒性来自同时变换场与背景的微分同胚恒等式，无迹性来自Weyl恒等式。于是对任意共形Killing向量，取
+\begin{equation}
+    \boxed{J_\xi^\mu=T^{\mu\nu}\xi_\nu,}
+    \label{eq:noether-conformal-current}
+\end{equation}
+便有
+\begin{align}
+    \nabla_\mu J_\xi^\mu
+    &=(\nabla_\mu T^{\mu\nu})\xi_\nu
+    +\frac12T^{\mu\nu}(\nabla_\mu\xi_\nu+\nabla_\nu\xi_\mu)\notag\\
+    &=\sigma T^\mu{}_{\mu}=0.
+\end{align}
+在平直时空分别代入$\xi_D$和$\xi_b$，得到
+\begin{equation}
+    D^\mu=x_\nu T^{\mu\nu},\qquad
+    J_b^\mu=b_\rho C^{\mu\rho},\qquad
+    C^{\mu\rho}=2x^\rho x_\nu T^{\mu\nu}-x^2T^{\mu\rho}.
+\end{equation}
+使用了改进能动张量时，这些表达式给出相应Noether流的一个代表。下面还会用参数局域化的方法直接导出式\eqref{eq:noether-conformal-current}。
+\subsubsection{Noether第二定理：规范对称性与离壳恒等式}
+
+Noether第一定理从有限个常参数的变分对称性得到在壳守恒律；第二定理则讨论参数可以是任意局域函数的规范对称性。两者都要求变分对称性对任意场构型成立，区别并不是一个在壳、另一个离壳。以下规范参数均取紧支撑，以排除边界贡献。
+
+设规范变换的无穷小形式为
+\begin{equation}
+    \delta_\lambda\phi^i=R^i{}_A\lambda^A,
+\end{equation}
+其中$R^i{}_A$是作用于参数$\lambda^A(x)$的线性微分算子，其系数可以依赖场及其导数。沿用按体积形式$\epsilon$定义的Euler--Lagrange表达式$E_i$，作用量的变分为
+\begin{equation}
+    \delta S=\int_M E_i\,\delta\phi^i\,\epsilon+\text{边界项}.
+\end{equation}
+通过分部积分定义$R^i{}_A$的形式伴随：
+\begin{equation}
+    \int_M E_i\,(R^i{}_A\lambda^A)\,\epsilon
+    =\int_M\lambda^A(R^i{}_A)^\dagger E_i\,\epsilon.
+\end{equation}
+这里的配对是变分中的双线性配对，$\dagger$表示把参数上的导数移到另一侧，\emph{不对复系数取复共轭}；复场及其共轭场按独立变量变分。
+
+\begin{theorem}[Noether第二定理]
+    若作用量对上述任意紧支撑参数$\lambda^A(x)$的变换离壳不变，则Euler--Lagrange表达式满足离壳恒等式
+    \begin{equation}
+        \boxed{(R^i{}_A)^\dagger E_i\equiv0.}
+        \label{eq:noether-second-identity}
+    \end{equation}
 \end{theorem}
 \begin{proof}
-    \begin{align}
-        \mathcal L(\psi^*\phi, \psi^*(\partial_a\phi))\big|_p&=\mathcal L(\psi^*\phi, \partial_a\psi^*(\phi)|_p)\big|_p\\
-        &=\mathcal L(\phi(\psi(p)), \partial_a\phi(\psi(p)))\\
-        &=\mathcal L(\phi, \partial_a\phi)\big|_{\psi(p)}\\
-        &=\psi^*\mathcal L\big|_p.
-    \end{align}
+    由规范不变性和形式伴随的定义，
+    \begin{equation}
+        0=\delta_\lambda S
+        =\int_M\lambda^A(R^i{}_A)^\dagger E_i\,\epsilon.
+    \end{equation}
+    参数$\lambda^A(x)$可以任意选取，故其系数逐点为零。整个推导没有令$E_i=0$。
 \end{proof}
-利用这个定理, 对于无穷小微分同胚变换, 我们有
-\begin{align}
-    \delta\mathcal L=-\xi^\mu\partial_\mu\mathcal L,
-\end{align}
-对于Killing矢量场$\partial_\mu\xi^\mu=0$, 于是
-\begin{align}
-    \delta\mathcal L=\partial_\mu(-\xi^\mu\partial_\mu\mathcal L),
-\end{align}
-从而可以得到
-\begin{align}
-    J^\mu=-\xi^\mu\mathcal L.
-\end{align}
 
-% 读者可能会质疑, 我们这里的推导证明要求了$\xi^\mu$是保度规的微分同胚, 如果它不保微分同胚, 允许度规张量差一个共形因子呢? 似乎推导就不成立了? 这其实依然成立, 原因在于, 在引入共形对称性的时候, 因为度规张量的行列式$g$在变换后就不一定依然为常数$1$了, 而最一般的作用量的表达式为
-% \begin{align}
-%     S=\int\mathcal L=\int\d^4x\sqrt g\mathcal L,
-% \end{align}
-% 因此我们在考虑对称性时, 应当自然耦合引力, 考虑$\sqrt{\sqrt g\mathcal L}$整体的变换. 利用共形变换中
-% \begin{align}
-%     \delta\sqrt g=-\partial_a\xi^a\sqrt g, 
-% \end{align}
-% 我们得到
-% \begin{align}
-%     \delta(\sqrt g\mathcal L)=\sqrt g\left(-\partial_a\xi^a\mathcal L+\delta\mathcal L\right)=\sqrt g\left(-\partial_a(\xi^a\mathcal L)+\delta\mathcal L+\xi^a\partial_a\mathcal L\right).
-% \end{align}
-% 其中第一项为一个全微分(不需要将$\sqrt g$放入全微分, 因为Gauss定理为$\int\nabla_a v^a=\int v^a n_a$, 写到具体坐标系中本来就在外面乘了一个测度$\sqrt g$), 如果系统具有对称性, $\delta(\sqrt g\mathcal L)$不能有全微分以外的项, 因此剩下的两项应当为$0$, 于是仍然有
-% \begin{align}
-%     \delta\mathcal L=-\xi^\mu\partial_\mu\mathcal L.
-% \end{align}
+例如，若变换至多含参数的一阶导数，
+\begin{equation}
+    \delta_\lambda\phi^i
+    =r^i{}_A\lambda^A+r^{i\mu}{}_A\nabla_{\mu}\lambda^A,
+\end{equation}
+则第二定理具体给出
+\begin{equation}
+    \boxed{r^i{}_AE_i-\nabla_{\mu}\bigl(r^{i\mu}{}_AE_i\bigr)\equiv0.}
+\end{equation}
+这说明各个运动方程之间存在微分恒等关系，而不是再使用运动方程证明一个守恒流。若参数带有时空指标，分部积分时也须对这些指标使用相应的协变导数。
 
-\begin{example}[复标量场的$U(1)$对称性]\label{csU1}
-    考虑复标量场
+\begin{example}[Einstein引力与收缩Bianchi恒等式]
+    取度规$g_{\mu\nu}$为动力学变量，考虑纯Einstein--Hilbert作用量
     \begin{equation}
-        \mathcal L = \partial^\mu\psi^*\partial_\mu\psi - m^2\psi^*\psi
+        S[g]=\frac1{2\kappa}\int_MR\,\epsilon,
+        \qquad \kappa=8\pi G_{\mathrm N}.
     \end{equation}
-    其对称性为
+    沿用前面的曲率约定，并记Einstein张量为
     \begin{equation}
-        \psi \to \psi' = e^{i\alpha}\psi, \quad \psi^* \to \psi'^* = e^{-i\alpha}\psi^*
+        G_{\mu\nu}=R_{\mu\nu}-\frac12g_{\mu\nu}R.
     \end{equation}
-    不难发现, $\mathcal L$与$\psi$的相位无关，因此:
+    任意紧支撑向量场$\xi^{\mu}(x)$生成微分同胚变换
     \begin{equation}
-        \mathcal L \to \mathcal L + 0\Rightarrow J^\mu = 0
+        \delta_\xi g_{\mu\nu}=\mathscr L_\xi g_{\mu\nu}
+        =\nabla_{\mu}\xi_{\nu}+\nabla_{\nu}\xi_{\mu}.
     \end{equation}
-    于是, 由Noether定理可得守恒流
+    顶次形式拉氏量的变化是全微分：
     \begin{equation}
-        j^\mu = i(\psi\partial^\mu\psi^* - \psi^*\partial^\mu\psi)\label{complex-scalar-u1-current}
+        \delta_\xi\boldsymbol{\mathcal L}
+        =\frac1{2\kappa}\nabla_{\mu}(R\xi^{\mu})\,\epsilon,
+        \qquad \delta_\xi S=0.
     \end{equation}
-    我们可以代入验证其守恒:
+    另一方面，对协变度规$g_{\mu\nu}$作变分，略去边界项后有
     \begin{equation}
-        \partial_\mu j^\mu = i(\psi\partial^2\psi^*-\psi^*\partial^2\psi)
+        E_g^{\mu\nu}:=\frac{\delta S}{\delta g_{\mu\nu}}
+        =-\frac1{2\kappa}G^{\mu\nu}.
     \end{equation}
-    代入运动方程$(\partial^2+m^2)\psi=0$
+    因而
     \begin{equation}
-        \partial_\mu j^\mu = i(\psi(-m^2\psi^*) - \psi^*(-m^2\psi)) = 0
+        0=\delta_\xi S
+        =\int_M2E_g^{\mu\nu}\nabla_{\mu}\xi_{\nu}\,\epsilon
+        =-\int_M\xi_{\nu}\,2\nabla_{\mu}E_g^{\mu\nu}\,\epsilon.
     \end{equation}
+    利用$\xi_{\nu}(x)$的任意性，得到
+    \begin{equation}
+        \boxed{-2\nabla_{\mu}E_g^{\mu\nu}
+        =\frac1\kappa\nabla_{\mu}G^{\mu\nu}\equiv0.}
+    \end{equation}
+    这就是收缩Bianchi恒等式；它对任意度规成立，并未使用Einstein方程$G^{\mu\nu}=0$。
 \end{example}
-\begin{example}[标量场的时空平移对称性]\label{ex:ct_scalar_translation}
-    时空中有Killing矢量场$\xi^\mu$, 其满足Killing方程
+
+\begin{example}[Maxwell场的规范恒等式]
+    在固定背景度规上取
     \begin{equation}
-        \nabla_{(\mu}\xi_{\nu)} = 0
+        \mathcal L=-\frac14F_{\mu\nu}F^{\mu\nu},
+        \qquad F_{\mu\nu}=\nabla_{\mu}A_{\nu}-\nabla_{\nu}A_{\mu}.
     \end{equation}
-    缩并有:
+    局域规范变换为$\delta_\lambda A_{\mu}=\nabla_{\mu}\lambda$。由于$\lambda$是标量，
     \begin{equation}
-        \nabla_\mu\xi^\mu = 0
+        \delta_\lambda F_{\mu\nu}
+        =\nabla_{\mu}\nabla_{\nu}\lambda-\nabla_{\nu}\nabla_{\mu}\lambda=0,
     \end{equation}
-    在这里, $\Delta$算符即Lie导数$\mathscr L_\xi$.\\
-    对$\mathcal L$沿着$-\xi^\mu$的方向进行平移, 有
+    故作用量离壳不变。对$A_{\mu}$变分给出
     \begin{equation}
-        \mathcal L\to \mathcal L + \alpha \mathscr L_\xi\mathcal L=\mathcal L + \alpha \xi^\mu\nabla_\mu\mathcal L=\mathcal L + \alpha\nabla_\mu(\xi^\mu\mathcal L)
+        E_A^{\mu}:=\frac{\delta S}{\delta A_{\mu}}=\nabla_{\nu}F^{\nu\mu}.
     \end{equation}
-    因此, $J^\mu = \xi^\mu\mathcal L$. 由Noether定理可得守恒流
+    对任意紧支撑$\lambda(x)$，
     \begin{equation}
-    \begin{split}
-        j^\mu &= \Pi^\mu\Delta\phi - J^\mu = \Pi^\mu\xi^\nu\nabla_\nu\phi-\xi^\mu\mathcal L\\
-        &= \xi^\nu(\nabla^\mu\phi\nabla_\nu\phi-\mathcal L\delta^\mu_{~~\nu})
-    \end{split}
+        0=\delta_\lambda S
+        =\int_M E_A^{\mu}\nabla_{\mu}\lambda\,\epsilon
+        =-\int_M\lambda\nabla_{\mu}E_A^{\mu}\,\epsilon,
     \end{equation}
-    于是有能动张量
+    因此第二定理成为
     \begin{equation}
-        T_{\mu\nu}=\nabla_\mu\phi\nabla_\nu\phi - \mathcal L g_{\mu\nu}
+        \boxed{-\nabla_{\mu}E_A^{\mu}=-\nabla_{\mu}\nabla_{\nu}F^{\nu\mu}\equiv0.}
     \end{equation}
-    其满足：
-    \begin{equation}
-        \nabla_\mu T^{\mu\nu} = 0
-    \end{equation}
-    由此可见, 能动量守恒完全是时空平移不变性的体现.
+    平直时空中，这由偏导数的对易性与$F^{\mu\nu}$的反对称性直接得到；在一般无挠背景上，双重散度可写成$\tfrac12[\nabla_{\mu},\nabla_{\nu}]F^{\nu\mu}$，产生的Ricci张量缩并也因对称性而为零。这一恒等式不需要使用Maxwell方程。
 \end{example}
-\begin{example}[矢量场的时空平移对称性]
-    类似例\ref{ex:ct_scalar_translation}, 时空中有Killing矢量场$\xi^\mu$.
-    我们首先设两个辅助场:
+
+\begin{example}[标量QED：相互关联的运动方程]
+    沿用本笔记的$(+---)$号差，取
+    \begin{equation}
+        \begin{aligned}
+            \mathcal L&=-\frac14F_{\mu\nu}F^{\mu\nu}
+            +(D_{\mu}\phi)^*D^{\mu}\phi-V(\rho),\\
+            D_{\mu}\phi&=(\nabla_{\mu}-ieA_{\mu})\phi,
+            \qquad \rho=\phi^*\phi.
+        \end{aligned}
+    \end{equation}
+    局域$U(1)$变换为
+    \begin{equation}
+        A_{\mu}'=A_{\mu}+\nabla_{\mu}\lambda,
+        \qquad \phi'=e^{ie\lambda}\phi,
+        \qquad \phi^{*'}=e^{-ie\lambda}\phi^*.
+    \end{equation}
+    因为$F'_{\mu\nu}=F_{\mu\nu}$、$D_{\mu}'\phi'=e^{ie\lambda}D_{\mu}\phi$以及$\rho'=\rho$，拉氏量严格不变。
+
+    将$\phi,\phi^*$视作独立变量，并记$V'=\mathrm dV/\mathrm d\rho$，得到
     \begin{align}
-        &\Pi^{\mu\nu}=2\pa{\mathcal L}{F_{\mu\nu}}\\
-        &B^\mu=\pa{\mathcal L}{A_\mu}
+        E_A^{\mu}&=\nabla_{\nu}F^{\nu\mu}
+        +ie\bigl[\phi^*D^{\mu}\phi-\phi(D^{\mu}\phi)^*\bigr],\\
+        E_\phi&=-(D_{\mu}D^{\mu}\phi)^*-V'\phi^*,\\
+        E_{\phi^*}&=-D_{\mu}D^{\mu}\phi-V'\phi.
     \end{align}
-    沿着$-\xi^\mu$变换, 同样有:
+    无穷小变换为$\delta A_{\mu}=\nabla_{\mu}\lambda$、$\delta\phi=ie\lambda\phi$和$\delta\phi^*=-ie\lambda\phi^*$。分部积分后，
     \begin{equation}
-        \mathcal L\to \mathcal L + \alpha \xi^\mu\nabla_\mu\mathcal L=\mathcal L + \alpha\nabla_\mu(\xi^\mu\mathcal L)
+        0=\delta_\lambda S
+        =\int_M\lambda\bigl[-\nabla_{\mu}E_A^{\mu}
+        +ie\phi E_\phi-ie\phi^*E_{\phi^*}\bigr]\,\epsilon.
     \end{equation}
+    因此离壳恒等式为
     \begin{equation}
-        A_\mu \to A_\mu + \alpha\mathscr{L}_\xi A_\mu
+        \boxed{-\nabla_{\mu}E_A^{\mu}+ie\phi E_\phi-ie\phi^*E_{\phi^*}\equiv0.}
     \end{equation}
+    直接代入也能验证：势能项互相抵消，$F^{\mu\nu}$的双重散度恒为零，其余各项利用
     \begin{equation}
-        F_{\mu\nu} \to F_{\mu\nu} + \alpha\mathscr{L}_\xi F_{\mu\nu}
+        \nabla_{\mu}\bigl[\phi^*D^{\mu}\phi-\phi(D^{\mu}\phi)^*\bigr]
+        =\phi^*D_{\mu}D^{\mu}\phi-\phi(D_{\mu}D^{\mu}\phi)^*
     \end{equation}
-    需要注意的是, $\mathscr L_\xi$与外微分算子$\mathrm d$不对易, 因此
-    \begin{equation}
-        \mathscr L_\xi F_{\mu\nu} = \mathscr L_\xi \mathrm d A_{\mu\nu} \neq \mathrm d(\mathscr L_\xi A)_{\mu\nu}
-    \end{equation}
-    而
-    \begin{equation}
-        \begin{split}
-            \mathscr L_\xi F_{\mu\nu} &= \xi^\lambda\nabla_\lambda F_{\mu\nu} + F_{\lambda\nu}\nabla_\mu\xi^\lambda + F_{\mu\lambda}\nabla_\nu\xi^\lambda\\
-            &= \xi^\lambda\nabla_\lambda F_{\mu\nu}+\nabla_{\mu}(F_{\lambda\nu\xi^\lambda})-\xi^\lambda\nabla_\mu F_{\lambda\nu}\\
-            &\quad+\nabla_\nu(F_{\mu\lambda}\xi^\lambda)-\xi^\lambda\nabla_\nu F_{\mu\lambda}\\
-            &= \xi^\lambda\nabla_\lambda F_{\mu\nu}+\xi^\lambda\nabla_\mu F_{\nu\lambda}+\xi^\lambda\nabla_\nu F_{\lambda\mu}+\nabla_{\mu}(F_{\lambda\nu}\xi^\lambda)+\nabla_\nu(F_{\mu\lambda}\xi^\lambda)
-        \end{split}
-    \end{equation}
-    由外微分算子性质有$\nabla_{[\mu}F_{\nu\lambda]}=0$, 可知前三项为零.\\
-    因此
-    \begin{equation}
-        \mathscr L_\xi F_{\mu\nu}=\nabla_{\mu}(F_{\lambda\nu}\xi^\lambda)+\nabla_\nu(F_{\mu\lambda}\xi^\lambda)
-    \end{equation}
-    于是
-    \begin{equation}
-        \begin{split}
-            \mathscr L_\xi\mathcal L &= \nabla_\mu(2\Pi^{\mu\nu}F_{\lambda\nu}\xi^\lambda)-F_{\mu\nu}\xi^\lambda B^\nu+B^\nu(\xi^\lambda\nabla_\lambda A_\nu+A_\lambda\nabla_\nu\xi^\lambda)\\
-            &= \nabla_\mu(2\Pi^{\mu\nu}F_{\lambda\nu}\xi^\lambda)-F_{\mu\nu}\xi^\lambda B^\nu+B^\nu\xi^\lambda\nabla_\lambda A_\nu-B^\nu\xi^\lambda\nabla_\nu A_\lambda\\
-            &\quad+B^\nu\nabla_\nu(A_\lambda\xi^\lambda)
-        \end{split}
-    \end{equation}
-    这里我们取规范
-    \begin{equation}
-        \nabla_\nu B^\nu=0
-    \end{equation}
-    故:
-    \begin{equation}
-        \mathscr L_\xi\mathcal L=\nabla_\mu(2\Pi^{\mu\nu}F_{\lambda\nu}\xi^\lambda+B^\mu A_\nu\xi^\nu)
-    \end{equation}
-    类似地, 可以得到能动张量:
-    \begin{equation}
-        T_{\mu\nu} = -2\Pi_{\mu}^{~~\lambda}F_{\lambda\nu}+B_\mu A_\nu-g_{\mu\nu}\mathcal L
-    \end{equation}
-    参考:本人25年首考后写的笔记\cite{LinkZhihu}(很惭愧, 现在尝试重新推导的时候卡了好久...无奈看了当时的笔记才推出来, 真是奇怪, 明明当时也是我自己推出来的, 怎么现在一点都推不出来了呢= =).
+    恰好抵消。整个验证没有使用任何一个运动方程；正是规范对称性使这些运动方程并非相互独立。
 \end{example}
-\begin{example}[Dirac场的时空平移对称性]
-    在推导Dirac场的时空平移对称性时, 为了具有一般性, 最大的难点在于给出旋量在一般的微分同胚群作用下的变换, 我们在此不做推导(我也不会推导...). 根据的Kosmann 1971年的成果\cite{LieSpinor}, 我们有对Dirac旋量场$\psi$的Lie导数表达式
-    \begin{equation}
-        \mathscr L_\xi\psi=\xi^a\nabla_a\psi-\frac14\nabla_{[a}\xi_{b]}\gamma^a\gamma^b\psi
-    \end{equation}
-    其中$\xi^a$为Killing矢量场.
+\subsubsection{Noether's Trick：将全局参数暂时局域化}
+Noether's Trick是第一Noether定理的另一种推导和计算方法。它把原来全局对称性的常数参数临时换成函数；这个局域化后的变换\textbf{一般不是作用量的对称性}。第二定理则要求任意局域参数从一开始就给出离壳对称性，两者不可混同。\cite{AverySchwabNoether2015}
 
-    如果你不放心, 我们可以验证后面拖拽项就是对旋量的Lorentz变换的正确性: 对于Minkovski时空中, 一般的Killing矢量场为
-    \begin{equation}
-        \xi^\mu=b^\mu+\omega^\mu_{~~\nu} x^\nu
-    \end{equation}
-    所以
-    \begin{align}
-        \mathscr L_\xi\psi&=\xi^\mu\nabla_\mu\psi+\frac14\omega_{\mu\nu}\gamma^\mu\gamma^\nu\psi\\
-        &=\xi^\mu\nabla_\mu\psi-\frac i2\omega_{\mu\nu} \frac i4[\gamma^\mu, \gamma^\nu]\psi\\
-        &=\xi^\mu\nabla_\mu\psi-\frac i2\omega_{\mu\nu}S^{\mu\nu}\psi
-    \end{align}
-    
-    于是我们发现对于Killing矢量场, 拖拽项确实是对旋量的Lorentz变换.
+先回到固定背景上的一阶标量理论，设常数参数变换$\delta\phi^i=s\Delta\phi^i$满足$\Delta\boldsymbol{\mathcal L}=(\nabla_\mu K^\mu)\epsilon$。将$s$改为紧支撑函数$s(x)$，由乘法法则，
+\begin{align}
+    \delta_s\boldsymbol{\mathcal L}
+    &=\left[s\nabla_\mu K^\mu
+    +(\nabla_\mu s)\Pi_i^\mu\Delta\phi^i\right]\epsilon\notag\\
+    &=\left[\nabla_\mu(sK^\mu)
+    +(\nabla_\mu s)(\Pi_i^\mu\Delta\phi^i-K^\mu)\right]\epsilon.
+\end{align}
+第一项是没有边界贡献的全微分，故
+\begin{equation}
+    \boxed{\delta_s S=\int_M(\nabla_\mu s)j^\mu\epsilon
+    =-\int_M s\nabla_\mu j^\mu\epsilon.}
+    \label{eq:noether-trick-standard}
+\end{equation}
+这一步仍然离壳成立。另一方面，在满足运动方程的场配置上，作用量对任意紧支撑场变分都是驻值，因此$\delta_sS=0$。利用$s(x)$的任意性，才得到$\nabla_\mu j^\mu=0$。实际计算时，只需把作用量变化整理成$\nabla_\mu s$乘以某个量，即可读出流。若同时改变背景，则还须保留式\eqref{eq:noether-offshell}中的背景变分项；若拉氏量含高阶导数，也可能需要先对参数的高阶导数分部积分。
 
-    然后我们尝试推导能动张量. (似乎有点不太对, 等我再思考酝酿下)
-\end{example}
+\paragraph{与坐标变换记法及后文Ward恒等式的衔接。}
+另一种常见写法同时变换坐标与场，
+\begin{align}
+    x'^\mu&=x^\mu+s\xi^\mu,\notag\\
+    \phi'^i(x')&=\phi^i(x)+s\mathcal F^i[\phi].
+    \label{arbitary-field-trans}
+\end{align}
+这里$\mathcal F^i$是无穷小参数的一阶系数，不含额外的$s$。在\emph{同一坐标点}比较场时，
+\begin{equation}
+    \delta_0\phi^i(x)=s\bigl(\mathcal F^i-\xi^\nu\partial_\nu\phi^i\bigr).
+\end{equation}
+例如，$\mathcal F=0$且$x'=x+s\xi$给出$\delta_0\phi=-s\xi\cdot\partial\phi$，与前文正向拉回的生成元相反；这解释了文献中整体流号的差异。
 
-上面的讨论有一个问题是, 我们如何确定$J^\mu$的形式, 有些时候它可能并不是一个很好确定的东西. 所以下面我们给出Noether第二定理, 或者说Noether's Trick, 它可以一般性的确定任意对称性的守恒流.
+在平直时空的一阶理论中，若坐标与场的联合变换严格保持作用量的被积密度，即没有另加的边界项，则该生成元对应的标准流为
+\begin{equation}
+    j^\mu=\Pi_i^\mu\mathcal F^i
+    -\xi^\nu(T_{\mathrm{can}})^\mu{}_{\nu},
+    \qquad(T_{\mathrm{can}})^\mu{}_{\nu}
+    =\Pi_i^\mu\partial_\nu\phi^i-\delta^\mu{}_{\nu}\mathcal L.
+\end{equation}
+若联合密度变化为全微分，则需再减去相应边界流，不能省略。为与本书后文引用的原公式相接，另将整体反号的流记为$\widetilde j$：
+\begin{equation}
+    \widetilde j_\mu
+    =\xi^\nu(T_{\mathrm{can}})_{\mu\nu}-\Pi_{i\mu}\mathcal F^i
+    =-j_\mu.
+    \label{general-sym-current}
+\end{equation}
+相应地，局域化作用量有两种完全等价的写法，
+\begin{align}
+    \delta_sS
+    &=\int\d^4x\,(\partial_\mu s)j^\mu
+    =-\int\d^4x\,s\partial_\mu j^\mu\notag\\
+    &=-\int\d^4x\,(\partial_\mu s)\widetilde j^\mu
+    =\int\d^4x\,s\partial_\mu\widetilde j^\mu.
+    \label{noether-trick}
+\end{align}
+后文Ward恒等式采用第一行的$j^\mu$，而式\eqref{general-sym-current}保留的是原先采用的反号流。比较公式时必须同时比较生成元和流的定义。
 
-考虑一个任意的变换
+\paragraph{用Noether's Trick再求共形流。}
+现在考虑微分同胚协变且Weyl不变的完整作用量，允许包含曲率耦合。将式\eqref{eq:noether-fixed-conformal}局域化，取固定背景上的场变分
+\begin{equation}
+    \delta_s\phi^i=s(x)\bigl(\xi^\mu\nabla_\mu\phi^i+w_i\sigma\phi^i\bigr),
+    \qquad\delta_s g^{\mu\nu}=0.
+\end{equation}
+为计算作用量的变化，辅助考虑由$v=s\xi$生成的微分同胚，再叠加参数为$-s\sigma$的Weyl变换。这个联合变换对场的作用恰好等于上式，但逆度规变化为
 \begin{align}
-    & x^\mu\to x'^\mu=x^\mu+\epsilon\xi^\mu,\notag\\
-    & \phi(x)\to \phi'(x')=\phi(x)+\mathcal F[\phi],\label{arbitary-field-trans},
+    \delta_{\mathrm{comb}}g^{\mu\nu}
+    &=-\nabla^\mu(s\xi^\nu)-\nabla^\nu(s\xi^\mu)
+    +2s\sigma g^{\mu\nu}\notag\\
+    &=-\xi^\nu\nabla^\mu s-\xi^\mu\nabla^\nu s.
 \end{align}
-我们计算变换后的作用量
-\begin{align}
-    S[\phi']=\int\d^4x'\mathcal L[\phi'(x'), \partial_\mu'\phi'(x')].
-\end{align}
-这里我们采用了被动的变换观点: 时空点位置不变, 只变坐标与场.
+第二步使用共形Killing方程。这里不能丢掉$\nabla s$项：$\xi$是共形Killing向量，$s(x)\xi$一般不是。
 
-如果这是一种对称性变换, 则$S$在这个变换下不变$S[\phi]=S[\phi']$. 这里我们使用所谓的Noether's Trick, 也就是将全局的参数$\epsilon$提升为局域的参数$\epsilon(x)$, 则$S[\phi']$一定会改变, 并且正比于$\epsilon$的项一定为$0$, 于是最低阶的也一定是正比$\partial_\mu\epsilon$的, 我们设
+取$s$紧支撑，联合变换由微分同胚协变性和Weyl对称性保证作用量离壳不变。它与所求固定背景变换之间仅差上述度规变分，因此
 \begin{align}
-    S[\phi']=S[\phi]-\int\d^4x j^\mu\partial_\mu\epsilon(x).
+    0=\delta_{\mathrm{comb}}S
+    &=\delta_sS+\frac12\int_M T_{\mu\nu}
+    \delta_{\mathrm{comb}}g^{\mu\nu}\epsilon\notag\\
+    &=\delta_sS-\int_M(\nabla_\mu s)T^{\mu\nu}\xi_\nu\epsilon.
 \end{align}
-我们要求在$x\to\infty$时, $\epsilon(x)\to0$, 则分部积分有
-\begin{align}
-    S[\phi']=S[\phi]+\int\d^4x\epsilon(x)\partial_\mu j^\mu.\label{noether-trick},
-\end{align}
-
-然后我们考虑满足EOM的场配置, 因为对于满足EOM的场, 对其做任意的无穷小变换$\delta\phi$, 都有$\delta S=0$, 而$\delta\phi=\mathcal F[\phi]-\epsilon\xi^\mu\partial_\mu\phi$本身就是一个无穷小的场改变. 于是对于\textbf{满足EOM}的场, 同样有
-\begin{align}
-    S[\phi']=S[\phi],
-\end{align}
-于是
-\begin{align}
-    \int\d^4x\epsilon(x)\partial_\mu j^\mu[\phi^{EOM}]=0, 
-\end{align}
-又因为$\epsilon(x)$是完全任意的, 所以
-\begin{align}
-    \partial_\mu j^\mu[\phi^{EOM}]=0.
-\end{align}
-于是这样我们就得到了守恒流.
-
-对于如式\eqref{arbitary-field-trans}那样的场变换, 我们可以直接给出具体计算
-\begin{align}
-    \partial'_\mu\phi'(x')&=(\partial_\mu-\partial_\mu(\epsilon\xi^\nu)\partial_\nu)\phi'(x')\\
-    &=(\partial_\mu-\partial_\mu(\epsilon\xi^\nu)\partial_\nu)(\phi(x)+\mathcal F[\phi])\\
-    &=\partial_\mu\phi+\partial_\mu\left(\epsilon\mathcal F\phi\right)-\partial_\mu(\epsilon\xi^\nu)\partial_\nu\phi,
-\end{align}
-从而我们有
-\begin{align}
-    & \delta\phi'(x)=\mathcal F[\phi]-\epsilon\xi^\mu\partial_\mu\phi,\\
-    & \delta\partial_\mu\phi(x)=\partial_\mu\left(\epsilon\mathcal F\phi\right)-\partial_\mu(\epsilon\xi^\nu)\partial_\nu\phi.
-\end{align}
-于是
-\begin{align}
-    \delta S&=\int\d^4x'\mathcal L(\phi'(x'), \partial'\phi'(x'))-\int\d^4x\mathcal L(\phi(x), \partial\phi(x))\\
-    &=\int\d^4x\left[\left(\left|\pa{x^\mu}{x'^\nu}\right|-1\right)\mathcal L+\pa{\mathcal L}{\phi}\delta\phi+\pa{\mathcal L}{(\partial_\mu\phi)}\delta\partial_\mu\phi\right].
-\end{align}
-注意其中第一项为
-\begin{align}
-    \left|\pa{x^\mu}{x'^\nu}\right|-1=\partial_\mu(\epsilon\xi^\mu), 
-\end{align}
-代表测度本身的改变. 只提取出正比$\partial_\mu\epsilon$的项, 我们得到
-\begin{align}
-    \delta S=-\int\d^4x\partial_\mu\epsilon\left[-\xi^\mu\mathcal L+\Pi^\mu\left(\xi^\nu\partial_\nu\phi-\mathcal F[\phi]\right)\right].
-\end{align}
-于是我们可以得到守恒流
-\begin{align}
-    j^\mu=-\xi^\mu\mathcal L+\Pi^\mu\left(\xi^\nu\partial_\nu\phi-\mathcal F[\phi]\right),
-\end{align}
-其中
-\begin{align}
-    \Pi^\mu=\pa{\mathcal L}{(\partial_\mu\phi)}.
-\end{align}
-利用能动张量定义
-\begin{align}
-    T_{\mu\nu}=\Pi_\mu\partial_\nu\phi-g_{\mu\nu}\mathcal L, 
-\end{align}
-我们有
-\begin{align}
-    j_\mu=\xi^\nu T_{\mu\nu}-\Pi_\mu\mathcal F[\phi].\label{general-sym-current}
-\end{align}
+于是直接得到
+\begin{equation}
+    \boxed{\delta_sS=\int_M(\nabla_\mu s)T^{\mu\nu}\xi_\nu\epsilon,
+    \qquad J_\xi^\mu=T^{\mu\nu}\xi_\nu.}
+\end{equation}
+再利用物质场在壳时的驻值条件，便有$\nabla_\mu J_\xi^\mu=0$。整个推导使用完整作用量的Hilbert变分，因而包含曲率耦合带来的改进项，也与前面直接计算散度的结果一致。
 
 \subsection{哈密顿量}
 \begin{definition}[共轭动量]

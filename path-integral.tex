@@ -530,6 +530,42 @@
         \braket{\frac{\delta S}{\delta\phi}(x)\phi(x_1)\cdots}=i\sum_i\delta^4(x-x_i)\braket{\phi(x_1)\cdots\phi(x_{i-1})\phi(x_{i+1})\cdots}.
     \end{align}
 \end{theorem}
+\paragraph{注意: 路径积分中的导数与编时乘积中的导数}\label{sd-time-ordering-contact}
+这里需要区分路径积分中的场变量与Hilbert空间中的算符. 为此, 仅在本段用下标$\mathrm{PI}$表示路径积分平均, 用下标$\mathrm{Op}$表示算符期望, 并给算符加上帽子. 对不含时间导数的玻色场插入, 有
+\begin{equation}
+    \braket{O_1(t_1)O_2(t_2)}_{\mathrm{PI}}
+    =\braket{\mathcal T\hat O_1(t_1)\hat O_2(t_2)}_{\mathrm{Op}}.
+\end{equation}
+对插入点的时间求导时, 路径积分一侧的导数插入应按同一正则化下的分布意义理解:
+\begin{align}
+    \braket{\frac{\d O_1(t_1)}{\d t_1}O_2(t_2)}_{\mathrm{PI}}
+    &=\frac{\d}{\d t_1}\braket{O_1(t_1)O_2(t_2)}_{\mathrm{PI}}\notag\\
+    &=\frac{\d}{\d t_1}\braket{\mathcal T\hat O_1(t_1)\hat O_2(t_2)}_{\mathrm{Op}}.
+\end{align}
+但在算符一侧, $\mathcal T$包含依赖于$t_1,t_2$的阶跃函数. 将编时乘积展开后求导, 得到
+\begin{align}
+    \frac{\d}{\d t_1}\braket{\mathcal T\hat O_1(t_1)\hat O_2(t_2)}_{\mathrm{Op}}
+    ={}&\braket{\mathcal T\frac{\d\hat O_1(t_1)}{\d t_1}\hat O_2(t_2)}_{\mathrm{Op}}\notag\\
+    &+\delta(t_1-t_2)\braket{[\hat O_1(t_2),\hat O_2(t_2)]}_{\mathrm{Op}}.
+    \label{sd-time-derivative-contact}
+\end{align}
+第二项来自$\d\Theta(t_1-t_2)/\d t_1=\delta(t_1-t_2)$, 是等时对易子给出的接触项. 因此, \textbf{对整个编时关联函数求导, 一般不等于先对算符求导再编时}; 只有相应接触项为零时才能相等. 用虚时间$\tau$及$\mathcal T_\tau$也有同样的编时求导结构. 此处写的是玻色算符的公式; 费米算符需要计入交换符号.
+
+\textbf{Schwinger-Dyson定理左边的$\delta S/\delta\phi$是路径积分中的插入, 不能直接当作普通编时乘积内的算符运动方程并令其为零.} 对含时间导数的插入, 路径积分对应的编时约定通常记作$\mathcal T^*$: 先对未求导的场编时, 再让时间导数作用于整个编时乘积. 它与把已求导算符直接放进普通$\mathcal T$的结果可以相差接触项. 这也不是说每一条积分路径都满足经典运动方程.
+
+以标准动能项、无导数相互作用的实标量场为例, $\hat\pi=\partial_0\hat\phi$, 等时对易关系为
+\begin{equation}
+    [\hat\phi(t,\vec x),\hat\phi(t,\vec y)]=0,
+    \qquad [\partial_0\hat\phi(t,\vec x),\hat\phi(t,\vec y)]=-i\delta^3(\vec x-\vec y).
+\end{equation}
+所以对二点函数求一次时间导数时接触项为零, 再求一次时却不为零. 空间导数不作用于编时的阶跃函数, 因而
+\begin{align}
+    (\Box_x+m^2)\braket{\mathcal T\hat\phi(x)\hat\phi(y)}_{\mathrm{Op}}
+    ={}&\braket{\mathcal T\big[(\Box_x+m^2)\hat\phi(x)\big]\hat\phi(y)}_{\mathrm{Op}}\notag\\
+    &-i\delta^4(x-y).
+\end{align}
+算符运动方程只能用于右边方括号内的算符, 不能消去最后的接触项. 自由场中方括号为零, 仍有$(\Box_x+m^2)D_F(x-y)=-i\delta^4(x-y)$; 有相互作用时则得到附录中的Schwinger-Dyson方程. 这说明算符运动方程成立与关联函数满足带接触项的方程并不矛盾.
+
 通过Schwinger-Dyson定理也可以做微扰展开, 得到Feynman规则. 但是这做法非常猎奇, 且难以看出微扰展开的结构. 具体细节见附录\ref{schwinger-dyson-perturbative-expansion}.
 
 考虑对称性变换

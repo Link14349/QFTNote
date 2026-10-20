@@ -1171,8 +1171,7 @@ Spinor的代数空间是一个$4\times4$的复矩阵线性空间, 所以它应�
 \end{equation}
 不难看出这是协变的.
 
-\kaishu
-而如果我们仍然强加对易关系到编时算符上, 即定义
+\note[费米编时与协变性]{而如果我们仍然强加对易关系到编时算符上, 即定义
 \begin{equation}
     \mathcal T\left\{\psi_A(y)\bar\psi^B(x)\right\}\equiv\Theta(y^0-x^0)\psi_A(y)\bar\psi^B(x)+\Theta(x^0-y^0)\bar\psi^B(x)\psi_A(y),
 \end{equation}
@@ -1181,7 +1180,7 @@ Spinor的代数空间是一个$4\times4$的复矩阵线性空间, 所以它应�
     \braket{\psi_A(y)\bar\psi^B(x)}=\int i\dddd p\frac{\omega}{\om p}\frac{\slashed p-\frac{p^2-m^2}{\omega}\gamma^0+m}{p^2-m^2+i\epsilon},
 \end{equation}
 这又丑又完全不协变, 是一个灾难性的结果.
-\songti
+}
 
 \subsection{旋量的路径积分}
 对于旋量场, 我们同样可以通过路径积分的方式进行量子化. Naively我们可能认为, 就定义一个有4*2个自由度的路径积分即可
@@ -1194,16 +1193,15 @@ Spinor的代数空间是一个$4\times4$的复矩阵线性空间, 所以它应�
 \end{align}
 等号的右边$\bar\psi, \psi$显然是对易的, 但是左边因为我们$\mathcal T$的定义, 是反对易的. 这显然有问题! 要解决这个矛盾, 我们只能想办法让右边的路径积分里$\bar\psi, \psi$反对易. 这似乎是非常奇怪的要求, 但我们看到, 数学家Grassmann早就给我们准备好了合适的数学工具: Grassmann数.
 \subsubsection{Grassmann代数}
-\kaishu 
-    出于严谨性的考虑, 我们这里可以简单补充一下代数的定义:
-    \begin{definition}[代数]
-        考虑一个定义在域$\mathbb F$上的线性空间$V$, 若它同时是一个环, 且数乘与环乘法相容:
-        \begin{align}
-            \lambda(\vec u\vec v)=\vec u(\lambda\vec v),
-        \end{align}
-        则称$V$是一个(结合)代数.
-    \end{definition}
-\songti
+出于严谨性的考虑, 我们这里可以简单补充一下代数的定义:
+\begin{definition}[代数]
+    考虑一个定义在域$\mathbb F$上的线性空间$V$, 若它同时是一个环, 且数乘与环乘法相容:
+    \begin{align}
+        \lambda(\vec u\vec v)=\vec u(\lambda\vec v),
+    \end{align}
+    则称$V$是一个(结合)代数.
+\end{definition}
+
 \begin{definition}[Grassmann代数]
     Grassmann为定义在域$\mathbb C$上的非交换代数, 并且元素乘法满足反对易关系:
     \begin{align}

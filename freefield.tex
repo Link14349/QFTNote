@@ -111,7 +111,7 @@
 \end{equation}
 其中$\iota_K$表示向量$K$对形式的内缩；也可将$\iota_K\epsilon$写作一形式$K_\mu\d x^\mu$的Hodge对偶。式\eqref{eq:noether-variational-symmetry}须\textbf{离壳成立}。在紧支撑变分或适当的边界条件下，这个全微分不改变体内的运动方程。以下均采用这种边界条件，不讨论大变换或非平凡边界荷。
 
-\subsubsection{第一Noether定理：从离壳恒等式到在壳守恒}
+\subsubsection{第一Noether定理}
 先考虑不含曲率或度规导数的一阶标量场理论，
 \begin{equation}
     \mathcal L=\mathcal L(g^{\mu\nu},\phi^i,\nabla_\mu\phi^i),
@@ -177,7 +177,6 @@
 \end{equation}
 流本身并不唯一。在平直时空中，加入$\partial_\nu B^{[\nu\mu]}$不改变其散度；在相应的边界通量消失时，也不改变守恒荷。这类改进项在能动张量和共形对称性中会再次出现。
 
-\subsubsection{内禀对称性与时空对称性的例子}
 \begin{example}[复标量场的$U(1)$对称性]\label{csU1}
     沿用本书的复标量场记号$\psi$，考虑
     \begin{equation}
@@ -308,10 +307,22 @@
     \end{align}
     利用Dirac方程及其共轭方程, 可得$\partial_\mu T^\mu{}_{\nu,\mathrm{can}}=0$. 正则张量一般不对称; 对Lorentz变换, 还需计入旋量本身的变换以及相应的自旋流. 若要从几何变分得到对称的Hilbert能动张量, 应引入标架和自旋联络, 不能直接套用前面一阶标量场的度规变分公式.
 \end{example}
-\subsubsection{Weyl对称性、共形变换与改进能动张量}
-共形变换允许度规改变一个局域尺度。这里先讨论Weyl对称性怎样约束能动张量的迹，再构造固定背景上的共形对称性。
 
-\paragraph{Weyl变换与迹恒等式。}
+\begin{definition}[共形变换]
+    设$(M,g)$与$(M',g')$为两个带度规的流形。若微分同胚$\psi:M\to M'$满足
+    \begin{equation}
+        \psi^*g'=\Omega^2g,\qquad\Omega>0,
+    \end{equation}
+    则称$\psi$为共形变换，其中$\Omega$是$M$上的光滑函数。
+\end{definition}
+Weyl变换与共形等距变换是这一定义的两种特例\cite{LinkConformalZhihu}：
+\begin{itemize}
+    \item \textbf{Weyl变换：}取$M'=M$、$\psi=\mathrm{id}_M$，于是$g'=\Omega^2g$。流形上的点保持不变，度规作局域尺度变换。
+    \item \textbf{共形等距变换：}取$M'=M$、$g'=g$，于是$\psi^*g=\Omega^2g$。它是同一背景$(M,g)$上的微分同胚，在局部坐标中可写为$x'^\mu(p)=x^\mu(\psi(p))$。
+\end{itemize}
+下面先讨论Weyl对称性对能动张量迹的约束，再给出共形Killing向量及其守恒流。
+
+\begin{example}[Weyl变换与迹恒等式]
 Weyl变换保持流形上的点不变，改变背景度规及场的局域尺度：
 \begin{equation}
     g_{\mu\nu}\to\Omega^2g_{\mu\nu},
@@ -337,7 +348,8 @@ Weyl变换保持流形上的点不变，改变背景度规及场的局域尺度�
     \boxed{T^\mu{}_{\mu}=-\sum_iw_i\phi^iE_i.}
     \label{eq:noether-weyl-identity}
 \end{equation}
-最后才令物质场满足$E_i=0$，得到在壳无迹条件$T^\mu{}_{\mu}=0$。它也解释了式\eqref{eq:noether-offshell}中的度规项何时消失：若$\Delta g^{\mu\nu}=-2\sigma g^{\mu\nu}$，则该项正比于迹。Weyl对称性给出的是一种充分机制，不应把它当作所有可能情形的唯一解释。
+最后才令物质场满足$E_i=0$，得到在壳无迹条件$T^\mu{}_{\mu}=0$。它也解释了式\eqref{eq:noether-offshell}中的度规项何时消失：若$\Delta g^{\mu\nu}=-2\sigma g^{\mu\nu}$，则该项正比于迹。
+\end{example}
 
 \begin{example}[共形耦合的实标量场]
     在$d>2$维中取
@@ -347,115 +359,79 @@ Weyl变换保持流形上的点不变，改变背景度规及场的局域尺度�
         \mathcal L=\frac12\nabla_\mu\phi\nabla^\mu\phi
         +\frac12\xi_cR\phi^2.
     \end{equation}
-    本节的曲率约定为$[\nabla_\mu,\nabla_\nu]v^\rho
-    =R^\rho{}_{\sigma\mu\nu}v^\sigma$、$R_{\mu\nu}=R^\rho{}_{\mu\rho\nu}$。相应的Weyl变化满足
+    不难证明，经过Weyl变换$g'_{\mu\nu}=\Omega^2g_{\mu\nu}$、
+    $\phi'=\Omega^{-w}\phi$，拉氏量仅相差一个全导数项：
     \begin{equation}
-        \delta_\sigma R=-2\sigma R-2(d-1)\Box\sigma,
-        \qquad\Box=\nabla_\mu\nabla^\mu.
+        \boldsymbol{\mathcal L}'-\boldsymbol{\mathcal L}
+        =-\frac{w}{2}\nabla_\mu\!\left(\phi^2\nabla^\mu\ln\Omega\right)\epsilon.
     \end{equation}
-    结合$\delta_\sigma\epsilon=d\sigma\epsilon$与$\delta_\sigma\phi=-w\sigma\phi$，可得
-    \begin{equation}
-        \delta_\sigma\boldsymbol{\mathcal L}
-        =-\frac{w}{2}\nabla_\mu(\phi^2\nabla^\mu\sigma)\epsilon.
-    \end{equation}
-    因而紧支撑的Weyl变换确实保持作用量不变。场方程与完整Hilbert张量为
+    这里$\boldsymbol{\mathcal L}=\mathcal L\epsilon$，右端各量均按变换前的场和度规定义。
+    因此在边界项消失时，作用量不变。
+    取曲率约定$[\nabla_\mu,\nabla_\nu]v^\rho
+    =R^\rho{}_{\sigma\mu\nu}v^\sigma$、$R_{\mu\nu}=R^\rho{}_{\mu\rho\nu}$，
+    对作用量作度规变分，得到Hilbert能动张量
     \begin{align}
-        E_\phi&=-\Box\phi+\xi_cR\phi,\\
-        T_{\mu\nu}&=\nabla_\mu\phi\nabla_\nu\phi
+        T_{\mu\nu}
+        &=\nabla_\mu\phi\nabla_\nu\phi
         -\frac12g_{\mu\nu}(\nabla\phi)^2\notag\\
         &\quad+\xi_c\left[G_{\mu\nu}\phi^2
         +(g_{\mu\nu}\Box-\nabla_\mu\nabla_\nu)\phi^2\right],
     \end{align}
-    其中$G_{\mu\nu}=R_{\mu\nu}-\frac12g_{\mu\nu}R$。
-    \textbf{先对完整作用量作度规变分，再取平直极限}，得到
-    \begin{equation}
-        T_{\mu\nu}^{\mathrm{imp}}
-        =\partial_\mu\phi\partial_\nu\phi
-        -\frac12\eta_{\mu\nu}(\partial\phi)^2
-        +\xi_c(\eta_{\mu\nu}\Box-\partial_\mu\partial_\nu)\phi^2.
-        \label{eq:noether-improved-scalar-t}
-    \end{equation}
-    最后一项称为改进项；它的散度恒为零。利用
-    $\Box\phi^2=2(\partial\phi)^2+2\phi\Box\phi$，可检查
-    \begin{equation}
-        (T^{\mathrm{imp}})^\mu{}_{\mu}
-        =\frac{d-2}{2}\phi\Box\phi=-w\phi E_\phi,
-    \end{equation}
-    在壳时为零。若一开始就令$R=0$再作度规变分，会遗漏这一改进项。
+    其中$G_{\mu\nu}=R_{\mu\nu}-\frac12g_{\mu\nu}R$，
+    $\Box=\nabla_\mu\nabla^\mu$。利用
+    $\Box\phi^2=2(\nabla\phi)^2+2\phi\Box\phi$，取迹得
+    \begin{align}
+        T^\mu{}_\mu
+        &=-\frac{d-2}{2}(\nabla\phi)^2
+        +\xi_c\left[-\frac{d-2}{2}R\phi^2+(d-1)\Box\phi^2\right]\notag\\
+        &=\frac{d-2}{2}\phi(\Box\phi-\xi_cR\phi).
+    \end{align}
+    代入场方程$-\Box\phi+\xi_cR\phi=0$，便有$T^\mu{}_\mu=0$，
+    因而这个Hilbert能动张量确实是在壳无迹的。
 \end{example}
 
-\paragraph{共形等距与固定背景上的场变换。}
-在给定的$(M,g)$上，共形等距变换是满足
-\begin{equation}
-    \psi^*g=\Omega^2g
-\end{equation}
-的微分同胚。与Weyl变换不同，这里的$\Omega$由$\psi$及$g$决定，不能任意指定。对一参数族取
-\begin{equation}
-    x'^\mu=x^\mu+s\xi^\mu(x)+O(s^2),
-    \qquad\Omega=1+s\sigma(x)+O(s^2),
-\end{equation}
-便得到共形Killing方程
+\begin{example}[共形等距变换与其守恒流]
+共形等距变换的生成元$\xi$称为共形Killing向量，满足
 \begin{equation}
     \boxed{\nabla_\mu\xi_\nu+\nabla_\nu\xi_\mu
     =2\sigma g_{\mu\nu},
     \qquad\sigma=\frac1d\nabla_\mu\xi^\mu.}
     \label{eq:noether-conformal-killing}
 \end{equation}
-当$\sigma=0$时退化为Killing方程。
-
-若理论同时微分同胚协变并具有上述Weyl对称性，先作正向拉回，再作因子为$\Omega^{-1}$的Weyl变换，就把背景恢复为原来的$g$。对标量场，组合变换为
+当$\sigma=0$时退化为Killing方程。对微分同胚协变且Weyl不变的理论，固定背景上的标量场变换为
 \begin{equation}
-    \widehat\phi^i=\Omega^{w_i}\psi^*\phi^i,
-    \qquad\Delta_\xi\phi^i
+    \Delta_\xi\phi^i
     =\xi^\mu\nabla_\mu\phi^i+w_i\sigma\phi^i.
     \label{eq:noether-fixed-conformal}
 \end{equation}
-权重项的正号来自用于恢复背景的逆Weyl因子。这是在\emph{固定背景}上作用于场的共形对称性。这里的Weyl完备化是构造共形对称性的一条充分途径，不据此断言任意共形理论都必须具有同样的曲背景延拓。
 
-\paragraph{伸缩、特殊共形变换及其流。}
-在$d\geq3$的平直时空中，除平移与Lorentz变换外，考虑下面两类局部生成元。伸缩变换满足
-\begin{equation}
-    x'^\mu=\lambda x^\mu,\quad\Omega=\lambda,\quad\lambda>0,
-    \qquad\xi_D^\mu=x^\mu,\quad\sigma_D=1,
-\end{equation}
-其中无穷小形式取$\lambda=\e^s$。特殊共形变换可写为
-\begin{equation}
-    x'^\mu=\frac{x^\mu-b^\mu x^2}{q_b(x)},
-    \quad q_b(x)=1-2b\cdot x+b^2x^2,
-    \quad\Omega_b=\frac1{|q_b(x)|}.
-\end{equation}
-这里$x^2=\eta_{\mu\nu}x^\mu x^\nu$，其余内积同理。该式在$q_b\ne0$的区域有定义，可由反演、平移和再次反演构造。令$b\to sb$，在恒等变换附近展开得
-\begin{equation}
-    \xi_b^\mu=2(b\cdot x)x^\mu-b^\mu x^2,
+在$d\geq3$的平直时空中，伸缩变换与特殊共形变换分别定义为
+\begin{align}
+    x'^\mu&=\lambda x^\mu,\qquad\lambda>0,\\
+    x'^\mu&=\frac{x^\mu-b^\mu x^2}{q_b(x)},
+    \qquad q_b(x)=1-2b\cdot x+b^2x^2\ne0.
+\end{align}
+这里$x^2=\eta_{\mu\nu}x^\mu x^\nu$，其余内积同理。相应的共形Killing向量及共形因子的无穷小参数为
+\begin{align}
+    \xi_D^\mu&=x^\mu,\qquad\sigma_D=1,\\
+    \xi_b^\mu&=2(b\cdot x)x^\mu-b^\mu x^2,
     \qquad\sigma_b=2b\cdot x.
-\end{equation}
-这两个向量场都满足式\eqref{eq:noether-conformal-killing}。有限特殊共形变换一般不在整个闵可夫斯基时空上处处有定义；二维的局部共形变换则另有更丰富的结构。
-
-对上述理论，完整Hilbert张量在壳满足
+\end{align}
+于是我们得到守恒流为
 \begin{equation}
-    T^{\mu\nu}=T^{\nu\mu},\qquad
-    \nabla_\mu T^{\mu\nu}=0,\qquad T^\mu{}_{\mu}=0.
-\end{equation}
-守恒性来自同时变换场与背景的微分同胚恒等式，无迹性来自Weyl恒等式。于是对任意共形Killing向量，取
-\begin{equation}
-    \boxed{J_\xi^\mu=T^{\mu\nu}\xi_\nu,}
+    \boxed{J_\xi^\mu=T^{\mu\nu}\xi_\nu.}
     \label{eq:noether-conformal-current}
 \end{equation}
-便有
-\begin{align}
-    \nabla_\mu J_\xi^\mu
-    &=(\nabla_\mu T^{\mu\nu})\xi_\nu
-    +\frac12T^{\mu\nu}(\nabla_\mu\xi_\nu+\nabla_\nu\xi_\mu)\notag\\
-    &=\sigma T^\mu{}_{\mu}=0.
-\end{align}
-在平直时空分别代入$\xi_D$和$\xi_b$，得到
+具体为
 \begin{equation}
     D^\mu=x_\nu T^{\mu\nu},\qquad
     J_b^\mu=b_\rho C^{\mu\rho},\qquad
     C^{\mu\rho}=2x^\rho x_\nu T^{\mu\nu}-x^2T^{\mu\rho}.
 \end{equation}
-使用了改进能动张量时，这些表达式给出相应Noether流的一个代表。下面还会用参数局域化的方法直接导出式\eqref{eq:noether-conformal-current}。
-\subsubsection{Noether第二定理：规范对称性与离壳恒等式}
+这里使用包含改进项的完整Hilbert张量；后文还会展示用Noether's Trick推导该流的例子。
+\end{example}
+
+\subsubsection{第二Noether定理}
 
 Noether第一定理从有限个常参数的变分对称性得到在壳守恒律；第二定理则讨论参数可以是任意局域函数的规范对称性。两者都要求变分对称性对任意场构型成立，区别并不是一个在壳、另一个离壳。以下规范参数均取紧支撑，以排除边界贡献。
 
@@ -474,7 +450,7 @@ Noether第一定理从有限个常参数的变分对称性得到在壳守恒律�
 \end{equation}
 这里的配对是变分中的双线性配对，$\dagger$表示把参数上的导数移到另一侧，\emph{不对复系数取复共轭}；复场及其共轭场按独立变量变分。
 
-\begin{theorem}[Noether第二定理]
+\begin{theorem}[第二Noether定理]
     若作用量对上述任意紧支撑参数$\lambda^A(x)$的变换离壳不变，则Euler--Lagrange表达式满足离壳恒等式
     \begin{equation}
         \boxed{(R^i{}_A)^\dagger E_i\equiv0.}
@@ -538,7 +514,7 @@ Noether第一定理从有限个常参数的变分对称性得到在壳守恒律�
         \boxed{-2\nabla_{\mu}E_g^{\mu\nu}
         =\frac1\kappa\nabla_{\mu}G^{\mu\nu}\equiv0.}
     \end{equation}
-    这就是收缩Bianchi恒等式；它对任意度规成立，并未使用Einstein方程$G^{\mu\nu}=0$。
+    这就是收缩Bianchi恒等式；它对任意度规成立。
 \end{example}
 
 \begin{example}[Maxwell场的规范恒等式]
@@ -611,62 +587,43 @@ Noether第一定理从有限个常参数的变分对称性得到在壳守恒律�
     \end{equation}
     恰好抵消。整个验证没有使用任何一个运动方程；正是规范对称性使这些运动方程并非相互独立。
 \end{example}
-\subsubsection{Noether's Trick：将全局参数暂时局域化}
-Noether's Trick是第一Noether定理的另一种推导和计算方法。它把原来全局对称性的常数参数临时换成函数；这个局域化后的变换\textbf{一般不是作用量的对称性}。第二定理则要求任意局域参数从一开始就给出离壳对称性，两者不可混同。\cite{AverySchwabNoether2015}
+\subsubsection{Noether's trick}
+这个所谓的trick在很多地方都有误解，并且还错误地被称为Noether第二定理。这个说法是完全不对的，Noether's Trick其实与Noether第一定理是等价的：它从离壳成立的全局变分对称性出发，得到在EOM意义下成立的守恒律。将它误解为Noether第二定理大概是因为它也暂时将全局的参数给变为了局域参数，但这不影响它的物理实质。
 
-先回到固定背景上的一阶标量理论，设常数参数变换$\delta\phi^i=s\Delta\phi^i$满足$\Delta\boldsymbol{\mathcal L}=(\nabla_\mu K^\mu)\epsilon$。将$s$改为紧支撑函数$s(x)$，由乘法法则，
+先沿用前面不含曲率或度规导数的一阶标量场理论。所谓Noether's Trick，它的标准操作就是，我们在做对称性操作的时候，临时将变换参数$s$提升为局域的$s(x)$，取$\delta\phi^i=s(x)\Delta\phi^i$、$\delta g^{\mu\nu}=s(x)\Delta g^{\mu\nu}$。这样Lagrangian的变化就会在我们之前的基础上再多一项，变成
+\begin{equation}
+    \begin{aligned}
+        \delta_s\boldsymbol{\mathcal L}
+        &=\left[\frac{\delta S}{\delta\phi^i}\Delta\phi^i
+        +\nabla_\mu(\Pi_i^\mu\Delta\phi^i)
+        +\frac12T_{\mu\nu}\Delta g^{\mu\nu}\right]s\epsilon\\
+        &\quad+(\nabla_\mu s)\Pi_i^\mu\Delta\phi^i\epsilon.
+    \end{aligned}
+\end{equation}
+然后前面这一项由离壳的变分对称性条件，可以变为$s\d{*K}$。这一步本身不需要$T_{\mu\nu}\Delta g^{\mu\nu}=0$；这个条件会在下面利用EOM令$\delta S=0$时用到。于是
 \begin{align}
     \delta_s\boldsymbol{\mathcal L}
     &=\left[s\nabla_\mu K^\mu
     +(\nabla_\mu s)\Pi_i^\mu\Delta\phi^i\right]\epsilon\notag\\
-    &=\left[\nabla_\mu(sK^\mu)
-    +(\nabla_\mu s)(\Pi_i^\mu\Delta\phi^i-K^\mu)\right]\epsilon.
+    &=\d({*sK})+(\nabla_\mu s)(\Pi_i^\mu\Delta\phi^i-K^\mu)\epsilon.
 \end{align}
-第一项是没有边界贡献的全微分，故
+我们通过对$s$施以紧支撑条件，可以去掉全部的边界项，因此我们有
 \begin{equation}
-    \boxed{\delta_s S=\int_M(\nabla_\mu s)j^\mu\epsilon
-    =-\int_M s\nabla_\mu j^\mu\epsilon.}
+    \delta S=\int(\nabla_\mu s)(\Pi_i^\mu\Delta\phi^i-K^\mu)\epsilon.
     \label{eq:noether-trick-standard}
 \end{equation}
-这一步仍然离壳成立。另一方面，在满足运动方程的场配置上，作用量对任意紧支撑场变分都是驻值，因此$\delta_sS=0$。利用$s(x)$的任意性，才得到$\nabla_\mu j^\mu=0$。实际计算时，只需把作用量变化整理成$\nabla_\mu s$乘以某个量，即可读出流。若同时改变背景，则还须保留式\eqref{eq:noether-offshell}中的背景变分项；若拉氏量含高阶导数，也可能需要先对参数的高阶导数分部积分。
-
-\paragraph{与坐标变换记法及后文Ward恒等式的衔接。}
-另一种常见写法同时变换坐标与场，
-\begin{align}
-    x'^\mu&=x^\mu+s\xi^\mu,\notag\\
-    \phi'^i(x')&=\phi^i(x)+s\mathcal F^i[\phi].
-    \label{arbitary-field-trans}
-\end{align}
-这里$\mathcal F^i$是无穷小参数的一阶系数，不含额外的$s$。在\emph{同一坐标点}比较场时，
+然后再次分部积分，利用$s$的紧支撑条件，仍然可以去掉边界项。在物质场满足EOM、并且$T_{\mu\nu}\Delta g^{\mu\nu}=0$时（特别是固定背景$\Delta g^{\mu\nu}=0$时），有$\delta S=0$，因此
 \begin{equation}
-    \delta_0\phi^i(x)=s\bigl(\mathcal F^i-\xi^\nu\partial_\nu\phi^i\bigr).
-\end{equation}
-例如，$\mathcal F=0$且$x'=x+s\xi$给出$\delta_0\phi=-s\xi\cdot\partial\phi$，与前文正向拉回的生成元相反；这解释了文献中整体流号的差异。
-
-在平直时空的一阶理论中，若坐标与场的联合变换严格保持作用量的被积密度，即没有另加的边界项，则该生成元对应的标准流为
-\begin{equation}
-    j^\mu=\Pi_i^\mu\mathcal F^i
-    -\xi^\nu(T_{\mathrm{can}})^\mu{}_{\nu},
-    \qquad(T_{\mathrm{can}})^\mu{}_{\nu}
-    =\Pi_i^\mu\partial_\nu\phi^i-\delta^\mu{}_{\nu}\mathcal L.
-\end{equation}
-若联合密度变化为全微分，则需再减去相应边界流，不能省略。为与本书后文引用的原公式相接，另将整体反号的流记为$\widetilde j$：
-\begin{equation}
-    \widetilde j_\mu
-    =\xi^\nu(T_{\mathrm{can}})_{\mu\nu}-\Pi_{i\mu}\mathcal F^i
-    =-j_\mu.
-    \label{general-sym-current}
-\end{equation}
-相应地，局域化作用量有两种完全等价的写法，
-\begin{align}
-    \delta_sS
-    &=\int\d^4x\,(\partial_\mu s)j^\mu
-    =-\int\d^4x\,s\partial_\mu j^\mu\notag\\
-    &=-\int\d^4x\,(\partial_\mu s)\widetilde j^\mu
-    =\int\d^4x\,s\partial_\mu\widetilde j^\mu.
+    \delta S=-\int s\nabla_\mu(\Pi_i^\mu\Delta\phi^i-K^\mu)\epsilon=0.
     \label{noether-trick}
-\end{align}
-后文Ward恒等式采用第一行的$j^\mu$，而式\eqref{general-sym-current}保留的是原先采用的反号流。比较公式时必须同时比较生成元和流的定义。
+\end{equation}
+因为$s(x)$是任意的，如果我们想要对任意的$s$都满足$\delta S=0$，只能要求
+\begin{equation}
+    \nabla_\mu(\Pi_i^\mu\Delta\phi^i-K^\mu)=0.
+\end{equation}
+从而我们同样证明了守恒流。因此我们发现，如果在计算中施加一个local的$s$控制的变换，$\delta S$中正比于$\nabla_\mu s$的这一项恰为我们想要求的守恒流。
+
+然后我们接下来再以共形变换为例介绍如何使用Noether's Trick计算守恒流。
 
 \paragraph{用Noether's Trick再求共形流。}
 现在考虑微分同胚协变且Weyl不变的完整作用量，允许包含曲率耦合。将式\eqref{eq:noether-fixed-conformal}局域化，取固定背景上的场变分
@@ -695,7 +652,7 @@ Noether's Trick是第一Noether定理的另一种推导和计算方法。它把�
     \boxed{\delta_sS=\int_M(\nabla_\mu s)T^{\mu\nu}\xi_\nu\epsilon,
     \qquad J_\xi^\mu=T^{\mu\nu}\xi_\nu.}
 \end{equation}
-再利用物质场在壳时的驻值条件，便有$\nabla_\mu J_\xi^\mu=0$。整个推导使用完整作用量的Hilbert变分，因而包含曲率耦合带来的改进项，也与前面直接计算散度的结果一致。
+再利用物质场在壳时的驻值条件，便有$\nabla_\mu J_\xi^\mu=0$。整个推导使用完整作用量的Hilbert变分，因而包含曲率耦合带来的改进项，也与前面给出的共形流一致。
 
 \subsection{哈密顿量}
 \begin{definition}[共轭动量]
@@ -781,7 +738,7 @@ Noether's Trick是第一Noether定理的另一种推导和计算方法。它把�
     \item 得到产生湮灭算符
     \item 得到场方程
 \end{enumerate}
-\kaishu 注: 这里流程没按周洋讲的来, 因为我略微感觉他那样子做有一点点奇怪, 有些地方存在神秘的天降系数, 按照这样从Lagrangian出发的流程会更清晰一些.\songti
+\note{这里流程没按周洋讲的来, 因为我略微感觉他那样子做有一点点奇怪, 有些地方存在神秘的天降系数, 按照这样从Lagrangian出发的流程会更清晰一些.}
 
 写下Lagrangian:
 \begin{equation}
@@ -1045,7 +1002,7 @@ Fourier逆变换可以得到:
     &[Q_N, \psi_x^\dagger]=-\psi_x^\dagger,
 \end{align}
 
-\kaishu 讨论: 复标量场是双自由度的, 因此它有两个产生湮灭算子$a, b$. $a, b$分别代表正粒子和反粒子的运动模式. 而从其的$U(1)$对称性导出的守恒量中可以得出结论, 正粒子与反粒子数目之差为常数.\songti
+\note[粒子数与守恒荷]{复标量场是双自由度的, 因此它有两个产生湮灭算子$a, b$. $a, b$分别代表正粒子和反粒子的运动模式. 而从其的$U(1)$对称性导出的守恒量中可以得出结论, 正粒子与反粒子数目之差为常数.}
 
 \subsection{两点关联函数}
 简单地说, 关联函数就是时空中$n$个不同的点处的场乘积的平均:
@@ -1100,7 +1057,7 @@ $$
 \end{theorem}
 可以发现, 这是一个Lorentz不变量(更准确来说, 是$\mathcal P\times\rm{SO}(1,3)$的不变量, 由于存在$\Theta$它不能在$\mathcal T$下不变).
 
-\kaishu 讨论: 两点关联函数的意义是什么? 不难证明这就是上一节中的$\braket{x|y}$, 也就是说, 它表示在时空点$y$处(假设y更早发生)激发一个粒子, 在时空点$x$处测量到它的概率密度. \songti
+\note[两点关联函数的意义]{不难证明上一节中的$\braket{x|y}$正是两点关联函数, 也就是说, 它表示在时空点$y$处(假设y更早发生)激发一个粒子, 在时空点$x$处测量到它的概率密度(当然我们这里还要模长平方一下). 在凝聚态场论中这个意义可能更加明确, 产生湮灭算符的关联函数模长平方就是在$t$时刻$\vec x$处产生粒子后, 在$t'$时刻$\vec x'$处粒子数密度的变化.}
 
 我们分类讨论类时、类空间隔的关联函数$D(x-y)$:\\
 类时: 我们不妨假设$x^0>y^0$, 那么我们可以做Lorentz变换, 使得$\vec x'=\vec y'=0$. 设$t={x'}^0-{y'}^0$, 则:
@@ -1156,7 +1113,7 @@ $$
     \caption{$f(p)=\frac{p}{\sqrt{p^2+m^2}}\exp{ipr}$}\label{fig:q2Dspace}
 \end{figure}
 
-\kaishu 讨论: 类空间隔的关联函数非零能说明这违反了因果律吗？并不能, 因为所谓的因果律需要是指类空间隔的测量之间互相不影响, 也就是说交换这两个算子作用在态上的顺序不会影响结果. 这暗示我们或许应当计算两个算符的对易子来检验我们的理论是否违背了因果律, 而最直接的检验就是计算$[\phi(x), \phi(y)]$. \songti
+\note[类空间隔与因果律]{类空间隔的关联函数非零能说明这违反了因果律吗？并不能, 因为所谓的因果律需要是指类空间隔的测量之间互相不影响, 也就是说交换这两个算子作用在态上的顺序不会影响结果. 这暗示我们或许应当计算两个算符的对易子来检验我们的理论是否违背了因果律, 而最直接的检验就是计算$[\phi(x), \phi(y)]$.}
 
 因此我们考虑$\phi(x), \phi(y)$的对易子:
 \begin{equation}
@@ -1516,10 +1473,10 @@ $$
 \end{align}
 其中$\mathcal T$为时间顺序算符
 \begin{definition}[时间顺序算符$\mathcal T$]
-    对于一串$\phi(x_1,x_2,\cdots,x_n)$的算符, 时间顺序算符即起到排序作用, 将时间上在后面发生的算符放在左边, 时间上在前面发生的算符放在右边, 相当于一个冒泡排序.
+    对于一串$\phi(x_1,x_2,\cdots,x_n)$的算符, 时间顺序算符即起到排序作用, 将时间上在后面发生的算符放在左边, 时间上在前面发生的算符放在右边.
 \end{definition}
 
-\kaishu 注意: 从\eqref{q2eq1}到\eqref{q2eq2}只有在一定条件下取正确的围道才成立, 并不能认为是一个任何条件下都恒等的关系. 它的作用在于启发性得导出传播子$\frac i{p^2-m^2}$, 并由此根据不同的围道取法定义出四种不同的关联函数. 因此\eqref{q2eq3}、\eqref{q2eq4}、\eqref{q2eq5}、\eqref{q2eq6}并不能视为是从\eqref{q2eq2}直接推导得到的.\songti
+\note[围道的选取]{从\eqref{q2eq1}到\eqref{q2eq2}只有在一定条件下取正确的围道才成立, 并不能认为是一个任何条件下都恒等的关系. 它的作用在于启发性得导出传播子$\frac i{p^2-m^2}$, 并由此根据不同的围道取法定义出四种不同的关联函数. 因此\eqref{q2eq3}、\eqref{q2eq4}、\eqref{q2eq5}、\eqref{q2eq6}并不能视为是从\eqref{q2eq2}直接推导得到的.}
 
 在量子场论中我们只使用Feynman传播子, 这个原因在后面我们有关Dyson级数以及路径积分的讨论中可以清楚地看到. 为了能让我们对于Feynman传播子的讨论对于接下来的工作更有推广借鉴意义, 在此我们给出另一种从关联函数定义
 \begin{equation}
@@ -1644,7 +1601,7 @@ $$
         &=m^2\int\ddd p\frac1{\omega_{\vec p}}\exp{-ip(x-y)}\neq-i\delta^4(x-y)
     \end{align}
 \end{proof}
-\kaishu 讨论: 这些传播子在经典场论中中对应的就是EoM的Green函数, 这就说明了它们的物理意义正是标量粒子的传播. 而$\dddd p$则暗示着在qft中它的传播是off-shell的, 存在不满足色散关系的所谓"内线"粒子. 反之, 若考虑满足色散关系的实粒子, 则我们需要在$\dddd p$后加上$\Theta(p^0)\delta(p^2-m^2)$, 或者使用三维体元$\ld p$以使其on-shell.\songti
+\note[传播子与离壳传播]{这些传播子在经典场论中中对应的就是EoM的Green函数, 这就说明了它们的物理意义正是标量粒子的传播. 而$\dddd p$则暗示着在qft中它的传播是off-shell的, 存在不满足色散关系的所谓"内线"粒子. 反之, 若考虑满足色散关系的实粒子, 则我们需要在$\dddd p$后加上$\Theta(p^0)\delta(p^2-m^2)$, 或者使用三维体元$\ld p$以使其on-shell.}
 
 \subsection{Wick定理}
 \begin{definition}[$\mathcal N$算符]
@@ -1714,7 +1671,7 @@ $$
     \end{equation}
     于是根据归纳公理我们证明得到了Wick定理.
 
-    \kaishu 最后补充一点, 对于Wick定理的证明, 我们并没有利用到任何Free Field的性质, 因此Wick定理也是可以适用于接下来的Interaction Theory的. \songti
+    % \note[Wick定理的适用范围]{最后补充一点, 对于Wick定理的证明, 我们并没有利用到任何Free Field的性质, 因此Wick定理也是可以适用于接下来的Interaction Theory的.}
 \end{proof}
 
 对于旋量, Wick定理同样满足, 但是在这时因为

@@ -1,73 +1,206 @@
 \section{利用Schwinger-Dyson定理微扰展开}\label{schwinger-dyson-perturbative-expansion}
 
-这里给出使用Schwinger-Dyson定理微扰展开的方法的展示, 我们不讨论具体的细节与一般性的推广. 因此我们只考虑有相互作用的实标量场, 我们有
-\begin{theorem}[特化的Schwinger-Dyson定理]
-    \begin{equation}
-        (\Box_x+m^2)\braket{\phi_x\phi_1\cdots\phi_n}=\braket{\mathcal L_{\rm{int}}'(\phi_x)\phi_1\cdots\phi_n}-i\sum_j\delta_{xj}\braket{\phi_1\cdots\phi_{j-1}\phi_{j+1}\cdots\phi_n}
-    \end{equation}
-\end{theorem} 
+从$\phi^4$理论出发,
+\begin{equation*}
+    \mathcal L=\frac12\partial_\mu\phi\partial^\mu\phi-\frac12m^2\phi^2+\frac g{4!}\phi^4,
+\end{equation*}
+即可得到特化的Schwinger-Dyson等式:
+\begin{align*}
+    (\Box_x+m^2)\braket{\phi_x\phi_2\cdots\phi_n}
+    ={}&\frac g{3!}\braket{\phi_x^3\phi_2\cdots\phi_n}\\
+    &-i\sum_{j=2}^n\delta^4(x-x_j)
+    \braket{\phi_2\cdots\widehat{\phi_j}\cdots\phi_n}.
+\end{align*}
+其中帽子表示删去该插入. 以下记$G_n(x_1,\ldots,x_n)=\braket{\phi_1\cdots\phi_n}$为归一化的完整编时关联函数, $G_0=1$, $D_{ab}=D_F(x_a-x_b)$为自由传播子. 我们在保持$\phi\mapsto-\phi$对称性的真空中作微扰展开, 重合点插入与圈积分按同一正则化理解.
 
-\textbf{注意导数的位置:} 上式的$(\Box_x+m^2)$作用于整个编时关联函数, 并不是只作用于编时符号内的场算符. 将时间导数移入$\mathcal T$时会产生等时对易子给出的接触项, 这正是右边$-i\sum_j\delta_{xj}$项的来源; 不能用算符运动方程把它略去. 路径积分插入与算符编时乘积的具体区别见正文第\pageref{sd-time-ordering-contact}页及式\eqref{sd-time-derivative-contact}.
+\subsection{积分递推式与微扰展开}
 
-然后我们展示通过这个定理计算$\phi^3$理论$\braket{\phi_1\phi_2}$. 
-\begin{align}
-    \braket{\phi_1\phi_2}&=\int\d^4x\delta_{1x}\braket{\phi_x\phi_2}=\int\d^4xi(\Box_x+m^2)D_{1x}\braket{\phi_x\phi_2}\\
-    &=\int\d^4xiD_{1x}(\Box_x+m^2)\braket{\phi_x\phi_2}\\
-    &=\int\d^4x\frac{ig}2 D_{1x}\braket{\phi_x^2\phi_2}-i\delta_{x2}\cdot iD_{1x}\\
-    &=D_{12}+\frac{ig}2\int\d^4xD_{1x}\braket{\phi_x^2\phi_2}
-\end{align}
+在上述等式两边乘以$D_F(x-x_1)=D_{1x}$并对$x$积分, 利用自由传播子的方程及Feynman边界条件, 得到
+\begin{important}
+    \begin{align}
+        G_n(x_1,\ldots,x_n)
+        ={}&\sum_{j=2}^n D_{1j}\,
+        G_{n-2}(x_2,\ldots,\widehat{x_j},\ldots,x_n)\notag\\
+        &+\frac{ig}{3!}\int\d^4x\,D_{1x}\,
+        G_{n+2}(x,x,x,x_2,\ldots,x_n).
+        \label{sd-phi4-integral}
+    \end{align}
+\end{important}
 
-而依葫芦画瓢我们有
-\begin{align}
-    \braket{\phi_x^2\phi_2}&=\int\d^4y iD_{y2}(\Box_y+m^2)\braket{\phi_x^2\phi_y}\\
-    &=\frac{ig}2\int\d^4y D_{2y}\braket{\phi_x^2\phi_y^2}-2i\int\d^4y \delta_{xy}iD_{y2}\braket{\phi_x}\\
-    &=\frac{ig}2\int\d^4y D_{2y}\braket{\phi_x^2\phi_y^2}+2D_{x2}\braket{\phi_x}
-\end{align}
+式\eqref{sd-phi4-integral}的两项对应于从外点$x_1$出发的两种操作:
+\begin{enumerate}
+    \item 与另一个已有的插入点$x_j$直接配对, 得到一条自由传播子$D_{1j}$, 剩下$n-2$个插入继续递推.
+    \item 先通过$D_{1x}$到达一个新的相互作用顶点$x$, 乘以$ig/3!$并对$x$积分. 四价顶点已有一条腿接到$x_1$, 因而剩下三个位于$x$的场插入, 与原来的$n-1$个插入一起继续递推.
+\end{enumerate}
 
-梅开三度
-\begin{align}
-    \braket{\phi_x}&=\int\d^4y iD_{yx}(\Box_y+m^2)\braket{\phi_y}\\
-    &=\frac{ig}2\int\d^4y D_{yx}\braket{\phi_y^2}
-\end{align}
-
-于是最后整理得
-\begin{align}
-    \braket{\phi_1\phi_2}=D_{12}-\left(\frac g2\right)^2\int \d^4x\d^4y\big(&2D_{1x}D_{xy}D_{xy}D_{y2}+D_{1x}D_{xx}D_{yy}D_{y2}\notag\\
-    &+2D_{1x}D_{xy}D_{yy}D_{x2}\big)\label{2pt-correlation-expansion-schwinger-dyson}
-\end{align}
-
-我们可以用Feynman图来表示这些二阶贡献, 并写下$\phi^3$理论在位形空间的Feynman规则.
 \begin{figure}[htbp!]
-    \begin{tikzpicture}
-        \draw (-0.5,0) -- (1,0) ;
-        \draw (2,0) -- (3.5,0);
-        \filldraw[black] (1,0) circle (1pt) node[below] {$x$} ;
-        \filldraw[black] (-0.5,0) circle (1pt)node[below] {$x_1$} ;
-        \filldraw[black] (2,0) circle (1pt) node[below] {$y$} ;
-        \filldraw[black] (3.5,0) circle (1pt)node[below] {$x_2$}  ;
-        \draw (1,0)..controls(0.4,1.2)and(1.6,1.2)..(1,0);
-        \draw (2,0)..controls(1.4,1.2)and(2.6,1.2)..(2,0);
-        \draw (4.2,0)--(4.5,0);
-        \draw (4.35,0.15)--(4.35,-0.15);
-        \draw (5.2,0)--(6.7,0);
-        \draw (7.7,0)--(9.2,0);
-        \filldraw[black] (6.7,0) circle (1pt);% node[below] {$x$} ;
-        \filldraw[black] (6.5,0)  node[below] {$x$} ;
-        \filldraw[black] (5.2,0) circle (1pt)node[below] {$x_1$} ;
-        \filldraw[black] (7.7,0) circle (1pt);
-        \filldraw[black] (7.9,0) node[below] {$y$} ;
-        \filldraw[black] (9.2,0) circle (1pt)node[below] {$x_2$}  ;
-        \draw (6.7,0) arc (180:0:0.5 and 0.5);
-        \draw (6.7,0) arc (180:360:0.5 and 0.5);
-        \draw (9.9,0)--(10.2,0);
-        \draw(10.05,0.15)--(10.05,-0.15);
-        \draw (10.9,0)--(12.4,0);
-        \draw (12.4,0)--(12.4,1);
-        \filldraw[black] (12.4,0) circle (1pt) node[below] {$x$} ;
-        \filldraw[black] (10.9,0) circle (1pt) node[below] {$x_1$} ;
-        \filldraw[black] (12.4,1) circle (1pt) node[left] {$y$} ;
-        \filldraw[black] (13.9,0) circle (1pt)node[below] {$x_2$}  ;
-        \draw (12.4,0)--(13.9,0);
-        \draw (12.4,1)..controls(13.6,1.6)and(13.6,0.4)..(12.4,1);
+    \centering
+    \begin{tikzpicture}[x=1cm,y=1cm,baseline=0, every node/.style={font=\small}]
+        \node[draw,circle,pattern=north east lines,minimum size=1.05cm] (a) at (0,0) {};
+        \draw (-1.15,0) node[left] {$1$} -- (a.west);
+        \draw (a.north east) -- (.95,.7) node[right] {$2$};
+        \draw (a.east) -- (1.05,0) node[right] {$\vdots$};
+        \draw (a.south east) -- (.95,-.7) node[right] {$n$};
+        \node at (1.85,0) {$=$};
+        \node at (2.5,0) {$\displaystyle\sum_{j=2}^n$};
+        \draw (3.05,.65) node[left] {$1$} -- (4.05,.65) node[right] {$j$};
+        \node[draw,circle,pattern=north east lines,minimum size=.85cm] (b) at (3.55,-.55) {};
+        \draw (b.west) -- (2.8,-.55);
+        \draw (b.east) -- (4.3,-.55);
+        \node at (3.55,-1.25) {$\{2,\ldots,n\}\setminus\{j\}$};
+        \node at (5.15,0) {$+\;\displaystyle\frac{ig}{3!}\int\d^4x$};
+        \draw (6.55,0) node[above] {$1$} -- (7.55,0);
+        \fill (7.55,0) circle (1.7pt) node[below] {$x$};
+        \node[draw,circle,pattern=north east lines,minimum size=1.15cm] (c) at (8.95,0) {};
+        \draw (7.55,0) to[out=65,in=150] (c.north west);
+        \draw (7.55,0) -- (c.west);
+        \draw (7.55,0) to[out=-65,in=-150] (c.south west);
+        \draw (c.north east) -- (9.95,.7) node[right] {$2$};
+        \draw (c.east) -- (10.05,0) node[right] {$\vdots$};
+        \draw (c.south east) -- (9.95,-.7) node[right] {$n$};
     \end{tikzpicture}
+    \caption{积分递推式的图示. 阴影块表示完整关联函数. $1$到$j$及$1$到$x$的线段表示显式的自由传播子; 连接阴影块的线段标出场插入, 不额外乘传播子. 右端从$x$接到阴影块的三条线表示三个坐标同为$x$的插入.}
+    \label{fig:sd-phi4-recursion}
 \end{figure}
+
+这就实现了从一条外腿开始逐步展开阴影块的想法. 这里的阴影块不是截肢顶点, 也不是1PI顶点; 尤其不能把右边的三个$x$插入再各乘一条传播子, 否则会重复计算.
+
+精确方程把$G_n$与$G_{n+2}$相联系, 并不直接闭合. 但按耦合常数展开后, 它就是一个可计算的递推关系. 写成
+\begin{equation}
+    G_n=\sum_{v=0}^{\infty}g^vG_n^{[v]},
+    \qquad G_0^{[v]}=\delta_{v0},
+\end{equation}
+其中$G_n^{[v]}$不包含$g^v$, 则有
+\begin{align}
+    G_n^{[v]}(x_1,\ldots,x_n)
+    ={}&\sum_{j=2}^nD_{1j}\,
+    G_{n-2}^{[v]}(x_2,\ldots,\widehat{x_j},\ldots,x_n)\notag\\
+    &+\frac{i}{3!}\int\d^4x\,D_{1x}\,
+    G_{n+2}^{[v-1]}(x,x,x,x_2,\ldots,x_n),
+    \label{sd-phi4-order-recursion}
+\end{align}
+并约定$G_n^{[-1]}=0$. 第一项减少两个插入, 第二项减少一阶相互作用, 因而固定$v$后可以有限次递推到$G_0^{[0]}=1$. 当$v=0$时, 这正是自由场的Wick配对递推, 例如
+\begin{equation}
+    G_2^{[0]}(x_1,x_2)=D_{12},\qquad
+    G_4^{[0]}(x_1,x_2,x_3,x_4)=D_{12}D_{34}+D_{13}D_{24}+D_{14}D_{23}.
+\end{equation}
+每用一次第二项就增加一个四价顶点, 所以$g^v$阶正好含$v$个相互作用顶点.
+
+\subsection{从递推式读出顶点与对称因子}
+
+\paragraph{一阶二点函数: 蝌蚪图}
+取$n=2$, 有
+\begin{equation}
+    G_2(x_1,x_2)=D_{12}+\frac{ig}{3!}\int\d^4x\,D_{1x}\braket{\phi_x^3\phi_2}.
+    \label{sd-phi4-two-point-exact}
+\end{equation}
+求一阶项时, 右边四点函数只需取自由值. 三个$\phi_x$中任选一个与$\phi_2$配对, 剩下两个互相配对, 因而
+\begin{equation}
+    \braket{\phi_x^3\phi_2}_0=3D_{xx}D_{x2}.
+\end{equation}
+代回得到
+\begin{equation}
+    G_2(x_1,x_2)=D_{12}+\frac{ig}{2}\int\d^4x\,D_{1x}D_{xx}D_{x2}+O(g^2).
+    \label{sd-phi4-tadpole}
+\end{equation}
+把顶点因子记成$ig$, 这一张蝌蚪图就还剩下$1/2$, 即对称因子$S=2$. 它来自$3/3!=1/2$, 也对应于圈的两个端点互换后图保持不变.
+
+\paragraph{一阶连通四点函数: 为什么顶点是$ig$}
+用下标$c$表示连通部分. 对$n=4$, 第一项$\sum_{j=2}^4D_{1j}G_2$不能连接全部四个外点; 第二项在一阶只需要
+\begin{align}
+    \braket{\phi_x^3\phi_2\phi_3\phi_4}_0
+    ={}&3!D_{x2}D_{x3}D_{x4}\notag\\
+    &+3D_{xx}\big(D_{x2}D_{34}+D_{x3}D_{24}+D_{x4}D_{23}\big).
+\end{align}
+只有第一行在接上$D_{1x}$后把四个外点全部连起来, 所以
+\begin{equation}
+    G_{4,c}(x_1,x_2,x_3,x_4)
+    =ig\int\d^4x\,D_{1x}D_{x2}D_{x3}D_{x4}+O(g^2).
+    \label{sd-phi4-tree}
+\end{equation}
+这里$3!$种配对恰好抵消递推式里的$1/3!$. 原来的$\phi^4/4!$先经过一次求导变成$\phi^3/3!$, 也就是选定了连接$x_1$的那条腿; 剩下三条腿的配对再给出$3!$. 因此四价顶点的因子是$ig$, 这张树图的$S=1$.
+
+\paragraph{二阶二点函数: 三张图的系数}
+还可以将式\eqref{sd-phi4-two-point-exact}中的完整四点函数分成连通部分与二点函数乘积. 在当前$\braket{\phi}=0$的真空中,
+\begin{equation}
+    \braket{\phi_x^3\phi_2}=G_{4,c}(x,x,x,x_2)+3G_2(x,x)G_2(x,x_2).
+\end{equation}
+于是得到另一个精确的图展开起点:
+\begin{align}
+    G_2(x_1,x_2)=D_{12}
+    &+\frac{ig}{3!}\int\d^4x\,D_{1x}G_{4,c}(x,x,x,x_2)\notag\\
+    &+\frac{ig}{2}\int\d^4x\,D_{1x}G_2(x,x)G_2(x,x_2).
+    \label{sd-phi4-two-point-connected}
+\end{align}
+最后一项是一个圈接在传播路径上的结构, 其中的$G_2$仍是完整二点函数. 中间一项的四个插入则属于同一个连通块.
+
+再将式\eqref{sd-phi4-tadpole}和式\eqref{sd-phi4-tree}代入, 保留到$g^2$阶, 得
+\begin{align}
+    G_2(x_1,x_2)={}&D_{12}+\frac{ig}{2}\int\d^4x\,D_{1x}D_{xx}D_{x2}\notag\\
+    &+(ig)^2\int\d^4x\,\d^4y\,
+    \Big[\frac1{3!}D_{1x}D_{xy}^3D_{y2}\notag\\
+    &\hspace{34mm}+\frac14D_{1x}D_{xy}^2D_{yy}D_{x2}\notag\\
+    &\hspace{34mm}+\frac14D_{1x}D_{xx}D_{xy}D_{yy}D_{y2}\Big]+O(g^3).
+    \label{sd-phi4-two-point-second-order}
+\end{align}
+第一张图来自$G_{4,c}$的树级项, 系数为$1/3!$; 第二、三张分别来自$G_2(x,x)$与$G_2(x,x_2)$的一阶项, 系数均为$(1/2)(1/2)=1/4$.
+
+\begin{figure}[htbp!]
+    \centering
+    \begin{tikzpicture}[every node/.style={font=\small}]
+        \begin{scope}
+            \draw (0,0) node[left] {$1$} -- (1,0);
+            \draw (1,0) -- (2,0) -- (3,0) node[right] {$2$};
+            \draw (1,0) to[bend left=65] (2,0);
+            \draw (1,0) to[bend right=65] (2,0);
+            \fill (1,0) circle (1.7pt) node[below left] {$x$};
+            \fill (2,0) circle (1.7pt) node[below right] {$y$};
+            \node at (1.5,-1.25) {$S=3!=6$};
+        \end{scope}
+        \begin{scope}[xshift=4.4cm]
+            \draw (0,0) node[left] {$1$} -- (1.5,0) -- (3,0) node[right] {$2$};
+            \draw (1.5,0) to[bend left=50] (1.5,1.1);
+            \draw (1.5,0) to[bend right=50] (1.5,1.1);
+            \draw (1.5,1.1) .. controls (.5,2.15) and (2.5,2.15) .. (1.5,1.1);
+            \fill (1.5,0) circle (1.7pt) node[below] {$x$};
+            \fill (1.5,1.1) circle (1.7pt) node[right] {$y$};
+            \node at (1.5,-1.25) {$S=2!\times2=4$};
+        \end{scope}
+        \begin{scope}[xshift=8.8cm]
+            \draw (0,0) node[left] {$1$} -- (1,0) -- (2,0) -- (3,0) node[right] {$2$};
+            \draw (1,0) .. controls (.25,1.1) and (1.75,1.1) .. (1,0);
+            \draw (2,0) .. controls (1.25,1.1) and (2.75,1.1) .. (2,0);
+            \fill (1,0) circle (1.7pt) node[below] {$x$};
+            \fill (2,0) circle (1.7pt) node[below] {$y$};
+            \node at (1.5,-1.25) {$S=2\times2=4$};
+        \end{scope}
+    \end{tikzpicture}
+    \caption{$\phi^4$理论二点函数的三张二阶图, 从左到右对应式\eqref{sd-phi4-two-point-second-order}方括号中的三项. 图中所有线均为自由传播子, 每个实心顶点贡献$ig$及一个时空积分.}
+    \label{fig:sd-phi4-second-order}
+\end{figure}
+
+左图的三条平行线可以任意交换; 中图有两条平行线的交换和一个自环的翻转; 右图有两个自环各自的翻转. 外点$1,2$的标号始终固定, 所以右图不能再因交换$x,y$而额外除以$2$. 这里计算的是完整二点函数, 因而右边那张单粒子可约图也应保留.
+
+\subsection{一般的Feynman规则}
+
+由上面的递推, 每条显式的线给出$D_F$, 每次相互作用生成一个四价顶点. 当把所有产生同一张图的递推项合并后, 剩下的组合系数就写成$1/S_\Gamma$. 因而位形空间规则为
+\begin{enumerate}
+    \item 固定$n$个外点的标号, 画出所需阶数的四价图. 计算完整$G_n$时允许非连通图, 但每个连通分支必须包含外点; 计算$G_{n,c}$时只保留连通图.
+    \item 每条连接$a,b$的线给出$D_F(x_a-x_b)$, 包括接到外点的线; 自环给出$D_F(0)$.
+    \item 每个内部顶点$x$给出$ig\int\d^4x$.
+    \item 每张图除以固定所有外点标号后的对称因子$S_\Gamma$.
+\end{enumerate}
+也就是
+\begin{equation}
+    G_n(x_1,\ldots,x_n)
+    =\sum_{\Gamma}\frac{(ig)^{V_\Gamma}}{S_\Gamma}
+    \int\prod_{a=1}^{V_\Gamma}\d^4y_a\,
+    \prod_{\ell\in E_\Gamma}D_F(z_{\ell,1}-z_{\ell,2}),
+    \label{sd-phi4-graph-sum}
+\end{equation}
+其中$z_{\ell,1},z_{\ell,2}$是线$\ell$两端的坐标, 图的范围按上面的第一条选取.
+
+\paragraph{真空泡与动量空间}
+$G_0=1$是归一化条件. 递推始终从一个已有插入出发添加传播子或顶点, 不会独立生成一个不接任何外点的真空分支. 这对应于Dyson展开中真空泡被分母消去, 但不意味着完整$G_n$只含连通图, 例如自由四点函数的三项仍然都要保留.
+
+最后, 将每条$D_F$作Fourier展开, 每个内部顶点的时空积分给出动量守恒的$\delta$函数. 因而动量空间中每条线给出$i/(p^2-m^2+i\epsilon)$, 每个四价顶点给出$ig$, 每个独立圈动量积分用$\d^4k/(2\pi)^4$, 并保留整体动量守恒因子及同一个$1/S_\Gamma$. 对关联函数还需保留外腿传播子; 进一步截肢才得到相应的截肢图.

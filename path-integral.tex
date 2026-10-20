@@ -501,16 +501,12 @@
 
 可以发现, 在这里我们的具体展开与推导都和Dyson级数的推导方式完全一样. 但是, 比起Dyson级数, 路径积分还有其他方式所不具有的优点: 极大的泛用性与可扩展性, 这使得它的应用远不止局限于量子场论的关联函数计算中. 凡是具有类似场论的数学结构的对象, 都可以利用路径积分来处理, 即使是完全的经典场, 或者半经典场, 都可以利用路径积分进行计算. 我们认为, 路径积分是一种处理无穷自由度体系的一种通用工具. 在本节接下来的部分中, 我们会给出一些具体的例子, 说明路径积分的其他用处.
 
-\subsection{Ward恒等式}
+\subsection{Schwinger-Dyson定理}\label{sec:schwinger-dyson}
 我们知道经典情况下我们有EOM
 \begin{align}
     \frac{\delta S}{\delta\phi}=\pa{\mathcal L}{\phi}-\partial_\mu\pa{\mathcal L}{(\partial_\mu\phi)}=0,
 \end{align}
-与守恒流
-\begin{align}
-    \partial_\mu j^\mu=0.
-\end{align}
-我们好奇这些这些定理在量子层面上能多大程度被保持?
+我们好奇经典运动方程在量子层面上能多大程度被保持?
 
 考虑配分函数
 \begin{align}
@@ -530,8 +526,8 @@
         \braket{\frac{\delta S}{\delta\phi}(x)\phi(x_1)\cdots}=i\sum_i\delta^4(x-x_i)\braket{\phi(x_1)\cdots\phi(x_{i-1})\phi(x_{i+1})\cdots}.
     \end{align}
 \end{theorem}
-\paragraph{注意: 路径积分中的导数与编时乘积中的导数}\label{sd-time-ordering-contact}
-这里需要区分路径积分中的场变量与Hilbert空间中的算符. 为此, 仅在本段用下标$\mathrm{PI}$表示路径积分平均, 用下标$\mathrm{Op}$表示算符期望, 并给算符加上帽子. 对不含时间导数的玻色场插入, 有
+\note[路径积分中的导数与编时乘积中的导数]{\label{sd-time-ordering-contact}
+这里需要区分路径积分中的场变量与Hilbert空间中的算符. 为此, 在这两个注中用下标$\mathrm{PI}$表示路径积分平均, 用下标$\mathrm{Op}$表示算符期望, 并给算符加上帽子. 对不含时间导数的玻色场插入, 有
 \begin{equation}
     \braket{O_1(t_1)O_2(t_2)}_{\mathrm{PI}}
     =\braket{\mathcal T\hat O_1(t_1)\hat O_2(t_2)}_{\mathrm{Op}}.
@@ -540,18 +536,50 @@
 \begin{align}
     \braket{\frac{\d O_1(t_1)}{\d t_1}O_2(t_2)}_{\mathrm{PI}}
     &=\frac{\d}{\d t_1}\braket{O_1(t_1)O_2(t_2)}_{\mathrm{PI}}\notag\\
-    &=\frac{\d}{\d t_1}\braket{\mathcal T\hat O_1(t_1)\hat O_2(t_2)}_{\mathrm{Op}}.
+    &=\frac{\d}{\d t_1}\braket{\mathcal T\hat O_1(t_1)\hat O_2(t_2)}_{\mathrm{Op}}\notag\\
+    &\neq\braket{\mathcal T\frac{\d\hat O_1(t_1)}{\d t_1}\hat O_2(t_2)}_{\mathrm{Op}}.
 \end{align}
-但在算符一侧, $\mathcal T$包含依赖于$t_1,t_2$的阶跃函数. 将编时乘积展开后求导, 得到
+这里的$\neq$表示一般并不相等: 对整个编时关联函数求导时, 还会对$\mathcal T$中的阶跃函数求导. 只有相应接触项为零时, 才能把时间导数直接移入编时符号. 用虚时间$\tau$及$\mathcal T_\tau$也有同样的编时求导结构.
+
+对含时间导数的插入, 路径积分对应的编时约定通常记作$\mathcal T^*$: 先对未求导的场编时, 再让时间导数作用于整个编时乘积. 它与把已求导算符直接放进普通$\mathcal T$的结果可以相差接触项. 因此, Schwinger-Dyson定理左边的$\delta S/\delta\phi$是路径积分中的插入, 不能直接当作普通编时乘积内的算符运动方程并令其为零. 这也不是说每一条积分路径都满足经典运动方程.
+}
+
+\note[Schwinger-Dyson定理的物理意义]{\label{sd-commutator-meaning}
+Schwinger-Dyson定理中的接触项, 在算符语言中来自等时对易子. 对玻色算符, 编时关联函数在$t_1=t_2$两侧分别对应两种算符次序, 因而其跳跃为
+\begin{align}
+    &\lim_{\epsilon\to0^+}\Big[
+    \braket{\mathcal T\hat O_1(t+\epsilon)\hat O_2(t)}_{\mathrm{Op}}
+    -\braket{\mathcal T\hat O_1(t-\epsilon)\hat O_2(t)}_{\mathrm{Op}}
+    \Big]\notag\\
+    &\qquad=\braket{[\hat O_1(t),\hat O_2(t)]}_{\mathrm{Op}}.
+\end{align}
+所以不能先把等时对易子拆成两个乘积, 再分别放进同一个编时符号; 这样会丢掉两种次序的区别. 应先将两个时间分开, 再从两侧取等时极限. 例如取$\hat O_1=\hat x$, $\hat O_2=\hat p$时, $[\hat x,\hat p]=i$就表现为编时关联函数在等时处大小为$i$的跳跃.
+
+现在将玻色算符的编时关联函数展开:
+\begin{align*}
+    \braket{\mathcal T\hat O_1(t_1)\hat O_2(t_2)}_{\mathrm{Op}}
+    ={}&\Theta(t_1-t_2)\braket{\hat O_1(t_1)\hat O_2(t_2)}_{\mathrm{Op}}\\
+    &+\Theta(t_2-t_1)\braket{\hat O_2(t_2)\hat O_1(t_1)}_{\mathrm{Op}}.
+\end{align*}
+直接对时间求导, 根据乘法求导法则, 一部分导数作用于算符, 另一部分作用于阶跃函数:
+\begin{align*}
+    &\frac{\d}{\d t_1}\braket{\mathcal T\hat O_1(t_1)\hat O_2(t_2)}_{\mathrm{Op}}\\
+    &\quad=\Theta(t_1-t_2)
+    \braket{\frac{\d\hat O_1(t_1)}{\d t_1}\hat O_2(t_2)}_{\mathrm{Op}}\\
+    &\qquad+\Theta(t_2-t_1)
+    \braket{\hat O_2(t_2)\frac{\d\hat O_1(t_1)}{\d t_1}}_{\mathrm{Op}}\\
+    &\qquad+\delta(t_1-t_2)
+    \Big[\braket{\hat O_1(t_1)\hat O_2(t_2)}_{\mathrm{Op}}
+    -\braket{\hat O_2(t_2)\hat O_1(t_1)}_{\mathrm{Op}}\Big].
+\end{align*}
+前两项重新合并为$\braket{\mathcal T(\d\hat O_1/\d t_1)\hat O_2}_{\mathrm{Op}}$; 方括号中两项之差是对易子的期望值, 在等时极限下就是前面讨论的跳跃量. 又因为分布恒等式$\delta(t_1-t_2)g(t_1)=\delta(t_1-t_2)g(t_2)$允许在$\delta$函数的系数中取$t_1=t_2$, 所以最终得到
 \begin{align}
     \frac{\d}{\d t_1}\braket{\mathcal T\hat O_1(t_1)\hat O_2(t_2)}_{\mathrm{Op}}
     ={}&\braket{\mathcal T\frac{\d\hat O_1(t_1)}{\d t_1}\hat O_2(t_2)}_{\mathrm{Op}}\notag\\
     &+\delta(t_1-t_2)\braket{[\hat O_1(t_2),\hat O_2(t_2)]}_{\mathrm{Op}}.
     \label{sd-time-derivative-contact}
 \end{align}
-第二项来自$\d\Theta(t_1-t_2)/\d t_1=\delta(t_1-t_2)$, 是等时对易子给出的接触项. 因此, \textbf{对整个编时关联函数求导, 一般不等于先对算符求导再编时}; 只有相应接触项为零时才能相等. 用虚时间$\tau$及$\mathcal T_\tau$也有同样的编时求导结构. 此处写的是玻色算符的公式; 费米算符需要计入交换符号.
-
-\textbf{Schwinger-Dyson定理左边的$\delta S/\delta\phi$是路径积分中的插入, 不能直接当作普通编时乘积内的算符运动方程并令其为零.} 对含时间导数的插入, 路径积分对应的编时约定通常记作$\mathcal T^*$: 先对未求导的场编时, 再让时间导数作用于整个编时乘积. 它与把已求导算符直接放进普通$\mathcal T$的结果可以相差接触项. 这也不是说每一条积分路径都满足经典运动方程.
+第二项就是等时对易子给出的接触项: 跳跃的分布导数等于$\delta$函数乘以跳跃量. 此处写的是玻色算符的公式; 费米算符需要计入交换符号.
 
 以标准动能项、无导数相互作用的实标量场为例, $\hat\pi=\partial_0\hat\phi$, 等时对易关系为
 \begin{equation}
@@ -566,9 +594,44 @@
 \end{align}
 算符运动方程只能用于右边方括号内的算符, 不能消去最后的接触项. 自由场中方括号为零, 仍有$(\Box_x+m^2)D_F(x-y)=-i\delta^4(x-y)$; 有相互作用时则得到附录中的Schwinger-Dyson方程. 这说明算符运动方程成立与关联函数满足带接触项的方程并不矛盾.
 
-通过Schwinger-Dyson定理也可以做微扰展开, 得到Feynman规则. 但是这做法非常猎奇, 且难以看出微扰展开的结构. 具体细节见附录\ref{schwinger-dyson-perturbative-expansion}.
+进一步, 我们可以还原前面由路径积分推导出的形式. 仍考虑标准动能项、无导数相互作用的实标量场, 写成
+\begin{equation}
+    \mathcal L=\frac12\partial_\mu\phi\partial^\mu\phi-V(\phi),
+    \qquad \frac{\delta S}{\delta\phi}(x)=-\Box\phi(x)-V'(\phi(x)).
+\end{equation}
+这里$V$包含质量项与相互作用项. 记
+$\hat X=\prod_{k=1}^n\hat\phi(x_k)$,
+$\hat X_{\widehat j}=\prod_{k\ne j}\hat\phi(x_k)$,
+并令$X$, $X_{\widehat j}$表示相应的路径积分插入. 因为等时的$[\hat\phi,\hat\phi]=0$, 第一次时间求导没有接触项; 第二次求导时, $\partial_0\hat\phi(x)$与每个$\hat\phi(x_j)$的等时对易子各贡献一项. 因而
+\begin{align}
+    \Box_x\braket{\mathcal T\hat\phi(x)\hat X}_{\mathrm{Op}}
+    ={}&\braket{\mathcal T[\Box\hat\phi(x)]\hat X}_{\mathrm{Op}}\notag\\
+    &-i\sum_{j=1}^n\delta^4(x-x_j)
+    \braket{\mathcal T\hat X_{\widehat j}}_{\mathrm{Op}}.
+\end{align}
+按注\ref{sd-time-ordering-contact}中的导数插入约定, 再用算符运动方程$\Box\hat\phi+V'(\hat\phi)=0$, 得到
+\begin{align}
+    \braket{\frac{\delta S}{\delta\phi}(x)X}_{\mathrm{PI}}
+    ={}&-\Box_x\braket{\mathcal T\hat\phi(x)\hat X}_{\mathrm{Op}}
+    -\braket{\mathcal T V'(\hat\phi(x))\hat X}_{\mathrm{Op}}\notag\\
+    ={}&-\braket{\mathcal T[\Box\hat\phi(x)+V'(\hat\phi(x))]\hat X}_{\mathrm{Op}}\notag\\
+    &+i\sum_{j=1}^n\delta^4(x-x_j)
+    \braket{\mathcal T\hat X_{\widehat j}}_{\mathrm{Op}}\notag\\
+    ={}&i\sum_{j=1}^n\delta^4(x-x_j)
+    \braket{X_{\widehat j}}_{\mathrm{PI}}.
+    \label{sd-from-equal-time-commutators}
+\end{align}
+这就是前面的Schwinger-Dyson定理: 算符运动方程消去了普通编时乘积内的一项, 留下的等时对易子恰好给出路径积分中的接触项. 其中重合点的复合场插入均按同一正则化理解.
+}
 
-考虑对称性变换
+通过Schwinger-Dyson定理也可以做微扰展开: 用自由传播子将微分方程改写为积分递推式, 就可以逐步生成Feynman图并读出组合系数. 附录\ref{schwinger-dyson-perturbative-expansion}以$\phi^4$理论展示这一过程.
+
+\subsection{Ward恒等式}\label{sec:ward-identity}
+再来看经典情况下的守恒流,
+\begin{align}
+    \partial_\mu j^\mu=0.
+\end{align}
+我们同样好奇流守恒在量子层面上能多大程度被保持. 考虑对称性变换
 \begin{align}
     & x^\mu\to x'^\mu=x^\mu+\epsilon\xi^\mu,\notag\\
     & \phi(x)\to \phi'(x')=\phi(x)+\epsilon\mathcal F[\phi],
@@ -595,7 +658,6 @@
         \braket{\partial_\mu j^\mu(x)\cdots}=-i\sum_i\delta^4(x-x_i)\braket{\Delta\phi\cdots}.
     \end{align}
 \end{theorem}
-注意, 这里的$j^\mu$与使用Noether's trick得到的式\eqref{general-sym-current}差一个负号.
 
 利用Ward恒等式, 我们考虑计算
 \begin{align}

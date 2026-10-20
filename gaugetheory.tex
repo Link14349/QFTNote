@@ -168,7 +168,7 @@
     &=i\delta^3_{\bf{tr}}(\vec x-\vec y),
 \end{align}
 
-\kaishu 这里我们可能会有疑问, 为什么这不能按照我们一般的正则量子化的方法, 让
+\note[Coulomb规范下的对易关系]{这里我们可能会有疑问, 为什么这不能按照我们一般的正则量子化的方法, 让
 \begin{equation}
     [A^i_{\vec x}, E^j_{\vec y}]=i\delta^{ij}\delta^3(\vec x-\vec y),
 \end{equation}
@@ -187,11 +187,11 @@
 
 而由$a, a^\dagger$写出的正则量子化条件, 我们可以验证它可以保证
 \begin{align}
-    [\partial_i A^i, E^j]&=i\ddd p\exp{i\vec p\cdot(\vec x-\vec y)}ip^i(\delta^{ij}-\frac{p^ip^j}{\vec p^2})\\
-    &=-\ddd p\exp{i\vec p\cdot(\vec x-\vec y)}(p^j-\frac{\vec p^2 p^j}{\vec p^2})\\
+    [\partial_i A^i, E^j]&=i\int\ddd p\exp{i\vec p\cdot(\vec x-\vec y)}ip^i(\delta^{ij}-\frac{p^ip^j}{\vec p^2})\\
+    &=-\int\ddd p\exp{i\vec p\cdot(\vec x-\vec y)}(p^j-\frac{\vec p^2 p^j}{\vec p^2})\\
     &=0,
 \end{align}
-\songti
+}
 
 接着下一个任务就是给出光子的传播子了. 如果不做规范选取, 我们从EoM开始:
 \begin{equation}

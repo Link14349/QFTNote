@@ -334,7 +334,7 @@ $\ket{\psi_S, t}$为Schoedinger绘景下的态矢, $S(t, t_0)$为Schoedinger绘�
 
 在此我写了一个Python简单实现的对称因子计算器, 可以在Github上找到: \url{https://github.com/Link14349/FeynCalc}.
 
-\kaishu 一点感悟: 最大感受就是高中数学学得最烂的排列组合还在追我= =. 写这段时, 脑子里又浮现了高中数学课上香香反复告诫我们做排列组合题, 先分堆再计算的情景(真的好喜欢好怀念我的高中数学老师!). 花了好多时间完全弄明白这个问题, 又花了很多时间在这里详细讨论这个问题并把它写清楚...希望能够解决大家学习Symmetry Factor中遇到的问题吧. \songti
+\note{一点感悟: 最大感受就是高中数学学得最烂的排列组合还在追我= =. 写这段时, 脑子里又浮现了高中数学课上香香反复告诫我们做排列组合题, 先分堆再计算的情景(真的好喜欢好怀念我的高中数学老师!). 花了好多时间完全弄明白这个问题, 又花了很多时间在这里详细讨论这个问题并把它写清楚...希望能够解决大家学习Symmetry Factor中遇到的问题吧.}
 
 \newpage
 
@@ -584,7 +584,7 @@ Feynman黄金规则, 在于给予S矩阵元实际的物理观测效应, 也就�
 \begin{theorem}[LSZ公式(实标量场)]\label{LSZformula-scalar}
     \begin{align}
         \braket{f, +\infty|i, -\infty}=&\int\d^4x_1 i\exp{-ip_1x_1}(\Box_1+m^2)\cdots\notag\\
-        &\times\int\d^4x_n i\exp{ip_nx_n}(\Box_n+m^2)\braket{\phi_1\cdots\phi_n},
+        &\times\int\d^4x_n i\exp{ip_nx_n}(\Box_n+m^2)\braket{\phi_1\cdots\phi_n},\label{LSZformula-scalar-eq}
     \end{align}
     其中, 对入射态用$\int i\exp{-ip_1x_1}(\Box+m^2) $, 而对出射态用$\int i\exp{ip_1x_1}(\Box+m^2)$.
 \end{theorem}
@@ -639,11 +639,11 @@ Feynman黄金规则, 在于给予S矩阵元实际的物理观测效应, 也就�
 插入时序算符$\mathcal T$后, 我们发现, 我们再添加$\a{p}(+\infty)$, $\a{p}^\dagger(-\infty)$是不会影响结果的, 因为$\mathcal T$会将它们分别置于最左边和最右边, 然后和真空态缩并直接得到0. 于是,
 \begin{align}
     \braket{f, +\infty|i, -\infty}&=\bra{\Omega}\mathcal T\prod_{p\in f}\sqrt{2\om p}\left[\a{p}(+\infty)-\a{p}(-\infty)\right]\notag\\
-    &\quad\prod_{p\in i}\sqrt{2\om p}\left[\a{p}^\dagger(-\infty)-\a{p}^\dagger(+\infty)\right]\ket{\Omega}\\
+    &\quad\prod_{p\in i}\sqrt{2\om p}\left[\a{p}^\dagger(-\infty)-\a{p}^\dagger(+\infty)\right]\ket{\Omega}\notag\\
     &=\bra{\Omega}\mathcal T\prod i\int\d^4x_f\exp{ip_fx_f}(\Box_f+m^2)\phi_f\notag\\
-    &\quad\prod i\int\d^4x_i\exp{-ip_ix_i}(\Box_i+m^2)\phi_i\ket{\Omega}.
+    &\quad\prod i\int\d^4x_i\exp{-ip_ix_i}(\Box_i+m^2)\phi_i\ket{\Omega}.\label{LSZ-final-inside}
 \end{align}
-\kaishu 这里其实有一点subtle的地方, 就是说$\Box$能与$\mathcal T$换序吗? 在下一节我们会看到其实是不能换序的, 换序会制造出$\delta_{ij}$项. 但是这个结果是不影响的, 交换项的结果会被LSZ干掉, 最终贡献是$0$. \songti
+\note[LSZ与接触项]{注意到我们实际证明的式\eqref{LSZ-final-inside}与定理文本中的式\eqref{LSZformula-scalar-eq}内$\Box$与$\mathcal T$的顺序不一样, 这里其实有subtle的地方: $\Box$与$\mathcal T$其实不能随意换序. 后面我们会看到根据Schwinger-Dyson定理, 换序会制造出$\delta_{ij}$的接触项. 但是LSZ公式的结果是不影响的. 因为交换项的结果是不连通图, 而在下一节中我们会知道, 不连通图还是会被LSZ干掉, 最终贡献$0$. }
 
 不过需要注意, 我们这里是利用LSZ打开$\phi$的关联函数得到的散射振幅. 但实际上LSZ并不局限于打在$\phi$的关联函数, 只要局域的算符$O(x)$满足一定条件, 使用LSZ打在$O$的关联函数上都可以得到正确的on-shell散射振幅. 具体来说, 我们只需要$O$满足
 \begin{align}

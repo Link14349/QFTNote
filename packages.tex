@@ -111,6 +111,38 @@
 \usetikzlibrary{arrows.meta}
 \usetikzlibrary{bending}
 
+% 独立章节扉页：\chapter{标题}；章号不参与 section 等计数器的编号或重置。
+\newcounter{chapter}
+\providecommand{\theHchapter}{\arabic{chapter}}
+% macOS 的黑体可能没有独立粗体字形；仅为章标题启用合成粗体。
+\newcommand*{\qftchapterfont}{%
+    \normalfont\heiti\addCJKfontfeatures{AutoFakeBold=2}\bfseries
+}
+\makeatletter
+\providecommand*{\toclevel@chapter}{0}
+\newcommand*{\l@chapter}[2]{%
+    \addvspace{1em}%
+    \@dottedtocline{0}{0pt}{0pt}{\qftchapterfont #1}{#2}%
+}
+\makeatother
+\NewDocumentCommand{\chapter}{m}{%
+    \clearpage
+    \refstepcounter{chapter}%
+    \thispagestyle{empty}%
+    \addcontentsline{toc}{chapter}{第\chinese{chapter}章\texorpdfstring{\quad}{\space}#1}%
+    \null
+    \begin{tikzpicture}[remember picture,overlay]
+        \node[
+            align=center,
+            text width=\textwidth,
+            inner sep=0pt,
+            text=black,
+            font=\qftchapterfont\Huge
+        ] at (current page.center) {第\chinese{chapter}章\quad #1};
+    \end{tikzpicture}%
+    \clearpage
+}
+
 % 定义重要结论环境
 \newtcolorbox{important}{
     colback=white,    % 背景色
@@ -131,6 +163,21 @@
 
 \declaretheorem[name=定理,style=plain,numberwithin=section]{theorem}
 \declaretheorem[name=定义,style=definition,numberwithin=section]{definition}
+
+% 与“例”相同的行内标题布局；注独立编号，正文使用楷体。
+\declaretheoremstyle[
+    spaceabove=\topsep,spacebelow=\topsep,
+    headfont=\normalfont\bfseries\color{ecolor},
+    bodyfont=\normalfont\kaishu,
+    headpunct={},postheadspace=0.5em
+]{qftnote}
+\declaretheorem[name=注,style=qftnote,numberwithin=section]{noteblock}
+% 替换文档类原有的不编号 note，使用 \note[标题]{正文}。
+\let\note\relax
+\let\endnote\relax
+\NewDocumentCommand{\note}{O{} +m}{%
+    \begin{noteblock}[#1]#2\end{noteblock}%
+}
 
 \renewcommand{\listtheoremname}{定理与定义索引}   % 索引标题
 

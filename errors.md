@@ -8,6 +8,16 @@
 
 ## 高优先级
 
+### 21. 双势阱手稿中的多瞬子计数与阶乘不一致
+
+**文件位置**：`ssb.tex`，“稀薄瞬子气体与多次隧穿”中保留的手稿注释；原图 `8acb8a2017526d2093cc69747085d0a7.jpg` 中部。
+
+**当前内容**：手稿先写“$n$ 个 instanton 和 $n-1$ 个 anti-instanton”，随后将贡献写为 $(kT\mathrm e^{-S_E})^n/n!$。
+
+**为何可疑**：按前一句，事件总数是 $2n-1$，不等于后一式中的幂次和阶乘参数。请确认原稿第二个 $n$ 是否本意表示瞬子与反瞬子的总数。整理稿保留原句及公式于源码注释，正文另用 $N$ 明确表示总数，并按原稿最后的双曲正弦结果展开奇数次贡献；此处记号对应仍待本人核实。
+
+**建议对照的参考来源**：手稿末尾的 $\sinh(kT\mathrm e^{-S_E})$；[David Tong，Supersymmetric Quantum Mechanics，第 2 章 §2.2 的稀薄瞬子气体推导](https://davidtong.org/pdfs/teaching/supersymmetric-quantum-mechanics/susyqm2.pdf)，尤其是有序中心积分与奇偶次数求和。
+
 ### 1. Weyl/Dirac 章节中的场与张量记号
 
 **文件位置**：`spinor.tex` 第 337、341、349、393 行附近。
@@ -111,6 +121,46 @@ $$
 **建议对照**：本文件第 1915、2017、2077 行附近；Peskin & Schroeder §5.1 的 spin sums/averages。
 
 ## 中优先级
+
+### 22. 双势阱手稿两页之间的二次涨落系数不一致
+
+**文件位置**：`ssb.tex`，标签 `ssb-quadratic-fluctuation` 后的手稿注释；原图 `bd8d715216ee7801bde989efad9b65af.jpg` 页末与 `8acb8a2017526d2093cc69747085d0a7.jpg` 页首。
+
+**当前内容**：第一页的泛函 Taylor 展开含 $\frac12\int\delta x\mathcal M_\tau\delta x$；第二页首行的指数写成 $-\int\delta x\mathcal M_\tau\delta x$，而随后的算符仍定义为 $\mathcal M_\tau=U''-\d^2/\d\tau^2$。
+
+**为何可疑**：两页之间似乎漏了 $1/2$；不能在不重定义算符或积分变量的情况下直接省去。整理稿保留第一页的二阶展开，并在源码注释中记录第二页的原写法，没有将两式当作已经核实的相等表达式。
+
+**建议对照的参考来源**：`preparation.tex` 中“泛函的Taylor展开”；手稿第一页末尾的两项二次型；[Tong，Supersymmetric Quantum Mechanics，§2.2 的 Gaussian fluctuations](https://davidtong.org/pdfs/teaching/supersymmetric-quantum-mechanics/susyqm2.pdf)。
+
+### 23. 双势阱手稿的涨落行列式归一化未明示
+
+**文件位置**：`ssb.tex`，标签 `ssb-determinant-ratio` 及紧邻的手稿注释；原图 `8acb8a2017526d2093cc69747085d0a7.jpg` 的“Now”一行。
+
+**当前内容**：手稿将 $(\det'\mathcal M_\tau)^{-1/2}$ 直接写为 $\sqrt{12}\,\omega$，后面再补上基态零点能的时间因子。
+
+**为何可疑**：这个数值通常指相对于参考算符 $\mathcal M_0=-\d^2/\d\tau^2+\omega^2$ 的行列式比值的平方根，而非未经归一化的绝对行列式。请确认手稿中的行列式是否已隐含参考归一化，以及零模测度中的 $1/\sqrt{2\pi}$ 约定。整理稿保留原写法于注释，并将参考传播核 $K_0(T)$、参考算符和相对前因子分开列出，便于本人核查。
+
+**建议对照的参考来源**：手稿后续的 $k=\omega\sqrt{6S_E/\pi}$；[Tong，Supersymmetric Quantum Mechanics，§2.2，式 (2.30)--(2.32)](https://davidtong.org/pdfs/teaching/supersymmetric-quantum-mechanics/susyqm2.pdf) 对零模与简谐振子归一化的处理；Coleman，Aspects of Symmetry，“The Uses of Instantons”。
+
+### 19. Fock 空间的直和起点似乎遗漏真空扇区
+
+**文件位置**：`freefield.tex`，“自由实标量场的量子化”中的“Fock空间”定义，第 879 行附近。
+
+**当前内容**：$\mathcal H=\bigoplus_{n=1}\mathcal H_n$，其中 $\mathcal H_n$ 被定义为 $n$ 粒子空间。
+
+**为何可疑**：从 $n=1$ 开始不包含零粒子真空 $\ket0$，但前后文均将它作为该自由场 Hilbert 空间中的态使用。请确认是否应包含 $\mathcal H_0=\mathrm{span}\{\ket0\}$。本次仅新增真空波泛函例子，保留原定义。
+
+**建议对照的参考来源**：本文件紧邻的“真空态”定义及 $\mathcal H_n$ 的构造式；玻色 Fock 空间的零粒子扇区定义。
+
+### 20. 场论路径积分的真空投影中时间端点及态标签需核查
+
+**文件位置**：`path-integral.tex`，“场论路径积分”小节，第 120--137 行附近。
+
+**当前内容**：引入 $T\to T(1-i\epsilon)$ 后，多处左边写为 $\braket{\phi_f,-\infty|\phi_i,+\infty}$；丢弃高能态后，第一行右边仍含 $\braket{\phi_f|n}\braket{n|\phi_i}$，已无对 $n$ 的求和。
+
+**为何可疑**：前文设 $T=t_f-t_i\to+\infty$，后文真空振幅也使用末态 $+\infty$、初态 $-\infty$，与这些左边的时间顺序不一致；投影后保留下来的态标签也应与真空 $\Omega$ 对照。原公式未修改。
+
+**建议对照的参考来源**：本小节第 115--119 行的能量本征态展开，以及第 132 行的真空振幅分解式。
 
 ### 17. 泛函空间记号与变分定义需核查
 

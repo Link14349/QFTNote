@@ -924,6 +924,59 @@ Fourier逆变换可以得到:
 
 可以发现与我们在QM里学的一致.
 
+\begin{example}[实标量自由场的真空波函数]
+    考虑质量$m>0$的自由实标量场, 在$t=0$的场本征态表象中, 有
+    \begin{equation}
+        \hat\phi(\vec x)\ket\phi=\phi(\vec x)\ket\phi,
+        \qquad \Psi[\phi]=\braket{\phi|\Psi}.
+    \end{equation}
+    这里$\ket\phi$由整个空间上的场构型$\phi(\vec x)$标记, 因而$\Psi[\phi]$是一个波泛函. 与QM中的坐标表象完全类似, 场算符与共轭动量算符分别表示为
+    \begin{equation}
+        \hat\phi(\vec x)\longrightarrow\phi(\vec x),
+        \qquad \hat\pi(\vec x)\longrightarrow-i\frac{\delta}{\delta\phi(\vec x)}.
+    \end{equation}
+    于是前面定义的湮灭算符在此表象中为($\omega_{\vec k}=\sqrt{\vec k^2+m^2}$)
+    \begin{align}
+        a_{\vec k}
+        &=\frac1{\sqrt{2\omega_{\vec k}}}\int\d^3x\,\e^{-i\vec k\cdot\vec x}
+        \left(\omega_{\vec k}\hat\phi(\vec x)+i\hat\pi(\vec x)\right)\notag\\
+        &\longrightarrow\frac1{\sqrt{2\omega_{\vec k}}}\int\d^3x\,\e^{-i\vec k\cdot\vec x}
+        \left(\omega_{\vec k}\phi(\vec x)+\frac{\delta}{\delta\phi(\vec x)}\right).
+    \end{align}
+    记真空波泛函为$\Psi_0[\phi]=\braket{\phi|0}$, 并定义
+    \begin{equation}
+        \widetilde\phi(\vec k)=\int\d^3x\,\e^{-i\vec k\cdot\vec x}\phi(\vec x).
+    \end{equation}
+    由$a_{\vec k}\ket0=0$, 得到
+    \begin{equation}
+        \int\d^3x\,\e^{-i\vec k\cdot\vec x}
+        \frac{\delta\Psi_0[\phi]}{\delta\phi(\vec x)}
+        =-\omega_{\vec k}\widetilde\phi(\vec k)\Psi_0[\phi].
+    \end{equation}
+    对其做Fourier逆变换, 即
+    \begin{align}
+        \frac{\delta\Psi_0[\phi]}{\delta\phi(\vec x)}
+        &=-\int\d^3y\,K(\vec x-\vec y)\phi(\vec y)\Psi_0[\phi],\notag\\
+        K(\vec x-\vec y)&=\int\frac{\d^3k}{(2\pi)^3}\,
+        \omega_{\vec k}\e^{i\vec k\cdot(\vec x-\vec y)}.
+    \end{align}
+    利用$K(\vec x-\vec y)=K(\vec y-\vec x)$, 可以直接解得
+    \begin{equation}
+        \boxed{\Psi_0[\phi]=\mathcal N\exp{
+        -\frac12\int\d^3x\,\d^3y\,\phi(\vec x)K(\vec x-\vec y)\phi(\vec y)
+        }},
+    \end{equation}
+    或者写成动量空间的形式
+    \begin{equation}
+        \boxed{\Psi_0[\phi]=\mathcal N\exp{
+        -\frac12\int\frac{\d^3k}{(2\pi)^3}\,\omega_{\vec k}
+        \widetilde\phi(\vec k)\widetilde\phi(-\vec k)}}.
+    \end{equation}
+    其中$\mathcal N$为归一化常数; 实场满足$\widetilde\phi(-\vec k)=\widetilde\phi(\vec k)^*$, 此时真空期望值$\bra0\hat\phi(\vec x)\ket0=0$.
+
+    可以看到，自由场具有和简谐振子完全一样的特性：基态的场值在真空期望值附近是一个gaussian的涨落.
+\end{example}
+
 \subsection{自由复标量场量子化}
 \begin{equation}
     \mathcal L=\partial_\mu\psi^*\partial^\mu\psi-m^2\psi^*\psi,

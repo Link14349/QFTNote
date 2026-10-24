@@ -1,0 +1,88 @@
+{
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "latexmk (XeLaTeX, cached)",
+            "tools": [
+                "latexmk"
+            ]
+        },
+        {
+            "name": "latexmk (rebuild document)",
+            "tools": [
+                "latexmk-force"
+            ]
+        },
+        {
+            "name": "latexmk (rebuild TikZ cache)",
+            "tools": [
+                "latexmk-tikz-rebuild"
+            ]
+        }
+    ],
+    "latex-workshop.latex.tools": [
+        {
+            "command": "latexmk",
+            "cwd": "%DIR%",
+            "name": "latexmk",
+            "args": [
+                "%DOCFILE_EXT%"
+            ]
+        },
+        {
+            "command": "latexmk",
+            "cwd": "%DIR%",
+            "name": "latexmk-force",
+            "args": [
+                "-g",
+                "%DOCFILE_EXT%"
+            ]
+        },
+        {
+            "command": "latexmk",
+            "cwd": "%DIR%",
+            "name": "latexmk-tikz-rebuild",
+            "args": [
+                "-g",
+                "%DOCFILE_EXT%"
+            ],
+            "env": {
+                "QFT_TIKZ_REBUILD": "1"
+            }
+        }
+    ],
+    "latex-workshop.latex.clean.fileTypes": [
+        "*.aux",
+        "*.bbl",
+        "*.blg",
+        "*.idx",
+        "*.ind",
+        "*.lof",
+        "*.lot",
+        "*.out",
+        "*.toc",
+        "*.acn",
+        "*.acr",
+        "*.alg",
+        "*.glg",
+        "*.glo",
+        "*.gls",
+        "*.ist",
+        "*.fls",
+        "*.log",
+        "*.fdb_latexmk",
+        "*.snm",
+        "*.nav",
+        "*.vrb",
+        "*.bcf",
+        "*.run.xml",
+        "*.synctex.gz",
+        "*.xdv",
+        "*.auxlock"
+    ],
+    "latex-workshop.latex.autoBuild.run": "onSave",
+    "latex-workshop.view.pdf.viewer": "tab",
+    "latex-workshop.latex.recipe.default": "latexmk (XeLaTeX, cached)",
+    "latex-workshop.latex.autoClean.run": "never",
+    "latex-workshop.latex.clean.subfolder.enabled": false,
+    "latex-workshop.latex.outDir": "%DIR%/build"
+}

@@ -1,6 +1,8 @@
 *.gz
 *.bbl
-.vscode/
+/.vscode/*
+!/.vscode/settings.json
+/build/
 .git/
 *.log
 *.bcf

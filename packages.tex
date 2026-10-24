@@ -218,3 +218,6 @@
 \NewDocumentCommand{\ld}{m O{1}}{\frac{\mathrm d^3#1}{(2\pi)^3}\frac{#2}{2\omega_{\vec #1}}}
 \NewDocumentCommand{\ldsq}{m O{1}}{\frac{\mathrm d^3#1}{(2\pi)^3}\frac{#2}{\sqrt{2\omega_{\vec #1}}}}
 \NewDocumentCommand{\lips}{m O{1}}{\frac{\mathrm d^3#1}{(2\pi)^3}\frac{#2}{2\omega_{\vec #1}}}
+
+% 仅缓存显式命名的独立插图；公式内的小图和页面定位图仍直接排版。
+\input{tikz-cache.tex}

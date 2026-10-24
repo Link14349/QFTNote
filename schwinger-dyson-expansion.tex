@@ -35,6 +35,7 @@
 
 \begin{figure}[htbp!]
     \centering
+    \tikzsetnextfilename{sd-recursion}
     \begin{tikzpicture}[x=1cm,y=1cm,baseline=0, every node/.style={font=\small}]
         \node[draw,circle,pattern=north east lines,minimum size=1.05cm] (a) at (0,0) {};
         \draw (-1.15,0) node[left] {$1$} -- (a.west);
@@ -147,6 +148,7 @@
 
 \begin{figure}[htbp!]
     \centering
+    \tikzsetnextfilename{sd-second-order}
     \begin{tikzpicture}[every node/.style={font=\small}]
         \begin{scope}
             \draw (0,0) node[left] {$1$} -- (1,0);

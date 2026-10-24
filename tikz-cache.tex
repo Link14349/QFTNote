@@ -1,0 +1,24 @@
+% Shared setup for explicitly named, self-contained illustrations.
+% Figure captions, labels, and numbering remain in the main document.
+\usetikzlibrary{external}
+\InputIfFileExists{build/tikz-config.tex}{}{%
+    \PackageError{qft-build}{Missing build/tikz-config.tex}%
+        {Run latexmk main.tex from the project root first.}%
+}
+\ifnum\qfttikzcacheenabled=1\relax
+    \tikzexternalize[only named=true]
+    % tcolorbox draws its frame with an internal tikzpicture. Even with
+    % only named=true, the exporter may try to skip that unnamed picture
+    % and consume the next real figure's ending. Use tcolorbox's own guard
+    % to keep box internals out of the externalization scanner.
+    \tcbset{shield externalize=true}
+    \expandafter\tikzsetexternalprefix\expandafter{\qfttikzprefix}
+    \tikzset{external/system call={%
+        xelatex \tikzexternalcheckshellescape
+        -halt-on-error -interaction=batchmode -file-line-error
+        -output-directory=build -jobname "\image" "\texsource"%
+    }}
+    % XeTeX writes the cache below -output-directory, but image inclusion
+    % otherwise searches relative to the project root. Keep both in sync.
+    \pgfkeys{/pgf/images/include external/.code={\includegraphics{build/#1}}}
+\fi

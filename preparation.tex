@@ -218,46 +218,146 @@ Lorentz群生成元
         \frac{\delta f}{\delta \phi(x_0)} = \lim_{\epsilon \to 0} \frac{f[\phi(x) + \epsilon \delta(x-x_0)] - f[\phi]}{\epsilon}
     \end{equation}
 \end{definition}
+先考虑一维轨迹$x(t)$，以下$t$为取值时刻，$t_0$为泛函求导的位置。
 \begin{example}
     设泛函
     \begin{equation}
-        f_x[\phi] = \phi(x)
+        f_t[x]=x(t),
     \end{equation}
     则
     \begin{equation}
-        \frac{\delta f_x}{\delta \phi(y)} = \delta(x-y)
+        \frac{\delta f_t}{\delta x(t_0)}=\delta(t-t_0).
     \end{equation}
 \end{example}
 \begin{example}
     设泛函
     \begin{equation}
-        f[\phi] = g(\phi), \text{其中} g: \mathbb{R} \to \mathbb{R}
+        f_t[x]=g(x(t)),\quad\text{其中 }g:\mathbb R\to\mathbb R,
     \end{equation}
     则
     \begin{equation}
-        \frac{\delta f}{\delta \phi(x_0)} = \frac{\partial g}{\partial \phi} \delta(x-x_0)
+        \frac{\delta f_t}{\delta x(t_0)}
+        =\left.\frac{\partial g}{\partial x}\right|_{x(t)}\delta(t-t_0).
     \end{equation}
 \end{example}
 \begin{example}
     设泛函
     \begin{equation}
-        f[\phi] = \int g(\phi) \mathrm dx, \text{其中} g: \mathbb{R} \to \mathbb{R}
+        f_t[x]=g\bigl(x(t),\dot x(t),\ddot x(t),\ldots,x^{(n)}(t)\bigr),
+    \end{equation}
+    其中$x^{(k)}=\d^kx/\d t^k$，$x^{(0)}=x$。由$\delta x^{(k)}=\d^k(\delta x)/\d t^k$，有
+    \begin{align}
+        \frac{\delta f_t}{\delta x(t_0)}
+        & =\frac{\partial g}{\partial x}\delta(t-t_0)
+        +\frac{\partial g}{\partial\dot x}\partial_t\delta(t-t_0)\notag\\
+        &\quad+\frac{\partial g}{\partial\ddot x}\partial_t^2\delta(t-t_0)+\cdots\notag\\
+        & =\sum_{k=0}^n\frac{\partial g}{\partial x^{(k)}}\partial_t^k\delta(t-t_0).
+    \end{align}
+    各偏导在$t$处的轨迹及其导数上取值，$\partial_t^k$只作用于$\delta$函数。
+\end{example}
+\begin{example}
+    设泛函
+    \begin{equation}
+        f[x]=\int_a^b\d t\,g(x(t)),\quad\text{其中 }g:\mathbb R\to\mathbb R,
+    \end{equation}
+    则对$t_0\in(a,b)$，
+    \begin{equation}
+        \frac{\delta f}{\delta x(t_0)}
+        =\left.\frac{\partial g}{\partial x}\right|_{x(t_0)}.
+    \end{equation}
+\end{example}
+\begin{example}
+    设作用量
+    \begin{equation}
+        S[x]=\int_a^b\d t\,L\bigl(x,\dot x,\ddot x,\ldots,x^{(n)}\bigr),
+    \end{equation}
+    则分部积分给出
+    \begin{align}
+        \delta S
+        &=\int_a^b\d t\sum_{k=0}^n\frac{\partial L}{\partial x^{(k)}}
+        \frac{\d^k}{\d t^k}\delta x\notag\\
+        &=\int_a^b\d t\left[\sum_{k=0}^n(-1)^k\frac{\d^k}{\d t^k}
+        \left(\frac{\partial L}{\partial x^{(k)}}\right)\right]\delta x.
+    \end{align}
+    这里取紧支撑变分，或在端点固定$x,\dot x,\ldots,x^{(n-1)}$，使边界项消失。因此
+    \begin{align}
+        \frac{\delta S}{\delta x(t_0)}
+        &=\left.\left(\frac{\partial L}{\partial x}
+        -\frac{\d}{\d t}\frac{\partial L}{\partial\dot x}
+        +\frac{\d^2}{\d t^2}\frac{\partial L}{\partial\ddot x}+\cdots\right)\right|_{t=t_0}\notag\\
+        &=\left.\sum_{k=0}^n(-1)^k\frac{\d^k}{\d t^k}
+        \left(\frac{\partial L}{\partial x^{(k)}}\right)\right|_{t=t_0}.
+    \end{align}
+\end{example}
+
+再推广到$d$维流形$M$上的实标量场$\phi(y)$。固定背景度规及其Levi--Civita联络，取体积形式$\epsilon=\sqrt{|\det g|}\,\d^dy$，并约定
+\begin{align}
+    \delta f&=\int_M\epsilon(y)\,\frac{\delta f}{\delta\phi(y)}\delta\phi(y),\\
+    \int_M\epsilon(y')\,\delta_M(y,y')h(y')&=h(y).
+\end{align}
+在平直背景的惯性或笛卡尔坐标中，$\epsilon=\d^dy$、$\nabla_\mu=\partial_\mu$、$\delta_M(y,y_0)=\delta^{(d)}(y-y_0)$。
+\begin{example}
+    设泛函
+    \begin{equation}
+        f_y[\phi]=\phi(y),
     \end{equation}
     则
     \begin{equation}
-        \frac{\delta f}{\delta \phi(x_0)} = \left.\frac{\partial g}{\partial \phi}\right|_{\phi(x_0)}
+        \frac{\delta f_y}{\delta\phi(y_0)}=\delta_M(y,y_0).
     \end{equation}
 \end{example}
 \begin{example}
     设泛函
     \begin{equation}
-        f[\phi] = \int g(\phi, \nabla\phi) \mathrm d^3x, \text{其中} g: \mathbb{R} \times \mathbb{R}^3 \to \mathbb{R}
+        f_y[\phi]=g\bigl(\phi,\nabla_\mu\phi,
+        \nabla_\mu\nabla_\nu\phi,\ldots\bigr)(y),
     \end{equation}
     则
-    \begin{equation}
-        \frac{\delta f}{\delta \phi(x_0)} = \left.\left(\frac{\partial g}{\partial \phi} - \partial_i\frac{\partial g}{\partial \phi_i}\right)\right|_{\nabla\phi(x_0)}
-    \end{equation}
+    \begin{align}
+        \frac{\delta f_y}{\delta\phi(y_0)}
+        ={}&\frac{\partial g}{\partial\phi}\delta_M(y,y_0)
+        +\frac{\partial g}{\partial(\nabla_\mu\phi)}\nabla_\mu\delta_M(y,y_0)\notag\\
+        &+\frac{\partial g}{\partial(\nabla_\mu\nabla_\nu\phi)}
+        \nabla_\mu\nabla_\nu\delta_M(y,y_0)+\cdots.
+    \end{align}
+    系数在$y$处取值，协变导数只作用于$\delta_M$的第一个变量；张量变量的偏导按其指标对称性定义，并对重复指标求和。若$g$只依赖$\phi$，便回到$g'(\phi(y))\delta_M(y,y_0)$。
 \end{example}
+\begin{example}
+    设作用量
+    \begin{equation}
+        S[\phi]=\int_M\epsilon\,
+        \mathcal L\bigl(\phi,\nabla_\mu\phi,\nabla_\mu\nabla_\nu\phi,\ldots\bigr),
+    \end{equation}
+    对紧支撑变分作协变分部积分，得到
+    \begin{align}
+        \frac{\delta S}{\delta\phi(y_0)}
+        =\bigg[&\frac{\partial\mathcal L}{\partial\phi}
+        -\nabla_\mu\frac{\partial\mathcal L}{\partial(\nabla_\mu\phi)}\notag\\
+        &+\nabla_\nu\nabla_\mu
+        \frac{\partial\mathcal L}{\partial(\nabla_\mu\nabla_\nu\phi)}
+        +\cdots\bigg]_{y=y_0}.
+    \end{align}
+    一般地，含$n$阶协变导数时，
+    \begin{equation}
+        \frac{\delta S}{\delta\phi(y_0)}
+        =\left[\sum_{k=0}^n(-1)^k\nabla_{\mu_k}\cdots\nabla_{\mu_1}
+        \frac{\partial\mathcal L}
+        {\partial(\nabla_{\mu_1}\cdots\nabla_{\mu_k}\phi)}\right]_{y=y_0}.
+    \end{equation}
+    $k=0$项为$\partial\mathcal L/\partial\phi$。分部积分后导数次序反转；在曲流形上不能任意交换它们。
+\end{example}
+\begin{theorem}[泛函的Taylor展开]
+    设泛函$f$在$\phi$附近足够光滑，则对小扰动$\eta$，有
+    \begin{align}
+        f[\phi+\eta]={}&f[\phi]\notag\\
+        &+\int_M\epsilon(y)\,
+        \left.\frac{\delta f}{\delta\phi(y)}\right|_{\phi}\eta(y)\notag\\
+        &+\frac{1}{2!}\int_M\epsilon(y)\int_M\epsilon(y')\,
+        \left.\frac{\delta^2f}{\delta\phi(y)\delta\phi(y')}\right|_{\phi}
+        \eta(y)\eta(y')+\cdots.
+    \end{align}
+    各阶泛函导数均在原场配置$\phi$处取值；平直背景的惯性或笛卡尔坐标中，$\epsilon(y)=\d^dy$。
+\end{theorem}
 参考: \cite{functionals}
 
 % \subsection{群\&群表示论}
